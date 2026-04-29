@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social That Closes — BK Realty · CNAT Title</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /*
+     * BK REALTY — SOCIAL THAT CLOSES
+     * 60-minute teaching deck · CNAT brand system
+     * Manual navigation: arrows / spacebar / click / swipe
+     * N = speaker notes · F = fullscreen
+     */
+    :root {
+      --navy: #0F1A2E;
+      --navy-mid: #162240;
+      --navy-light: #1B2A4A;
+      --cyan: #00C8F0;
+      --cyan-glow: #00D4FF;
+      --gold: #FFB833;
+      --gold-soft: #FFD175;
+      --white: #F2F6FA;
+      --green: #36D97A;
+      --red-soft: #EF5350;
+      --coral: #FF7373;
+      --purple: #B57BFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+    /* ═══ SLIDE BASE ═══ */
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: none;
+      padding: 5vh 5vw;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+    .slide-inner { width: 100%; max-width: 1500px; margin: 0 auto; }
+
+    /* ═══ BACKGROUNDS ═══ */
+    .slide.dark { background: var(--navy); }
+    .slide.mid { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); }
+    .slide.gradient { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #0a2540 100%); }
+    .slide.accent { background: linear-gradient(135deg, #003459 0%, var(--navy-light) 100%); }
+    .slide.deep { background: radial-gradient(ellipse at center, var(--navy-mid) 0%, var(--navy) 70%); }
+    .slide.light { background: var(--white); color: #0D1526; }
+
+    /* ═══ TYPOGRAPHY — TV/projector calibrated ═══ */
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.2rem, 5vw, 5.5rem);
+      letter-spacing: 4px;
+      line-height: 1.05;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.3rem, 1.7vw, 1.7rem);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      font-size: clamp(1.4rem, 1.9vw, 1.9rem);
+      font-weight: 300;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .body-text {
+      font-size: clamp(1.5rem, 1.8vw, 1.9rem);
+      line-height: 1.55;
+    }
+    .small-text {
+      font-size: clamp(1rem, 1.15vw, 1.15rem);
+      opacity: 0.7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .highlight { color: var(--cyan); font-weight: 700; }
+    .gold { color: var(--gold); }
+    .green { color: var(--green); }
+    .coral { color: var(--coral); }
+    .purple { color: var(--purple); }
+
+    /* ═══ HERO STAT ═══ */
+    .hero-stat {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(7rem, 14vw, 16rem);
+      line-height: 0.9;
+      color: var(--cyan);
+      text-shadow: 0 0 50px rgba(0,200,240,0.3);
+    }
+    .hero-stat.gold { color: var(--gold); text-shadow: 0 0 50px rgba(255,184,51,0.3); }
+    .hero-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 2.1vw, 2.1rem);
+      font-weight: 400;
+      line-height: 1.3;
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+    }
+
+    /* ═══ TWO-COL / THREE-COL ═══ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 3vw, 50px);
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: clamp(16px, 2vw, 32px);
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(14px, 1.6vw, 24px);
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .five-col {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(12px, 1.3vw, 20px);
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+
+    /* ═══ CARDS ═══ */
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: clamp(18px, 2.5vh, 30px);
+    }
+    .card.glow { border-color: rgba(0,200,240,0.4); box-shadow: 0 0 30px rgba(0,200,240,0.1); }
+    .card.border-top-cyan { border-top: 4px solid var(--cyan); }
+    .card.border-top-gold { border-top: 4px solid var(--gold); }
+    .card.border-top-green { border-top: 4px solid var(--green); }
+    .card.border-top-coral { border-top: 4px solid var(--coral); }
+    .card.border-top-purple { border-top: 4px solid var(--purple); }
+    .card h3 { margin-bottom: 0.5rem; }
+    .card p { font-size: clamp(1.05rem, 1.25vw, 1.25rem); line-height: 1.5; opacity: 0.9; }
+
+    /* ═══ STAT BOXES ═══ */
+    .stat-box {
+      background: rgba(0,200,240,0.08);
+      border: 2px solid rgba(0,200,240,0.25);
+      border-radius: 14px;
+      padding: clamp(20px, 3vh, 36px) clamp(14px, 1.6vw, 24px);
+      text-align: center;
+    }
+    .stat-box .number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      color: var(--cyan);
+      line-height: 1;
+    }
+    .stat-box .label {
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      opacity: 0.9;
+      margin-top: 12px;
+      line-height: 1.35;
+    }
+
+    /* ═══ DO / DON'T ═══ */
+    .do-box, .dont-box {
+      border-radius: 14px;
+      padding: clamp(18px, 2.5vh, 28px);
+      text-align: left;
+    }
+    .do-box {
+      background: rgba(54,217,122,0.1);
+      border: 2px solid rgba(54,217,122,0.35);
+    }
+    .dont-box {
+      background: rgba(239,83,80,0.1);
+      border: 2px solid rgba(239,83,80,0.35);
+    }
+    .do-box h3 { color: var(--green); }
+    .dont-box h3 { color: var(--coral); }
+    .do-box p, .dont-box p {
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    /* ═══ STEP ROWS ═══ */
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .step-num {
+      background: var(--cyan);
+      color: var(--navy);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 1px;
+    }
+    .step-content { flex: 1; }
+    .step-content strong {
+      font-size: clamp(1.2rem, 1.45vw, 1.45rem);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .step-content p {
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+      opacity: 0.9;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    /* ═══ HOOK FORMULAS ═══ */
+    .formula-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.5vh, 18px);
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
+      text-align: left;
+    }
+    .formula-item {
+      background: rgba(255,255,255,0.04);
+      border-left: 5px solid var(--cyan);
+      padding: clamp(16px, 2vh, 24px) clamp(20px, 2.2vw, 28px);
+      border-radius: 0 12px 12px 0;
+      font-size: clamp(1.15rem, 1.4vw, 1.4rem);
+      line-height: 1.4;
+    }
+    .formula-item .num {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--cyan);
+      font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+      letter-spacing: 2px;
+      margin-right: 14px;
+    }
+    .formula-item .formula {
+      color: var(--gold);
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      display: block;
+      margin-top: 6px;
+      opacity: 0.85;
+    }
+
+    /* ═══ DM SCRIPT BOX ═══ */
+    .dm-script {
+      background: #1a3a5a;
+      border: 2px solid rgba(0,200,240,0.3);
+      border-radius: 18px;
+      padding: clamp(20px, 2.5vh, 30px);
+      max-width: 700px;
+      margin: 1rem auto 0;
+      text-align: left;
+    }
+    .dm-bubble {
+      background: rgba(0,200,240,0.15);
+      border-radius: 14px 14px 14px 4px;
+      padding: clamp(12px, 1.6vh, 18px) clamp(16px, 1.8vw, 22px);
+      font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .dm-bubble.you {
+      background: rgba(54,217,122,0.15);
+      border-radius: 14px 14px 4px 14px;
+      margin-left: 15%;
+    }
+    .dm-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* ═══ FLOW ═══ */
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 1vw, 18px);
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .flow-step {
+      background: rgba(0,200,240,0.08);
+      border: 2px solid rgba(0,200,240,0.3);
+      border-radius: 14px;
+      padding: clamp(14px, 1.8vh, 22px) clamp(16px, 1.8vw, 24px);
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+    }
+    .flow-step .step-label {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--cyan);
+      font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+      letter-spacing: 2px;
+    }
+    .flow-step .step-text {
+      font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+    .flow-arrow {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--gold);
+      font-size: clamp(1.5rem, 2vw, 2rem);
+    }
+
+    /* ═══ TABLE ═══ */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem auto 0;
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+      text-align: left;
+      max-width: 1200px;
+    }
+    .compare-table th {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+      padding: 16px 22px;
+      border-bottom: 3px solid var(--cyan);
+      letter-spacing: 0.5px;
+    }
+    .compare-table td {
+      padding: 14px 22px;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .col-label {
+      font-family: 'Oswald', sans-serif;
+      color: var(--cyan);
+      font-weight: 500;
+    }
+
+    /* ═══ CHECKLIST ═══ */
+    ul.checklist {
+      list-style: none;
+      display: inline-block;
+      text-align: left;
+      max-width: 1100px;
+      margin: 1rem auto 0;
+    }
+    ul.checklist li {
+      font-size: clamp(1.2rem, 1.45vw, 1.45rem);
+      padding: 10px 0 10px 48px;
+      position: relative;
+      line-height: 1.4;
+    }
+    ul.checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      color: var(--cyan);
+      font-size: clamp(1.5rem, 1.8vw, 1.8rem);
+    }
+    ul.checklist.done li::before { content: '☑'; }
+
+    /* ═══ DEMO CALLOUT ═══ */
+    .demo-callout {
+      background: linear-gradient(135deg, rgba(255,184,51,0.15) 0%, rgba(255,184,51,0.05) 100%);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: clamp(20px, 2.5vh, 30px);
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+      text-align: left;
+    }
+    .demo-callout .demo-label {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--gold);
+      font-size: clamp(1.3rem, 1.7vw, 1.7rem);
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .demo-callout p {
+      font-size: clamp(1.15rem, 1.35vw, 1.35rem);
+      line-height: 1.5;
+    }
+
+    /* ═══ PILLAR GRID ═══ */
+    .pillar {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: clamp(18px, 2.2vh, 28px) clamp(12px, 1.2vw, 18px);
+      text-align: center;
+      border-top: 4px solid var(--cyan);
+    }
+    .pillar:nth-child(2) { border-top-color: var(--gold); }
+    .pillar:nth-child(3) { border-top-color: var(--green); }
+    .pillar:nth-child(4) { border-top-color: var(--coral); }
+    .pillar:nth-child(5) { border-top-color: var(--purple); }
+    .pillar .icon {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      color: var(--cyan);
+    }
+    .pillar:nth-child(2) .icon { color: var(--gold); }
+    .pillar:nth-child(3) .icon { color: var(--green); }
+    .pillar:nth-child(4) .icon { color: var(--coral); }
+    .pillar:nth-child(5) .icon { color: var(--purple); }
+    .pillar h3 {
+      font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+    .pillar p {
+      font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+      opacity: 0.85;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ═══ PROMPT TEMPLATE BOX ═══ */
+    .prompt-box {
+      background: #0a1828;
+      border: 2px solid rgba(0,200,240,0.25);
+      border-radius: 14px;
+      padding: clamp(18px, 2.2vh, 26px);
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      line-height: 1.55;
+      color: #c4e8f5;
+    }
+    .prompt-box .prompt-label {
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .prompt-box .var {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* ═══ QR PLACEHOLDER ═══ */
+    .qr-placeholder {
+      width: clamp(180px, 22vh, 260px);
+      height: clamp(180px, 22vh, 260px);
+      border: 3px dashed rgba(255,255,255,0.35);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+      opacity: 0.65;
+      margin: 0 auto;
+      letter-spacing: 1px;
+    }
+
+    /* ═══ FIXED UI ═══ */
+    #progressBar {
+      position: fixed; top: 0; left: 0; height: 4px;
+      background: var(--cyan);
+      transition: width 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 0 8px rgba(0,200,240,0.3);
+    }
+    #slideCount {
+      position: fixed; bottom: 3vh; right: 4vw;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      opacity: 0.4;
+      z-index: 100;
+      letter-spacing: 2px;
+    }
+    #brandMark {
+      position: fixed; bottom: 3vh; left: 4vw;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+      opacity: 0.35;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 100;
+    }
+
+    /* ═══ ANIMATIONS ═══ */
+    .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+    .s1 { animation-delay: 0.15s; }
+    .s2 { animation-delay: 0.3s; }
+    .s3 { animation-delay: 0.45s; }
+    .s4 { animation-delay: 0.6s; }
+    .s5 { animation-delay: 0.75s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ═══ SPEAKER NOTES ═══ */
+    .notes-panel {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      max-height: 35vh;
+      background: rgba(0,0,0,0.92);
+      border-top: 3px solid var(--cyan);
+      padding: 18px 24px;
+      overflow-y: auto;
+      z-index: 200;
+      backdrop-filter: blur(10px);
+    }
+    .notes-panel.visible { display: block; }
+    .notes-panel h4 {
+      color: var(--cyan);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    .notes-panel p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      color: #e8f1f7;
+    }
+
+    /* ═══ TIME STAMP ═══ */
+    .timestamp {
+      position: absolute;
+      top: 4vh; right: 4vw;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 1.3vw, 1.3rem);
+      color: var(--gold);
+      letter-spacing: 2px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progressBar"></div>
+  <div id="brandMark">CNAT Title · BK Realty · 2026</div>
+  <div id="slideCount">1 / 31</div>
+
+  <div id="deck">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 1: TITLE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent" data-notes="Welcome BK Realty agents. I'm Bradley Patterson, Technology Director at CNAT Title. Quick promise upfront — no Instagram 101, no 'be authentic' platitudes, no listing-of-the-week demos. We're here for one hour and we're going to walk out with mechanics you can deploy this week to turn social media activity into actual transactions. The goal isn't more followers. The goal is more conversations that lead to closings.">
+      <div class="slide-inner">
+        <p class="small-text fade-in">CNAT Title presents · for BK Realty</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; color: var(--cyan); font-size: clamp(4rem, 6.5vw, 7.5rem);">SOCIAL THAT<br>CLOSES</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 1.5rem;">The 2026 Reels &amp; DM Playbook<br>for Agents Who Don't Have Time to Post All Day</p>
+        <p class="fade-in s3" style="margin-top: 3rem; opacity: 0.55; font-size: 1.05rem; letter-spacing: 2px;">BRADLEY PATTERSON · TECHNOLOGY DIRECTOR · CNAT TITLE</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 2: HANDOUT QR -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide dark" data-notes="Grab the handout right now while we get started. Scan it with your phone camera — opens a downloadable guide with every prompt, script, and template we cover today. Don't try to take notes. The handout has it all. Just listen and watch.">
+      <div class="slide-inner">
+        <h2 class="fade-in" style="margin-bottom: 0.5rem;">Grab Your Handout First</h2>
+        <p class="body-text fade-in s1" style="margin-bottom: 1.5rem; opacity: 0.85;">Every prompt, script, and template we cover today is in the handout</p>
+        <div class="fade-in s2" style="margin: 0 auto;">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc4AAAHOCAIAAACehH7nAAAIyUlEQVR4nO3cwZHDRBRFUUw5APYEQf5hEAR7MhAh0Iu5fH7rnPWU5JHlW716n+d5fgGg9Ov0BwC4n9QC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWIPctLvrb738Ul73M33/9efiX58+zuOa52f/o3Ja7n5v93u9TfO9OtQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkEuWvc4VCzqztiwnFVtQswtk961wzdryOc/N/jadagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWIDe87HVudpVnduVoyw5W8TnPbVnhmv2OCm/+bZ5zqgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagNyaZa83K7agZteYZm1ZSuMmTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Cz7LXA7BJVsQE2e3d7Xfz3nGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiC3ZtnLxtKJN2+AzSr+9y22fEeznGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiA3vOz15j2kc8UK16wtC2TF89zyOf02f5ZTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5D7P80x/Bv7FlmWvNy9RbdlUY4pTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5L7FRYuFp2K3afbu57Y8pcLskz933xsyu7523zvvVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALlk2Wt2C2rWlv99dgvKvtT/35bFrC3fkVMtQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkPs/z/PhF71s5mjW7Fja7wlWYfT+37J+d27KUNvuUnGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiCXLHuds7H0s3c/d9/nvO/uhS3ra4XZX7FTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5JJlry0rR7Nmt7Use025b09uy/raLKdagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXIDS973bdIZOXoxH0rXOfu+3UUZt+Q4n93qgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagFyy7HVuy2LWFrNbUOdmN9XOvfldOnffk7fsBbCS1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyCXLXrN7XbM7Q29eObpvp23L+zlry69j9sk71QLkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQO47e/tit6m45n1LVOe2LCed2/I573uT73uXzjnVAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ALln2ml0Pmt0E2rIBtkXxPIt9qfuWqM7NfkdbONUC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUDu8zzPj1+0WE66b+nnXPGUiiWqN39H52af/Ja7z/5HBadagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXIfYuLbtnaKRTbRVsWs7bstM1+zvtWuDjhVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALnP8zyDty+Wk2b3kM4V+1Jb1pi2bJUVtuyfbbHlnXeqBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qA3PCyFye27J9tMbuYdd+i230LZMXzdKoFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDct7jofUs/hWI9aHY1ass1iyd//jlnfx1b1sLu2z9zqgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagFyy7HVudmunsGW3qbhmscZ0rrjmlvW14u5bbNkAc6oFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDc8LLXudnFrNk9pC3bReeKu88ukM0+z9lfx7nZVbNZTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Bbs+z1ZrMrR/dtqs3udb15LWzLky841QLkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQM6y11XO95BmV44K9+1gbfHm/bNzTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Bbs+y1Zb+nUOx1bblmofiPtqxb3ffkt2yAOdUC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBueNlrdmdoi9mndN8G2OzC05vf+Tfv8znVAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1A7vM8z/RnALicUy1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkPsHvCk/SWmKEjoAAAAASUVORK5CYII=" alt="Scan for handout" style="width: clamp(220px, 28vh, 320px); height: clamp(220px, 28vh, 320px); border-radius: 14px; image-rendering: pixelated; background: white; padding: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.3);" />
+        </div>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: clamp(1rem, 1.2vw, 1.2rem); color: var(--cyan); letter-spacing: 0.5px;">classes.cnattitle.com/bk-social/</p>
+        <p class="fade-in s3" style="margin-top: 0.5rem; font-family: 'Oswald', sans-serif; font-size: clamp(0.9rem, 1.1vw, 1.1rem); opacity: 0.55; letter-spacing: 1px;">Social That Closes — Agent Workbook · 2026</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION: REALITY CHECK -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 3: REALITY CHECK -->
+    <section class="slide deep" data-notes="Quick gut check. Some of you have posted a reel that flopped. Some of you have a thousand followers and no leads from social. Both are normal. Both are fixable. Here's what changed in 2026 — Instagram now distributes content based on interest, not follower count. A brand-new agent with 400 followers can reach 40,000 people with one well-built reel. Translation: the playing field flattened. Reach is no longer about who you know — it's about whether your content earns the algorithm's promotion.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">The 2026 reality</p>
+        <h1 class="fade-in s1" style="margin-top: 1rem; color: var(--white); font-size: clamp(2.8rem, 4.5vw, 5rem);">The playing field<br>just flattened.</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 2rem; max-width: 1100px; margin-left: auto; margin-right: auto;">Instagram now distributes content based on <span class="highlight">interest, not follower count.</span></p>
+        <p class="body-text fade-in s3" style="margin-top: 1.5rem; max-width: 1000px; margin-left: auto; margin-right: auto; opacity: 0.85;">A brand-new agent with 400 followers can reach 40,000 people with one good reel.</p>
+        <p class="fade-in s4" style="margin-top: 2rem; opacity: 0.5; font-size: 1rem;">Source: Mile High Title Guy · IG Reels for Real Estate Agents 2026</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 4: THE THESIS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent" data-notes="This is the single most important shift to internalize. Posts don't generate leads. Conversations do. Your reel is not the product — it's the bait. The product is the DM that follows. The agents printing GCI from social aren't the ones with the prettiest feeds. They're the ones with the most active inbox. Hold on to this thesis the entire hour. Every tactic we cover serves this idea: how do I move someone from passive viewer to active conversation.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">Today's thesis</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; font-size: clamp(3rem, 5.5vw, 6rem); color: var(--white);">Posts don't<br>generate leads.</h1>
+        <h1 class="fade-in s2" style="margin-top: 1.5rem; color: var(--cyan); font-size: clamp(3rem, 5.5vw, 6rem);">Conversations do.</h1>
+        <p class="subtitle fade-in s3" style="margin-top: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto;">Reels are the discovery engine.<br>DMs are the sales channel.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 5: TODAY'S ROADMAP -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient" data-notes="Five sections, sixty minutes. Hooks — how to stop the scroll. The DM engine — biggest payoff of the day, fifteen minutes on this. Reach multipliers — three things most agents skip that double your reach. The five content pillars — your never-run-out-of-ideas system. And production — how to do this in 30 minutes a day, not 3 hours. Each section ends with one thing you do this week.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Today's Roadmap</h2>
+        <div class="five-col" style="margin-top: 2rem;">
+          <div class="card border-top-cyan fade-in s1">
+            <h3>01</h3>
+            <p style="margin-top: 8px;"><strong>Hook Engineering</strong></p>
+            <p style="opacity: 0.7; font-size: 0.95em; margin-top: 4px;">Stop the scroll in 2 seconds</p>
+          </div>
+          <div class="card border-top-gold fade-in s2">
+            <h3 style="color: var(--gold);">02</h3>
+            <p style="margin-top: 8px;"><strong>The DM Engine</strong></p>
+            <p style="opacity: 0.7; font-size: 0.95em; margin-top: 4px;">Where the leads actually come from</p>
+          </div>
+          <div class="card border-top-green fade-in s3">
+            <h3 style="color: var(--green);">03</h3>
+            <p style="margin-top: 8px;"><strong>Reach Multipliers</strong></p>
+            <p style="opacity: 0.7; font-size: 0.95em; margin-top: 4px;">3 things most agents skip</p>
+          </div>
+          <div class="card border-top-coral fade-in s4">
+            <h3 style="color: var(--coral);">04</h3>
+            <p style="margin-top: 8px;"><strong>Content Pillars</strong></p>
+            <p style="opacity: 0.7; font-size: 0.95em; margin-top: 4px;">Never run out of ideas</p>
+          </div>
+          <div class="card border-top-purple fade-in s5">
+            <h3 style="color: var(--purple);">05</h3>
+            <p style="margin-top: 8px;"><strong>Production System</strong></p>
+            <p style="opacity: 0.7; font-size: 0.95em; margin-top: 4px;">30 min a day, not 3 hrs</p>
+          </div>
+        </div>
+        <p class="fade-in s5" style="margin-top: 2.5rem; font-size: clamp(1.1rem, 1.3vw, 1.3rem); opacity: 0.7; font-style: italic;">Every section ends with one thing you do this week.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: HOOK ENGINEERING -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 6: HOOK SECTION OPENER -->
+    <section class="slide deep" data-notes="Section one. Hook engineering. This is the foundation — if your hook fails, nothing else matters. Algorithm doesn't care how good your message is if no one watches past second three.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--cyan);">Section 01 · 10 minutes</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; color: var(--cyan); font-size: clamp(4rem, 7vw, 8rem);">HOOK<br>ENGINEERING</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 2rem;">Stop the scroll. Earn the second.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: 2-SECOND RULE -->
+    <section class="slide deep" data-notes="Two seconds. That's how long you have. Adam Mosseri, head of Instagram, is on record about this — the algorithm watches retention rate in the first three seconds and decides whether to keep showing your reel to new people. Lose them in second one, your reel is dead. Three indicators that you're losing the hook battle: views well below your follower count, watch time under 30 percent, and zero shares. If those are happening, you don't have a content problem. You have a hook problem.">
+      <div class="slide-inner">
+        <p class="small-text fade-in">The first frame</p>
+        <div class="hero-stat fade-in s1" style="margin-top: 0.5rem;">2<span style="font-size: 0.5em; vertical-align: top;">SEC</span></div>
+        <p class="hero-label fade-in s2">is the only real estate you actually own on Instagram</p>
+        <div class="two-col fade-in s3" style="margin-top: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto;">
+          <div class="dont-box">
+            <h3>How to know your hook is failing</h3>
+            <p style="margin-top: 8px;">→ Views below your follower count</p>
+            <p>→ Watch time under 30%</p>
+            <p>→ Zero shares</p>
+          </div>
+          <div class="do-box">
+            <h3>What a working hook looks like</h3>
+            <p style="margin-top: 8px;">→ Views 5–50× follower count</p>
+            <p>→ Watch time over 60%</p>
+            <p>→ Saves and shares ratio &gt; likes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: 5 HOOK FORMULAS -->
+    <section class="slide gradient" data-notes="These are the five hook formulas that work in real estate. Print this. Tape it to your monitor. Every reel you make should plug into one of these five patterns. Number one — mistake call-out. Punches above its weight every time. Number two — 'if I were buying' positions you as the trusted insider. Number three — specific number plus outcome. The brain can't ignore a specific dollar figure. Number four — closing day, escrow, title — agents underestimate how curious people are about the parts of the transaction they don't see. Number five — local first-time buyer angle. Highest-volume search topic in real estate. We'll do a live rewrite in two slides.">
+      <div class="slide-inner">
+        <h2 class="fade-in">5 hook formulas that work for agents</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.25rem auto 0;">Plug your topic into one of these five patterns. Don't reinvent.</p>
+        <div class="formula-list">
+          <div class="formula-item fade-in s1"><span class="num">01</span>"3 mistakes <span class="highlight">[buyers/sellers]</span> are making right now in <span class="highlight">[DFW/Austin]</span> — and how to avoid them"<span class="formula">FORMULA: Mistake call-out + audience + location</span></div>
+          <div class="formula-item fade-in s2"><span class="num">02</span>"If I were <span class="highlight">[buying/selling]</span> a house in <span class="highlight">[Frisco/Round Rock]</span> today, here's exactly what I'd do"<span class="formula">FORMULA: "If I were" + specific action + hyperlocal</span></div>
+          <div class="formula-item fade-in s3"><span class="num">03</span>"One strategy that's saving my clients <span class="highlight">$8,000+ in closing costs</span> right now"<span class="formula">FORMULA: Specific dollar amount + outcome + timeframe</span></div>
+          <div class="formula-item fade-in s4"><span class="num">04</span>"What actually happens on closing day — in 30 seconds"<span class="formula">FORMULA: Insider explainer + time promise</span></div>
+          <div class="formula-item fade-in s5"><span class="num">05</span>"The one thing every <span class="highlight">first-time buyer in [city]</span> gets wrong about pre-approval"<span class="formula">FORMULA: Niche audience + contrarian truth + specific topic</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: WHAT KILLS A HOOK -->
+    <section class="slide mid" data-notes="What kills hooks. Every one of these I've seen agents do this week. 'Hey guys, what's up' — the algorithm has already moved on. Slow zoom on a property exterior — boring, no information, no tension. Saying your name and brokerage in the first three seconds — you can introduce yourself at the end. The viewer doesn't care who you are yet. They care whether they should keep watching. Throat-clearing in any form. Get rid of it.">
+      <div class="slide-inner">
+        <h2 class="fade-in">What kills a hook</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85;">Every one of these I've watched an agent do this week.</p>
+        <div class="two-col" style="margin-top: 2rem;">
+          <div class="dont-box fade-in s1">
+            <h3>❌ Hook killers</h3>
+            <p style="margin-top: 12px;"><strong>"Hey guys, what's up..."</strong> — algorithm already moved on</p>
+            <p><strong>Slow zoom on exterior</strong> — no tension, no information</p>
+            <p><strong>"My name is ___ and I'm with ___"</strong> — they don't care yet</p>
+            <p><strong>Trending audio with no payoff</strong> — they came for the song</p>
+            <p><strong>"Did you know that..."</strong> — pure throat-clearing</p>
+          </div>
+          <div class="do-box fade-in s2">
+            <h3>✓ Hook winners</h3>
+            <p style="margin-top: 12px;"><strong>Specific number in first 2 sec</strong> — "$8,000 saved"</p>
+            <p><strong>Direct address</strong> — "If you're buying in DFW..."</p>
+            <p><strong>Contrarian claim</strong> — "Stop using a buyer's agent like this"</p>
+            <p><strong>Visual pattern interrupt</strong> — text overlay that demands a read</p>
+            <p><strong>Curiosity gap</strong> — "The one room buyers always check first"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: LIVE REWRITE EXERCISE -->
+    <section class="slide accent" data-notes="Live exercise. I'm going to show you a weak hook, then we rewrite it together. Get your handout out — there's space for this. Weak: 'Hey guys, today I want to talk about closing costs.' Boring. No specifics. No reason to keep watching. Now watch the rewrite. Strong: 'I just saved my last buyer $11,400 at the closing table. Here's the move.' Same topic. Different result. Specific number plus outcome plus curiosity gap. Now you try — pick one weak hook from your last three reels and rewrite it using one of the five formulas. Take 60 seconds.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">Live exercise · 60 seconds</p>
+        <h2 class="fade-in s1" style="margin-top: 1rem;">Rewrite a weak hook</h2>
+        <div class="two-col" style="margin-top: 2rem;">
+          <div class="card fade-in s2" style="background: rgba(239,83,80,0.1); border: 2px solid rgba(239,83,80,0.3); text-align: left;">
+            <p class="small-text" style="color: var(--coral);">WEAK</p>
+            <p class="body-text" style="margin-top: 12px; line-height: 1.45;">"Hey guys, today I want to talk about closing costs."</p>
+            <p style="margin-top: 14px; font-size: clamp(1rem, 1.1vw, 1.1rem); opacity: 0.7; line-height: 1.4;"><em>No specificity. No tension. Algorithm passes.</em></p>
+          </div>
+          <div class="card fade-in s3" style="background: rgba(54,217,122,0.1); border: 2px solid rgba(54,217,122,0.4); text-align: left;">
+            <p class="small-text" style="color: var(--green);">STRONG</p>
+            <p class="body-text" style="margin-top: 12px; line-height: 1.45;">"I just saved my last buyer <span class="gold">$11,400</span> at the closing table. Here's the move."</p>
+            <p style="margin-top: 14px; font-size: clamp(1rem, 1.1vw, 1.1rem); opacity: 0.7; line-height: 1.4;"><em>Specific dollar amount + outcome + curiosity gap = stop.</em></p>
+          </div>
+        </div>
+        <div class="demo-callout fade-in s4">
+          <div class="demo-label">YOUR TURN</div>
+          <p>Pick one weak hook from your last three reels. Rewrite it using one of the five formulas. We'll share three out loud in 60 seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: THE DM ENGINE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 11: DM SECTION OPENER -->
+    <section class="slide deep" data-notes="Section two. Biggest payoff of the day. Fifteen minutes on this. The DM engine is what separates agents who post from agents who close. If you only remember one section from today's hour — make it this one.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">Section 02 · 15 minutes · Biggest payoff</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; color: var(--gold); font-size: clamp(4rem, 7vw, 8rem);">THE DM<br>ENGINE</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 2rem;">Where the leads actually come from.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: WHY DMs > LINK IN BIO -->
+    <section class="slide gradient" data-notes="Most agents put their lead capture link in their bio. Then they wonder why nobody clicks it. Here's why — clicking a link feels like commitment. Sending a DM doesn't. Same person who won't tap your bio link will absolutely comment 'guide' on a reel because it feels casual, low-effort, no commitment. Then we hand them what they came for. The conversion gap is real. Link in bio CTRs hover around 1 to 2 percent. Comment-to-DM conversion runs 15 to 30 percent. Same audience. Different friction.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Why DMs beat link in bio</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Same audience. Different friction.</p>
+        <table class="compare-table fade-in s2">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-label">Link in Bio</th>
+              <th class="col-label" style="color: var(--gold);">Comment → DM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Commitment level</strong></td>
+              <td>Feels like buying</td>
+              <td style="color: var(--green);">Feels like texting</td>
+            </tr>
+            <tr>
+              <td><strong>Steps to opt in</strong></td>
+              <td>4 (tap bio · tap link · fill form · submit)</td>
+              <td style="color: var(--green);">1 (type a word in comments)</td>
+            </tr>
+            <tr>
+              <td><strong>Conversion rate</strong></td>
+              <td>1–2%</td>
+              <td style="color: var(--green);">15–30%</td>
+            </tr>
+            <tr>
+              <td><strong>What you capture</strong></td>
+              <td>Email (often fake)</td>
+              <td style="color: var(--green);">Live DM thread + name</td>
+            </tr>
+            <tr>
+              <td><strong>Follow-up channel</strong></td>
+              <td>Email (40% open rate if lucky)</td>
+              <td style="color: var(--green);">DM (90%+ open rate)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: THE 4-STEP DM FLOW -->
+    <section class="slide mid" data-notes="Here's the entire DM engine in four steps. Step one — reel with hook plus a clear DM call-to-action like 'comment GAME PLAN and I'll send you the full guide.' Step two — viewer comments the trigger word. Step three — automation auto-DMs them the lead magnet. Step four — and this is the step that separates the pros from amateurs — you personally reply to every triggered DM with a real question. The automation gets the door open. You walk through it. We're going to walk through each step in detail next.">
+      <div class="slide-inner">
+        <h2 class="fade-in">The 4-step DM conversion flow</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85;">Reel earns the comment. Automation opens the DM. <span class="gold">You walk through the door.</span></p>
+        <div class="flow" style="margin-top: 2rem;">
+          <div class="flow-step fade-in s1">
+            <div class="step-label">01 · REEL</div>
+            <div class="step-text"><strong>Strong hook</strong><br>Clear DM trigger CTA</div>
+          </div>
+          <div class="flow-arrow fade-in s1">→</div>
+          <div class="flow-step fade-in s2">
+            <div class="step-label">02 · TRIGGER</div>
+            <div class="step-text"><strong>Viewer comments</strong><br>"guide" / "info" / "move"</div>
+          </div>
+          <div class="flow-arrow fade-in s2">→</div>
+          <div class="flow-step fade-in s3">
+            <div class="step-label">03 · AUTO-DM</div>
+            <div class="step-text"><strong>Lead magnet sends</strong><br>+ first question prompt</div>
+          </div>
+          <div class="flow-arrow fade-in s3">→</div>
+          <div class="flow-step fade-in s4">
+            <div class="step-label">04 · YOU</div>
+            <div class="step-text"><strong>Personal reply</strong><br>Opens real conversation</div>
+          </div>
+        </div>
+        <p class="fade-in s5" style="margin-top: 2.5rem; font-size: clamp(1.3rem, 1.6vw, 1.6rem); color: var(--cyan); font-family: 'Oswald', sans-serif; letter-spacing: 2px;">REELS = BAIT · DMs = BOAT · CONVERSATIONS = CLOSINGS</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: WHAT MAKES A LEAD MAGNET PULL -->
+    <section class="slide gradient" data-notes="The lead magnet is what makes someone comment in the first place. Three rules. One — specific beats generic. 'Buyer Guide' is generic. '2026 DFW Buyer Game Plan: What Changed and What to Do About It' is specific. Two — local beats national. Anyone can google a buyer guide. They can't google your specific neighborhood breakdown. Three — action beats information. A checklist they can use today beats a 30-page PDF they'll never read. Five examples that work — game plan, pre-listing checklist, closing cost calculator, neighborhood deep-dive, and relocation kit. The handout has fillable templates for all five.">
+      <div class="slide-inner">
+        <h2 class="fade-in">What makes a lead magnet actually pull</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">3 rules. Then 5 examples that work.</p>
+        <div class="three-col" style="margin-top: 1.5rem;">
+          <div class="card border-top-cyan fade-in s1">
+            <h3 class="highlight">Rule 1 · Specific</h3>
+            <p style="margin-top: 8px;"><span style="opacity: 0.6;">"Buyer Guide"</span> ❌</p>
+            <p>"2026 DFW Buyer Game Plan: What Changed and What to Do" ✓</p>
+          </div>
+          <div class="card border-top-gold fade-in s2">
+            <h3 class="gold">Rule 2 · Local</h3>
+            <p style="margin-top: 8px;"><span style="opacity: 0.6;">"Real Estate Tips"</span> ❌</p>
+            <p>"Frisco vs. Plano: Which Suburb Fits Your Lifestyle?" ✓</p>
+          </div>
+          <div class="card border-top-green fade-in s3">
+            <h3 class="green">Rule 3 · Action</h3>
+            <p style="margin-top: 8px;"><span style="opacity: 0.6;">30-page PDF</span> ❌</p>
+            <p>1-page checklist they can use today ✓</p>
+          </div>
+        </div>
+        <ul class="checklist fade-in s4" style="margin-top: 1.5rem;">
+          <li><strong>2026 DFW/Austin Buyer Game Plan</strong> — what changed and what to do about it</li>
+          <li><strong>30-Day Pre-Listing Checklist</strong> — tasks per week before going active</li>
+          <li><strong>Real Closing Cost Estimator</strong> — actual numbers, not estimates</li>
+          <li><strong>Neighborhood Deep-Dive</strong> — schools, taxes, comps, commute, drama</li>
+          <li><strong>Relocation Welcome Kit</strong> — for the Austin/DFW transplant</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: THE FIRST DM (SCRIPT) -->
+    <section class="slide deep" data-notes="The first auto-DM is the most important message in your entire pipeline. It does three things — delivers what you promised, ends with a question, and sounds like a human, not a bot. Here's the script. Hi (name), here's the (lead magnet) you asked for — link below. Quick question — are you looking to buy in the next 90 days, or are you just gathering info right now? Both are great answers, just want to know how to be helpful. That last sentence is critical. 'Both are great answers' — removes pressure. 'Want to know how to be helpful' — positions you as a guide, not a salesperson. Two out of three responders will tell you exactly where they are in the process.">
+      <div class="slide-inner">
+        <h2 class="fade-in">The first DM (auto-send script)</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Delivers the magnet · ends with a question · sounds like a human</p>
+        <div class="dm-script fade-in s2">
+          <div class="dm-label">Auto-DM #1 — sent the moment they comment</div>
+          <div class="dm-bubble">
+            Hi <span class="gold">[first name]</span> 👋<br><br>
+            Here's the <span class="gold">[lead magnet]</span> you asked for: <span class="highlight">[link]</span><br><br>
+            Quick question — are you looking to buy in the next 90 days, or just gathering info right now?<br><br>
+            <em>Both are great answers, just want to know how to be helpful.</em>
+          </div>
+        </div>
+        <div class="three-col fade-in s3" style="margin-top: 1.5rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+          <div class="card">
+            <h3 class="highlight">Why "both are great"</h3>
+            <p style="margin-top: 6px;">Removes the pressure to perform. They tell you the truth.</p>
+          </div>
+          <div class="card">
+            <h3 class="gold">Why the timeline question</h3>
+            <p style="margin-top: 6px;">90 days = active lead. Info-only = nurture into your CRM.</p>
+          </div>
+          <div class="card">
+            <h3 class="green">Response rate</h3>
+            <p style="margin-top: 6px;">~60% reply. ~25% are 90-day-active. Math works.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: THE 3-MESSAGE SEQUENCE -->
+    <section class="slide mid" data-notes="When they reply, you have three messages to either book a call or move them to your CRM nurture. Don't rush. Don't pitch. Don't ask if they have an agent — that's amateur. Message one — react to whatever they said and ask a follow-up that's about THEM. 'You mentioned looking in Frisco — is there a school district pulling you that direction?' Now you're having a real conversation. Message two — share something genuinely useful, no pitch. A market insight. A neighborhood comp. Something they'd thank a friend for sending. Message three — soft offer. 'Want me to put together a quick rundown of three neighborhoods that fit what you're describing? Takes me about 30 minutes.' That's the move. Notice — you never asked if they have an agent. You demonstrated value first.">
+      <div class="slide-inner">
+        <h2 class="fade-in">The 3-message follow-up sequence</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1200px; margin: 0.5rem auto 0;">No pitch. No "do you have an agent?" Build the relationship in 3 moves.</p>
+        <div class="three-col" style="margin-top: 1.5rem;">
+          <div class="card border-top-cyan fade-in s1" style="text-align: left;">
+            <p class="small-text" style="color: var(--cyan);">MESSAGE 1 · CURIOSITY</p>
+            <p style="margin-top: 12px; font-size: clamp(1.05rem, 1.2vw, 1.2rem); line-height: 1.5;">React to what they said. Ask a follow-up that's about <strong>them</strong>.</p>
+            <p style="margin-top: 14px; font-size: clamp(0.95rem, 1.1vw, 1.1rem); opacity: 0.85; font-style: italic; padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;">"You mentioned Frisco — is there a school district pulling you that direction?"</p>
+          </div>
+          <div class="card border-top-gold fade-in s2" style="text-align: left;">
+            <p class="small-text" style="color: var(--gold);">MESSAGE 2 · VALUE</p>
+            <p style="margin-top: 12px; font-size: clamp(1.05rem, 1.2vw, 1.2rem); line-height: 1.5;">Share something genuinely useful. <strong>No pitch.</strong></p>
+            <p style="margin-top: 14px; font-size: clamp(0.95rem, 1.1vw, 1.1rem); opacity: 0.85; font-style: italic; padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;">"FYI — homes in that ZIP that closed last month averaged 4 days on market. Tight inventory still."</p>
+          </div>
+          <div class="card border-top-green fade-in s3" style="text-align: left;">
+            <p class="small-text" style="color: var(--green);">MESSAGE 3 · SOFT OFFER</p>
+            <p style="margin-top: 12px; font-size: clamp(1.05rem, 1.2vw, 1.2rem); line-height: 1.5;">A specific, low-commitment ask that demonstrates value.</p>
+            <p style="margin-top: 14px; font-size: clamp(0.95rem, 1.1vw, 1.1rem); opacity: 0.85; font-style: italic; padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;">"Want me to put together a quick rundown of 3 neighborhoods that fit? Takes me 30 min."</p>
+          </div>
+        </div>
+        <p class="fade-in s4" style="margin-top: 1.5rem; font-size: clamp(1.05rem, 1.25vw, 1.25rem); color: var(--gold); font-style: italic;">You never asked "do you have an agent?" — you demonstrated value instead.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: THREE PATHS — TOOL COMPARISON -->
+    <section class="slide gradient" data-notes="Quick context before the demo. There are three compliant ways to do this, all running on Meta's official API. None require any developer setup or app registration. Path one — Meta Business Suite. Meta's own free dashboard. The catch: it auto-replies to incoming DMs that contain a keyword. So your CTA becomes 'DM me GAME PLAN' instead of 'comment GAME PLAN.' Both work, the DM version is actually less friction. Most agents have no idea this exists. Path two — ManyChat free tier. This is what 90% of the comment-to-DM industry runs on. Free up to 1,000 contacts. Setup is just OAuth through Facebook — no app registration, no API keys. This is what we use if we want the 'comment X' CTA. Path three — GHL. The brokerage already pays for this. Heavier tool, full CRM integration, multi-step flows, lead routing. The upgrade path. We'll demo Paths 1 and 2 live, then show what GHL adds.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Three paths · all free* · all compliant</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.25rem auto 0; font-size: clamp(1.1rem, 1.4vw, 1.4rem);">No app registration. No API keys. No developer setup.</p>
+        <div class="three-col" style="margin-top: 1.5rem;">
+          <div class="card border-top-cyan fade-in s1" style="text-align: left;">
+            <p class="small-text" style="color: var(--cyan);">PATH 1 · NATIVE FREE</p>
+            <h3 style="margin-top: 6px; font-size: clamp(1.3rem, 1.6vw, 1.6rem);">Meta Business Suite</h3>
+            <p style="margin-top: 10px; opacity: 0.9; font-size: clamp(0.98rem, 1.1vw, 1.1rem); line-height: 1.45;">For "<strong class="highlight">DM me GAME PLAN</strong>" CTAs</p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ 100% native to Meta</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Free, no third-party</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Up to 5 keywords</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem); opacity: 0.7;">— Triggers on DMs, not comments</li>
+            </ul>
+          </div>
+          <div class="card border-top-green fade-in s2" style="text-align: left;">
+            <p class="small-text" style="color: var(--green);">PATH 2 · INDUSTRY STANDARD</p>
+            <h3 style="margin-top: 6px; font-size: clamp(1.3rem, 1.6vw, 1.6rem);">ManyChat (free tier)</h3>
+            <p style="margin-top: 10px; opacity: 0.9; font-size: clamp(0.98rem, 1.1vw, 1.1rem); line-height: 1.45;">For "<strong class="green">Comment GAME PLAN</strong>" CTAs</p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Free up to 1,000 contacts</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ OAuth setup · 5 min</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Meta-approved partner</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem); opacity: 0.7;">— $15/mo above 1K contacts</li>
+            </ul>
+          </div>
+          <div class="card border-top-gold fade-in s3" style="text-align: left;">
+            <p class="small-text" style="color: var(--gold);">PATH 3 · BROKERAGE</p>
+            <h3 style="margin-top: 6px; font-size: clamp(1.3rem, 1.6vw, 1.6rem);">GHL (GoHighLevel)</h3>
+            <p style="margin-top: 10px; opacity: 0.9; font-size: clamp(0.98rem, 1.1vw, 1.1rem); line-height: 1.45;">For full <strong class="gold">CRM pipeline integration</strong></p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Multi-step DM flows</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Auto-tag + nurture</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem);">✓ Lead routing</li>
+              <li style="padding: 4px 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem); opacity: 0.7;">— Already paid at brokerage</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fade-in s4" style="margin-top: 1.25rem; font-size: clamp(1rem, 1.2vw, 1.2rem); opacity: 0.7; font-style: italic;">*ManyChat free tier covers 90% of agents. GHL is brokerage-provided. Meta Business Suite is genuinely free.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: LIVE DEMO CALLOUT -->
+    <section class="slide accent" data-notes="Live demo. Switching screens now. First — Meta Business Suite. I'll log in to business.facebook.com, navigate to Inbox, click Automations, click Custom Keywords. Keyword — GAME PLAN. Auto-reply — pre-written, the same script from earlier. Activate. Then I'll DM myself GAME PLAN from another account and you'll watch the auto-reply fire within seconds. Two minutes. Then ManyChat. I'll show you a free tier account, the connection through Facebook OAuth, set up a comment trigger on the same post, write the auto-DM, post it. Comment GAME PLAN from my phone and you'll see the DM fire. Two minutes. Then GHL — quick walkthrough, not a full setup. Show the workflow builder, the CRM tagging, the nurture path. One minute. Total — five minutes. Backup screen recordings of all three are ready in tabs if the API slows down today. Don't follow along on your phone. The handout has step-by-step setup for all three so you can do whichever fits tonight.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">Live demo · 5 minutes</p>
+        <h1 class="fade-in s1" style="margin-top: 1rem; color: var(--cyan); font-size: clamp(3rem, 5.2vw, 5.7rem);">Let's set them up<br>right now.</h1>
+        <div class="demo-callout fade-in s2" style="margin-top: 1.5rem;">
+          <div class="demo-label">WATCH ON THE OTHER SCREEN →</div>
+          <div class="step-row" style="margin-top: 14px; margin-bottom: 10px;">
+            <div class="step-num" style="background: var(--cyan); width: 44px; height: 44px; font-size: 1.4rem;">1</div>
+            <div class="step-content">
+              <strong>Meta Business Suite · 2 min</strong>
+              <p style="opacity: 0.95; font-size: clamp(0.98rem, 1.15vw, 1.15rem);">business.facebook.com → Inbox → Automations → Custom Keywords → "GAME PLAN" → Write reply → Activate → Test from another account</p>
+            </div>
+          </div>
+          <div class="step-row" style="margin-bottom: 10px;">
+            <div class="step-num" style="background: var(--green); width: 44px; height: 44px; font-size: 1.4rem; color: var(--navy);">2</div>
+            <div class="step-content">
+              <strong>ManyChat free tier · 2 min</strong>
+              <p style="opacity: 0.95; font-size: clamp(0.98rem, 1.15vw, 1.15rem);">manychat.com → Connect via Facebook → New automation → Comment trigger → "GAME PLAN" → Write DM → Activate → Test from my phone</p>
+            </div>
+          </div>
+          <div class="step-row" style="margin-bottom: 4px;">
+            <div class="step-num" style="background: var(--gold); width: 44px; height: 44px; font-size: 1.4rem; color: var(--navy);">3</div>
+            <div class="step-content">
+              <strong>GHL walkthrough · 1 min</strong>
+              <p style="opacity: 0.95; font-size: clamp(0.98rem, 1.15vw, 1.15rem);">Same trigger, but routed into CRM with tags, nurture campaign, and lead assignment</p>
+            </div>
+          </div>
+        </div>
+        <p class="fade-in s3" style="margin-top: 1.25rem; font-size: clamp(1rem, 1.15vw, 1.15rem); opacity: 0.85;"><strong>Don't follow along on your phone yet.</strong> Step-by-step screenshots for all three are in the handout.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: REACH MULTIPLIERS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 18: REACH SECTION OPENER -->
+    <section class="slide deep" data-notes="Section three. Reach multipliers. These are three things most agents skip that double, sometimes triple, your reach. They take 30 seconds each to implement. They cost nothing. And almost no one does them right.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--green);">Section 03 · 10 minutes</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; color: var(--green); font-size: clamp(4rem, 7vw, 8rem);">REACH<br>MULTIPLIERS</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 2rem;">Three things most agents skip.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: NATIVE CAPTIONS vs CAPCUT -->
+    <section class="slide gradient" data-notes="Multiplier one. Captions. Adam Mosseri said this directly in a video he posted recently — the algorithm reads native Instagram captions as text and uses them to understand what your content is about. Captions baked into a CapCut video get treated as graphics. The algorithm can't read them. Your reel gets less distribution. Solution — use Instagram's built-in caption tool, every time. White text with a black highlight is the highest-performing combination. Two seconds to fix. Massive distribution difference.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Multiplier #1: Native captions, not CapCut</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Adam Mosseri (head of Instagram) confirmed this directly.</p>
+        <div class="two-col" style="margin-top: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+          <div class="dont-box fade-in s1">
+            <h3>❌ CapCut burned-in captions</h3>
+            <p style="margin-top: 12px;">Algorithm sees: <strong>graphics</strong></p>
+            <p>Algorithm reads content: <strong>no</strong></p>
+            <p>Distribution boost: <strong>none</strong></p>
+            <p style="margin-top: 14px; opacity: 0.7; font-style: italic;">Same with VideoLeap, Premiere, all third-party caption tools.</p>
+          </div>
+          <div class="do-box fade-in s2">
+            <h3>✓ Instagram native captions</h3>
+            <p style="margin-top: 12px;">Algorithm sees: <strong>text</strong></p>
+            <p>Algorithm reads content: <strong>yes</strong></p>
+            <p>Distribution boost: <strong>significant</strong></p>
+            <p style="margin-top: 14px; opacity: 0.7; font-style: italic;">White text + black highlight = highest readability.</p>
+          </div>
+        </div>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-size: clamp(1.15rem, 1.35vw, 1.35rem); color: var(--cyan); font-family: 'Oswald', sans-serif;">2 seconds to fix. Permanent reach gain.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: LOCATION + COLLAB TAGS -->
+    <section class="slide mid" data-notes="Multipliers two and three. Location tagging — tells Instagram where your content is geographically relevant. People who follow that location, search that location, or browse hyperlocal content get served your reel. For a real estate agent in DFW, this is gold. Tag specific neighborhoods, not just 'Dallas.' 'Lakewood Dallas,' 'Bishop Arts District,' 'Westover Hills Fort Worth.' Get hyperlocal. Multiplier three — collaborator tagging. This is the most underused feature in real estate. When you tag a collaborator, the reel posts to BOTH accounts simultaneously. Same reel, two feeds. Who should you collab with? Your lender. Your stager. Your favorite local restaurant. A photographer. The title rep — that's me, by the way. Every collab roughly doubles your reach.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Multipliers #2 &amp; #3: Two tags. Massive reach.</h2>
+        <div class="two-col" style="margin-top: 2rem;">
+          <div class="card border-top-gold fade-in s1" style="text-align: left;">
+            <h3 class="gold">📍 Location Tag</h3>
+            <p style="margin-top: 12px;">Instagram serves your reel to people who follow, search, or browse content tied to that location.</p>
+            <p style="margin-top: 14px;"><strong class="gold">Tactic:</strong> Tag the specific neighborhood, not the metro.</p>
+            <ul style="list-style: none; margin-top: 10px; padding-left: 0;">
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0; opacity: 0.9;">❌ "Dallas, TX"</li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0; color: var(--green);">✓ "Lakewood, Dallas"</li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0; color: var(--green);">✓ "Bishop Arts District"</li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0; color: var(--green);">✓ "Westover Hills, Fort Worth"</li>
+            </ul>
+          </div>
+          <div class="card border-top-green fade-in s2" style="text-align: left;">
+            <h3 class="green">@ Collaborator Tag</h3>
+            <p style="margin-top: 12px;">Reel posts to <strong>both accounts simultaneously</strong>. Same content, two feeds, double the audience.</p>
+            <p style="margin-top: 14px;"><strong class="green">Who to collab with:</strong></p>
+            <ul style="list-style: none; margin-top: 10px; padding-left: 0;">
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0;">→ Your <strong>lender</strong> (cross-promote)</li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0;">→ Your <strong>stager / photographer</strong></li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0;">→ A <strong>local business</strong> in the neighborhood</li>
+              <li style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); padding: 4px 0;">→ Your <strong>title rep</strong> (yes — me)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-size: clamp(1.1rem, 1.3vw, 1.3rem); color: var(--gold); font-family: 'Oswald', sans-serif; letter-spacing: 1px;">30 seconds per reel · Roughly doubles your reach</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: HASHTAGS — THE TRUTH -->
+    <section class="slide mid" data-notes="Hashtag truth bomb. Most agents are using 30 hashtags per post. Don't. Mosseri said earlier this year — the algorithm has effectively stopped using hashtags as a primary distribution signal. They're now mostly a search tool. Three to five relevant ones is plenty. The reach signal that replaced them — keyword search inside the caption. Write captions with the words your audience actually searches. 'First-time homebuyer Frisco' beats #FirstTimeHomeBuyer #Frisco #DFW #Realtor #ForSale every time.">
+      <div class="slide-inner">
+        <h2 class="fade-in">The hashtag truth most agents miss</h2>
+        <div class="two-col" style="margin-top: 2rem;">
+          <div class="dont-box fade-in s1">
+            <h3>❌ The 30-hashtag dump</h3>
+            <p style="margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.95em; opacity: 0.85; line-height: 1.5;">#realtor #realestate #dfw #fortworth #dallasrealestate #firsttimehomebuyer #homesforsale #realestateagent #milliondollarlisting #luxuryhomes...</p>
+            <p style="margin-top: 14px;">Looks like spam. Doesn't help reach. Algorithm has moved on.</p>
+          </div>
+          <div class="do-box fade-in s2">
+            <h3>✓ 3–5 specific tags + keyword caption</h3>
+            <p style="margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.95em; opacity: 0.9; line-height: 1.5;">#FortWorthRealEstate #LakewoodDallas #DFWHomes</p>
+            <p style="margin-top: 14px;"><strong>Then write the caption with searchable words:</strong> "first-time homebuyer Frisco," "Lakewood Dallas listings under $600K," etc.</p>
+          </div>
+        </div>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-size: clamp(1.1rem, 1.3vw, 1.3rem); color: var(--cyan); font-style: italic;">Caption keywords now matter more than hashtags. Write for search.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: 5 CONTENT PILLARS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 22: PILLARS OPENER + OVERVIEW -->
+    <section class="slide gradient" data-notes="Section four. Five content pillars. This is your never-run-out-of-ideas system. Most agents fail at consistency because they're trying to come up with brand new ideas every week. You don't need new ideas. You need five categories that rotate. Pillar one — market authority. Pillar two — education. Pillar three — hyperlocal. Pillar four — behind the curtain. Pillar five — social proof. Pick the pillar first, then the topic. Cuts your decision time in half.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--coral);">Section 04 · 10 minutes</p>
+        <h2 class="fade-in s1" style="margin-top: 0.5rem;">The 5 content pillars on rotation</h2>
+        <p class="body-text fade-in s2" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Pick the pillar first. The topic comes second.<br><span class="gold">Rotation beats variety.</span></p>
+        <div class="five-col" style="margin-top: 2rem;">
+          <div class="pillar fade-in s1">
+            <div class="icon">01</div>
+            <h3>Market Authority</h3>
+            <p>You. On camera. Real numbers. 30 seconds.</p>
+          </div>
+          <div class="pillar fade-in s2">
+            <div class="icon">02</div>
+            <h3>Education</h3>
+            <p>Closing day, offer mistakes, title questions.</p>
+          </div>
+          <div class="pillar fade-in s3">
+            <div class="icon">03</div>
+            <h3>Hyperlocal</h3>
+            <p>Neighborhood deep-cuts, not "listing of the week."</p>
+          </div>
+          <div class="pillar fade-in s4">
+            <div class="icon">04</div>
+            <h3>Behind the Curtain</h3>
+            <p>Process. Not pretty. Authenticity converts.</p>
+          </div>
+          <div class="pillar fade-in s5">
+            <div class="icon">05</div>
+            <h3>Social Proof</h3>
+            <p>Structured testimonials with the right questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: PILLAR EXAMPLES (DFW/AUSTIN) -->
+    <section class="slide mid" data-notes="Concrete topics for each pillar — specific to DFW and Austin. Market authority — quarterly numbers for your zip code. 'Frisco home prices Q1: up 4.2%. Here's what it means if you're thinking of selling.' Education — explain something complex simply. 'What an option fee actually is in Texas.' Hyperlocal — content nobody else has. 'The 4 best taco shops in Bishop Arts and which one's walking distance to listings under 500K.' Behind the curtain — show the work nobody sees. 'The 3 things I do the morning of a closing.' Social proof — structured testimonial. Don't ask 'how was your experience.' Ask 'what was stopping you from buying before we worked together?'">
+      <div class="slide-inner">
+        <h2 class="fade-in">Topic examples — DFW &amp; Austin specific</h2>
+        <div class="step-row fade-in s1">
+          <div class="step-num" style="background: var(--cyan);">01</div>
+          <div class="step-content">
+            <strong>Market Authority</strong>
+            <p>"Frisco home prices Q1: up 4.2%. Here's what it means if you're thinking of selling."</p>
+          </div>
+        </div>
+        <div class="step-row fade-in s2">
+          <div class="step-num" style="background: var(--gold);">02</div>
+          <div class="step-content">
+            <strong>Education</strong>
+            <p>"What an option fee actually is in Texas — and why $150 protects your $500K."</p>
+          </div>
+        </div>
+        <div class="step-row fade-in s3">
+          <div class="step-num" style="background: var(--green);">03</div>
+          <div class="step-content">
+            <strong>Hyperlocal</strong>
+            <p>"4 best taco shops in Bishop Arts — and the listing under $500K that's walking distance to all of them."</p>
+          </div>
+        </div>
+        <div class="step-row fade-in s4">
+          <div class="step-num" style="background: var(--coral);">04</div>
+          <div class="step-content">
+            <strong>Behind the Curtain</strong>
+            <p>"3 things I do the morning of a closing that prevent 90% of last-minute disasters."</p>
+          </div>
+        </div>
+        <div class="step-row fade-in s5">
+          <div class="step-num" style="background: var(--purple);">05</div>
+          <div class="step-content">
+            <strong>Social Proof</strong>
+            <p>Don't ask "how was your experience." Ask: "<strong>What was stopping you from buying before we worked together?</strong>"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: WEEKLY ROTATION TEMPLATE -->
+    <section class="slide gradient" data-notes="Here's the rotation template. Three reels per week, one pillar per reel. Week one — Monday market authority, Wednesday education, Friday hyperlocal. Week two — Monday behind the curtain, Wednesday social proof, Friday market authority. You're cycling through all five over a two-week period. By week three you're back at the top. You'll never run out of ideas because the pillars do the thinking for you. Your only decision each day is the topic — the angle is locked in by the pillar.">
+      <div class="slide-inner">
+        <h2 class="fade-in">Weekly rotation template</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">3 reels per week. Pillars on a 2-week cycle. You'll never run out of ideas.</p>
+        <table class="compare-table fade-in s2" style="margin-top: 2rem;">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-label">MONDAY</th>
+              <th class="col-label">WEDNESDAY</th>
+              <th class="col-label">FRIDAY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color: var(--gold);">WEEK 1</strong></td>
+              <td>Market Authority</td>
+              <td>Education</td>
+              <td>Hyperlocal</td>
+            </tr>
+            <tr>
+              <td><strong style="color: var(--gold);">WEEK 2</strong></td>
+              <td>Behind the Curtain</td>
+              <td>Social Proof</td>
+              <td>Market Authority</td>
+            </tr>
+            <tr>
+              <td><strong style="color: var(--gold);">WEEK 3</strong></td>
+              <td>Education</td>
+              <td>Hyperlocal</td>
+              <td>Behind the Curtain</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-size: clamp(1.1rem, 1.3vw, 1.3rem); color: var(--cyan); font-family: 'Oswald', sans-serif; letter-spacing: 1px;">Pillar = locked in · Topic = your only decision</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: PRODUCTION SYSTEM -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 25: PRODUCTION OPENER -->
+    <section class="slide deep" data-notes="Section five. Production. Last section, eight minutes. The biggest objection to all of this: 'I don't have time to make 3 reels a week.' You do — if you stop doing it the wrong way. Most agents film one reel, edit it, post it, repeat. That's three hours a week for three reels. The pros batch. They film six reels in 90 minutes on a Saturday morning, then drip them out over two weeks. 30 minutes a day from there is just editing and posting.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--purple);">Section 05 · 8 minutes</p>
+        <h1 class="fade-in s1" style="margin-top: 1.5rem; color: var(--purple); font-size: clamp(4rem, 7vw, 8rem);">PRODUCTION<br>SYSTEM</h1>
+        <p class="subtitle fade-in s2" style="margin-top: 2rem;">30 minutes a day. Not 3 hours.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: BATCH FILMING -->
+    <section class="slide gradient" data-notes="The batch filming model. Saturday morning, 90 minutes. Pick one outfit. Pick one location — your office, your car, a coffee shop with good light. Six reels in 90 minutes. That's 15 minutes per reel including reshoots. Why this works — outfit and location continuity means you're not 'getting ready' six different times. The hardest part of making content isn't filming. It's the resistance to start. Batch removes the resistance once a week instead of three times a week. Then Sunday — bulk edit. Native captions, location tags, collab tags, drop into a queue. Done. Monday-Friday is just posting.">
+      <div class="slide-inner">
+        <h2 class="fade-in">The batch model: 6 reels in 90 minutes</h2>
+        <div class="three-col" style="margin-top: 2rem;">
+          <div class="card border-top-gold fade-in s1" style="text-align: left;">
+            <p class="small-text gold">SATURDAY · FILM</p>
+            <h3 style="margin-top: 8px;">90 minutes total</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ <strong>1 outfit</strong></li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ <strong>1 location</strong></li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ <strong>6 reels</strong> (15 min each)</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Hooks scripted in advance</li>
+            </ul>
+          </div>
+          <div class="card border-top-cyan fade-in s2" style="text-align: left;">
+            <p class="small-text highlight">SUNDAY · EDIT</p>
+            <h3 style="margin-top: 8px;">60 minutes</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Native IG captions</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Location + collab tags</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Search-keyword captions</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Schedule the queue</li>
+            </ul>
+          </div>
+          <div class="card border-top-green fade-in s3" style="text-align: left;">
+            <p class="small-text green">MON–FRI · ENGAGE</p>
+            <h3 style="margin-top: 8px;">30 min/day</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 12px;">
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Reply to DMs personally</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Comment on 10 local accounts</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ Watch your trigger comments</li>
+              <li style="font-size: clamp(1.05rem, 1.2vw, 1.2rem); padding: 5px 0;">→ <strong>Move 90-day leads to CRM</strong></li>
+            </ul>
+          </div>
+        </div>
+        <p class="fade-in s4" style="margin-top: 1.5rem; font-size: clamp(1.15rem, 1.4vw, 1.4rem); color: var(--gold); font-family: 'Oswald', sans-serif;">Total weekly time: ~5 hours. Total weekly reels: 3. Total leads: way more than you have now.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: AI PROMPT TEMPLATE -->
+    <section class="slide mid" data-notes="The AI hook generator. Save this prompt. Use it every Friday before your Saturday batch session. Plug it into ChatGPT, Claude, or any AI tool. It'll spit out 30 hook options for the topic you're working on. You pick five, write your scripts around them, film them all Saturday. This is the single highest-leverage time-saver in the whole system. The handout has this exact prompt formatted for copy-paste.">
+      <div class="slide-inner">
+        <h2 class="fade-in">AI hook generator — save this prompt</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Use it every Friday before your Saturday batch. 30 hooks in 30 seconds.</p>
+        <div class="prompt-box fade-in s2">
+          <div class="prompt-label">▸ COPY THIS PROMPT</div>
+          <p>Act as a real estate Instagram strategist. Generate 30 hook options for a 30-second reel.</p><br>
+          <p>Topic: <span class="var">[INSERT YOUR TOPIC]</span></p>
+          <p>Audience: <span class="var">[buyers / sellers / first-time / luxury / investors]</span></p>
+          <p>Market: <span class="var">[DFW or Austin specifics — neighborhood, price range]</span></p><br>
+          <p>Use these 5 formulas, 6 hooks each:</p>
+          <p>1. Mistake call-out · 2. "If I were [doing X]" · 3. Specific dollar/outcome · 4. Insider explainer · 5. Niche audience contrarian truth</p><br>
+          <p>Each hook must be under 12 words and stop the scroll in 2 seconds. No "Hey guys." No throat-clearing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: REPURPOSE PIPELINE -->
+    <section class="slide accent" data-notes="The repurpose pipeline. One reel becomes nine pieces of content. The reel posts to Instagram. The same reel posts to TikTok and Facebook reels — same vertical video, three platforms. The audio gets pulled and posted as a story 24 hours later. The hook becomes a carousel post. The B-roll becomes background for a market update graphic. You're not creating new content nine times. You're cutting one piece of content nine ways. This is how the agents winning at this don't burn out.">
+      <div class="slide-inner">
+        <h2 class="fade-in">1 reel → 9 pieces of content</h2>
+        <p class="body-text fade-in s1" style="opacity: 0.85; max-width: 1100px; margin: 0.5rem auto 0;">Don't create more. Cut what you have nine different ways.</p>
+        <div class="three-col" style="margin-top: 2rem;">
+          <div class="card border-top-cyan fade-in s1" style="text-align: left;">
+            <h3 class="highlight">3 platforms</h3>
+            <p style="margin-top: 8px;">→ Instagram Reel</p>
+            <p>→ TikTok (same video)</p>
+            <p>→ Facebook Reel (same video)</p>
+          </div>
+          <div class="card border-top-gold fade-in s2" style="text-align: left;">
+            <h3 class="gold">5 stories</h3>
+            <p style="margin-top: 8px;">→ Behind-the-scenes clip</p>
+            <p>→ Hook screenshot + poll</p>
+            <p>→ Audio teaser (24 hr later)</p>
+            <p>→ Question sticker on topic</p>
+            <p>→ Re-share + reaction</p>
+          </div>
+          <div class="card border-top-green fade-in s3" style="text-align: left;">
+            <h3 class="green">1 carousel</h3>
+            <p style="margin-top: 8px;">→ Hook becomes slide 1</p>
+            <p>→ Each main point = a slide</p>
+            <p>→ Final slide = DM CTA</p>
+            <p style="margin-top: 12px; font-style: italic; opacity: 0.75;">Carousels still hold the highest engagement on IG (~4.1%).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CLOSE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 29: 7-DAY CHALLENGE -->
+    <section class="slide gradient" data-notes="Your 7-day challenge. We covered a lot. Don't try to do all of it. Pick one pillar — just one. Post three reels in the next seven days using that one pillar. Native captions. Location tag. Collab tag if you can. One clear DM call-to-action per reel. Track DMs received, not likes. That's it. Seven days. Three reels. One pillar. Report back to your broker, your team lead, or me. The agents who do this for two months — not two weeks — start seeing real pipeline movement. Consistency is the whole game.">
+      <div class="slide-inner">
+        <p class="small-text fade-in" style="color: var(--gold);">Your 7-day challenge</p>
+        <h1 class="fade-in s1" style="margin-top: 1rem; font-size: clamp(3rem, 5vw, 5.5rem); color: var(--cyan);">Pick 1 pillar.<br>Post 3 reels.</h1>
+        <ul class="checklist fade-in s2" style="margin-top: 2rem;">
+          <li>Pick <strong>one</strong> pillar (not all five)</li>
+          <li>Post <strong>3 reels</strong> in 7 days using that pillar</li>
+          <li>Native captions <span style="opacity: 0.6;">(not CapCut)</span></li>
+          <li>Location tag <span style="opacity: 0.6;">(specific neighborhood)</span></li>
+          <li>One <strong>clear DM CTA</strong> per reel</li>
+          <li>Track <strong>DMs received</strong>, not likes</li>
+        </ul>
+        <p class="fade-in s3" style="margin-top: 1.5rem; font-size: clamp(1.1rem, 1.3vw, 1.3rem); color: var(--gold); font-style: italic;">The agents who do this for 2 months see pipeline. Consistency is the whole game.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: CLOSE / Q&A -->
+    <section class="slide accent" data-notes="That's the playbook. Reels are bait. DMs are the boat. Conversations close. Open it up — what's one thing from today you're going to deploy this week? Or one question I haven't answered yet? Handout link is on screen — same QR from the start. My contact info too. Reach out anytime. We're CNAT Title — closing more than houses, we're partnering with the agents who are serious about growing.">
+      <div class="slide-inner">
+        <p class="small-text fade-in">Remember</p>
+        <h1 class="fade-in s1" style="margin-top: 1rem; font-size: clamp(3rem, 5.5vw, 6rem); color: var(--white);">Stop posting.</h1>
+        <h1 class="fade-in s2" style="margin-top: 1rem; color: var(--cyan); font-size: clamp(3.5rem, 6vw, 6.5rem);">Start closing.</h1>
+        <p class="subtitle fade-in s3" style="margin-top: 2rem; max-width: 1000px; margin-left: auto; margin-right: auto;">Reels = bait. DMs = boat.<br><span class="gold" style="font-weight:700;">Conversations = closings.</span></p>
+        <div class="fade-in s4" style="margin-top: 2.5rem; display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc4AAAHOCAIAAACehH7nAAAIyUlEQVR4nO3cwZHDRBRFUUw5APYEQf5hEAR7MhAh0Iu5fH7rnPWU5JHlW716n+d5fgGg9Ov0BwC4n9QC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWIPctLvrb738Ul73M33/9efiX58+zuOa52f/o3Ja7n5v93u9TfO9OtQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkEuWvc4VCzqztiwnFVtQswtk961wzdryOc/N/jadagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWIDe87HVudpVnduVoyw5W8TnPbVnhmv2OCm/+bZ5zqgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagNyaZa83K7agZteYZm1ZSuMmTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Cz7LXA7BJVsQE2e3d7Xfz3nGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiC3ZtnLxtKJN2+AzSr+9y22fEeznGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiA3vOz15j2kc8UK16wtC2TF89zyOf02f5ZTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5D7P80x/Bv7FlmWvNy9RbdlUY4pTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5L7FRYuFp2K3afbu57Y8pcLskz933xsyu7523zvvVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALlk2Wt2C2rWlv99dgvKvtT/35bFrC3fkVMtQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkPs/z/PhF71s5mjW7Fja7wlWYfT+37J+d27KUNvuUnGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiCXLHuds7H0s3c/d9/nvO/uhS3ra4XZX7FTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5JJlry0rR7Nmt7Use025b09uy/raLKdagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXIDS973bdIZOXoxH0rXOfu+3UUZt+Q4n93qgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagFyy7HVuy2LWFrNbUOdmN9XOvfldOnffk7fsBbCS1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyCXLXrN7XbM7Q29eObpvp23L+zlry69j9sk71QLkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQO47e/tit6m45n1LVOe2LCed2/I573uT73uXzjnVAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ALln2ml0Pmt0E2rIBtkXxPIt9qfuWqM7NfkdbONUC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUDu8zzPj1+0WE66b+nnXPGUiiWqN39H52af/Ja7z/5HBadagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXIfYuLbtnaKRTbRVsWs7bstM1+zvtWuDjhVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALnP8zyDty+Wk2b3kM4V+1Jb1pi2bJUVtuyfbbHlnXeqBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qA3PCyFye27J9tMbuYdd+i230LZMXzdKoFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDct7jofUs/hWI9aHY1ass1iyd//jlnfx1b1sLu2z9zqgXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagFyy7HVudmunsGW3qbhmscZ0rrjmlvW14u5bbNkAc6oFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDc8LLXudnFrNk9pC3bReeKu88ukM0+z9lfx7nZVbNZTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Bbs+z1ZrMrR/dtqs3udb15LWzLky841QLkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQM6y11XO95BmV44K9+1gbfHm/bNzTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5Bbs+y1Zb+nUOx1bblmofiPtqxb3ffkt2yAOdUC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBueNlrdmdoi9mndN8G2OzC05vf+Tfv8znVAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1A7vM8z/RnALicUy1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkPsHvCk/SWmKEjoAAAAASUVORK5CYII=" alt="Scan for handout" style="width: clamp(150px, 17vh, 200px); height: clamp(150px, 17vh, 200px); border-radius: 12px; image-rendering: pixelated; background: white; padding: 10px;" />
+          <div style="text-align: left; max-width: 400px;">
+            <p style="font-family: 'Oswald', sans-serif; font-size: clamp(1.1rem, 1.3vw, 1.3rem); color: var(--gold); letter-spacing: 2px; text-transform: uppercase;">Bradley Patterson</p>
+            <p style="font-size: clamp(1rem, 1.15vw, 1.15rem); margin-top: 6px; opacity: 0.85;">Technology Director · CNAT Title</p>
+            <p style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); margin-top: 12px; opacity: 0.85; font-family: 'JetBrains Mono', monospace;"><span style="color: var(--cyan);">classes.cnattitle.com/bk-social/</span></p>
+            <p style="font-size: clamp(0.95rem, 1.1vw, 1.1rem); margin-top: 14px; opacity: 0.7; font-style: italic;">Workbook + bonus content "Killing Your Reach: 15 Social Media Myths" both at the link above.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /deck -->
+
+  <!-- Speaker Notes Panel -->
+  <div class="notes-panel" id="notesPanel">
+    <h4>SPEAKER NOTES</h4>
+    <div id="notesContent"></div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progressBar');
+    const slideCount = document.getElementById('slideCount');
+    const notesPanel = document.getElementById('notesPanel');
+    const notesContent = document.getElementById('notesContent');
+    let current = 0;
+    const total = slides.length;
+    let notesVisible = false;
+
+    function show(i) {
+      if (i < 0) i = 0;
+      if (i >= total) i = total - 1;
+      slides.forEach(s => s.classList.remove('active'));
+      slides[i].classList.add('active');
+      current = i;
+      progressBar.style.width = ((i + 1) / total * 100) + '%';
+      slideCount.textContent = (i + 1) + ' / ' + total;
+      const n = slides[i].getAttribute('data-notes');
+      notesContent.innerHTML = n
+        ? n.split('. ').map(s => s.trim()).filter(s => s).map(s => '<p>• ' + s + (s.endsWith('.') || s.endsWith('!') || s.endsWith('?') ? '' : '.') + '</p>').join('')
+        : '<p style="opacity:0.5;">No notes for this slide.</p>';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(current + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
+      else if (e.key.toLowerCase() === 'n') { notesVisible = !notesVisible; notesPanel.classList.toggle('visible', notesVisible); }
+      else if (e.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+      else if (e.key === 'Home') { e.preventDefault(); show(0); }
+      else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+    });
+
+    // Touch swipe
+    let tx = 0;
+    document.getElementById('deck').addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+    document.getElementById('deck').addEventListener('touchend', e => {
+      const d = tx - e.changedTouches[0].clientX;
+      if (Math.abs(d) > 50) d > 0 ? show(current + 1) : show(current - 1);
+    });
+
+    // Click navigation (left/right halves)
+    document.getElementById('deck').addEventListener('click', e => {
+      if (e.target.closest('.notes-panel')) return;
+      e.clientX / window.innerWidth > 0.5 ? show(current + 1) : show(current - 1);
+    });
+
+    show(0);
+  </script>
+</body>
+</html>

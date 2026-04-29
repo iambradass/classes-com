@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social That Closes — Agent Workbook | CNAT Title</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F1A2E;
+      --navy-mid: #162240;
+      --cyan: #007B8F;
+      --cyan-light: #00C8F0;
+      --gold: #B8841F;
+      --gold-light: #FFB833;
+      --green: #2A9D5C;
+      --red: #C84642;
+      --bg: #FAF8F4;
+      --card: #FFFFFF;
+      --line: #E5DFD3;
+      --text: #1A2438;
+      --text-light: #4A5568;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.5;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Watermark CNAT branding */
+    body::before {
+      content: 'CNAT';
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 25vw;
+      color: var(--navy);
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+      letter-spacing: 8px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ═══ HEADER ═══ */
+    .header {
+      border-bottom: 4px solid var(--navy);
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+    }
+    .brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 500;
+    }
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      color: var(--navy);
+    }
+    .header h1 .accent { color: var(--cyan); }
+    .header .meta {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* ═══ THESIS BLOCK ═══ */
+    .thesis {
+      background: var(--navy);
+      color: #fff;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .thesis .small {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .thesis h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+    }
+    .thesis h2 .accent { color: var(--cyan-light); }
+
+    /* ═══ SECTION ═══ */
+    .section {
+      margin-bottom: 48px;
+      page-break-inside: avoid;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--cyan);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+    }
+    .section-intro {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    /* ═══ HOOK FORMULA CARDS ═══ */
+    .formula-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--cyan);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .formula-card .num {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--cyan);
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    .formula-card .name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-left: 8px;
+    }
+    .formula-card .template {
+      margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      color: var(--gold);
+      background: #FFF8EC;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px dashed var(--gold-light);
+    }
+    .formula-card .example {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    .formula-card .blank-line {
+      margin-top: 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+      min-height: 1.5em;
+    }
+    .blank-label {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 12px;
+    }
+
+    /* ═══ DM SCRIPT BOX ═══ */
+    .dm-script {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .dm-script .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .dm-script .script-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .dm-script .var {
+      background: #FFF8EC;
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      padding: 1px 7px;
+      border-radius: 4px;
+      border: 1px solid #F5DDB3;
+    }
+
+    /* ═══ 3-MESSAGE SEQUENCE ═══ */
+    .sequence {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (max-width: 700px) {
+      .sequence { grid-template-columns: 1fr; }
+    }
+    .seq-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--cyan);
+      border-radius: 0 0 8px 8px;
+      padding: 16px 18px;
+    }
+    .seq-card:nth-child(2) { border-top-color: var(--gold); }
+    .seq-card:nth-child(3) { border-top-color: var(--green); }
+    .seq-card .seq-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .seq-card:nth-child(2) .seq-label { color: var(--gold); }
+    .seq-card:nth-child(3) .seq-label { color: var(--green); }
+    .seq-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      margin-top: 6px;
+      color: var(--navy);
+    }
+    .seq-card .desc {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+    .seq-card .example {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #F5F0E5;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ═══ LEAD MAGNETS LIST ═══ */
+    .magnets {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    .magnet {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.98rem;
+    }
+    .magnet:last-child { border-bottom: none; }
+    .magnet strong { color: var(--navy); }
+    .magnet .why {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+
+    /* ═══ CHECKLIST ═══ */
+    .checklist {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 24px;
+    }
+    .checklist-item {
+      padding: 8px 0 8px 32px;
+      position: relative;
+      font-size: 0.98rem;
+      border-bottom: 1px dashed var(--line);
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-item::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      color: var(--cyan);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .checklist-item strong { color: var(--navy); }
+    .checklist-item .sub {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      margin-top: 2px;
+    }
+
+    /* ═══ PILLAR GRID ═══ */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 700px) {
+      .pillar-grid { grid-template-columns: 1fr; }
+    }
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--cyan);
+      border-radius: 0 0 8px 8px;
+      padding: 16px 18px;
+    }
+    .pillar-card:nth-child(2) { border-top-color: var(--gold); }
+    .pillar-card:nth-child(3) { border-top-color: var(--green); }
+    .pillar-card:nth-child(4) { border-top-color: var(--red); }
+    .pillar-card:nth-child(5) { border-top-color: #6B47C7; grid-column: span 2; }
+    @media (max-width: 700px) {
+      .pillar-card:nth-child(5) { grid-column: span 1; }
+    }
+    .pillar-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+    .pillar-card .desc {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .pillar-card .examples {
+      margin-top: 10px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .pillar-card .examples li {
+      list-style: none;
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+    .pillar-card .examples li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    /* ═══ WEEKLY CALENDAR TABLE ═══ */
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .calendar th {
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .calendar td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+    .calendar tr:last-child td { border-bottom: none; }
+    .calendar .week-label {
+      background: #F5F0E5;
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .calendar .blank-cell {
+      color: #B0A88C;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    /* ═══ AI PROMPT BOX ═══ */
+    .prompt-box {
+      background: #1a2438;
+      color: #c4e8f5;
+      border-radius: 10px;
+      padding: 22px 26px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      position: relative;
+    }
+    .prompt-box .copy-label {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+    }
+    .prompt-box .var {
+      color: var(--gold-light);
+    }
+    .prompt-box p { margin-bottom: 12px; }
+
+    /* ═══ PRODUCTION FLOW ═══ */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    @media (max-width: 700px) {
+      .flow-grid { grid-template-columns: 1fr; }
+    }
+    .flow-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .flow-card .day-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--cyan);
+      letter-spacing: 2px;
+    }
+    .flow-card:nth-child(2) .day-label { color: var(--gold); }
+    .flow-card:nth-child(3) .day-label { color: var(--green); }
+    .flow-card .duration {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .flow-card ul {
+      list-style: none;
+      margin-top: 10px;
+      font-size: 0.92rem;
+    }
+    .flow-card ul li {
+      padding: 4px 0 4px 16px;
+      position: relative;
+    }
+    .flow-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    /* ═══ 7-DAY TRACKER ═══ */
+    .tracker {
+      background: var(--card);
+      border: 2px solid var(--navy);
+      border-radius: 10px;
+      padding: 22px 26px;
+    }
+    .tracker .pillar-pick {
+      padding: 14px 16px;
+      background: #F5F0E5;
+      border-radius: 6px;
+      margin-bottom: 18px;
+    }
+    .tracker .pillar-pick label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .tracker .pillar-pick .blank {
+      display: inline-block;
+      margin-left: 10px;
+      min-width: 180px;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 2px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+    }
+    .tracker-grid {
+      display: grid;
+      grid-template-columns: 60px 1fr 100px 100px;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .tracker-grid .head {
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 12px;
+    }
+    .tracker-grid .cell {
+      padding: 14px 12px;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+      min-height: 50px;
+    }
+    .tracker-grid .day-cell {
+      background: #F5F0E5;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 2px solid var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer .brand-block {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .footer .brand-block strong { color: var(--navy); }
+    .footer .quote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--cyan);
+      letter-spacing: 1.5px;
+    }
+    .footer .quote .gold { color: var(--gold); }
+
+    /* ═══ PRINT ═══ */
+    @media print {
+      body { background: #fff; }
+      body::before { display: none; }
+      .container { padding: 30px 35px; max-width: 100%; }
+      .section { page-break-inside: avoid; }
+      .header h1 { font-size: 3rem; }
+      .prompt-box { background: #1a2438 !important; -webkit-print-color-adjust: exact; }
+    }
+
+    /* ═══ DOWNLOAD BUTTON ═══ */
+    .download-link {
+      display: inline-block;
+      background: var(--cyan);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    @media print { .download-link { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+      <div class="brand">CNAT Title · BK Realty Workbook</div>
+      <h1>Social That <span class="accent">Closes</span></h1>
+      <div class="meta">
+        Reels &amp; DM Playbook for Real Estate Agents · 2026<br>
+        Bradley Patterson · Technology Director · CNAT Title
+      </div>
+    </div>
+
+    <!-- ═══ THESIS ═══ -->
+    <div class="thesis">
+      <div class="small">Today's thesis</div>
+      <h2>Posts don't generate leads. <span class="accent">Conversations do.</span></h2>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: 5 HOOK FORMULAS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <div class="section-title">5 Hook Formulas</div>
+      </div>
+      <p class="section-intro">Plug your topic into one of these five patterns. The first 2 seconds is the only real estate you actually own on Instagram.</p>
+
+      <div class="formula-card">
+        <span class="num">01</span><span class="name">Mistake Call-Out</span>
+        <div class="template">[# of] mistakes [audience] are making right now in [city] — and how to avoid them</div>
+        <div class="example">"3 mistakes buyers are making right now in Frisco — and how to avoid them"</div>
+      </div>
+
+      <div class="formula-card">
+        <span class="num">02</span><span class="name">"If I Were" Insider</span>
+        <div class="template">If I were [buying/selling] a house in [city] today, here's exactly what I'd do</div>
+        <div class="example">"If I were buying a house in Round Rock today, here's exactly what I'd do"</div>
+      </div>
+
+      <div class="formula-card">
+        <span class="num">03</span><span class="name">Specific Dollar/Outcome</span>
+        <div class="template">One [strategy/move] that's [saving/making] my clients $[amount] right now</div>
+        <div class="example">"One strategy saving my clients $8,000+ in closing costs right now"</div>
+      </div>
+
+      <div class="formula-card">
+        <span class="num">04</span><span class="name">Insider Explainer</span>
+        <div class="template">What actually happens [when X] — in [N] seconds</div>
+        <div class="example">"What actually happens on closing day — in 30 seconds"</div>
+      </div>
+
+      <div class="formula-card">
+        <span class="num">05</span><span class="name">Niche Audience Truth</span>
+        <div class="template">The one thing every [niche audience] in [city] gets wrong about [topic]</div>
+        <div class="example">"The one thing every first-time buyer in Fort Worth gets wrong about pre-approval"</div>
+      </div>
+
+      <div style="margin-top: 20px; padding: 16px 20px; background: #FFF8EC; border-left: 4px solid var(--gold-light); border-radius: 0 6px 6px 0;">
+        <strong style="color: var(--navy); font-family: 'Oswald', sans-serif;">YOUR TURN:</strong>
+        <div class="blank-label">Write your version of Formula 1 below:</div>
+        <div class="blank-line"></div>
+        <div class="blank-line"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: THE DM ENGINE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div class="section-title">The DM Engine</div>
+      </div>
+      <p class="section-intro">Reel earns the comment. Automation opens the DM. You walk through the door.</p>
+
+      <h4 style="font-family: 'Oswald', sans-serif; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; margin-top: 8px;">Auto-DM #1 (fires the moment they comment)</h4>
+
+      <div class="dm-script">
+        <div class="label">▸ Auto-DM Script Template</div>
+        <div class="script-text">
+          Hi <span class="var">[first name]</span> 👋<br><br>
+          Here's the <span class="var">[lead magnet name]</span> you asked for: <span class="var">[link]</span><br><br>
+          Quick question — are you looking to <span class="var">[buy/sell]</span> in the next 90 days, or just gathering info right now?<br><br>
+          <em>Both are great answers, just want to know how to be helpful.</em>
+        </div>
+      </div>
+
+      <div style="background: #F0F7F8; border-left: 4px solid var(--cyan); padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 12px 0; font-size: 0.92rem;">
+        <strong style="color: var(--navy);">Why this works:</strong> "Both are great answers" removes pressure to perform. "Want to know how to be helpful" positions you as a guide, not a salesperson. ~60% reply rate. ~25% are 90-day-active.
+      </div>
+
+      <h4 style="font-family: 'Oswald', sans-serif; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; margin-top: 24px;">3-Message Follow-Up Sequence (when they reply)</h4>
+
+      <div class="sequence">
+        <div class="seq-card">
+          <div class="seq-label">MSG 1 · CURIOSITY</div>
+          <h4>Ask about them</h4>
+          <div class="desc">React + follow-up that's about <strong>them</strong>.</div>
+          <div class="example">"You mentioned Frisco — is there a school district pulling you that direction?"</div>
+        </div>
+        <div class="seq-card">
+          <div class="seq-label">MSG 2 · VALUE</div>
+          <h4>Useful · No pitch</h4>
+          <div class="desc">Share something a friend would thank you for.</div>
+          <div class="example">"FYI — homes in that ZIP that closed last month averaged 4 days on market. Tight inventory still."</div>
+        </div>
+        <div class="seq-card">
+          <div class="seq-label">MSG 3 · SOFT OFFER</div>
+          <h4>Specific, low-commitment</h4>
+          <div class="desc">Demonstrates value <em>before</em> asking.</div>
+          <div class="example">"Want me to put together a quick rundown of 3 neighborhoods that fit? Takes me 30 min."</div>
+        </div>
+      </div>
+
+      <div style="background: #FFF8EC; border-left: 4px solid var(--gold-light); padding: 14px 18px; border-radius: 0 6px 6px 0; margin-top: 16px; font-size: 0.92rem;">
+        <strong style="color: var(--navy);">Critical rule:</strong> Never ask "do you have an agent?" That's amateur. Demonstrate value first. The relationship sells the agent role for you.
+      </div>
+
+      <h4 style="font-family: 'Oswald', sans-serif; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; margin-top: 28px;">Setting it up — three free paths</h4>
+      <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 14px; font-style: italic;">All three run on Meta's official API. None require app registration, API keys, or developer setup. Pick by use case.</p>
+
+      <p style="font-size: 0.92rem; color: var(--text); margin-bottom: 14px; padding: 10px 14px; background: #F5F0E5; border-radius: 6px;"><strong>Quick prerequisite:</strong> Your IG must be a <strong>Business or Creator account</strong> (free switch in IG settings → Account type) and linked to a <strong>Facebook Business Page</strong>. If you don't have a connected Page, create one first — takes 2 minutes at facebook.com/pages/create.</p>
+
+      <!-- PATH 1: Meta Business Suite -->
+      <div class="seq-card" style="border-top-color: var(--cyan); margin-bottom: 14px;">
+        <div class="seq-label" style="color: var(--cyan);">PATH 1 · NATIVE FREE · For "DM me X" CTAs</div>
+        <h4>Meta Business Suite</h4>
+        <div class="desc">Triggers on incoming DMs that contain a keyword. Genuinely 100% native — Meta's own dashboard, no third-party.</div>
+        <ol style="margin-top: 12px; padding-left: 18px; font-size: 0.92rem; line-height: 1.65;">
+          <li>Go to <strong>business.facebook.com</strong> on desktop (Custom Keywords aren't available on mobile).</li>
+          <li>Log in with the Facebook account connected to your IG.</li>
+          <li>Click <strong>Inbox</strong> in the left menu.</li>
+          <li>Click <strong>Automations</strong> at the top right.</li>
+          <li>Click <strong>Custom Keywords</strong>.</li>
+          <li>Name the automation, then check <strong>Instagram</strong> as the channel.</li>
+          <li>Add up to 5 trigger keywords (e.g. <code style="background: #FFF8EC; padding: 1px 6px; border-radius: 3px; color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.88em;">GAME PLAN</code>, <code style="background: #FFF8EC; padding: 1px 6px; border-radius: 3px; color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.88em;">GUIDE</code>).</li>
+          <li>Write the auto-reply (use the script from previous page).</li>
+          <li>Save.</li>
+        </ol>
+        <div style="margin-top: 12px; padding: 8px 12px; background: #F0F7F8; border-radius: 6px; font-size: 0.85rem;">
+          <strong style="color: var(--cyan);">CTA pattern:</strong> Caption ends with "<em>DM me 'GAME PLAN' and I'll send it over.</em>" When someone DMs that word, your auto-reply fires.
+        </div>
+      </div>
+
+      <!-- PATH 2: ManyChat -->
+      <div class="seq-card" style="border-top-color: var(--green); margin-bottom: 14px;">
+        <div class="seq-label" style="color: var(--green);">PATH 2 · INDUSTRY STANDARD · For "Comment X" CTAs</div>
+        <h4>ManyChat (free tier)</h4>
+        <div class="desc">Most popular comment-to-DM tool. Free up to 1,000 contacts. Meta-approved partner.</div>
+        <ol style="margin-top: 12px; padding-left: 18px; font-size: 0.92rem; line-height: 1.65;">
+          <li>Go to <strong>manychat.com</strong> → click <strong>Get Started Free</strong>.</li>
+          <li>Sign in with Facebook (uses OAuth — no app registration, no API keys).</li>
+          <li>Connect your IG Business account when prompted.</li>
+          <li>Click <strong>Automation</strong> → <strong>New Automation</strong> → choose <strong>Instagram Comments</strong>.</li>
+          <li>Pick the specific post or reel (or "any post").</li>
+          <li>Set keyword(s) (e.g. <code style="background: #FFF8EC; padding: 1px 6px; border-radius: 3px; color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.88em;">GAME PLAN</code>).</li>
+          <li>Build the auto-DM in the visual flow builder.</li>
+          <li>Activate.</li>
+        </ol>
+        <div style="margin-top: 12px; padding: 8px 12px; background: rgba(42,157,92,0.1); border-radius: 6px; font-size: 0.85rem;">
+          <strong style="color: var(--green);">CTA pattern:</strong> Caption ends with "<em>Comment 'GAME PLAN' and I'll send you the full guide.</em>" Comment fires the DM. Free tier covers 90%+ of agents.
+        </div>
+      </div>
+
+      <!-- PATH 3: GHL -->
+      <div class="seq-card" style="border-top-color: var(--gold); margin-bottom: 14px;">
+        <div class="seq-label" style="color: var(--gold);">PATH 3 · BROKERAGE · Full CRM pipeline</div>
+        <h4>GHL (GoHighLevel)</h4>
+        <div class="desc">Already paid at the brokerage. Adds CRM tagging, multi-step nurture, and lead routing on top of the DM trigger.</div>
+        <ol style="margin-top: 12px; padding-left: 18px; font-size: 0.92rem; line-height: 1.65;">
+          <li>Connect your IG Business profile (must be linked to a Facebook Business Page).</li>
+          <li>Go to <strong>Automation</strong> → <strong>Workflows</strong> → <strong>Create New</strong>.</li>
+          <li>Trigger: <strong>Instagram Comment</strong> (or DM, depending on CTA).</li>
+          <li>Filter: keyword match (e.g. <code style="background: #FFF8EC; padding: 1px 6px; border-radius: 3px; color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 0.88em;">GAME PLAN</code>).</li>
+          <li>Action 1: Send IG DM with your script.</li>
+          <li>Action 2: Add tag to contact (e.g. "IG-GamePlan-Lead").</li>
+          <li>Action 3: Add to nurture campaign or assign to you.</li>
+          <li>Save and activate.</li>
+        </ol>
+        <div style="margin-top: 12px; padding: 8px 12px; background: #FFF8EC; border-radius: 6px; font-size: 0.85rem;">
+          <strong style="color: var(--gold);">Bonus:</strong> Multiple keywords per post can route to different DM flows and different lead segments.
+        </div>
+      </div>
+
+      <div style="background: #F0F7F8; border-left: 4px solid var(--cyan); padding: 14px 18px; border-radius: 0 6px 6px 0; margin-top: 14px; font-size: 0.92rem;">
+        <strong style="color: var(--navy);">Compliance note:</strong> Meta's API allows <strong>one</strong> automated message in response to a comment, with a <strong>7-day window</strong> to send it. After that first DM, follow-ups require the user to reply first. This is why your auto-DM #1 ends with a question — it earns the right to keep the conversation going.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: LEAD MAGNETS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div class="section-title">Lead Magnets That Pull</div>
+      </div>
+      <p class="section-intro">3 rules: <strong>Specific</strong> beats generic. <strong>Local</strong> beats national. <strong>Action</strong> beats information.</p>
+
+      <div class="magnets">
+        <div class="magnet">
+          <strong>2026 DFW (or Austin) Buyer Game Plan</strong>
+          <div class="why">What changed in the market this year + 5 specific moves to make right now</div>
+        </div>
+        <div class="magnet">
+          <strong>30-Day Pre-Listing Checklist</strong>
+          <div class="why">Tasks broken out by week before going active. Sellers love a roadmap.</div>
+        </div>
+        <div class="magnet">
+          <strong>Real Closing Cost Estimator</strong>
+          <div class="why">Actual numbers based on price range and location, not vague estimates</div>
+        </div>
+        <div class="magnet">
+          <strong>Neighborhood Deep-Dive (one specific area)</strong>
+          <div class="why">Schools, taxes, comps, commute, drama — content nobody else has</div>
+        </div>
+        <div class="magnet">
+          <strong>Relocation Welcome Kit</strong>
+          <div class="why">For the Austin or DFW transplant. Restaurants, grocery, doctors, school enrollment.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: REACH MULTIPLIERS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <div class="section-title">Reach Multipliers Checklist</div>
+      </div>
+      <p class="section-intro">Apply these to <em>every</em> reel. Most agents skip them. The ones who don't, win.</p>
+
+      <div class="checklist">
+        <div class="checklist-item">
+          <strong>Use native Instagram captions</strong> — not CapCut, not VideoLeap, not Premiere
+          <div class="sub">Algorithm reads native text → better distribution. Burned-in captions read as graphics.</div>
+        </div>
+        <div class="checklist-item">
+          <strong>Tag specific neighborhood</strong> — not the metro
+          <div class="sub">"Lakewood, Dallas" or "Westover Hills, Fort Worth" — not just "Dallas, TX"</div>
+        </div>
+        <div class="checklist-item">
+          <strong>Add a collaborator tag</strong> — lender, photographer, stager, title rep, local business
+          <div class="sub">Reel posts to BOTH accounts simultaneously. Roughly doubles your reach.</div>
+        </div>
+        <div class="checklist-item">
+          <strong>Limit hashtags to 3–5 specific ones</strong>
+          <div class="sub">Hashtag dumps are no longer a distribution signal. Search keywords in caption matter more.</div>
+        </div>
+        <div class="checklist-item">
+          <strong>Write captions with searchable phrases</strong>
+          <div class="sub">"first-time homebuyer Frisco" — words your audience actually types into Instagram search</div>
+        </div>
+        <div class="checklist-item">
+          <strong>One clear DM CTA per reel</strong>
+          <div class="sub">"Comment 'GAME PLAN' and I'll send you the full guide." Specific trigger word matters.</div>
+        </div>
+        <div class="checklist-item">
+          <strong>Hook in first 2 seconds</strong> — no "Hey guys"
+          <div class="sub">Open with the punchiest line of the script. Throat-clearing kills retention.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: 5 CONTENT PILLARS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <div class="section-title">5 Content Pillars (with topic ideas)</div>
+      </div>
+      <p class="section-intro">Pick the pillar first. Topic comes second. Rotation beats variety.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <h4>01 · Market Authority</h4>
+          <div class="desc">You. On camera. Real numbers. 30 seconds.</div>
+          <ul class="examples">
+            <li>"Frisco home prices Q1: up 4.2%. Here's what it means."</li>
+            <li>"Austin's 78704 zip just hit a new median. The shift you should know."</li>
+            <li>"Fort Worth inventory just doubled. What that means for buyers."</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h4>02 · Education</h4>
+          <div class="desc">Explain something complex in simple words.</div>
+          <ul class="examples">
+            <li>"What an option fee actually is in Texas — and why $150 protects $500K."</li>
+            <li>"The difference between pre-qualified and pre-approved (and why it matters)."</li>
+            <li>"3 things that can kill a deal at closing — and how to avoid all 3."</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h4>03 · Hyperlocal</h4>
+          <div class="desc">Content nobody else has. Beats listing demos every time.</div>
+          <ul class="examples">
+            <li>"4 best taco shops in Bishop Arts — and the listing under $500K walking distance to all 4."</li>
+            <li>"5 hidden parks in Cedar Park your kids will actually use."</li>
+            <li>"Best coffee in McKinney + the school district pulling families in."</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h4>04 · Behind the Curtain</h4>
+          <div class="desc">Show the work nobody sees. Authenticity converts.</div>
+          <ul class="examples">
+            <li>"3 things I do the morning of every closing."</li>
+            <li>"How I prep a listing the day before it goes active."</li>
+            <li>"The conversation I have with every buyer at offer time."</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h4>05 · Social Proof</h4>
+          <div class="desc">Don't ask "how was your experience." Ask better questions.</div>
+          <ul class="examples">
+            <li>Q: <em>"What was stopping you from buying before we worked together?"</em></li>
+            <li>Q: <em>"What surprised you most about the process?"</em></li>
+            <li>Q: <em>"What would you say to someone considering working with us?"</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: WEEKLY ROTATION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <div class="section-title">Weekly Rotation Template</div>
+      </div>
+      <p class="section-intro">3 reels per week. 2-week pillar cycle. Fill in your topic — the pillar locks the angle for you.</p>
+
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Wednesday</th>
+            <th>Friday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-label">Week 1</td>
+            <td>Market Authority<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Education<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Hyperlocal<br><span class="blank-cell">topic: ____________</span></td>
+          </tr>
+          <tr>
+            <td class="week-label">Week 2</td>
+            <td>Behind the Curtain<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Social Proof<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Market Authority<br><span class="blank-cell">topic: ____________</span></td>
+          </tr>
+          <tr>
+            <td class="week-label">Week 3</td>
+            <td>Education<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Hyperlocal<br><span class="blank-cell">topic: ____________</span></td>
+            <td>Behind the Curtain<br><span class="blank-cell">topic: ____________</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: AI HOOK GENERATOR -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <div class="section-title">AI Hook Generator (copy-paste prompt)</div>
+      </div>
+      <p class="section-intro">Paste this into ChatGPT, Claude, or any AI tool every Friday before your Saturday batch. 30 hooks in 30 seconds.</p>
+
+      <div class="prompt-box">
+        <div class="copy-label">▸ COPY ME</div>
+        <p>Act as a real estate Instagram strategist. Generate 30 hook options for a 30-second reel.</p>
+        <p>Topic: <span class="var">[INSERT YOUR TOPIC]</span><br>
+        Audience: <span class="var">[buyers / sellers / first-time / luxury / investors]</span><br>
+        Market: <span class="var">[DFW or Austin specifics — neighborhood, price range]</span></p>
+        <p>Use these 5 formulas, 6 hooks each:<br>
+        1. Mistake call-out<br>
+        2. "If I were [doing X]"<br>
+        3. Specific dollar/outcome<br>
+        4. Insider explainer<br>
+        5. Niche audience contrarian truth</p>
+        <p>Each hook must be under 12 words and stop the scroll in 2 seconds. No "Hey guys." No throat-clearing.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: BATCH PRODUCTION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <div class="section-title">Batch Production System</div>
+      </div>
+      <p class="section-intro">~5 hours per week total. 6 reels per batch. Drips out over 2 weeks.</p>
+
+      <div class="flow-grid">
+        <div class="flow-card">
+          <div class="day-label">SAT · FILM</div>
+          <div class="duration">90 minutes</div>
+          <ul>
+            <li>1 outfit</li>
+            <li>1 location</li>
+            <li>6 reels (15 min each)</li>
+            <li>Hooks scripted in advance</li>
+          </ul>
+        </div>
+        <div class="flow-card">
+          <div class="day-label">SUN · EDIT</div>
+          <div class="duration">60 minutes</div>
+          <ul>
+            <li>Native IG captions</li>
+            <li>Location + collab tags</li>
+            <li>Search-keyword captions</li>
+            <li>Schedule the queue</li>
+          </ul>
+        </div>
+        <div class="flow-card">
+          <div class="day-label">MON–FRI</div>
+          <div class="duration">30 min/day</div>
+          <ul>
+            <li>Reply to DMs personally</li>
+            <li>Comment on 10 local accounts</li>
+            <li>Watch trigger comments</li>
+            <li>Move 90-day leads to CRM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: 7-DAY CHALLENGE TRACKER -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <div class="section-title">7-Day Challenge Tracker</div>
+      </div>
+      <p class="section-intro">Pick <strong>one</strong> pillar. Post <strong>3 reels</strong> in 7 days. Track DMs received, not likes.</p>
+
+      <div class="tracker">
+        <div class="pillar-pick">
+          <label>My pillar this week:</label>
+          <span class="blank">&nbsp;</span>
+        </div>
+
+        <div class="tracker-grid">
+          <div class="head">Day</div>
+          <div class="head">Reel topic + hook</div>
+          <div class="head">Posted?</div>
+          <div class="head">DMs in</div>
+
+          <div class="cell day-cell">Mon</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Tue</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Wed</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Thu</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Fri</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Sat</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+
+          <div class="cell day-cell">Sun</div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+
+        <div style="margin-top: 18px; padding: 14px 18px; background: var(--navy); color: #fff; border-radius: 6px; font-size: 0.95rem;">
+          <strong style="color: var(--gold-light); font-family: 'Oswald', sans-serif; letter-spacing: 1px;">END OF WEEK SCORECARD:</strong><br>
+          Total DMs received: ______ &nbsp;·&nbsp; 90-day-active leads: ______ &nbsp;·&nbsp; Booked calls: ______
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BONUS CONTENT REFERENCE ═══ -->
+    <a href="myths.html" style="display: block; text-decoration: none; margin-top: 60px; padding: 24px 28px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; border-top: 4px solid var(--gold); transition: box-shadow 0.15s ease, transform 0.15s ease;" onmouseover="this.style.boxShadow='0 6px 20px rgba(15,26,46,0.1)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow=''; this.style.transform='';">
+      <div style="font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600;">▸ BONUS CONTENT · TAP TO READ</div>
+      <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: var(--navy); margin-top: 6px;">Killing Your Reach — 15 Social Media Myths Costing Agents Leads</h4>
+      <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 8px; line-height: 1.5;">A standalone guide debunking the most common bad social media advice in real estate — sourced from Mosseri, Inman, and platform engineering disclosures.</p>
+      <span style="display: inline-block; margin-top: 12px; font-family: 'Oswald', sans-serif; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600;">Open Bonus →</span>
+    </a>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="footer">
+      <div class="brand-block">
+        <strong>CNAT Title</strong> · Bradley Patterson<br>
+        Technology Director · <a href="index.html" style="color: var(--cyan); text-decoration: none;">classes.cnattitle.com/bk-social/</a>
+      </div>
+      <div class="quote">
+        Stop posting. <span class="gold">Start closing.</span>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+</body>
+</html>

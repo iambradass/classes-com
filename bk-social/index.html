@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Realty · Social That Closes — CNAT Title</title>
+  <meta name="description" content="Workbook and bonus content from the Social That Closes class for BK Realty agents — CNAT Title.">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F1A2E;
+      --navy-mid: #162240;
+      --cyan: #007B8F;
+      --cyan-bright: #00C8F0;
+      --gold: #B8841F;
+      --gold-bright: #FFB833;
+      --green: #2A9D5C;
+      --red: #C84642;
+      --bg: #FAF8F4;
+      --card: #FFFFFF;
+      --line: #E5DFD3;
+      --text: #1A2438;
+      --text-light: #4A5568;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CNAT watermark */
+    body::before {
+      content: 'CNAT';
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 25vw;
+      color: var(--navy);
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+      letter-spacing: 8px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0a2540 100%);
+      color: #fff;
+      padding: 60px 40px 50px;
+      text-align: center;
+      border-radius: 0 0 18px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%; right: -20%;
+      width: 70%; height: 160%;
+      background: radial-gradient(ellipse, rgba(0,200,240,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .brand-line {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 9vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: 1.5px;
+      margin-top: 14px;
+    }
+    .hero h1 .accent { color: var(--cyan-bright); }
+    .hero .tagline {
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      margin-top: 14px;
+      opacity: 0.9;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .for-tag {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(255,184,51,0.15);
+      border: 1px solid var(--gold-bright);
+      color: var(--gold-bright);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    /* ═══ INTRO ═══ */
+    .intro {
+      padding: 36px 0 24px;
+      text-align: center;
+    }
+    .intro h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.3rem, 4vw, 1.5rem);
+      color: var(--navy);
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+    .intro p {
+      margin-top: 8px;
+      color: var(--text-light);
+      font-size: 1rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ═══ RESOURCE CARDS ═══ */
+    .resources {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 12px 0 50px;
+    }
+    .resource-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 28px 26px;
+      box-shadow: 0 2px 8px rgba(15,26,46,0.04);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .resource-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15,26,46,0.1);
+      border-color: var(--cyan);
+    }
+    .resource-card.primary {
+      border-top: 5px solid var(--cyan);
+    }
+    .resource-card.bonus {
+      border-top: 5px solid var(--gold-bright);
+    }
+    .resource-tag {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .resource-card.primary .resource-tag {
+      background: rgba(0,123,143,0.1);
+      color: var(--cyan);
+    }
+    .resource-card.bonus .resource-tag {
+      background: rgba(184,132,31,0.1);
+      color: var(--gold);
+    }
+    .resource-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      color: var(--navy);
+      margin-top: 10px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+    }
+    .resource-card p {
+      margin-top: 10px;
+      font-size: 0.98rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+    .resource-card .cta {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+    .resource-card.bonus .cta { color: var(--gold); }
+    .resource-card .cta::after {
+      content: '→';
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      transition: transform 0.15s;
+    }
+    .resource-card:hover .cta::after {
+      transform: translateX(4px);
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      padding: 30px 0 50px;
+      border-top: 2px solid var(--navy);
+      margin-top: 20px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .footer-brand strong { color: var(--navy); }
+    .footer-quote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--cyan);
+      letter-spacing: 1.5px;
+      margin-top: 12px;
+    }
+    .footer-quote .gold { color: var(--gold); }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 600px) {
+      .hero { padding: 50px 24px 40px; border-radius: 0 0 14px 14px; }
+      .resource-card { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="brand-line">CNAT Title presents · for BK Realty</div>
+      <h1>Social That<br><span class="accent">Closes</span></h1>
+      <p class="tagline">The 2026 Reels &amp; DM Playbook for Real Estate Agents</p>
+      <span class="for-tag">Class Resources · 2026</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      <h2>Your class resources</h2>
+      <p>Everything we covered — plus bonus content. Tap a card to open. All resources are mobile-friendly and printable.</p>
+    </div>
+
+    <div class="resources">
+
+      <a href="workbook.html" class="resource-card primary">
+        <span class="resource-tag">Main Workbook</span>
+        <h3>Agent Workbook</h3>
+        <p>Hook formulas, DM scripts, lead magnet ideas, weekly content calendar, AI prompt templates, batch production system, and the 7-day challenge tracker. Plus step-by-step setup for Meta Business Suite, ManyChat, and GHL.</p>
+        <span class="cta">Open Workbook</span>
+      </a>
+
+      <a href="myths.html" class="resource-card bonus">
+        <span class="resource-tag">▸ Bonus Content</span>
+        <h3>Killing Your Reach</h3>
+        <p>15 social media myths costing real estate agents time, reach, and transactions — sourced from Adam Mosseri, Inman, and platform engineering disclosures. Stop doing the wasteful stuff.</p>
+        <span class="cta">Read the Bonus</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-brand">
+        <strong>CNAT Title</strong> · Bradley Patterson<br>
+        Technology Director
+      </div>
+      <div class="footer-quote">
+        Stop posting. <span class="gold">Start closing.</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

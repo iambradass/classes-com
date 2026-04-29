@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Realty · Social That Closes — CNAT Title</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /*
+     * AMBIENT AUTO-ROTATE SLIDESHOW
+     * Designed to run on a second screen while presenter demos live in another browser
+     * Auto-advances every 12 seconds · loops forever · pause on hover or spacebar
+     */
+    :root {
+      --navy: #0F1A2E;
+      --navy-mid: #162240;
+      --navy-light: #1B2A4A;
+      --cyan: #00C8F0;
+      --cyan-glow: #00D4FF;
+      --gold: #FFB833;
+      --gold-soft: #FFD175;
+      --white: #F2F6FA;
+      --green: #36D97A;
+      --red-soft: #EF5350;
+      --coral: #FF7373;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+    /* ═══ SLIDE BASE ═══ */
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      padding: 5vh 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      pointer-events: none;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .slide-inner {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* ═══ BACKGROUNDS ═══ */
+    .slide.dark { background: var(--navy); }
+    .slide.mid { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); }
+    .slide.gradient { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #0a2540 100%); }
+    .slide.accent { background: linear-gradient(135deg, #003459 0%, var(--navy-light) 100%); }
+    .slide.deep { background: radial-gradient(ellipse at center, var(--navy-mid) 0%, var(--navy) 70%); }
+
+    /* ═══ TYPOGRAPHY — boosted for ambient/glance reading ═══ */
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 7vw, 8rem);
+      letter-spacing: 4px;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      font-weight: 300;
+      opacity: 0.92;
+      line-height: 1.4;
+    }
+    .body-text {
+      font-size: clamp(1.5rem, 1.8vw, 1.9rem);
+      line-height: 1.55;
+    }
+    .small-text {
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      opacity: 0.7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .highlight { color: var(--cyan); font-weight: 700; }
+    .gold { color: var(--gold); }
+    .green { color: var(--green); }
+    .coral { color: var(--coral); }
+
+    /* ═══ HERO STAT — the big number ═══ */
+    .hero-stat {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8rem, 18vw, 22rem);
+      line-height: 0.9;
+      color: var(--cyan);
+      text-shadow: 0 0 60px rgba(0,200,240,0.35);
+      letter-spacing: -2px;
+    }
+    .hero-stat.gold { color: var(--gold); text-shadow: 0 0 60px rgba(255,184,51,0.35); }
+    .hero-stat.green { color: var(--green); text-shadow: 0 0 60px rgba(54,217,122,0.35); }
+
+    .hero-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.3;
+      max-width: 1000px;
+      margin: 1.5rem auto 0;
+    }
+    .source-tag {
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      opacity: 0.5;
+      margin-top: 2rem;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+
+    /* ═══ STAT GRID ═══ */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 3vw, 50px);
+      margin-top: 2rem;
+    }
+    .stat-card {
+      background: rgba(0,200,240,0.06);
+      border: 2px solid rgba(0,200,240,0.25);
+      border-radius: 18px;
+      padding: clamp(24px, 3.5vh, 44px) clamp(16px, 2vw, 28px);
+      text-align: center;
+    }
+    .stat-card .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      color: var(--cyan);
+      line-height: 1;
+    }
+    .stat-card .lbl {
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      opacity: 0.9;
+      margin-top: 12px;
+      line-height: 1.35;
+    }
+
+    /* ═══ HOOK / FORMULA CARDS ═══ */
+    .formula-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.8vh, 22px);
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+      text-align: left;
+    }
+    .formula-item {
+      background: rgba(255,255,255,0.04);
+      border-left: 5px solid var(--cyan);
+      padding: clamp(18px, 2.2vh, 28px) clamp(22px, 2.5vw, 32px);
+      border-radius: 0 14px 14px 0;
+      font-size: clamp(1.3rem, 1.7vw, 1.75rem);
+      line-height: 1.4;
+    }
+    .formula-item .num {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--cyan);
+      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+      letter-spacing: 2px;
+      margin-right: 16px;
+    }
+
+    /* ═══ PILLAR GRID ═══ */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(14px, 1.5vw, 22px);
+      margin-top: 2rem;
+    }
+    .pillar {
+      background: rgba(255,255,255,0.05);
+      border-top: 4px solid var(--cyan);
+      border-radius: 12px;
+      padding: clamp(20px, 2.5vh, 32px) clamp(12px, 1.2vw, 18px);
+      text-align: center;
+    }
+    .pillar:nth-child(2) { border-top-color: var(--gold); }
+    .pillar:nth-child(3) { border-top-color: var(--green); }
+    .pillar:nth-child(4) { border-top-color: var(--coral); }
+    .pillar:nth-child(5) { border-top-color: #B57BFF; }
+    .pillar .icon {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+      color: var(--cyan);
+      line-height: 1;
+    }
+    .pillar:nth-child(2) .icon { color: var(--gold); }
+    .pillar:nth-child(3) .icon { color: var(--green); }
+    .pillar:nth-child(4) .icon { color: var(--coral); }
+    .pillar:nth-child(5) .icon { color: #B57BFF; }
+    .pillar h3 {
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+    }
+    .pillar p {
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      opacity: 0.8;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ═══ COMPARISON ═══ */
+    .versus {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: clamp(20px, 3vw, 50px);
+      align-items: center;
+      max-width: 1300px;
+      margin: 2rem auto 0;
+    }
+    .vs-side {
+      padding: clamp(24px, 3vh, 40px);
+      border-radius: 16px;
+      text-align: center;
+    }
+    .vs-side.bad {
+      background: rgba(239,83,80,0.08);
+      border: 2px solid rgba(239,83,80,0.3);
+    }
+    .vs-side.good {
+      background: rgba(54,217,122,0.08);
+      border: 2px solid rgba(54,217,122,0.4);
+    }
+    .vs-side .label {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      margin-bottom: 12px;
+    }
+    .vs-side.bad .label { color: var(--coral); }
+    .vs-side.good .label { color: var(--green); }
+    .vs-side .content {
+      font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+      line-height: 1.4;
+    }
+    .vs-divider {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      color: var(--gold);
+    }
+
+    /* ═══ FLOW DIAGRAM (DM funnel) ═══ */
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(10px, 1.5vw, 24px);
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .flow-step {
+      background: rgba(0,200,240,0.08);
+      border: 2px solid rgba(0,200,240,0.3);
+      border-radius: 14px;
+      padding: clamp(16px, 2vh, 24px) clamp(20px, 2vw, 30px);
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+    }
+    .flow-step .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--cyan);
+      font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+      letter-spacing: 2px;
+    }
+    .flow-step .step-text {
+      font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+      margin-top: 8px;
+      line-height: 1.35;
+    }
+    .flow-arrow {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--gold);
+      font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    }
+
+    /* ═══ CHECKLIST ═══ */
+    ul.checklist {
+      list-style: none;
+      display: inline-block;
+      text-align: left;
+      max-width: 900px;
+      margin: 1.5rem auto 0;
+    }
+    ul.checklist li {
+      font-size: clamp(1.4rem, 1.7vw, 1.75rem);
+      padding: 14px 0 14px 56px;
+      position: relative;
+      line-height: 1.4;
+    }
+    ul.checklist li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: var(--cyan);
+      font-size: clamp(1.6rem, 2vw, 2rem);
+      font-weight: 700;
+    }
+
+    /* ═══ FIXED UI ═══ */
+    #progressBar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--cyan-glow) 100%);
+      box-shadow: 0 0 12px rgba(0,200,240,0.4);
+      z-index: 100;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    #brandMark {
+      position: fixed;
+      bottom: 3vh; left: 4vw;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.8rem, 1vw, 1rem);
+      opacity: 0.4;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 100;
+    }
+    #slideCounter {
+      position: fixed;
+      bottom: 3vh; right: 4vw;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.8rem, 1vw, 1rem);
+      opacity: 0.4;
+      letter-spacing: 2px;
+      z-index: 100;
+    }
+    #pauseIndicator {
+      position: fixed;
+      top: 3vh; right: 4vw;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 100;
+    }
+    #pauseIndicator.visible { opacity: 0.8; }
+    #pauseIndicator::before {
+      content: '⏸';
+      margin-right: 8px;
+    }
+
+    /* ═══ ANIMATIONS — content fade-in on slide entry ═══ */
+    .slide.active .anim {
+      animation: slideFadeUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .slide.active .anim.d1 { animation-delay: 0.2s; }
+    .slide.active .anim.d2 { animation-delay: 0.4s; }
+    .slide.active .anim.d3 { animation-delay: 0.6s; }
+    .slide.active .anim.d4 { animation-delay: 0.8s; }
+    @keyframes slideFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pulse for the hero stat */
+    .slide.active .hero-stat {
+      animation: heroPop 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    @keyframes heroPop {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 900px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; }
+      .versus { grid-template-columns: 1fr; }
+      .vs-divider { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progressBar"></div>
+  <div id="brandMark">CNAT Title · BK Realty</div>
+  <div id="slideCounter">01 / 18</div>
+  <div id="pauseIndicator">Paused</div>
+
+  <div id="deck">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 1: TITLE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent active">
+      <div class="slide-inner">
+        <p class="small-text anim">CNAT Title presents · for BK Realty</p>
+        <h1 class="anim d1" style="margin-top: 1.5rem; color: var(--cyan);">Social That<br>Closes</h1>
+        <p class="subtitle anim d2" style="margin-top: 1.5rem;">The 2026 Reels &amp; DM Playbook<br>for Agents Who Don't Have Time to Post All Day</p>
+        <p class="anim d3" style="margin-top: 3rem; opacity: 0.55; font-size: 1.1rem; letter-spacing: 2px;">BRADLEY PATTERSON · TECHNOLOGY DIRECTOR · CNAT TITLE</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 2: HERO STAT — 38% -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">The 2026 reality</p>
+        <div class="hero-stat" style="margin-top: 1rem;">38%</div>
+        <p class="hero-label anim d2">of agents' new clients in a given year now come <span class="highlight">directly from a social platform</span></p>
+        <p class="source-tag anim d3">Source: NAR survey data, cited in Mile High Title Guy 2026 report</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 3: HERO STAT — 52% -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">Lead quality</p>
+        <div class="hero-stat gold" style="margin-top: 1rem;">52%</div>
+        <p class="hero-label anim d2">of agents say <span class="gold" style="font-weight:700;">social media leads are higher quality</span> than MLS leads</p>
+        <p class="source-tag anim d3">Source: Coffee &amp; Contracts · Instagram Lead Gen 2026</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 4: HERO STAT — 403% video -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">Video vs. static</p>
+        <div class="hero-stat green" style="margin-top: 1rem;">403%</div>
+        <p class="hero-label anim d2">more inquiries on listings <span class="green" style="font-weight:700;">featuring video</span> vs. photo-only posts</p>
+        <p class="source-tag anim d3">Source: REsimpli Real Estate Marketing Research 2025</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 5: STAT GRID — engagement rates -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient">
+      <div class="slide-inner">
+        <h2 class="anim">Where the engagement actually lives</h2>
+        <p class="body-text anim d1" style="opacity:0.85; max-width: 1000px; margin: 0.5rem auto 0;">Format matters more than follower count when the algorithm is interest-based.</p>
+        <div class="stat-grid">
+          <div class="stat-card anim d1">
+            <div class="num">3.7%</div>
+            <div class="lbl">Reels engagement rate<br><span style="opacity:0.7; font-size: 0.9em;">highest of any IG format in real estate</span></div>
+          </div>
+          <div class="stat-card anim d2">
+            <div class="num">3.2x</div>
+            <div class="lbl">More saves &amp; shares<br><span style="opacity:0.7; font-size: 0.9em;">Reels vs. static carousels</span></div>
+          </div>
+          <div class="stat-card anim d3">
+            <div class="num">1,200%</div>
+            <div class="lbl">More shares<br><span style="opacity:0.7; font-size: 0.9em;">video vs. text + image combined</span></div>
+          </div>
+        </div>
+        <p class="source-tag anim d4">Sources: Hootsuite, Coffee &amp; Contracts, REsimpli</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 6: THE THESIS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent">
+      <div class="slide-inner">
+        <p class="small-text anim" style="color: var(--gold);">Today's thesis</p>
+        <h1 class="anim d1" style="margin-top: 1rem; font-size: clamp(3rem, 5.5vw, 6rem); color: var(--white);">Posts don't<br>generate leads.</h1>
+        <h1 class="anim d2" style="margin-top: 1.5rem; color: var(--cyan); font-size: clamp(3rem, 5.5vw, 6rem);">Conversations do.</h1>
+        <p class="subtitle anim d3" style="margin-top: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto;">Reels are the discovery engine.<br>DMs are the sales channel.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 7: HOOK — 2 SECONDS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">The first frame</p>
+        <div class="hero-stat anim d1" style="margin-top: 0.5rem;">2<span style="font-size: 0.5em; vertical-align: top;">SEC</span></div>
+        <p class="hero-label anim d2">is the only real estate you actually own on Instagram</p>
+        <p class="body-text anim d3" style="margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; opacity: 0.85;">Stop the scroll in two seconds or the algorithm stops promoting you.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 8: 5 HOOK FORMULAS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient">
+      <div class="slide-inner">
+        <h2 class="anim">5 hook formulas that work for agents</h2>
+        <div class="formula-list">
+          <div class="formula-item anim d1"><span class="num">01</span>"3 mistakes buyers are making right now in <span class="highlight">DFW</span> — and how to avoid them"</div>
+          <div class="formula-item anim d2"><span class="num">02</span>"If I were buying a house in <span class="highlight">Austin</span> today, here's exactly what I'd do"</div>
+          <div class="formula-item anim d3"><span class="num">03</span>"One strategy that's saving my clients <span class="highlight">$8,000+ in closing costs</span>"</div>
+          <div class="formula-item anim d4"><span class="num">04</span>"What actually happens on closing day — <span class="highlight">in 30 seconds</span>"</div>
+          <div class="formula-item anim d4"><span class="num">05</span>"The one thing every <span class="highlight">first-time buyer</span> gets wrong about pre-approval"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 9: 5 CONTENT PILLARS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide mid">
+      <div class="slide-inner">
+        <h2 class="anim">The 5 content pillars on rotation</h2>
+        <p class="body-text anim d1" style="opacity:0.85; max-width: 1100px; margin: 0.5rem auto 0;">Pick the pillar first. The content idea follows.</p>
+        <div class="pillar-grid">
+          <div class="pillar anim d1">
+            <div class="icon">01</div>
+            <h3>Market Authority</h3>
+            <p>You. On camera. Real numbers. 30 seconds.</p>
+          </div>
+          <div class="pillar anim d2">
+            <div class="icon">02</div>
+            <h3>Education</h3>
+            <p>Closing day, offer mistakes, title questions.</p>
+          </div>
+          <div class="pillar anim d3">
+            <div class="icon">03</div>
+            <h3>Hyperlocal</h3>
+            <p>Neighborhood deep-cuts. Not "listing of the week."</p>
+          </div>
+          <div class="pillar anim d4">
+            <div class="icon">04</div>
+            <h3>Behind the Curtain</h3>
+            <p>Process. Not pretty. Authenticity converts.</p>
+          </div>
+          <div class="pillar anim d4">
+            <div class="icon">05</div>
+            <h3>Social Proof</h3>
+            <p>Structured testimonials with the right questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 10: ROTATION > VARIETY -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent">
+      <div class="slide-inner">
+        <p class="small-text anim">The discipline</p>
+        <h1 class="anim d1" style="margin-top: 1rem; font-size: clamp(3.5rem, 6vw, 6.5rem); color: var(--gold);">Rotation</h1>
+        <h2 class="anim d2" style="margin-top: 1rem; font-size: clamp(2rem, 3vw, 3rem); opacity: 0.7;">beats variety.</h2>
+        <p class="subtitle anim d3" style="margin-top: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto;">You don't need new ideas every week.<br>You need 5 categories that rotate.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 11: DM CONVERSION FLOW -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient">
+      <div class="slide-inner">
+        <h2 class="anim">The DM conversion flow</h2>
+        <p class="body-text anim d1" style="opacity:0.85; max-width: 1100px; margin: 0.5rem auto 0;">"Comment 'guide' and I'll DM you" outperforms link-in-bio by a wide margin.</p>
+        <div class="flow">
+          <div class="flow-step anim d1">
+            <div class="step-num">01</div>
+            <div class="step-text"><strong>Reel with hook</strong><br>+ clear DM CTA</div>
+          </div>
+          <div class="flow-arrow anim d1">→</div>
+          <div class="flow-step anim d2">
+            <div class="step-num">02</div>
+            <div class="step-text"><strong>Comment trigger</strong><br>"guide" / "info" / "move"</div>
+          </div>
+          <div class="flow-arrow anim d2">→</div>
+          <div class="flow-step anim d3">
+            <div class="step-num">03</div>
+            <div class="step-text"><strong>Auto-DM</strong><br>delivers lead magnet</div>
+          </div>
+          <div class="flow-arrow anim d3">→</div>
+          <div class="flow-step anim d4">
+            <div class="step-num">04</div>
+            <div class="step-text"><strong>Personal reply</strong><br>opens the conversation</div>
+          </div>
+        </div>
+        <p class="anim d4" style="margin-top: 2.5rem; font-size: clamp(1.2rem, 1.5vw, 1.5rem); color: var(--cyan); font-family: 'Oswald', sans-serif; letter-spacing: 2px;">REELS ARE THE BAIT · DMs ARE THE BOAT</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 12: LEAD MAGNETS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide mid">
+      <div class="slide-inner">
+        <h2 class="anim">Lead magnets that actually pull</h2>
+        <p class="body-text anim d1" style="opacity:0.85; max-width: 1100px; margin: 0.5rem auto 0;">Specific beats generic. Local beats national. Action beats information.</p>
+        <ul class="checklist">
+          <li class="anim d1"><strong class="highlight">2026 DFW Buyer Game Plan</strong> — what changed and what to do about it</li>
+          <li class="anim d2"><strong class="highlight">Pre-Listing Checklist</strong> — 7 things to do 30 days before listing</li>
+          <li class="anim d3"><strong class="highlight">Closing Cost Calculator</strong> — actual numbers, not estimates</li>
+          <li class="anim d4"><strong class="highlight">Neighborhood Deep-Dive</strong> — schools, taxes, commute, comps</li>
+          <li class="anim d4"><strong class="highlight">Relocation Welcome Kit</strong> — for the Austin/DFW transplant</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 13: CAPTIONS — NATIVE vs CAPCUT -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">Reach multiplier #1</p>
+        <h2 class="anim d1" style="margin-top: 1rem;">Use native Instagram captions.<br>Not CapCut.</h2>
+        <div class="versus">
+          <div class="vs-side bad">
+            <div class="label">CapCut Captions</div>
+            <div class="content">Algorithm reads them as <strong>graphics</strong>.<br>Lower distribution.</div>
+          </div>
+          <div class="vs-divider">VS</div>
+          <div class="vs-side good">
+            <div class="label">Native IG Captions</div>
+            <div class="content">Algorithm reads them as <strong>text</strong>.<br>Optimized delivery.</div>
+          </div>
+        </div>
+        <p class="source-tag anim d4">Source: Inman · Instagram for Real Estate Marketing 2026</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 14: REACH MULTIPLIERS — TAGS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient">
+      <div class="slide-inner">
+        <h2 class="anim">Two tags. Massive reach difference.</h2>
+        <p class="body-text anim d1" style="opacity:0.85; max-width: 1100px; margin: 0.5rem auto 0;">Most agents skip both. The ones who don't, win.</p>
+        <div class="stat-grid" style="grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 2.5rem auto 0;">
+          <div class="stat-card anim d1" style="background: rgba(255,184,51,0.07); border-color: rgba(255,184,51,0.3);">
+            <div class="num" style="color: var(--gold);">📍</div>
+            <h3 style="color: var(--gold); margin-top: 8px;">Location Tag</h3>
+            <p style="font-size: clamp(1.05rem, 1.3vw, 1.3rem); margin-top: 12px; opacity: 0.9; line-height: 1.4;">Tells Instagram <em>where</em> your content applies. Hyperlocal feeds pick it up.</p>
+          </div>
+          <div class="stat-card anim d2" style="background: rgba(54,217,122,0.07); border-color: rgba(54,217,122,0.3);">
+            <div class="num" style="color: var(--green);">@</div>
+            <h3 style="color: var(--green); margin-top: 8px;">Collaborator Tag</h3>
+            <p style="font-size: clamp(1.05rem, 1.3vw, 1.3rem); margin-top: 12px; opacity: 0.9; line-height: 1.4;">Reel posts to <em>both</em> accounts simultaneously. Instant reach doubling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 15: DESIGN FOR SAVES & SHARES -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide accent">
+      <div class="slide-inner">
+        <p class="small-text anim">The metric that matters</p>
+        <h1 class="anim d1" style="margin-top: 1rem; font-size: clamp(2.8rem, 5vw, 5.5rem); color: var(--white);">Design for</h1>
+        <h1 class="anim d2" style="margin-top: 0.5rem; color: var(--cyan); font-size: clamp(3.5rem, 6vw, 6.5rem);">SAVES &amp; SHARES.</h1>
+        <h2 class="anim d3" style="margin-top: 1.5rem; opacity: 0.6; font-size: clamp(1.6rem, 2.4vw, 2.4rem);">Not likes.</h2>
+        <p class="subtitle anim d4" style="margin-top: 2rem; max-width: 1100px; margin-left: auto; margin-right: auto; font-size: clamp(1.3rem, 1.7vw, 1.7rem);">Saves signal "I need this later."<br>Shares signal "someone I know needs this."<br><span class="gold" style="font-weight:700;">The algorithm rewards both.</span></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 16: PRODUCTION SYSTEM -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide mid">
+      <div class="slide-inner">
+        <h2 class="anim">The 30-minute-a-day production system</h2>
+        <div class="flow" style="margin-top: 2.5rem;">
+          <div class="flow-step anim d1">
+            <div class="step-num">BATCH</div>
+            <div class="step-text"><strong>One Saturday</strong><br>6 reels, 1 outfit change, 90 minutes</div>
+          </div>
+          <div class="flow-arrow anim d1">→</div>
+          <div class="flow-step anim d2">
+            <div class="step-num">SCRIPT</div>
+            <div class="step-text"><strong>AI-assisted hooks</strong><br>5 prompts → 30 hook options</div>
+          </div>
+          <div class="flow-arrow anim d2">→</div>
+          <div class="flow-step anim d3">
+            <div class="step-num">REPURPOSE</div>
+            <div class="step-text"><strong>1 reel becomes 9 pieces</strong><br>3 platforms · 5 stories · 1 carousel</div>
+          </div>
+        </div>
+        <p class="anim d4" style="margin-top: 2.5rem; font-size: clamp(1.4rem, 1.7vw, 1.7rem); color: var(--gold); font-family: 'Oswald', sans-serif;">3 reels per week. 30 minutes per day. Done.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 17: 7-DAY CHALLENGE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide gradient">
+      <div class="slide-inner">
+        <p class="small-text anim" style="color: var(--gold);">Your 7-day challenge</p>
+        <h1 class="anim d1" style="margin-top: 1rem; font-size: clamp(3rem, 5vw, 5.5rem); color: var(--cyan);">Pick 1 pillar.<br>Post 3 reels.</h1>
+        <ul class="checklist anim d2" style="margin-top: 2rem;">
+          <li>Native captions <span style="opacity:0.6;">(not CapCut)</span></li>
+          <li>Location tag <span style="opacity:0.6;">(your city + neighborhood)</span></li>
+          <li>Clear DM call-to-action <span style="opacity:0.6;">(comment "X" → auto-DM)</span></li>
+          <li>Track DMs received <span style="opacity:0.6;">(not likes)</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 18: CLOSE / LOOP -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="slide deep">
+      <div class="slide-inner">
+        <p class="small-text anim">Remember</p>
+        <h1 class="anim d1" style="margin-top: 1rem; font-size: clamp(3rem, 5vw, 5.5rem); color: var(--white);">Stop posting.</h1>
+        <h1 class="anim d2" style="margin-top: 1rem; font-size: clamp(3.5rem, 6vw, 6.5rem); color: var(--cyan);">Start closing.</h1>
+        <p class="subtitle anim d3" style="margin-top: 2.5rem; max-width: 1000px; margin-left: auto; margin-right: auto;">Reels = bait.<br>DMs = boat.<br><span class="gold" style="font-weight:700;">Conversations = closings.</span></p>
+        <p class="anim d4" style="margin-top: 3rem; opacity: 0.5; font-size: 1rem; letter-spacing: 2px;">CNAT TITLE · BRADLEY PATTERSON · TECHNOLOGY DIRECTOR</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    // AUTO-ROTATE LOGIC
+    // ═══════════════════════════════════════════════════════════
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const SLIDE_DURATION = 12000; // 12 seconds per slide
+    const PROGRESS_TICK = 50; // update progress bar every 50ms
+
+    let currentIndex = 0;
+    let progressInterval = null;
+    let progressValue = 0;
+    let isPaused = false;
+
+    const progressBar = document.getElementById('progressBar');
+    const slideCounter = document.getElementById('slideCounter');
+    const pauseIndicator = document.getElementById('pauseIndicator');
+
+    function updateCounter() {
+      const num = String(currentIndex + 1).padStart(2, '0');
+      const total = String(totalSlides).padStart(2, '0');
+      slideCounter.textContent = `${num} / ${total}`;
+    }
+
+    function showSlide(index) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      currentIndex = index;
+      updateCounter();
+      progressValue = 0;
+      progressBar.style.width = '0%';
+    }
+
+    function nextSlide() {
+      const next = (currentIndex + 1) % totalSlides;
+      showSlide(next);
+    }
+
+    function prevSlide() {
+      const prev = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(prev);
+    }
+
+    function startProgress() {
+      stopProgress();
+      progressInterval = setInterval(() => {
+        if (isPaused) return;
+        progressValue += PROGRESS_TICK;
+        const pct = Math.min((progressValue / SLIDE_DURATION) * 100, 100);
+        progressBar.style.width = pct + '%';
+        if (progressValue >= SLIDE_DURATION) {
+          progressValue = 0;
+          nextSlide();
+        }
+      }, PROGRESS_TICK);
+    }
+
+    function stopProgress() {
+      if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+      }
+    }
+
+    function togglePause() {
+      isPaused = !isPaused;
+      pauseIndicator.classList.toggle('visible', isPaused);
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // CONTROLS
+    // ═══════════════════════════════════════════════════════════
+
+    // Pause on hover (so Bradley can stop on a slide if needed)
+    document.body.addEventListener('mouseenter', () => { isPaused = true; pauseIndicator.classList.add('visible'); });
+    document.body.addEventListener('mouseleave', () => { isPaused = false; pauseIndicator.classList.remove('visible'); });
+
+    // Keyboard: spacebar = toggle pause, arrows = manual nav
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePause();
+      } else if (e.code === 'ArrowRight' || e.code === 'ArrowDown') {
+        e.preventDefault();
+        progressValue = 0;
+        nextSlide();
+      } else if (e.code === 'ArrowLeft' || e.code === 'ArrowUp') {
+        e.preventDefault();
+        progressValue = 0;
+        prevSlide();
+      } else if (e.code === 'KeyF') {
+        // F for fullscreen toggle
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════════════
+    updateCounter();
+    startProgress();
+  </script>
+</body>
+</html>

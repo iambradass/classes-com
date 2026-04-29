@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cross-Platform Talking Points — Speaker Card | CNAT Title</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F1A2E;
+      --navy-mid: #162240;
+      --cyan: #007B8F;
+      --cyan-bright: #00C8F0;
+      --gold: #B8841F;
+      --gold-bright: #FFB833;
+      --green: #2A9D5C;
+      --red: #C84642;
+      --bg: #FAF8F4;
+      --card: #FFFFFF;
+      --line: #E5DFD3;
+      --text: #1A2438;
+      --text-light: #4A5568;
+      --text-muted: #7A8599;
+      /* Platform colors */
+      --ig: #E1306C;
+      --fb: #1877F2;
+      --tt: #000000;
+      --yt: #FF0000;
+      --li: #0A66C2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 50px 40px;
+    }
+
+    /* ═══ HEADER ═══ */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: #fff;
+      margin: -50px -40px 40px;
+      padding: 50px 50px;
+      border-radius: 0 0 12px 12px;
+      position: relative;
+    }
+    .brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      font-weight: 500;
+    }
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 1.5px;
+      margin-top: 12px;
+    }
+    .header h1 .accent { color: var(--cyan-bright); }
+    .header .meta {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+    .speaker-tag {
+      display: inline-block;
+      background: var(--gold-bright);
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-top: 14px;
+    }
+
+    /* ═══ INTRO BOX ═══ */
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 26px;
+      margin-bottom: 30px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    .intro-box strong { color: var(--navy); }
+
+    /* ═══ SECTION ═══ */
+    .section {
+      margin: 40px 0 25px;
+      page-break-inside: avoid;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 3px solid var(--navy);
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+    }
+    .section-icon {
+      width: 38px; height: 38px;
+      background: var(--cyan);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      letter-spacing: 1px;
+    }
+    .section-icon.gold { background: var(--gold); }
+    .section-icon.green { background: var(--green); }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .section-when {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* ═══ TALKING POINT BOX ═══ */
+    .talking-point {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .talking-point .when {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .talking-point .moment {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .talking-point .say {
+      background: #FFF8EC;
+      border-left: 3px solid var(--gold-bright);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .talking-point .say::before {
+      content: '🎤 ';
+      margin-right: 4px;
+    }
+
+    /* ═══ PLATFORM BADGE ═══ */
+    .platforms {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .platform-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 500;
+    }
+    .platform-badge.ig { background: var(--ig); }
+    .platform-badge.fb { background: var(--fb); }
+    .platform-badge.tt { background: var(--tt); }
+    .platform-badge.yt { background: var(--yt); }
+    .platform-badge.li { background: var(--li); }
+
+    /* ═══ PLATFORM REFERENCE TABLE ═══ */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.92rem;
+      margin-top: 14px;
+    }
+    .ref-table th {
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .ref-table td {
+      padding: 11px 14px;
+      border-top: 1px solid var(--line);
+    }
+    .ref-table td:first-child {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      color: var(--navy);
+      font-size: 0.92rem;
+      width: 130px;
+    }
+    .ref-table .full-translate {
+      color: var(--green);
+      font-weight: 600;
+    }
+    .ref-table .partial {
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .ref-table .doesnt {
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* ═══ OPENING SCRIPT ═══ */
+    .opening-script {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 24px 0 30px;
+    }
+    .opening-script .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+    .opening-script h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      margin-top: 6px;
+      color: var(--cyan-bright);
+    }
+    .opening-script p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-top: 12px;
+      opacity: 0.95;
+    }
+    .opening-script p strong {
+      color: var(--gold-bright);
+    }
+    .opening-script .pause {
+      font-style: italic;
+      color: var(--gold-bright);
+      font-size: 0.85rem;
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .footer strong { color: var(--navy); }
+
+    @media print {
+      body { background: #fff; }
+      .container { padding: 25px 30px; }
+      .header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .opening-script, .ref-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .talking-point, .section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 30px 20px; }
+      .header { padding: 35px 25px; margin: -30px -20px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+      <div class="brand">CNAT Title · BK Realty Class</div>
+      <h1>Cross-Platform <span class="accent">Talking Points</span></h1>
+      <p class="meta">Speaker reference card — opening framing + in-class call-out moments to broaden the IG playbook to other platforms without changing the deck.</p>
+      <span class="speaker-tag">Speaker only · do not distribute</span>
+    </div>
+
+    <!-- ═══ INTRO BOX ═══ -->
+    <div class="intro-box">
+      <strong>How to use this card:</strong> Glance at it before each section. The opening script gives you the framing for the first 90 seconds of class so agents don't think you're ignoring TikTok/YouTube/LinkedIn. The in-class callouts give you specific moments to drop a one-liner like "by the way, this exact tactic also applies to ___" — keeps the class focused on Instagram while making it feel comprehensive.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: OPENING FRAMING -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">01</div>
+        <div>
+          <div class="section-title">Opening Framing</div>
+          <div class="section-when">Use within the first 90 seconds — sets context before slide 1</div>
+        </div>
+      </div>
+
+      <div class="opening-script">
+        <div class="label">▸ The opening script</div>
+        <h3>"Why we're focused on Instagram today"</h3>
+        <p>"Quick note before we dive in — today's class focuses heavily on <strong>Instagram and Facebook</strong>, and there's a reason. <span class="pause">[pause]</span> Instagram's interest-based algorithm is currently the strongest organic discovery engine for real estate — a brand-new agent can reach tens of thousands of people with one good reel. <strong>Facebook shares the same backend</strong>, so almost everything we cover today applies to FB Reels and Pages with zero translation."</p>
+        <p>"The other platforms — <strong>YouTube, TikTok, LinkedIn</strong> — they all matter, and a lot of what we cover today still applies. I'll call those out as we go. But trying to cover five platforms in one hour means going shallow on all of them. So we're going deep on the one that's currently moving the most pipeline. <strong>Pick the platforms where your buyers actually are</strong> — for most DFW and Austin agents, that's Instagram and Facebook. YouTube is the long game. LinkedIn matters for luxury and referrals. TikTok if you're chasing first-time buyers under 35."</p>
+        <p>"Everything we cover — hooks, content pillars, the production system — translates. The DM mechanics are Meta-specific. Let's go."</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: IN-CLASS CALL-OUT MOMENTS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon gold">02</div>
+        <div>
+          <div class="section-title">In-Class Call-Out Moments</div>
+          <div class="section-when">Specific spots in the deck where you can drop a one-liner about other platforms</div>
+        </div>
+      </div>
+
+      <!-- HOOKS SECTION -->
+      <div class="talking-point">
+        <div class="when">When you finish the 5 hook formulas — slide 8</div>
+        <div class="moment">After showing the 5 formulas, before moving on:</div>
+        <div class="say">"By the way, these five formulas work <strong>identically on TikTok, YouTube Shorts, LinkedIn video, and Facebook Reels</strong>. The 2-second rule is even <em>more</em> aggressive on TikTok — closer to one second. Same formulas, just punchier. If you're already filming a reel, you've made content for four other platforms."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">Instagram</span>
+          <span class="platform-badge fb">Facebook</span>
+          <span class="platform-badge tt">TikTok</span>
+          <span class="platform-badge yt">YouTube Shorts</span>
+          <span class="platform-badge li">LinkedIn</span>
+        </div>
+      </div>
+
+      <!-- DM ENGINE -->
+      <div class="talking-point">
+        <div class="when">When you cover the DM conversion engine — slide 11–13</div>
+        <div class="moment">When showing the comment-to-DM flow:</div>
+        <div class="say">"Quick note — this comment-to-DM mechanic is <strong>Meta-specific</strong>. Works for Instagram <em>and</em> Facebook with the same tools. <strong>TikTok doesn't have automated comment-to-DM yet.</strong> YouTube — you're moving people to email or your bio link, not DMs. <strong>LinkedIn — the manual version still works</strong>: someone comments, you reply with a question, then move to LinkedIn Messages. Lower volume, way higher commercial intent. One LinkedIn DM thread can be worth ten Instagram ones for luxury or referral business."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">IG: native + tools</span>
+          <span class="platform-badge fb">FB: native + tools</span>
+          <span class="platform-badge li">LinkedIn: manual only</span>
+        </div>
+      </div>
+
+      <!-- REACH MULTIPLIERS -->
+      <div class="talking-point">
+        <div class="when">When you cover native captions — slide 19</div>
+        <div class="moment">After explaining CapCut vs native:</div>
+        <div class="say">"This native-caption rule isn't just Instagram. <strong>TikTok, YouTube Shorts, and LinkedIn all do the same thing</strong> — the algorithm reads native captions as text and uses them for distribution. CapCut burned-in captions get treated as graphics on every video platform. Use the native caption tool on whatever platform you're posting to. Two seconds. Free reach gain everywhere."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">Instagram</span>
+          <span class="platform-badge tt">TikTok</span>
+          <span class="platform-badge yt">YouTube</span>
+          <span class="platform-badge li">LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">When you cover location and collab tags — slide 20</div>
+        <div class="moment">After the two-tag breakdown:</div>
+        <div class="say">"Location tags are huge on <strong>Instagram and TikTok</strong> — both have hyperlocal feeds. Less impactful on YouTube and LinkedIn. <strong>Collaborator tags exist on TikTok and YouTube Shorts too</strong> — same reach-doubling benefit. Find your favorite local lender or photographer on whichever platform and tag them. The math is the same."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">IG: both tags</span>
+          <span class="platform-badge tt">TikTok: both</span>
+          <span class="platform-badge yt">YT Shorts: collab</span>
+        </div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">When you cover hashtags vs keywords — slide 21</div>
+        <div class="moment">After "the 30-hashtag dump is dead":</div>
+        <div class="say">"This rule flips on <strong>YouTube and TikTok</strong>. YouTube hashtags are mostly cosmetic — the title and description SEO is what matters there. <strong>TikTok hashtags still drive real distribution</strong>, especially in 2026. LinkedIn — 3 to 5 professional tags is the rule. So: light on hashtags for IG and LinkedIn, write keyword-rich captions for IG, and on TikTok actually do use trending tags."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">IG: 3–5 tags + keywords</span>
+          <span class="platform-badge tt">TikTok: tags matter</span>
+          <span class="platform-badge yt">YT: title SEO &gt; tags</span>
+          <span class="platform-badge li">LinkedIn: 3–5</span>
+        </div>
+      </div>
+
+      <!-- CONTENT PILLARS -->
+      <div class="talking-point">
+        <div class="when">When you cover the 5 content pillars — slide 22</div>
+        <div class="moment">After the pillar overview:</div>
+        <div class="say">"These five pillars are <strong>100% portable to every platform</strong>. The only thing that shifts is tone. <strong>LinkedIn</strong> wants the Market Authority pillar in a more polished, professional voice — drop the casual delivery, lean into data and analysis. <strong>TikTok</strong> wants the Behind-the-Curtain and Hyperlocal pillars in a more raw, fast-paced style. <strong>YouTube</strong> long-form rewards the Education pillar — that's where 'What actually happens on closing day' becomes a 7-minute deep dive. Same content engine, five different voices."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">All 5 pillars</span>
+          <span class="platform-badge fb">All 5 pillars</span>
+          <span class="platform-badge tt">BTS + Hyperlocal lean</span>
+          <span class="platform-badge yt">Education lean (long-form)</span>
+          <span class="platform-badge li">Market Authority lean</span>
+        </div>
+      </div>
+
+      <!-- PRODUCTION SYSTEM -->
+      <div class="talking-point">
+        <div class="when">When you cover the 30-min batch system — slide 26</div>
+        <div class="moment">After the Saturday batch breakdown:</div>
+        <div class="say">"Here's where multi-platform pays off massively — <strong>one batch session feeds everything</strong>. Film 6 vertical videos on Saturday. Same vertical format works on Instagram Reels, Facebook Reels, TikTok, YouTube Shorts, and LinkedIn. Five platforms, one production session. The repurpose pipeline I'll show you next does most of the work for you."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">IG Reels</span>
+          <span class="platform-badge fb">FB Reels</span>
+          <span class="platform-badge tt">TikTok</span>
+          <span class="platform-badge yt">YT Shorts</span>
+          <span class="platform-badge li">LinkedIn video</span>
+        </div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">When you cover the repurpose pipeline — slide 28</div>
+        <div class="moment">When you say "1 reel becomes 9 pieces":</div>
+        <div class="say">"And that '3 platforms' line on the slide is conservative — it's actually <strong>five platforms</strong> if you're posting to TikTok, YouTube Shorts, and LinkedIn too. Same vertical video. Just remember: <strong>strip the TikTok watermark</strong> before reposting to Instagram or you tank the reach. We covered that earlier."</div>
+        <div class="platforms">
+          <span class="platform-badge ig">Watermark warning still applies</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: PLATFORM TRANSLATION REFERENCE -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon green">03</div>
+        <div>
+          <div class="section-title">Platform Translation Reference</div>
+          <div class="section-when">Quick lookup if an agent asks about a specific platform during Q&amp;A</div>
+        </div>
+      </div>
+
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Tactic</th>
+            <th>Facebook</th>
+            <th>TikTok</th>
+            <th>YouTube</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hook formulas</td>
+            <td class="full-translate">Translates 100%</td>
+            <td class="full-translate">Even more critical</td>
+            <td class="full-translate">Same on Shorts</td>
+            <td class="partial">Adjust tone</td>
+          </tr>
+          <tr>
+            <td>Comment-to-DM</td>
+            <td class="full-translate">Same tools work</td>
+            <td class="doesnt">Not supported</td>
+            <td class="doesnt">Use email instead</td>
+            <td class="partial">Manual only</td>
+          </tr>
+          <tr>
+            <td>Native captions</td>
+            <td class="full-translate">Same rule</td>
+            <td class="full-translate">Same rule</td>
+            <td class="full-translate">Same rule</td>
+            <td class="full-translate">Same rule</td>
+          </tr>
+          <tr>
+            <td>Location tags</td>
+            <td class="partial">Less impact</td>
+            <td class="full-translate">Strong signal</td>
+            <td class="doesnt">Negligible</td>
+            <td class="doesnt">Negligible</td>
+          </tr>
+          <tr>
+            <td>Collaborator tags</td>
+            <td class="full-translate">Yes</td>
+            <td class="full-translate">Yes</td>
+            <td class="full-translate">Yes (Shorts)</td>
+            <td class="doesnt">Not native</td>
+          </tr>
+          <tr>
+            <td>Hashtags</td>
+            <td class="partial">3–5 specific</td>
+            <td class="full-translate">Still matter</td>
+            <td class="partial">Title SEO &gt; tags</td>
+            <td class="partial">3–5 professional</td>
+          </tr>
+          <tr>
+            <td>5 content pillars</td>
+            <td class="full-translate">Same</td>
+            <td class="full-translate">BTS &amp; Hyperlocal lean</td>
+            <td class="full-translate">Education lean</td>
+            <td class="full-translate">Market Authority lean</td>
+          </tr>
+          <tr>
+            <td>Batch + repurpose</td>
+            <td class="full-translate">FB Reels = same</td>
+            <td class="full-translate">Vertical works</td>
+            <td class="full-translate">Shorts work · long-form is bonus</td>
+            <td class="full-translate">Native upload</td>
+          </tr>
+          <tr>
+            <td>Best for real estate</td>
+            <td>Local Groups<br>Buyers 35+</td>
+            <td>Buyers under 35<br>First-timers</td>
+            <td>Long-game authority<br>High-intent leads</td>
+            <td>Luxury<br>Referrals</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: Q&A ANTICIPATED QUESTIONS -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">04</div>
+        <div>
+          <div class="section-title">Anticipated Q&amp;A</div>
+          <div class="section-when">Likely platform-related questions during Q&amp;A</div>
+        </div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">"Should I be on TikTok?"</div>
+        <div class="say">"Depends on your audience. If you work with first-time buyers, especially under 35, yes — they're there. If you're targeting move-up buyers, luxury, or 50+ sellers, your time is better spent doubling down on Instagram and Facebook. Don't be on TikTok just because it's trendy. Be there if your buyers are."</div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">"What about YouTube?"</div>
+        <div class="say">"YouTube is the long game. Top-producing teams now have 'YouTube lead' as its own CRM source because those leads convert like referrals — they've already watched 20 minutes of you before they reach out. But it's a 6-to-12-month investment before pipeline shows up. If you have the patience, it's the highest-quality lead source on this list. Start with Shorts repurposed from your reels, then add long-form when you're ready."</div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">"Does any of this work on LinkedIn?"</div>
+        <div class="say">"For most agents, no — your buyers aren't there. For luxury agents and agents who want referral business from professionals, business owners, and executives — absolutely. The hooks work, the pillars work, the captions rule applies. The DM mechanics are different — no automation — but a single LinkedIn message thread is often worth ten Instagram ones for high-value clients. If you want luxury, get on LinkedIn."</div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">"Can I just post the same thing everywhere?"</div>
+        <div class="say">"Same video, yes — strip platform watermarks first. Same caption, no — each platform reads captions differently. Five seconds of editing per platform: change the first sentence to fit the audience tone, swap a couple keywords. The repurpose pipeline I showed you assumes you're doing this. It's still a fraction of the effort of filming five different videos."</div>
+      </div>
+
+      <div class="talking-point">
+        <div class="when">"Which platform should I start with?"</div>
+        <div class="say">"Pick the one where your existing sphere already is. For 90% of DFW and Austin agents, that's Facebook for the warm sphere and Instagram for new audience growth. Master those two — three Reels a week, daily Stories, comment-to-DM running — for 90 days before you add anything else. Most agents fail by trying to be on five platforms at once and being mediocre on all of them."</div>
+      </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="footer">
+      <div><strong>CNAT Title</strong> · Speaker Reference Card · BK Realty 2026</div>
+      <div>Bradley Patterson · Tech Director</div>
+    </div>
+
+  </div><!-- /container -->
+
+</body>
+</html>
