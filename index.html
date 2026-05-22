@@ -92,6 +92,15 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .class-cta.coming-soon-btn:hover{transform:none;background:transparent}
 .no-classes{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:48px;text-align:center}
 .no-classes p{color:var(--grey);font-size:13px}
+.class-status.rescheduling{color:#f87171}
+.class-card.rescheduling{cursor:default;border-color:rgba(248,113,113,.3)}
+.class-card.rescheduling:hover{transform:none;border-color:rgba(248,113,113,.3)}
+.class-card.rescheduling .class-status,
+.class-card.rescheduling .class-card-title,
+.class-card.rescheduling .class-card-sub,
+.class-card.rescheduling .class-meta,
+.class-card.rescheduling .class-footer{opacity:.4}
+.reschedule-banner{background:#dc2626;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:9px 12px;margin:-28px -28px 20px;position:relative}
 
 /* CATALOG FILTERS */
 .catalog-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
@@ -248,7 +257,7 @@ const UPCOMING = [
     priceSub: "1 CE hour",
     location: "Live on Zoom",
     registerUrl: "/keeping-ai-may-2026/",
-    status: "open",
+    status: "rescheduling",
     courseNumbers: []
   }
 ];
@@ -291,7 +300,7 @@ const hoursColors = {
 function renderUpcoming() {
   const grid = document.getElementById('upcomingGrid');
   const count = document.getElementById('upcomingCount');
-  const open = UPCOMING.filter(c => c.status !== 'coming-soon').length;
+  const open = UPCOMING.filter(c => c.status !== 'coming-soon' && c.status !== 'rescheduling').length;
   count.textContent = open + (open === 1 ? ' session open' : ' sessions open');
 
   if (!UPCOMING.length) {
@@ -303,12 +312,15 @@ function renderUpcoming() {
     const isOpen = c.status === 'open';
     const isFull = c.status === 'full';
     const isSoon = c.status === 'coming-soon';
-    const statusLabel = isOpen ? 'Registration Open' : isFull ? 'Class Full' : 'Coming Soon';
-    const ctaLabel = isOpen ? 'Register Now' : isFull ? 'Join Waitlist' : 'Notify Me';
-    const ctaClass = isSoon ? 'class-cta coming-soon-btn' : 'class-cta';
+    const isResched = c.status === 'rescheduling';
+    const statusLabel = isOpen ? 'Registration Open' : isFull ? 'Class Full' : isResched ? 'Rescheduling' : 'Coming Soon';
+    const ctaLabel = isOpen ? 'Register Now' : isFull ? 'Join Waitlist' : isResched ? 'New Date TBA' : 'Notify Me';
+    const ctaClass = (isSoon || isResched) ? 'class-cta coming-soon-btn' : 'class-cta';
     const cardTag = isOpen ? 'a' : 'div';
     const hrefAttr = isOpen ? `href="${c.registerUrl}"` : '';
-    return `<${cardTag} class="class-card" ${hrefAttr}>
+    const banner = isResched ? '<div class="reschedule-banner">Rescheduling — New Date To Be Announced</div>' : '';
+    return `<${cardTag} class="class-card ${c.status}" ${hrefAttr}>
+      ${banner}
       <div class="class-status ${c.status}">${statusLabel}</div>
       <div class="class-card-title">${c.title}</div>
       <div class="class-card-sub">${c.tagline}</div>
