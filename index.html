@@ -101,6 +101,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .class-card.rescheduling .class-meta,
 .class-card.rescheduling .class-footer{opacity:.4}
 .reschedule-banner{background:#dc2626;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:9px 12px;margin:-28px -28px 20px;position:relative}
+.private-banner{background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:9px 12px;margin:-28px -28px 20px;position:relative}
 
 /* CATALOG FILTERS */
 .catalog-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
@@ -233,32 +234,20 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 // status: "open" | "full" | "coming-soon"
 const UPCOMING = [
   {
-    title: "Legal Update I & II",
-    tagline: "Necessary Knowledge",
-    date: "May 26 + May 28, 2026",
-    time: "10:00 AM \u2013 2:00 PM",
-    hours: 4,
-    price: 25,
-    priceLabel: "$25",
-    priceSub: "per class \u00b7 $50 both",
-    location: "Live on Zoom",
-    registerUrl: "/legal-update-may-2026/",
+    title: "Contracts & Contractual Competence",
+    tagline: "What's New for You?",
+    date: "Thu, June 25, 2026",
+    time: "10:30 AM",
+    hours: 3,
+    price: 0,
+    priceLabel: "Free",
+    priceSub: "The VIBE Brokerage \u00b7 RSVP required",
+    location: "VIBE Main Office + Zoom",
+    registerUrl: "/contracts-vibe-june-2026/",
     status: "open",
-    courseNumbers: ["10279-RENE", "10280-RENE"]
-  },
-  {
-    title: "Keeping AI on Things",
-    tagline: "Smarter, Not Harder",
-    date: "Wed, May 27, 2026",
-    time: "10:00 \u2013 11:00 AM",
-    hours: 1,
-    price: 5,
-    priceLabel: "$5",
-    priceSub: "1 CE hour",
-    location: "Live on Zoom",
-    registerUrl: "/keeping-ai-may-2026/",
-    status: "rescheduling",
-    courseNumbers: []
+    private: true,
+    privateLabel: "The VIBE Brokerage Only",
+    courseNumbers: ["39207-RECE"]
   }
 ];
 
@@ -318,7 +307,7 @@ function renderUpcoming() {
     const ctaClass = (isSoon || isResched) ? 'class-cta coming-soon-btn' : 'class-cta';
     const cardTag = isOpen ? 'a' : 'div';
     const hrefAttr = isOpen ? `href="${c.registerUrl}"` : '';
-    const banner = isResched ? '<div class="reschedule-banner">Rescheduling — New Date To Be Announced</div>' : '';
+    const banner = isResched ? '<div class="reschedule-banner">Rescheduling — New Date To Be Announced</div>' : (c.private ? `<div class="private-banner">Private &middot; ${c.privateLabel || 'Invite Only'}</div>` : '');
     return `<${cardTag} class="class-card ${c.status}" ${hrefAttr}>
       ${banner}
       <div class="class-status ${c.status}">${statusLabel}</div>
