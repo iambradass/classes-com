@@ -1,0 +1,8 @@
+# Route /c/<slug> to the generic class registration page (reads the slug from the path)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^c/[^/]+/?$ /c/index.html [L]
+</IfModule>
