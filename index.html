@@ -232,22 +232,29 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 // ─── UPCOMING CLASSES CONFIG ───────────────────────────────────────────────
 // To add/update a class: edit this array, redeploy.
 // status: "open" | "full" | "coming-soon"
-const UPCOMING = [
-  {
-    title: "Contracts & Contractual Competence",
-    tagline: "What's New for You?",
-    date: "Tue, June 30, 2026",
-    time: "3:00 - 5:00 PM",
-    hours: 3,
-    price: 15,
-    priceLabel: "Free / $15",
-    priceSub: "Free to attend \u00b7 $15 for CE credit",
-    location: "Fort Worth (Hulen) + Zoom",
-    registerUrl: "/contracts-june-2026/",
-    status: "open",
-    courseNumbers: ["39207-RECE"]
-  }
-];
+// UPCOMING CLASSES - loaded live from Supabase (scheduled in the CNAT Command Center dashboard).
+let UPCOMING = [];
+function loadUpcoming() {
+  const SUPABASE_URL = 'https://etopfohypgfmedxqigcg.supabase.co';
+  const ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
+  const grid = document.getElementById('upcomingGrid');
+  grid.innerHTML = '<div class="no-classes"><p>Loading classes...</p></div>';
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&order=start_at.asc&select=slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+    .then(function (r) { return r.json(); })
+    .then(function (rows) {
+      UPCOMING = (rows || []).map(function (c) {
+        return {
+          title: c.title, tagline: c.tagline || '', date: c.date_display || 'TBA', time: c.time_display || '',
+          location: c.location || '', hours: c.ce_hours || '', status: c.status || 'open',
+          courseNumbers: c.course_numbers || [], registerUrl: c.register_url || ('/c/' + c.slug),
+          price: c.price_cents ? (c.price_cents / 100) : 0, priceLabel: c.price_label || '', priceSub: c.price_sub || '',
+          private: c.is_private || false, privateLabel: c.private_label || ''
+        };
+      });
+      renderUpcoming();
+    })
+    .catch(function () { renderUpcoming(); });
+}
 
 // ─── COURSE CATALOG ────────────────────────────────────────────────────────
 const CATALOG = [
@@ -342,8 +349,8 @@ function renderCatalog(filter) {
 }
 
 // ─── INIT ──────────────────────────────────────────────────────────────────
-renderUpcoming();
 renderCatalog('all');
+  loadUpcoming();
 
 document.querySelectorAll('.filter-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
