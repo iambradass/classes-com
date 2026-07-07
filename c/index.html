@@ -207,25 +207,16 @@
             btn.disabled = true; btn.textContent = 'Submitting...';
             var salesRep = document.getElementById('regRef').value;
             var refSource = document.getElementById('regRefSource').value;
-            var payload = {
-                name:name,email:email,phone:phone,license:license,attendance:attendance,
-                ce_credit: wantsCredit?'Yes':'No', class_price: price, sales_rep:salesRep, ref_source:refSource,
-                class_name: cls.title, course_number: (cls.course_numbers||[]).join(' / '),
-                source:'CNAT classes site', session: cls.ghl_session || cls.slug, submitted_at: new Date().toISOString()
-            };
-            // Fire the GHL webhook (existing automation) + write to the roster (Supabase). Best-effort, non-blocking.
-            try { fetch(GHL_WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); } catch(err){}
+            var session = cls.ghl_session || cls.slug;
+            // One call to the app: writes the roster, sends the confirmation email (with the
+            // class's Zoom link), and fires the GHL webhook. Best-effort, non-blocking.
             try {
-                fetch(SUPABASE_URL + '/rest/v1/class_registrations', {
-                    method:'POST',
-                    headers:{'apikey':ANON,'Authorization':'Bearer '+ANON,'Content-Type':'application/json','Prefer':'return=minimal'},
+                fetch('https://internal.ai.cnattitle.com/api/class-register', {
+                    method:'POST', headers:{'Content-Type':'application/json'},
                     body: JSON.stringify({
-                        class_id: cls.id, name:name, email:email, phone:phone,
-                        license_number: license||null,
-                        attendance_type: attendance==='Zoom'?'zoom':'in_person',
-                        wants_credit: wantsCredit,
-                        payment_status: (cls.is_paid && wantsCredit) ? 'unpaid' : 'free',
-                        source:'site'
+                        slug: cls.slug, name:name, email:email, phone:phone, license:license,
+                        attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
+                        class_price: price, sales_rep: salesRep, ref_source: refSource
                     })
                 });
             } catch(err){}
@@ -236,7 +227,7 @@
             if (wantsCredit && stripe) {
                 document.getElementById('confNote').style.display='none';
                 document.getElementById('confRedirect').style.display='block';
-                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: payload.session});
+                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: session});
                 setTimeout(function(){ window.location.href = stripe + '?' + sp.toString(); }, 1500);
             }
         }
