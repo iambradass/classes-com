@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <title>Register | CNAT Education</title>
+    <meta name="description" content="Register for a CNAT Title continuing education class. In person in Fort Worth or live on Zoom.">
+    <meta name="robots" content="noindex">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-page:#1a2332;--bg-panel:#0f1520;--accent-blue:#2d7dd2;--accent-blue-light:#4a9ae8;--accent-yellow:#faed36;--text-white:#fff;--text-grey:#8892a4;--border:#1a2332;--input-bg:#0a0e16;--success-green:#34d399}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Montserrat',sans-serif;background:var(--bg-page);color:var(--text-white);min-height:100vh;-webkit-font-smoothing:antialiased}.page-wrapper{max-width:640px;margin:0 auto;padding:30px 20px 60px}.site-header{text-align:center;margin-bottom:24px;animation:fadeDown .6s ease-out}.site-header .logo-img{height:48px;width:auto;display:block;margin:0 auto 8px}.site-header .logo-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-grey);font-weight:500}@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .class-hero{text-align:center;margin-bottom:28px;animation:fadeUp .7s ease-out .1s both}.class-hero .ch-eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-yellow);font-weight:600;margin-bottom:10px}.class-hero h1{font-size:clamp(26px,6vw,34px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:10px}.class-hero .ch-sub{font-size:13px;color:var(--text-grey);line-height:1.6;max-width:520px;margin:0 auto}
+        .info-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;animation:fadeUp .7s ease-out .2s both}.info-tile{background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;padding:18px 16px;text-align:center}.info-tile .tile-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-grey);margin-bottom:8px}.info-tile .tile-value{font-size:14px;font-weight:600;color:var(--text-white);line-height:1.4}.info-tile .tile-value.yellow{color:var(--accent-yellow)}.info-tile .tile-meta{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-grey);margin-top:6px;font-weight:500;opacity:.85}
+        .location-strip{display:grid;gap:12px;margin-bottom:30px;animation:fadeUp .7s ease-out .25s both}.loc-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;padding:22px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.loc-card .loc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}.loc-card .loc-icon.building{background:rgba(45,125,210,.12);color:var(--accent-blue)}.loc-card .loc-icon.zoom{background:rgba(45,130,246,.12)}.loc-card .loc-icon.zoom svg{width:22px;height:22px}.loc-card .loc-type{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-grey);font-weight:500}.loc-card .loc-name{font-size:14px;font-weight:600;color:var(--text-white);line-height:1.4}.loc-card .loc-address{font-size:11px;color:var(--text-grey);line-height:1.5}
+        .reg-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:40px 32px;position:relative;overflow:hidden;animation:fadeUp .7s ease-out .3s both}.reg-card h2{font-size:22px;font-weight:300;text-align:center;margin-bottom:8px;letter-spacing:.3px}.reg-card h2 span{color:var(--accent-yellow);font-weight:600}.reg-card .reg-sub{text-align:center;color:var(--text-grey);font-size:13px;margin-bottom:32px;line-height:1.6}.form-group{margin-bottom:22px}.form-label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-grey);margin-bottom:10px;font-weight:500}.form-input{width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text-white);padding:15px 18px;font-family:'Montserrat',sans-serif;font-size:14px;border-radius:8px;outline:none;transition:border-color .3s,box-shadow .3s}.form-input:focus{border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(45,125,210,.1)}.form-input::placeholder{color:#3a4560}
+        .attendance-toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}.attendance-toggle.single{grid-template-columns:1fr}.attendance-option{position:relative}.attendance-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}.attendance-option label{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 12px;background:var(--input-bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .3s ease;text-align:center}.attendance-option label .att-icon{font-size:22px;line-height:1}.attendance-option label .att-text{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-grey);transition:color .3s}.attendance-option label .att-detail{font-size:9px;color:#4a5568;letter-spacing:.5px;transition:color .3s}.attendance-option input[type="radio"]:checked+label{border-color:var(--accent-blue);background:rgba(45,125,210,.08)}.attendance-option input[type="radio"]:checked+label .att-text{color:var(--text-white)}.attendance-option label:hover{border-color:rgba(45,125,210,.4)}
+        .credit-toggle{display:flex;flex-direction:column;gap:10px}.credit-option{position:relative}.credit-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}.credit-option label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;background:var(--input-bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .3s ease}.credit-option label .cr-left{display:flex;flex-direction:column;gap:4px;text-align:left}.credit-option label .cr-name{font-size:14px;font-weight:600;color:var(--text-white);letter-spacing:.3px}.credit-option label .cr-detail{font-size:11px;color:var(--text-grey);letter-spacing:.5px;text-transform:uppercase}.credit-option label .cr-price{font-size:18px;font-weight:700;color:var(--accent-yellow)}.credit-option input[type="radio"]:checked+label{border-color:var(--accent-blue);background:rgba(45,125,210,.08);box-shadow:0 0 0 3px rgba(45,125,210,.08)}.credit-option label:hover{border-color:rgba(45,125,210,.4)}
+        .license-group{display:none}.license-group.show{display:block}
+        .submit-btn{width:100%;background:var(--accent-blue);color:#fff;padding:18px 24px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;border:none;border-radius:8px;cursor:pointer;transition:all .3s ease;margin-top:8px}.submit-btn:hover{background:var(--accent-blue-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(45,125,210,.3)}.submit-btn:active{transform:translateY(0) scale(.98)}.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        .step-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--accent-blue);color:#fff;font-size:10px;font-weight:700;margin-right:8px}
+        .reg-confirmation{display:none;text-align:center;padding:20px 0 10px}.reg-confirmation.visible{display:block}.conf-check{width:50px;height:50px;border-radius:50%;background:rgba(52,211,153,.12);border:2px solid var(--success-green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;color:var(--success-green);animation:popIn .4s ease-out}@keyframes popIn{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}.conf-name{font-size:15px;font-weight:600;margin-bottom:4px}.conf-format{font-size:11px;color:var(--text-grey);letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}.conf-note{font-size:13px;color:#d9dee6;line-height:1.6;max-width:420px;margin:0 auto;background:rgba(45,125,210,.06);border:1px solid rgba(45,125,210,.2);border-radius:10px;padding:16px 18px}.conf-note strong{color:var(--accent-yellow);font-weight:600}.conf-redirect{font-size:12px;color:var(--text-grey);margin-top:14px}
+        .state-msg{text-align:center;padding:60px 20px;color:var(--text-grey);font-size:14px}.state-msg a{color:var(--accent-blue-light);text-decoration:none}
+        .page-footer{text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid rgba(26,35,50,.6)}.page-footer .tagline{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-grey);font-weight:400}.page-footer .tagline span{color:var(--accent-yellow)}.page-footer .provider{margin-top:8px;font-size:9px;color:#4a5568;letter-spacing:1px}
+        @media(max-width:480px){.page-wrapper{padding:20px 16px 50px}.reg-card{padding:32px 22px}.reg-card h2{font-size:19px}.info-strip{grid-template-columns:1fr}.attendance-option label{padding:14px 10px}}
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="site-header"><a href="/"><img class="logo-img" src="/img/cnat-logo-white.png" alt="CNAT Title"></a><div class="logo-sub">Community National Title</div></div>
+        <div id="loading" class="state-msg">Loading class&hellip;</div>
+        <div id="notfound" class="state-msg" style="display:none">We couldn't find that class. <a href="/">See all upcoming classes &rarr;</a></div>
+
+        <div id="content" style="display:none">
+            <div class="class-hero">
+                <p class="ch-eyebrow">Texas Real Estate Continuing Education</p>
+                <h1 id="clsTitle"></h1>
+                <p class="ch-sub" id="clsSub"></p>
+            </div>
+
+            <div class="info-strip">
+                <div class="info-tile"><div class="tile-label">Date</div><div class="tile-value" id="clsDate"></div></div>
+                <div class="info-tile"><div class="tile-label">Time</div><div class="tile-value" id="clsTime"></div><div class="tile-meta">Central</div></div>
+                <div class="info-tile" id="ceTile"><div class="tile-label">CE Credit</div><div class="tile-value" id="clsHours"></div><div class="tile-meta" id="clsCourse"></div></div>
+                <div class="info-tile"><div class="tile-label">Cost</div><div class="tile-value yellow" id="clsCost"></div><div class="tile-meta" id="clsCostSub"></div></div>
+            </div>
+
+            <div class="location-strip" id="locStrip"></div>
+
+            <div class="reg-card" id="regCard">
+                <h2>Reserve Your <span>Seat</span></h2>
+                <p class="reg-sub" id="regSub">Save your spot below.</p>
+                <form id="regForm">
+                    <div class="form-group" id="attGroup">
+                        <label class="form-label"><span class="step-num">1</span>How will you attend?</label>
+                        <div class="attendance-toggle" id="attToggle"></div>
+                    </div>
+                    <div class="form-group" id="creditGroup" style="display:none">
+                        <label class="form-label"><span class="step-num">2</span>Do you need CE credit?</label>
+                        <div class="credit-toggle" id="creditToggle"></div>
+                    </div>
+                    <div class="form-group"><label class="form-label" for="regName"><span class="step-num">3</span>Your Name</label><input class="form-input" type="text" id="regName" name="name" placeholder="First and last name" required></div>
+                    <div class="form-group"><label class="form-label" for="regEmail">Email Address</label><input class="form-input" type="email" id="regEmail" name="email" placeholder="you@example.com" required></div>
+                    <div class="form-group license-group" id="licenseGroup"><label class="form-label" for="regLicense">TREC License # <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(required for CE credit)</span></label><input class="form-input" type="text" id="regLicense" name="license" placeholder="e.g. 0654321"></div>
+                    <div class="form-group"><label class="form-label" for="regPhone">Phone Number</label><input class="form-input" type="tel" id="regPhone" name="phone" placeholder="(817) 555-0100"></div>
+                    <div class="form-group" id="refGroup">
+                        <label class="form-label" for="regRef">Referred by <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(optional)</span></label>
+                        <select class="form-input" id="regRef" name="sales_rep">
+                            <option value="">&mdash; Select your CNAT contact &mdash;</option>
+                            <option value="jami_cortez">Jami Cortez</option>
+                            <option value="shera_moffitt">Shera Moffitt</option>
+                            <option value="kandi_patterson">Kandi Patterson</option>
+                            <option value="bradley_patterson">Bradley Patterson</option>
+                            <option value="otherna">Other / Not Sure</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="regRefSource" name="ref_source" value="">
+                    <button type="submit" class="submit-btn" id="submitBtn">Reserve My Seat</button>
+                </form>
+                <div class="reg-confirmation" id="regConfirmation">
+                    <div class="conf-check">&#10003;</div>
+                    <p class="conf-name" id="confName"></p>
+                    <p class="conf-format" id="confFormat"></p>
+                    <p class="conf-note" id="confNote">You're on the list. <strong>We'll email your details</strong> ahead of the class.</p>
+                    <p class="conf-redirect" id="confRedirect" style="display:none">Redirecting you to secure checkout&hellip;</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer"><p class="tagline">#AlwaysBeClosing &middot; <span>Texas Style</span></p><p class="provider">TREC Provider #10034 &middot; Approved for Texas CE</p></div>
+    </div>
+
+    <script>
+    (function () {
+        var SUPABASE_URL = 'https://etopfohypgfmedxqigcg.supabase.co';
+        var ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
+        var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/9ZNjcEKhpBno9RRXrBA4/webhook-trigger/5169cb08-f3f7-4c92-b691-d5eb6b0b1861';
+        var REF_ALIAS = {
+            'jami':'jami_cortez','jami-cortez':'jami_cortez','jami_cortez':'jami_cortez',
+            'shera':'shera_moffitt','shera-moffitt':'shera_moffitt','shera_moffitt':'shera_moffitt',
+            'kandi':'kandi_patterson','kandi-patterson':'kandi_patterson','kandi_patterson':'kandi_patterson',
+            'bradley':'bradley_patterson','bradley-patterson':'bradley_patterson','bp':'bradley_patterson','me':'bradley_patterson',
+            'other':'otherna','otherna':'otherna'
+        };
+        function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':String(s));return d.innerHTML;}
+        function slugFromUrl(){
+            var p = window.location.pathname.replace(/\/+$/,'').split('/');
+            var last = p[p.length-1];
+            if (last && last !== 'c') return decodeURIComponent(last);
+            var q = new URLSearchParams(window.location.search).get('slug');
+            return q ? q : '';
+        }
+
+        var slug = slugFromUrl();
+        var cls = null;
+
+        function showNotFound(){ document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; }
+
+        function zoomIcon(){ return '<div class="loc-icon zoom"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5" width="15" height="14" rx="2" fill="#2D8CFF"/><path d="M16 10l5-3v10l-5-3V10z" fill="#2D8CFF"/></svg></div>'; }
+
+        function renderLocation(c){
+            var strip = document.getElementById('locStrip');
+            var inPerson = '<div class="loc-card"><div class="loc-icon building">&#127970;</div><div class="loc-type">In Person</div><div class="loc-name">' + esc(c.location || 'CNAT Title') + '</div></div>';
+            var zoom = '<div class="loc-card">' + zoomIcon() + '<div class="loc-type">Online</div><div class="loc-name">Live on Zoom</div><div class="loc-address">Link sent to your email</div></div>';
+            if (c.format === 'zoom') { strip.innerHTML = zoom; }
+            else if (c.format === 'hybrid') { strip.style.gridTemplateColumns='1fr 1fr'; strip.innerHTML = inPerson + zoom; }
+            else { strip.innerHTML = inPerson; }
+        }
+
+        function renderCredit(c){
+            var group = document.getElementById('creditGroup');
+            var toggle = document.getElementById('creditToggle');
+            if (!c.credit_available) { group.style.display='none'; return; }
+            group.style.display='block';
+            var price = c.price_cents ? (c.price_cents/100) : 0;
+            var paid = c.is_paid && price > 0;
+            var priceTxt = paid ? ('$' + (price % 1 === 0 ? price.toFixed(0) : price.toFixed(2))) : 'Free';
+            var stripe = c.stripe_payment_link || '';
+            var courseTxt = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #') + ' &middot; Reported to TREC') : 'Reported to TREC';
+            toggle.innerHTML =
+              '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-price="' + price + '" data-stripe="' + esc(stripe) + '" required>' +
+              '<label for="creditYes"><div class="cr-left"><span class="cr-name">Yes &mdash; ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>' +
+              '<div class="credit-option"><input type="radio" id="creditNo" name="credit" value="No" data-credit="no" data-price="0">' +
+              '<label for="creditNo"><div class="cr-left"><span class="cr-name">No &mdash; Just Attending</span><span class="cr-detail">No CE credit needed</span></div><span class="cr-price">Free</span></label></div>';
+            var licenseGroup = document.getElementById('licenseGroup');
+            var submitBtn = document.getElementById('submitBtn');
+            toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
+                r.addEventListener('change', function(){
+                    if (r.getAttribute('data-credit') === 'yes') { licenseGroup.classList.add('show'); submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat'; }
+                    else { licenseGroup.classList.remove('show'); submitBtn.textContent = 'Reserve My Seat'; }
+                });
+            });
+        }
+
+        function renderAttendance(c){
+            var t = document.getElementById('attToggle');
+            var inp = '<div class="attendance-option"><input type="radio" id="attInPerson" name="attendance" value="In Person" required><label for="attInPerson"><span class="att-icon">&#127970;</span><span class="att-text">In Person</span><span class="att-detail">' + esc(c.location ? c.location.split(',')[0] : 'In person') + '</span></label></div>';
+            var zm = '<div class="attendance-option"><input type="radio" id="attZoom" name="attendance" value="Zoom"><label for="attZoom"><span class="att-icon">&#128187;</span><span class="att-text">Zoom</span><span class="att-detail">Link emailed</span></label></div>';
+            if (c.format === 'zoom') { t.classList.add('single'); t.innerHTML = zm; }
+            else if (c.format === 'hybrid') { t.innerHTML = inp + zm; }
+            else { t.classList.add('single'); t.innerHTML = inp; }
+        }
+
+        function render(c){
+            document.title = (c.title || 'Register') + ' | CNAT Education';
+            document.getElementById('clsTitle').textContent = c.title || '';
+            document.getElementById('clsSub').textContent = c.description || c.tagline || '';
+            document.getElementById('clsDate').textContent = c.date_display || 'TBA';
+            document.getElementById('clsTime').textContent = c.time_display || '';
+            if (c.ce_hours) { document.getElementById('clsHours').textContent = c.ce_hours + ' Hours'; document.getElementById('clsCourse').innerHTML = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #')) : ''; }
+            else { document.getElementById('ceTile').style.display='none'; }
+            document.getElementById('clsCost').textContent = c.price_label || (c.is_paid ? ('$' + ((c.price_cents||0)/100)) : 'Free');
+            document.getElementById('clsCostSub').textContent = c.price_sub || '';
+            renderLocation(c);
+            renderAttendance(c);
+            renderCredit(c);
+            var params = new URLSearchParams(window.location.search);
+            var rawRef = (params.get('ref') || params.get('rep') || '').toLowerCase().trim();
+            if (rawRef) {
+                var resolved = REF_ALIAS[rawRef] || '';
+                if (resolved) { document.getElementById('regRef').value = resolved; document.getElementById('refGroup').style.display='none'; document.getElementById('regRefSource').value='url'; }
+                else { document.getElementById('regRefSource').value='url-unmatched:'+rawRef; }
+            } else { document.getElementById('regRefSource').value='manual'; }
+            document.getElementById('loading').style.display='none';
+            document.getElementById('content').style.display='block';
+        }
+
+        function submitReg(e){
+            e.preventDefault();
+            var btn = document.getElementById('submitBtn');
+            var name = document.getElementById('regName').value.trim();
+            var email = document.getElementById('regEmail').value.trim();
+            var phone = document.getElementById('regPhone').value.trim();
+            var license = document.getElementById('regLicense').value.trim();
+            var attEl = document.querySelector('input[name="attendance"]:checked');
+            var creditEl = document.querySelector('input[name="credit"]:checked');
+            var creditShown = document.getElementById('creditGroup').style.display !== 'none';
+            if (!attEl) { alert('Please choose how you will attend.'); return; }
+            if (creditShown && !creditEl) { alert('Please choose whether you need CE credit.'); return; }
+            var attendance = attEl.value;
+            var wantsCredit = creditEl ? creditEl.getAttribute('data-credit') === 'yes' : false;
+            var price = creditEl ? creditEl.getAttribute('data-price') : '0';
+            var stripe = (creditEl && wantsCredit) ? creditEl.getAttribute('data-stripe') : '';
+            if (wantsCredit && !license) { alert('A TREC license number is required to report your CE credit.'); document.getElementById('regLicense').focus(); return; }
+            btn.disabled = true; btn.textContent = 'Submitting...';
+            var salesRep = document.getElementById('regRef').value;
+            var refSource = document.getElementById('regRefSource').value;
+            var payload = {
+                name:name,email:email,phone:phone,license:license,attendance:attendance,
+                ce_credit: wantsCredit?'Yes':'No', class_price: price, sales_rep:salesRep, ref_source:refSource,
+                class_name: cls.title, course_number: (cls.course_numbers||[]).join(' / '),
+                source:'CNAT classes site', session: cls.ghl_session || cls.slug, submitted_at: new Date().toISOString()
+            };
+            // Fire the GHL webhook (existing automation) + write to the roster (Supabase). Best-effort, non-blocking.
+            try { fetch(GHL_WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); } catch(err){}
+            try {
+                fetch(SUPABASE_URL + '/rest/v1/class_registrations', {
+                    method:'POST',
+                    headers:{'apikey':ANON,'Authorization':'Bearer '+ANON,'Content-Type':'application/json','Prefer':'return=minimal'},
+                    body: JSON.stringify({
+                        class_id: cls.id, name:name, email:email, phone:phone,
+                        license_number: license||null,
+                        attendance_type: attendance==='Zoom'?'zoom':'in_person',
+                        wants_credit: wantsCredit,
+                        payment_status: (cls.is_paid && wantsCredit) ? 'unpaid' : 'free',
+                        source:'site'
+                    })
+                });
+            } catch(err){}
+            document.getElementById('regForm').style.display='none';
+            var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
+            document.getElementById('confName').textContent = name;
+            document.getElementById('confFormat').textContent = cls.title + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
+            if (wantsCredit && stripe) {
+                document.getElementById('confNote').style.display='none';
+                document.getElementById('confRedirect').style.display='block';
+                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: payload.session});
+                setTimeout(function(){ window.location.href = stripe + '?' + sp.toString(); }, 1500);
+            }
+        }
+
+        if (!slug) { showNotFound(); return; }
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session', {
+            headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
+        }).then(function(r){ return r.json(); }).then(function(rows){
+            if (!rows || !rows.length) { showNotFound(); return; }
+            cls = rows[0];
+            render(cls);
+            document.getElementById('regForm').addEventListener('submit', submitReg);
+        }).catch(function(){ showNotFound(); });
+    })();
+    </script>
+</body>
+</html>
