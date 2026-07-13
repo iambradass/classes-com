@@ -139,13 +139,24 @@
             var priceTxt = paid ? ('$' + (price % 1 === 0 ? price.toFixed(0) : price.toFixed(2))) : 'Free';
             var stripe = c.stripe_payment_link || '';
             var courseTxt = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #') + ' &middot; Reported to TREC') : 'Reported to TREC';
+            var licenseGroup = document.getElementById('licenseGroup');
+            var submitBtn = document.getElementById('submitBtn');
+            // Credit-only classes (allow_free_attendance = false): no free "Just Attending"
+            // option — the single CE option is pre-selected and payment is required.
+            if (c.allow_free_attendance === false) {
+                group.querySelector('.form-label').innerHTML = '<span class="step-num">2</span>CE Credit';
+                toggle.innerHTML =
+                  '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-price="' + price + '" data-stripe="' + esc(stripe) + '" checked required>' +
+                  '<label for="creditYes"><div class="cr-left"><span class="cr-name">' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                licenseGroup.classList.add('show');
+                submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat';
+                return;
+            }
             toggle.innerHTML =
               '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-price="' + price + '" data-stripe="' + esc(stripe) + '" required>' +
               '<label for="creditYes"><div class="cr-left"><span class="cr-name">Yes &mdash; ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>' +
               '<div class="credit-option"><input type="radio" id="creditNo" name="credit" value="No" data-credit="no" data-price="0">' +
               '<label for="creditNo"><div class="cr-left"><span class="cr-name">No &mdash; Just Attending</span><span class="cr-detail">No CE credit needed</span></div><span class="cr-price">Free</span></label></div>';
-            var licenseGroup = document.getElementById('licenseGroup');
-            var submitBtn = document.getElementById('submitBtn');
             toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
                 r.addEventListener('change', function(){
                     if (r.getAttribute('data-credit') === 'yes') { licenseGroup.classList.add('show'); submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat'; }
@@ -233,7 +244,7 @@
         }
 
         if (!slug) { showNotFound(); return; }
-        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session', {
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
             if (!rows || !rows.length) { showNotFound(); return; }
