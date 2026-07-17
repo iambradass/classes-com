@@ -115,6 +115,7 @@
 
         var slug = slugFromUrl();
         var cls = null;
+        var partner = null; // bundle partner class (e.g. Legal Update II when viewing I)
 
         function showNotFound(){ document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; }
 
@@ -145,9 +146,23 @@
             // option — the single CE option is pre-selected and payment is required.
             if (c.allow_free_attendance === false) {
                 group.querySelector('.form-label').innerHTML = '<span class="step-num">2</span>CE Credit';
-                toggle.innerHTML =
-                  '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-price="' + price + '" data-stripe="' + esc(stripe) + '" checked required>' +
-                  '<label for="creditYes"><div class="cr-left"><span class="cr-name">' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                var refid = c.ghl_session || c.slug;
+                if (partner && c.bundle_stripe_payment_link) {
+                    // Bundle offer: both partner classes, one payment. Preselected
+                    // because most agents need both Legal Update sessions.
+                    var bPrice = c.bundle_price_cents ? (c.bundle_price_cents / 100) : 0;
+                    var bHours = (Number(c.ce_hours) || 0) + (Number(partner.ce_hours) || 0);
+                    var bRef = 'bundle__' + c.slug + '__' + partner.slug;
+                    toggle.innerHTML =
+                      '<div class="credit-option"><input type="radio" id="creditBundle" name="credit" value="Yes" data-credit="yes" data-bundle="1" data-price="' + bPrice + '" data-stripe="' + esc(c.bundle_stripe_payment_link) + '" data-refid="' + esc(bRef) + '" checked required>' +
+                      '<label for="creditBundle"><div class="cr-left"><span class="cr-name">Both: ' + esc(c.bundle_label || (c.title + ' and ' + partner.title)) + '</span><span class="cr-detail">' + bHours + ' CE hours total &middot; one payment, both seats</span></div><span class="cr-price">$' + (bPrice % 1 === 0 ? bPrice.toFixed(0) : bPrice.toFixed(2)) + '</span></label></div>' +
+                      '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '">' +
+                      '<label for="creditYes"><div class="cr-left"><span class="cr-name">This class only: ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                } else {
+                    toggle.innerHTML =
+                      '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '" checked required>' +
+                      '<label for="creditYes"><div class="cr-left"><span class="cr-name">' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                }
                 licenseGroup.classList.add('show');
                 submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat';
                 return;
@@ -219,14 +234,17 @@
             var salesRep = document.getElementById('regRef').value;
             var refSource = document.getElementById('regRefSource').value;
             var session = cls.ghl_session || cls.slug;
-            // One call to the app: writes the roster, sends the confirmation email (with the
-            // class's Zoom link), and fires the GHL webhook. Best-effort, non-blocking.
+            var isBundle = creditEl ? creditEl.getAttribute('data-bundle') === '1' : false;
+            var refid = (creditEl && creditEl.getAttribute('data-refid')) || session;
+            // One call to the app: writes the roster (both classes for a bundle), sends the
+            // confirmation email, and fires the GHL webhook. Best-effort, non-blocking.
             try {
                 fetch('https://internal.ai.cnattitle.com/api/class-register', {
                     method:'POST', headers:{'Content-Type':'application/json'},
                     body: JSON.stringify({
                         slug: cls.slug, name:name, email:email, phone:phone, license:license,
                         attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
+                        bundle: isBundle,
                         class_price: price, sales_rep: salesRep, ref_source: refSource
                     })
                 });
@@ -234,23 +252,31 @@
             document.getElementById('regForm').style.display='none';
             var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
             document.getElementById('confName').textContent = name;
-            document.getElementById('confFormat').textContent = cls.title + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
+            document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : cls.title) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
             if (wantsCredit && stripe) {
                 document.getElementById('confNote').style.display='none';
                 document.getElementById('confRedirect').style.display='block';
-                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: session});
+                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: refid});
                 setTimeout(function(){ window.location.href = stripe + '?' + sp.toString(); }, 1500);
             }
         }
 
         if (!slug) { showNotFound(); return; }
-        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance', {
+        function ready(){ render(cls); document.getElementById('regForm').addEventListener('submit', submitReg); }
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
             if (!rows || !rows.length) { showNotFound(); return; }
             cls = rows[0];
-            render(cls);
-            document.getElementById('regForm').addEventListener('submit', submitReg);
+            // Bundle-eligible credit-only class: load the partner for the combined option.
+            if (cls.allow_free_attendance === false && cls.bundle_with && cls.bundle_stripe_payment_link) {
+                fetch(SUPABASE_URL + '/rest/v1/classes?id=eq.' + encodeURIComponent(cls.bundle_with) + '&published=eq.true&select=slug,title,date_display,ce_hours,course_numbers', {
+                    headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
+                }).then(function(r){ return r.json(); }).then(function(prows){
+                    partner = (prows && prows.length) ? prows[0] : null;
+                    ready();
+                }).catch(function(){ partner = null; ready(); });
+            } else { ready(); }
         }).catch(function(){ showNotFound(); });
     })();
     </script>
