@@ -130,10 +130,24 @@
             else { strip.innerHTML = inPerson; }
         }
 
-        // Swap the hero + info tiles between single-class and bundle views.
-        function applyHeaderMode(bundleMode){
+        // Swap the hero + info tiles between bundle, this-class, and partner-class views.
+        function applyHeaderMode(mode){
             if (!cls) return;
-            if (bundleMode && partner) {
+            if (mode === 'partner' && partner) {
+                document.title = (partner.title || 'Register') + ' | CNAT Education';
+                document.getElementById('clsTitle').textContent = partner.title || '';
+                document.getElementById('clsDate').textContent = partner.date_display || 'TBA';
+                if (partner.time_display) document.getElementById('clsTime').textContent = partner.time_display;
+                if (partner.ce_hours) {
+                    document.getElementById('clsHours').textContent = partner.ce_hours + ' Hours';
+                    document.getElementById('clsCourse').innerHTML = (partner.course_numbers && partner.course_numbers.length) ? ('#' + partner.course_numbers.join(' / #')) : '';
+                }
+                document.getElementById('clsCost').textContent = partner.price_label || ('$' + ((partner.price_cents || 0) / 100));
+                document.getElementById('clsCostSub').textContent = cls.price_sub || '';
+                return;
+            }
+            if (mode !== 'bundle' && cls.time_display) document.getElementById('clsTime').textContent = cls.time_display;
+            if (mode === 'bundle' && partner) {
                 var pair = [cls, partner].sort(function(a, b){ return String(a.start_at || '').localeCompare(String(b.start_at || '')); });
                 var comboTitle = cls.bundle_label || (cls.title + ' & ' + partner.title);
                 document.title = comboTitle + ' | CNAT Education';
@@ -177,23 +191,32 @@
             if (c.allow_free_attendance === false) {
                 group.querySelector('.form-label').innerHTML = '<span class="step-num">2</span>CE Credit';
                 var refid = c.ghl_session || c.slug;
-                if (partner && c.bundle_stripe_payment_link) {
-                    // Bundle offer: both partner classes, one payment. Preselected
-                    // because most agents need both Legal Update sessions.
+                if (partner && c.bundle_stripe_payment_link && partner.stripe_payment_link) {
+                    // Bundled pair: pick Both (preselected), or either single class.
+                    // The same three options render on both classes' pages.
+                    group.querySelector('.form-label').innerHTML = '<span class="step-num">2</span>Which classes? <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(select one option)</span>';
                     var bPrice = c.bundle_price_cents ? (c.bundle_price_cents / 100) : 0;
                     var bHours = (Number(c.ce_hours) || 0) + (Number(partner.ce_hours) || 0);
                     var bRef = 'bundle__' + c.slug + '__' + partner.slug;
+                    var shortDate = function(d){ return String(d || '').replace(/,?\s*\d{4}\s*$/, ''); };
+                    var pair = [c, partner].sort(function(a, b){ return String(a.start_at || '').localeCompare(String(b.start_at || '')); });
+                    var singleOpt = function(x, idx){
+                        var xPrice = x.price_cents ? (x.price_cents / 100) : 0;
+                        var xLabel = x.price_label || ('$' + (xPrice % 1 === 0 ? xPrice.toFixed(0) : xPrice.toFixed(2)));
+                        var xMode = (x.slug === c.slug) ? 'single' : 'partner';
+                        var xStripe = (x.slug === c.slug) ? stripe : (x.stripe_payment_link || '');
+                        return '<div class="credit-option"><input type="radio" id="creditOne' + idx + '" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-mode="' + xMode + '" data-slug="' + esc(x.slug) + '" data-price="' + xPrice + '" data-stripe="' + esc(xStripe) + '" data-refid="' + esc(x.ghl_session || x.slug) + '">' +
+                          '<label for="creditOne' + idx + '"><div class="cr-left"><span class="cr-name">' + esc(x.title) + ' only</span><span class="cr-detail">' + esc(shortDate(x.date_display)) + ' &middot; ' + esc(x.ce_hours || '') + ' CE hours</span></div><span class="cr-price">' + xLabel + '</span></label></div>';
+                    };
                     toggle.innerHTML =
-                      '<div class="credit-option"><input type="radio" id="creditBundle" name="credit" value="Yes" data-credit="yes" data-bundle="1" data-price="' + bPrice + '" data-stripe="' + esc(c.bundle_stripe_payment_link) + '" data-refid="' + esc(bRef) + '" checked required>' +
+                      '<div class="credit-option"><input type="radio" id="creditBundle" name="credit" value="Yes" data-credit="yes" data-bundle="1" data-mode="bundle" data-slug="' + esc(c.slug) + '" data-price="' + bPrice + '" data-stripe="' + esc(c.bundle_stripe_payment_link) + '" data-refid="' + esc(bRef) + '" checked required>' +
                       '<label for="creditBundle"><div class="cr-left"><span class="cr-name">Both: ' + esc(c.bundle_label || (c.title + ' and ' + partner.title)) + '</span><span class="cr-detail">' + bHours + ' CE hours total &middot; one payment, both seats</span></div><span class="cr-price">$' + (bPrice % 1 === 0 ? bPrice.toFixed(0) : bPrice.toFixed(2)) + '</span></label></div>' +
-                      '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '">' +
-                      '<label for="creditYes"><div class="cr-left"><span class="cr-name">This class only: ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
-                    // Keep the page header in sync with the selected option:
-                    // bundle selected = combined title/dates/hours/cost up top.
+                      singleOpt(pair[0], 0) + singleOpt(pair[1], 1);
+                    // Keep the page header in sync with the selected option.
                     toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
-                        r.addEventListener('change', function(){ applyHeaderMode(r.getAttribute('data-bundle') === '1'); });
+                        r.addEventListener('change', function(){ applyHeaderMode(r.getAttribute('data-mode')); });
                     });
-                    applyHeaderMode(true);
+                    applyHeaderMode('bundle');
                 } else {
                     toggle.innerHTML =
                       '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '" checked required>' +
@@ -272,13 +295,15 @@
             var session = cls.ghl_session || cls.slug;
             var isBundle = creditEl ? creditEl.getAttribute('data-bundle') === '1' : false;
             var refid = (creditEl && creditEl.getAttribute('data-refid')) || session;
+            var selSlug = (creditEl && creditEl.getAttribute('data-slug')) || cls.slug;
+            var selPartnerOnly = partner && selSlug === partner.slug;
             // One call to the app: writes the roster (both classes for a bundle), sends the
             // confirmation email, and fires the GHL webhook. Best-effort, non-blocking.
             try {
                 fetch('https://internal.ai.cnattitle.com/api/class-register', {
                     method:'POST', headers:{'Content-Type':'application/json'},
                     body: JSON.stringify({
-                        slug: cls.slug, name:name, email:email, phone:phone, license:license,
+                        slug: selSlug, name:name, email:email, phone:phone, license:license,
                         attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
                         bundle: isBundle,
                         class_price: price, sales_rep: salesRep, ref_source: refSource
@@ -288,7 +313,7 @@
             document.getElementById('regForm').style.display='none';
             var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
             document.getElementById('confName').textContent = name;
-            document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : cls.title) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
+            document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : (selPartnerOnly ? partner.title : cls.title)) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
             if (wantsCredit && stripe) {
                 document.getElementById('confNote').style.display='none';
                 document.getElementById('confRedirect').style.display='block';
@@ -306,7 +331,7 @@
             cls = rows[0];
             // Bundle-eligible credit-only class: load the partner for the combined option.
             if (cls.allow_free_attendance === false && cls.bundle_with && cls.bundle_stripe_payment_link) {
-                fetch(SUPABASE_URL + '/rest/v1/classes?id=eq.' + encodeURIComponent(cls.bundle_with) + '&published=eq.true&select=slug,title,start_at,date_display,ce_hours,course_numbers', {
+                fetch(SUPABASE_URL + '/rest/v1/classes?id=eq.' + encodeURIComponent(cls.bundle_with) + '&published=eq.true&select=slug,title,start_at,date_display,time_display,ce_hours,course_numbers,stripe_payment_link,ghl_session,price_cents,price_label', {
                     headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
                 }).then(function(r){ return r.json(); }).then(function(prows){
                     partner = (prows && prows.length) ? prows[0] : null;
