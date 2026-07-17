@@ -127,6 +127,8 @@
         var slug = slugFromUrl();
         var cls = null;
         var partner = null; // bundle partner class (e.g. Legal Update II when viewing I)
+        var FULL = {};      // slug -> true when in-person seats are at capacity
+        var TITLES = {};    // slug -> title, for capacity messages
 
         function showNotFound(){ document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; }
 
@@ -217,11 +219,11 @@
                         var xMode = (x.slug === c.slug) ? 'single' : 'partner';
                         var xStripe = (x.slug === c.slug) ? stripe : (x.stripe_payment_link || '');
                         return '<div class="credit-option"><input type="radio" id="creditOne' + idx + '" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-mode="' + xMode + '" data-slug="' + esc(x.slug) + '" data-price="' + xPrice + '" data-stripe="' + esc(xStripe) + '" data-refid="' + esc(x.ghl_session || x.slug) + '">' +
-                          '<label for="creditOne' + idx + '"><div class="cr-left"><span class="cr-name">' + esc(x.title) + ' only</span><span class="cr-detail">' + esc(shortDate(x.date_display)) + ' &middot; ' + esc(x.ce_hours || '') + ' CE hours</span></div><span class="cr-price">' + xLabel + '</span></label></div>';
+                          '<label for="creditOne' + idx + '"><div class="cr-left"><span class="cr-name">' + esc(x.title) + ' only</span><span class="cr-detail">' + esc(shortDate(x.date_display)) + ' &middot; ' + esc(x.ce_hours || '') + ' CE hours' + (FULL[x.slug] ? ' &middot; in-person full, Zoom available' : '') + '</span></div><span class="cr-price">' + xLabel + '</span></label></div>';
                     };
                     toggle.innerHTML =
                       '<div class="credit-option"><input type="radio" id="creditBundle" name="credit" value="Yes" data-credit="yes" data-bundle="1" data-mode="bundle" data-slug="' + esc(c.slug) + '" data-price="' + bPrice + '" data-stripe="' + esc(c.bundle_stripe_payment_link) + '" data-refid="' + esc(bRef) + '" checked required>' +
-                      '<label for="creditBundle"><div class="cr-left"><span class="cr-name">Both: ' + esc(c.bundle_label || (c.title + ' and ' + partner.title)) + '</span><span class="cr-detail">' + bHours + ' CE hours total &middot; one payment, both seats</span></div><span class="cr-price">$' + (bPrice % 1 === 0 ? bPrice.toFixed(0) : bPrice.toFixed(2)) + '</span></label></div>' +
+                      '<label for="creditBundle"><div class="cr-left"><span class="cr-name">Both: ' + esc(c.bundle_label || (c.title + ' and ' + partner.title)) + '</span><span class="cr-detail">' + bHours + ' CE hours total &middot; one payment, both seats' + ((FULL[c.slug] || FULL[partner.slug]) ? ' &middot; in-person full, Zoom available' : '') + '</span></div><span class="cr-price">$' + (bPrice % 1 === 0 ? bPrice.toFixed(0) : bPrice.toFixed(2)) + '</span></label></div>' +
                       singleOpt(pair[0], 0) + singleOpt(pair[1], 1);
                     // Keep the page header in sync with the selected option.
                     toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
@@ -252,11 +254,16 @@
 
         function renderAttendance(c){
             var t = document.getElementById('attToggle');
-            var inp = '<div class="attendance-option"><input type="radio" id="attInPerson" name="attendance" value="In Person" required><label for="attInPerson"><span class="att-icon">&#127970;</span><span class="att-text">In Person</span><span class="att-detail">' + esc(c.location ? c.location.split(',')[0] : 'In person') + '</span></label></div>';
-            var zm = '<div class="attendance-option"><input type="radio" id="attZoom" name="attendance" value="Zoom"><label for="attZoom"><span class="att-icon">&#128187;</span><span class="att-text">Zoom</span><span class="att-detail">Link emailed</span></label></div>';
+            // In Person greys out only when every registrable class is at
+            // capacity; if the bundle partner still has seats, it stays live
+            // and the per-option checks catch invalid combinations.
+            var allFull = !!FULL[c.slug] && (!partner || !!FULL[partner.slug]);
+            var inpDetail = allFull ? 'In-person seats full' : esc(c.location ? c.location.split(',')[0] : 'In person');
+            var inp = '<div class="attendance-option"><input type="radio" id="attInPerson" name="attendance" value="In Person"' + (allFull ? ' disabled' : ' required') + '><label for="attInPerson"' + (allFull ? ' style="opacity:.45;cursor:not-allowed"' : '') + '><span class="att-icon">&#127970;</span><span class="att-text">In Person</span><span class="att-detail">' + inpDetail + '</span></label></div>';
+            var zm = '<div class="attendance-option"><input type="radio" id="attZoom" name="attendance" value="Zoom"' + (allFull ? ' checked' : '') + '><label for="attZoom"><span class="att-icon">&#128187;</span><span class="att-text">Zoom</span><span class="att-detail">Link emailed</span></label></div>';
             if (c.format === 'zoom') { t.classList.add('single'); t.innerHTML = zm; }
             else if (c.format === 'hybrid') { t.innerHTML = inp + zm; }
-            else { t.classList.add('single'); t.innerHTML = inp; }
+            else { t.classList.add('single'); t.innerHTML = inp; if (allFull) { t.insertAdjacentHTML('afterend', '<p style="margin-top:10px;font-size:12px;color:#f87171;letter-spacing:.5px">This class is full. Contact info@cnattitle.com to be added to the waitlist.</p>'); } }
         }
 
         function render(c){
@@ -300,7 +307,6 @@
             var price = creditEl ? creditEl.getAttribute('data-price') : '0';
             var stripe = (creditEl && wantsCredit) ? creditEl.getAttribute('data-stripe') : '';
             if (wantsCredit && !license) { alert('A TREC license number is required to report your CE credit.'); document.getElementById('regLicense').focus(); return; }
-            btn.disabled = true; btn.textContent = 'Submitting...';
             var salesRep = document.getElementById('regRef').value;
             var refSource = document.getElementById('regRefSource').value;
             var session = cls.ghl_session || cls.slug;
@@ -308,33 +314,69 @@
             var refid = (creditEl && creditEl.getAttribute('data-refid')) || session;
             var selSlug = (creditEl && creditEl.getAttribute('data-slug')) || cls.slug;
             var selPartnerOnly = partner && selSlug === partner.slug;
-            // One call to the app: writes the roster (both classes for a bundle), sends the
-            // confirmation email, and fires the GHL webhook. Best-effort, non-blocking.
-            try {
-                fetch('https://internal.ai.cnattitle.com/api/class-register', {
-                    method:'POST', headers:{'Content-Type':'application/json'},
-                    body: JSON.stringify({
-                        slug: selSlug, name:name, email:email, phone:phone, license:license,
-                        attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
-                        bundle: isBundle,
-                        class_price: price, sales_rep: salesRep, ref_source: refSource
-                    })
-                });
-            } catch(err){}
-            document.getElementById('regForm').style.display='none';
-            var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
-            document.getElementById('confName').textContent = name;
-            document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : (selPartnerOnly ? partner.title : cls.title)) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
-            if (wantsCredit && stripe) {
-                document.getElementById('confNote').style.display='none';
-                document.getElementById('confRedirect').style.display='block';
-                var sp = new URLSearchParams({prefilled_email: email, client_reference_id: refid});
-                setTimeout(function(){ window.location.href = stripe + '?' + sp.toString(); }, 1500);
+
+            // In-person capacity: block invalid combinations before submitting.
+            if (attendance === 'In Person') {
+                var involved = isBundle ? [cls.slug].concat(partner ? [partner.slug] : []) : [selSlug];
+                for (var fi = 0; fi < involved.length; fi++) {
+                    if (FULL[involved[fi]]) {
+                        alert('In-person seats for ' + (TITLES[involved[fi]] || 'this class') + ' are full. Please choose Zoom, or a class with open in-person seats.');
+                        return;
+                    }
+                }
             }
+
+            var submitLabel = btn.textContent;
+            btn.disabled = true; btn.textContent = 'Submitting...';
+            // One call to the app: writes the roster (both classes for a bundle), sends the
+            // confirmation email, and fires the GHL webhook. Awaited so capacity
+            // rejections and failures are shown instead of a false confirmation.
+            fetch('https://internal.ai.cnattitle.com/api/class-register', {
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    slug: selSlug, name:name, email:email, phone:phone, license:license,
+                    attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
+                    bundle: isBundle,
+                    class_price: price, sales_rep: salesRep, ref_source: refSource
+                })
+            }).then(function(res){
+                return res.json().then(function(j){ return { ok: res.ok && j.ok !== false, error: j && j.error }; })
+                                 .catch(function(){ return { ok: res.ok, error: null }; });
+            }).catch(function(){
+                return { ok: false, error: 'We could not reach the registration service. Please check your connection and try again.' };
+            }).then(function(out){
+                if (!out.ok) {
+                    alert(out.error || 'Something went wrong. Please try again.');
+                    btn.disabled = false; btn.textContent = submitLabel;
+                    return;
+                }
+                document.getElementById('regForm').style.display='none';
+                var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
+                document.getElementById('confName').textContent = name;
+                document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : (selPartnerOnly ? partner.title : cls.title)) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
+                if (wantsCredit && stripe) {
+                    document.getElementById('confNote').style.display='none';
+                    document.getElementById('confRedirect').style.display='block';
+                    var sp = new URLSearchParams({prefilled_email: email, client_reference_id: refid});
+                    setTimeout(function(){ window.location.href = stripe + '?' + sp.toString(); }, 1500);
+                }
+            });
         }
 
         if (!slug) { showNotFound(); return; }
-        function ready(){ render(cls); document.getElementById('regForm').addEventListener('submit', submitReg); }
+        function ready(){
+            TITLES[cls.slug] = cls.title;
+            if (partner) TITLES[partner.slug] = partner.title;
+            var slugs = [cls.slug]; if (partner) slugs.push(partner.slug);
+            fetch(SUPABASE_URL + '/rest/v1/class_availability?slug=in.(' + slugs.map(encodeURIComponent).join(',') + ')&select=slug,capacity,in_person_count', {
+                headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
+            }).then(function(r){ return r.json(); }).then(function(rows){
+                (rows || []).forEach(function(a){ FULL[a.slug] = a.capacity != null && Number(a.in_person_count) >= Number(a.capacity); });
+            }).catch(function(){ /* fail open; the API still enforces capacity */ }).then(function(){
+                render(cls);
+                document.getElementById('regForm').addEventListener('submit', submitReg);
+            });
+        }
         fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
