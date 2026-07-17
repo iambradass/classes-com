@@ -234,23 +234,51 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 // status: "open" | "full" | "coming-soon"
 // UPCOMING CLASSES - loaded live from Supabase (scheduled in the CNAT Command Center dashboard).
 let UPCOMING = [];
+let UPCOMING_SESSIONS = -1;
 function loadUpcoming() {
   const SUPABASE_URL = 'https://etopfohypgfmedxqigcg.supabase.co';
   const ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
   const grid = document.getElementById('upcomingGrid');
   grid.innerHTML = '<div class="no-classes"><p>Loading classes...</p></div>';
-  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&order=start_at.asc&select=slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
     .then(function (r) { return r.json(); })
     .then(function (rows) {
-      UPCOMING = (rows || []).map(function (c) {
-        return {
+      rows = rows || [];
+      // Session count reflects real sessions even when bundled pairs share a card.
+      UPCOMING_SESSIONS = rows.filter(function (c) { return c.status !== 'coming-soon' && c.status !== 'rescheduling'; }).length;
+      var byId = {}; rows.forEach(function (c) { byId[c.id] = c; });
+      var used = {};
+      var cards = [];
+      rows.forEach(function (c) {
+        if (used[c.id]) return;
+        // Bundled pair, both open: one combined card (e.g. Legal Update I & II).
+        var p = c.bundle_with ? byId[c.bundle_with] : null;
+        if (p && !used[p.id] && p.bundle_with === c.id && (c.status || 'open') === 'open' && (p.status || 'open') === 'open') {
+          used[c.id] = true; used[p.id] = true;
+          cards.push({
+            title: c.bundle_label || (c.title + ' & ' + p.title), tagline: c.tagline || '',
+            date: (c.date_display || 'TBA').replace(/,?\s*\d{4}\s*$/, '') + ' + ' + (p.date_display || 'TBA'),
+            time: c.time_display || '', location: c.location || '',
+            hours: (Number(c.ce_hours) || 0) + (Number(p.ce_hours) || 0), status: 'open',
+            courseNumbers: (c.course_numbers || []).concat(p.course_numbers || []),
+            registerUrl: c.register_url || ('/c/' + c.slug),
+            price: c.bundle_price_cents ? (c.bundle_price_cents / 100) : 0,
+            priceLabel: c.bundle_price_cents ? ('$' + (c.bundle_price_cents / 100)) : '',
+            priceSub: 'both classes' + (c.price_label ? ' · or ' + c.price_label + ' each' : ''),
+            private: false, privateLabel: ''
+          });
+          return;
+        }
+        used[c.id] = true;
+        cards.push({
           title: c.title, tagline: c.tagline || '', date: c.date_display || 'TBA', time: c.time_display || '',
           location: c.location || '', hours: c.ce_hours || '', status: c.status || 'open',
           courseNumbers: c.course_numbers || [], registerUrl: c.register_url || ('/c/' + c.slug),
           price: c.price_cents ? (c.price_cents / 100) : 0, priceLabel: c.price_label || '', priceSub: c.price_sub || '',
           private: c.is_private || false, privateLabel: c.private_label || ''
-        };
+        });
       });
+      UPCOMING = cards;
       renderUpcoming();
     })
     .catch(function () { renderUpcoming(); });
@@ -294,7 +322,9 @@ const hoursColors = {
 function renderUpcoming() {
   const grid = document.getElementById('upcomingGrid');
   const count = document.getElementById('upcomingCount');
-  const open = UPCOMING.filter(c => c.status !== 'coming-soon' && c.status !== 'rescheduling').length;
+  const open = (typeof UPCOMING_SESSIONS === 'number' && UPCOMING_SESSIONS >= 0)
+    ? UPCOMING_SESSIONS
+    : UPCOMING.filter(c => c.status !== 'coming-soon' && c.status !== 'rescheduling').length;
   count.textContent = open + (open === 1 ? ' session open' : ' sessions open');
 
   if (!UPCOMING.length) {
