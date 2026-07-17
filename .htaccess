@@ -6,3 +6,11 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^c/[^/]+/?$ /c/index.html [L]
 </IfModule>
+
+# HTML must always revalidate: class prices, dates, and registration options
+# change and a stale cached page can send someone to the wrong checkout.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
