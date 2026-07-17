@@ -130,6 +130,36 @@
             else { strip.innerHTML = inPerson; }
         }
 
+        // Swap the hero + info tiles between single-class and bundle views.
+        function applyHeaderMode(bundleMode){
+            if (!cls) return;
+            if (bundleMode && partner) {
+                var pair = [cls, partner].sort(function(a, b){ return String(a.start_at || '').localeCompare(String(b.start_at || '')); });
+                var comboTitle = cls.bundle_label || (cls.title + ' & ' + partner.title);
+                document.title = comboTitle + ' | CNAT Education';
+                document.getElementById('clsTitle').textContent = comboTitle;
+                document.getElementById('clsDate').textContent = (pair[0].date_display || 'TBA').replace(/,?\s*\d{4}\s*$/, '') + ' + ' + (pair[1].date_display || 'TBA');
+                var hoursSum = (Number(cls.ce_hours) || 0) + (Number(partner.ce_hours) || 0);
+                if (hoursSum) {
+                    document.getElementById('clsHours').textContent = hoursSum + ' Hours';
+                    var nums = (pair[0].course_numbers || []).concat(pair[1].course_numbers || []);
+                    document.getElementById('clsCourse').innerHTML = nums.length ? ('#' + nums.join(' / #')) : '';
+                }
+                document.getElementById('clsCost').textContent = '$' + ((cls.bundle_price_cents || 0) / 100);
+                document.getElementById('clsCostSub').textContent = 'or ' + (cls.price_label || ('$' + ((cls.price_cents || 0) / 100))) + ' for one class';
+            } else {
+                document.title = (cls.title || 'Register') + ' | CNAT Education';
+                document.getElementById('clsTitle').textContent = cls.title || '';
+                document.getElementById('clsDate').textContent = cls.date_display || 'TBA';
+                if (cls.ce_hours) {
+                    document.getElementById('clsHours').textContent = cls.ce_hours + ' Hours';
+                    document.getElementById('clsCourse').innerHTML = (cls.course_numbers && cls.course_numbers.length) ? ('#' + cls.course_numbers.join(' / #')) : '';
+                }
+                document.getElementById('clsCost').textContent = cls.price_label || (cls.is_paid ? ('$' + ((cls.price_cents || 0) / 100)) : 'Free');
+                document.getElementById('clsCostSub').textContent = cls.price_sub || '';
+            }
+        }
+
         function renderCredit(c){
             var group = document.getElementById('creditGroup');
             var toggle = document.getElementById('creditToggle');
@@ -158,6 +188,12 @@
                       '<label for="creditBundle"><div class="cr-left"><span class="cr-name">Both: ' + esc(c.bundle_label || (c.title + ' and ' + partner.title)) + '</span><span class="cr-detail">' + bHours + ' CE hours total &middot; one payment, both seats</span></div><span class="cr-price">$' + (bPrice % 1 === 0 ? bPrice.toFixed(0) : bPrice.toFixed(2)) + '</span></label></div>' +
                       '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '">' +
                       '<label for="creditYes"><div class="cr-left"><span class="cr-name">This class only: ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                    // Keep the page header in sync with the selected option:
+                    // bundle selected = combined title/dates/hours/cost up top.
+                    toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
+                        r.addEventListener('change', function(){ applyHeaderMode(r.getAttribute('data-bundle') === '1'); });
+                    });
+                    applyHeaderMode(true);
                 } else {
                     toggle.innerHTML =
                       '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '" checked required>' +
@@ -263,14 +299,14 @@
 
         if (!slug) { showNotFound(); return; }
         function ready(){ render(cls); document.getElementById('regForm').addEventListener('submit', submitReg); }
-        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label', {
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,zoom_url,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
             if (!rows || !rows.length) { showNotFound(); return; }
             cls = rows[0];
             // Bundle-eligible credit-only class: load the partner for the combined option.
             if (cls.allow_free_attendance === false && cls.bundle_with && cls.bundle_stripe_payment_link) {
-                fetch(SUPABASE_URL + '/rest/v1/classes?id=eq.' + encodeURIComponent(cls.bundle_with) + '&published=eq.true&select=slug,title,date_display,ce_hours,course_numbers', {
+                fetch(SUPABASE_URL + '/rest/v1/classes?id=eq.' + encodeURIComponent(cls.bundle_with) + '&published=eq.true&select=slug,title,start_at,date_display,ce_hours,course_numbers', {
                     headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
                 }).then(function(r){ return r.json(); }).then(function(prows){
                     partner = (prows && prows.length) ? prows[0] : null;
