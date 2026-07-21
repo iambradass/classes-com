@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect Your Calendar to Your AI Assistant | Keeping AI on Things | CNAT Title</title>
+<meta name="description" content="Let your AI assistant see your calendar so it can brief your day, plan showing routes, and scaffold reminders and follow-ups.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/guides/calendar-connection/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/guides/calendar-connection/">
+<meta property="og:title" content="Connect Your Calendar to Your AI Assistant | CNAT Title">
+<meta property="og:description" content="Morning briefs, showing-day plans, and follow-up scaffolding from your own calendar.">
+<meta property="og:site_name" content="CNAT Education">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+</head>
+<body>
+
+<header class="guide">
+  <div class="wrap">
+    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
+    <h1>Connect Your Calendar to Your AI Assistant</h1>
+    <p class="sub">An assistant that can see your week can brief it, protect it, and make sure every appointment gets a follow-up.</p>
+    <p class="meta">Level 2 &middot; Connected &middot; 20-30 minutes, one time</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>What this <span class="em">does</span></h2>
+    <ul class="plain">
+      <li>A morning brief: today's appointments, what each one needs from you, and the gaps where real work can happen.</li>
+      <li>Showing-day plans: a sensible route and time blocks for a multi-stop day, with buffers you'll actually keep.</li>
+      <li>Follow-up scaffolding: every client appointment automatically gets a "what's the next touch" answer instead of relying on memory.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Pick your <span class="em">path</span></h2>
+    <div class="card cyan">
+      <h3>Path A: Direct connection</h3>
+      <ol class="recipe">
+        <li>In your assistant's settings, open connectors or integrations and look for your calendar (the major assistants support the big calendar platforms; examples, not endorsements: ChatGPT, Claude, Gemini with Google and Microsoft calendars).</li>
+        <li>Connect it and grant access. Start with read access only if the tool offers the choice.</li>
+        <li>Test: ask "what's on my calendar Thursday?" and check it against the real thing.</li>
+        <li>Note which assistant tier you're on: calendar connectors are typically paid-tier features, and business tiers keep your data out of model training.</li>
+      </ol>
+    </div>
+    <div class="card green">
+      <h3>Path B: The paste (no setup, works today)</h3>
+      <p class="tagline">Open your calendar's week view, copy it (or screenshot it into the chat), and run the same prompts below. Ninety percent of the value, zero connection.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <span class="em">prompts</span></h2>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3>The Morning Brief</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <p class="tagline">Save in your workspace, run with coffee.</p>
+      <pre id="p1">Look at my calendar for today (or use what I paste below). Give me:
+
+1. THE DAY AT A GLANCE: each appointment with one line on what it is and what I need to walk in with (documents, comps, keys, lockbox codes noted in the event).
+2. PREP FLAGS: anything that needs work BEFORE the meeting that isn't done or scheduled.
+3. THE GAPS: my open blocks, with a recommendation for the single best use of the biggest one (prospecting, follow-up, or admin) based on what this week looks like.
+4. TOMORROW'S ONE THING: what I should set up today so tomorrow starts easy.
+
+Keep it under 200 words. I'm reading this on my phone.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3>The Showing-Day Planner</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+      <pre id="p2">I'm building a showing day. Here are the stops and constraints:
+
+SHOWINGS: [address or area + any time restrictions for each]
+CLIENT: [name, what they care about, energy level for a long day]
+MY CONSTRAINTS: [start/end time, lunch, school pickup, etc.]
+
+Plan the day: a stop order that minimizes backtracking (group by area; I'll gut-check drive times), a time block per stop with a 15-minute buffer every 2-3 stops, and a one-line reminder of what this client should notice at each property. End with the two questions I should ask the client at the end of the day to move toward a decision.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3>The Follow-Up Scaffold</h3><button class="copy-btn" data-target="p3">Copy</button></div>
+      <pre id="p3">Look at my client-facing appointments from the last 2 business days (or the list I paste). For each one, tell me: the natural next touch, the channel, and when it should happen. Then draft the one follow-up message that's most overdue, in my voice, ready to send after my review.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch-<span class="em">outs</span></h2>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>Reading is not writing.</strong> Letting the assistant see your calendar is low-risk. Letting it create or move events deserves a two-week trial period first, and you review every invite before it sends.</li>
+        <li><strong>Mind what lives in event titles.</strong> If your calendar events say "Smith divorce sale, 4012 Maple," a connected assistant reads that too. Keep sensitive detail in your CRM, not in event names.</li>
+        <li><strong>Time math deserves a glance.</strong> AI is good at planning and occasionally bad at arithmetic. Sanity-check drive-time assumptions on tight days.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="next-links"><strong>Next up:</strong> pair this with the <a class="inline" href="/keeping-ai-on-things/guides/ai-transaction-coordinator/">AI Transaction Coordinator</a> so contract deadlines land on the calendar it now reads.</p>
+  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+  </div>
+</footer>
+
+<script src="/keeping-ai-on-things/assets/guide.js"></script>
+</body>
+</html>

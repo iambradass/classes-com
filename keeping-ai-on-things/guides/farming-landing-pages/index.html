@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a Neighborhood Landing Page With AI | Keeping AI on Things | CNAT Title</title>
+<meta name="description" content="Have your AI assistant build a polished, mobile-first landing page for your farm neighborhood, then wire its lead form to your CRM.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/guides/farming-landing-pages/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/guides/farming-landing-pages/">
+<meta property="og:title" content="Build a Neighborhood Landing Page With AI | CNAT Title">
+<meta property="og:description" content="A polished farm-neighborhood landing page, built by your AI assistant.">
+<meta property="og:site_name" content="CNAT Education">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+</head>
+<body>
+
+<header class="guide">
+  <div class="wrap">
+    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
+    <h1>Build a Neighborhood Landing Page With AI</h1>
+    <p class="sub">A dedicated page for your farm neighborhood, built by your assistant in one afternoon, that gives every postcard and sign QR code somewhere worth landing.</p>
+    <p class="meta">Level 2 &middot; Connected &middot; 45-60 minutes</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>What this <span class="em">does</span></h2>
+    <ul class="plain">
+      <li>Creates a single, polished web page about one neighborhood: what makes it special, current market snapshot, and a "what's my home worth" call to action that feeds your CRM (client database).</li>
+      <li>Gives your geographic farm a destination. A QR code on a postcard that opens a page about <em>their street</em> outperforms one that opens your generic homepage.</li>
+      <li>Costs nothing but time. Modern AI assistants write complete, working web pages; you supply the local knowledge.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What you'll <span class="em">need</span></h2>
+    <ul class="plain">
+      <li>Real facts about the neighborhood: your recent market numbers (from the MLS), amenities, and what residents actually love about it. Ten minutes of notes.</li>
+      <li>Somewhere to host the page. In order of ease: a landing-page or funnel builder inside your CRM, your website provider's "add a page" feature, or a simple static-hosting service. Your assistant can walk you through whichever one you name.</li>
+      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The <span class="em">setup</span></h2>
+    <ol class="recipe">
+      <li><strong>Gather your inputs:</strong> neighborhood name, 5 amenity/lifestyle facts, 3 recent market numbers with dates, your contact info and photo, and where leads should go.</li>
+      <li><strong>Run the Page Builder prompt.</strong> Ask for the result as a single, complete HTML file.</li>
+      <li><strong>Preview it:</strong> save the file the assistant gives you and open it in your browser. It works right off your desktop. Check it on your phone: most visitors arrive from a QR scan.</li>
+      <li><strong>Iterate in plain English:</strong> "make the header photo section taller," "warmer colors," "shorter intro." The assistant edits, you re-preview. Two or three rounds gets it right.</li>
+      <li><strong>Wire the form.</strong> Easiest reliable route: build a form in your CRM, copy its embed code or link, and have the assistant place it in the page. Now every lead lands in your database with tags and automation.</li>
+      <li><strong>Publish</strong> on your chosen host, then generate a QR code for the page URL and put it on your farm postcards, door hangers, and open-house signs.</li>
+      <li><strong>Update quarterly.</strong> Stale market numbers on a farming page quietly tell the neighborhood you stopped paying attention. Calendar reminder, 15 minutes.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The <span class="em">prompt</span></h2>
+    <div class="card cyan">
+      <div class="prompt-head"><h3>The Page Builder</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <pre id="p1">You are my web developer and copywriter. Build me a complete, single-file HTML landing page for a neighborhood I farm. Everything (styles, scripts) inline in one file so I can preview it by opening the file in a browser.
+
+NEIGHBORHOOD: [name, city]
+WHAT RESIDENTS LOVE (my notes): [5 bullets: parks, schools zone info stated neutrally, walkability, architecture, community events]
+MARKET SNAPSHOT (my MLS numbers, with dates): [median sale price, days on market, homes sold last quarter]
+ABOUT ME: [name, brokerage, phone, email, one-line positioning]
+LEAD CAPTURE: [paste your CRM form embed code, or say "placeholder form" and I'll wire it later]
+
+Requirements:
+- Mobile-first. Most visitors scan a QR code from print. Large text, big tap targets, fast load, no images I have to source (use color and typography instead; leave clearly-marked placeholder spots where I can add my own photos).
+- Sections: hero with the neighborhood name and a one-line hook, "living here" highlights, market snapshot with a "numbers as of [date]" line, a home-value call to action with the lead form, and a short about-me footer.
+- Tone: warm local expert, zero hype. This page is about the neighborhood, not about me.
+- Fair-housing safe: describe the place, homes, and lifestyle. Never describe the people who live there or who "should" live there, and no demographic language of any kind.
+- Include a title tag and meta description for search.
+
+Give me the complete file, then a bulleted list of exactly what I should customize before publishing.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch-<span class="em">outs</span></h2>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>Fair housing applies to farming pages twice:</strong> the page copy AND any advertising you run to promote it. Describe property and place, keep ad targeting broad, document what you ran.</li>
+        <li><strong>Source your numbers.</strong> Every market stat on the page needs a date and a source you could show if asked. "Numbers as of June 2026, [your MLS]" is the habit.</li>
+        <li><strong>Test the form before printing anything.</strong> Submit it yourself, confirm the lead shows up in your CRM, then order postcards. Not the other way around.</li>
+        <li><strong>Brokerage advertising rules still apply:</strong> required broker identification, license disclosures, and ad review policies cover this page like any other ad.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="next-links"><strong>Next up:</strong> keep the page fed with the <a class="inline" href="/keeping-ai-on-things/guides/market-research-routines/">Market Research Routines</a>, and work the farm list itself with the <a class="inline" href="/keeping-ai-on-things/guides/farm-watchlist/">Farm Watchlist</a>.</p>
+  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+  </div>
+</footer>
+
+<script src="/keeping-ai-on-things/assets/guide.js"></script>
+</body>
+</html>

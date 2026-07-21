@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Campaign Autopilot | Keeping AI on Things | CNAT Title</title>
+<meta name="description" content="Chain your AI assistant to your CRM and channels so one input runs an entire marketing campaign: drafted, loaded, scheduled, reported.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/guides/campaign-autopilot/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/guides/campaign-autopilot/">
+<meta property="og:title" content="The Campaign Autopilot | CNAT Title">
+<meta property="og:description" content="One input in, a whole campaign out through your established channels.">
+<meta property="og:site_name" content="CNAT Education">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+</head>
+<body>
+
+<header class="guide">
+  <div class="wrap">
+    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
+    <h1>The Campaign Autopilot</h1>
+    <p class="sub">The graduation play: one input (a listing, an event, a market shift) goes in, and a complete campaign comes out through the channels you already own.</p>
+    <p class="meta">Level 3 &middot; Autopilot &middot; Build it over a week; run it in an hour</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>What this <span class="em">does</span></h2>
+    <ul class="plain">
+      <li>Turns campaign execution from a dozen sessions in five tools into one working session: the assistant drafts every asset, your CRM (client database) and scheduler carry them, and you approve at two checkpoints.</li>
+      <li>Works two ways: the all-in-one route (everything loads into one CRM that owns email, text, social, and landing pages) or the multi-tool route (assistant drafts everything, each channel tool carries its own piece).</li>
+      <li>Closes the loop: after the campaign runs, the assistant reads the results you paste back and tells you what to change next time.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What you'll <span class="em">need</span></h2>
+    <ul class="plain">
+      <li>The foundation plays running: your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">Second Brain</a>, and either a <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">connected CRM</a> or the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV loop</a>.</li>
+      <li>An honest list of your channels: which email tool, which social accounts, texting from where, landing pages built how. The autopilot can only fly the plane you actually own.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The <span class="em">setup</span></h2>
+    <ol class="recipe">
+      <li><strong>Document your channel map once.</strong> Run the Channel Map prompt below. The output is a short document; save it in your workspace next to your Agent Profile. This is what lets the assistant produce assets in the right shape for each tool.</li>
+      <li><strong>Save the Campaign Kickoff prompt</strong> as a template in your workspace.</li>
+      <li><strong>Run your first campaign on a real trigger:</strong> a new listing, a just-sold, a rate move, a seasonal push. Fill the kickoff brackets, run it, and review the full asset package (checkpoint one).</li>
+      <li><strong>Load the channels.</strong> All-in-one route: import the campaign into your CRM's campaign builder (the assistant formats content for copy-paste or CSV import to match). Multi-tool route: work down the load list the assistant produces, one channel at a time.</li>
+      <li><strong>Approve the schedule (checkpoint two), then launch.</strong> Sending always happens from your tools, under your name, with their unsubscribe handling.</li>
+      <li><strong>Two weeks later, close the loop:</strong> paste the numbers your tools show (opens, replies, clicks, form fills) into the Debrief prompt. Apply one improvement to the template. That compounding edit is what makes this an autopilot instead of a one-off.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The <span class="em">prompts</span></h2>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3>The Channel Map (run once)</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <pre id="p1">Interview me about my marketing channels, one at a time: email (what tool, list size, how often I send), text (from what system, who's opted in), social (which platforms I actually post on), landing pages (how I build them), print/mail (if any).
+
+Then write my CHANNEL MAP: a short reference document listing each channel, its tool, its audience, its format constraints (character limits, image sizes), and its role (nurture, announce, capture). I'll save this in my workspace so every future campaign is drafted to fit my real channels.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3>The Campaign Kickoff</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+      <pre id="p2">Using my Agent Profile and my Channel Map, build a complete campaign.
+
+TRIGGER: [what's this campaign about: new listing / just sold / market update / event / seasonal]
+DETAILS: [the facts: property, numbers with sources, dates]
+AUDIENCE: [whole database / a segment / the farm]
+GOAL: [conversations started / showings booked / home-value requests]
+DURATION: [e.g. 2 weeks]
+
+Produce the full package, organized by channel from my Channel Map:
+1. Every asset, final-draft quality, in my voice, formatted to each channel's constraints.
+2. A calendar: what goes out on which day, in which channel, in what order, and why that sequence.
+3. A load list: the exact steps to get each asset into each tool, in order, so I can load the whole campaign in one sitting.
+4. A measurement plan: the 3 numbers to check in two weeks and where I'll find them.
+
+Fair-housing safe throughout. Flag any claim in my DETAILS that needs a source or a double-check before it ships.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3>The Debrief</h3><button class="copy-btn" data-target="p3">Copy</button></div>
+      <pre id="p3">The campaign ran. Here are the results from my tools: [paste opens, clicks, replies, form fills, conversations, and anything anecdotal]
+
+Tell me: what worked, what underperformed, the single highest-impact change for next time, and rewrite the one weakest asset to show me the fix. Then give me the updated line to add to my Channel Map or Agent Profile so the improvement sticks.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch-<span class="em">outs</span></h2>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>Two checkpoints, always.</strong> You review the full package before loading, and the schedule before launch. Automation earns trust; it never inherits it.</li>
+        <li><strong>Consent lives in your tools.</strong> Email and especially text campaigns go only to people with proper opt-in, and your sending tools enforce unsubscribes. The assistant never sends directly.</li>
+        <li><strong>One campaign at a time until the debrief loop works.</strong> The failure mode of automation isn't a bad email; it's ten mediocre campaigns nobody measured.</li>
+        <li><strong>Advertising rules ride along:</strong> broker identification, license disclosures, and your brokerage's ad policies apply to every asset in the package.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="next-links"><strong>Feeds this play:</strong> the <a class="inline" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/">Reverse Prospecting Engine</a> and <a class="inline" href="/keeping-ai-on-things/guides/farm-watchlist/">Farm Watchlist</a> are both campaign triggers ready to drop into the kickoff.</p>
+  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+  </div>
+</footer>
+
+<script src="/keeping-ai-on-things/assets/guide.js"></script>
+</body>
+</html>

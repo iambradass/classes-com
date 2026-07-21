@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Farm Watchlist | Keeping AI on Things | CNAT Title</title>
+<meta name="description" content="Cross-reference your existing farm list against new market activity each month and get a who-to-contact-and-why list back.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/guides/farm-watchlist/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/guides/farm-watchlist/">
+<meta property="og:title" content="The Farm Watchlist | CNAT Title">
+<meta property="og:description" content="Your farm list, cross-referenced with new activity every month.">
+<meta property="og:site_name" content="CNAT Education">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+</head>
+<body>
+
+<header class="guide">
+  <div class="wrap">
+    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
+    <h1>The Farm Watchlist</h1>
+    <p class="sub">You already have the farm list. This play cross-references it with what actually happened in the neighborhood this month, and tells you who to talk to about it.</p>
+    <p class="meta">Level 3 &middot; Autopilot &middot; 30 minutes to set up, 15 a month to run</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>What this <span class="em">does</span></h2>
+    <ul class="plain">
+      <li>Compares your master farm list against this month's activity export (new listings, solds, expireds, withdrawn) and finds the intersections that matter.</li>
+      <li>Produces a ranked touch list: the neighbor of the house that just sold high, the expired two streets from your last closing, the long-time owner on a street where three homes just moved.</li>
+      <li>Gives every touch a reason. "The Hendersons' street just set a record" is a conversation. "Just checking in" is a delete.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What you'll <span class="em">need</span></h2>
+    <ul class="plain">
+      <li>Your master farm list as a CSV spreadsheet file: address, owner name if you have it, and any history column (past touches, responses). Keep one master file; update it, don't fork it.</li>
+      <li>A monthly activity export for the farm area from your MLS (Multiple Listing Service): actives, pendings, solds, expireds with addresses and prices.</li>
+      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace, with the sanitize-before-upload habit from the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV guide</a>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The <span class="em">setup</span></h2>
+    <ol class="recipe">
+      <li><strong>Make it a monthly ritual:</strong> first Tuesday of the month, 15 minutes, calendar reminder titled "Run the farm watchlist."</li>
+      <li><strong>Export this month's activity</strong> for the farm boundaries from the MLS.</li>
+      <li><strong>Upload both files</strong> (master farm list + activity export) to your workspace and run the Cross-Reference prompt.</li>
+      <li><strong>Work the top ten.</strong> The output ranks touches by strength of reason. Ten real conversations beat a hundred generic postcards.</li>
+      <li><strong>Feed results back.</strong> Add a note to your master list for every touch made ("6/26: talked, thinking of selling next spring"). Next month's run gets smarter because the file remembers.</li>
+      <li><strong>Optional autopilot:</strong> if your assistant supports scheduled tasks, schedule the monthly reminder with the prompt pre-loaded so the run is one upload away.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The <span class="em">prompt</span></h2>
+    <div class="card cyan">
+      <div class="prompt-head"><h3>The Cross-Reference</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <pre id="p1">You are my farm analyst. I've uploaded two files:
+1. MASTER FARM LIST: the homes/owners in my geographic farm, with my touch history.
+2. THIS MONTH'S ACTIVITY: MLS activity in the same area (actives, pendings, solds, expireds).
+
+Cross-reference them:
+1. DIRECT HITS: any address on my farm list that appears in this month's activity. What happened, and what it means for my relationship with that address.
+2. RIPPLE TOUCHES: farm addresses on the same street or within a couple of blocks of a notable event (a strong sale, a fast sale, an expired). For each, the specific conversation opener the event creates. Fair-housing safe: talk about homes, prices, and the market, never about who is moving in or out.
+3. THE RANKED TEN: the 10 best touches this month, ordered by strength of reason, each with: address/name, the reason, the channel (door knock, call, note, mailer), and a 1-2 sentence opener in my voice.
+4. LIST HEALTH: anything in my master list that looks stale or inconsistent (owner sold last year, duplicate rows), so I can clean it.
+
+Match addresses carefully (abbreviations like St/Street, unit numbers). List any rows you couldn't confidently match instead of guessing.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch-<span class="em">outs</span></h2>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>Verify the trigger before you knock.</strong> "I saw the home on Maple sold" had better be true. Check the MLS record before you lead with it.</li>
+        <li><strong>Expireds and withdrawns have rules.</strong> Solicitation of expired listings is regulated and brokerage-policy-sensitive. Know your rules before that touch.</li>
+        <li><strong>Owner data comes with obligations.</strong> If your farm list came from a data provider, its license says what you can do with it. Uploading to your training-off business assistant for your own analysis is the conservative pattern; republishing is not.</li>
+        <li><strong>Ripple touches never speculate about people.</strong> The market event is the opener. Who's moving, why they left, what they got: not yours to discuss.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="next-links"><strong>Next up:</strong> give the farm a destination with the <a class="inline" href="/keeping-ai-on-things/guides/farming-landing-pages/">Neighborhood Landing Page</a>, then let <a class="inline" href="/keeping-ai-on-things/guides/market-research-routines/">Market Research Routines</a> watch the bigger picture.</p>
+  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+  </div>
+</footer>
+
+<script src="/keeping-ai-on-things/assets/guide.js"></script>
+</body>
+</html>

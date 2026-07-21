@@ -68,7 +68,16 @@
   .disclaimer{background:rgba(255,184,51,.08);border:1px solid rgba(255,184,51,.3);border-radius:12px;padding:14px 18px;font-size:.9rem;}
   footer{text-align:center;padding:34px 20px 48px;margin-top:24px;border-top:1px solid rgba(255,255,255,.1);opacity:.6;font-size:.85rem;}
   a.inline{color:var(--cyan);}
-  @media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}}
+  .level-label{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);margin:18px 0 8px;}
+  .play-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+  a.play{display:block;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-left:5px solid var(--cyan);border-radius:14px;padding:16px 18px;color:var(--white);text-decoration:none;}
+  a.play:active{background:rgba(0,200,240,.12);}
+  a.play.start{border-left-color:var(--gold);}
+  a.play .play-name{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:1.08rem;color:var(--cyan);}
+  a.play.start .play-name{color:var(--gold);}
+  a.play .play-desc{display:block;font-size:.9rem;opacity:.8;margin-top:2px;}
+  a.play .play-meta{display:block;font-size:.78rem;opacity:.55;margin-top:6px;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+  @media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}.play-grid{grid-template-columns:1fr 1fr;}}
   @media print{
     nav.toc{display:none;}.copy-btn{display:none;}body{background:#fff;color:#111;}
     header{background:#fff;color:#111;border-bottom:2px solid #111;}pre{background:#f4f4f4;color:#111;border-color:#ccc;}
@@ -89,6 +98,7 @@
 
 <nav class="toc">
   <div class="wrap">
+    <a href="#playbooks">Playbooks</a>
     <a href="#prompts">Prompts</a>
     <a href="#recipes">Demo Recipes</a>
     <a href="#tools">Tools</a>
@@ -98,6 +108,80 @@
 </nav>
 
 <div class="wrap">
+
+  <!-- PLAYBOOKS -->
+  <section id="playbooks">
+    <h2>The Playbook <span class="em">Board</span></h2>
+    <p class="lead">This is what "using AI to run your business" actually looks like. Every play links to a step-by-step setup guide, so you can leave class and build it. Start at Level 1 tonight; work up as each play pays for itself.</p>
+
+    <a class="play start" href="guides/ai-second-brain/">
+      <span class="play-name">Start Here: Your AI Second Brain</span>
+      <span class="play-desc">Teach your assistant your market, voice, and rules one time. Every other play assumes this exists.</span>
+      <span class="play-meta">Foundation &middot; 30 min, once</span>
+    </a>
+
+    <p class="level-label">Level 1 &middot; Copy-Paste Plays (no setup, works today)</p>
+    <div class="play-grid">
+      <a class="play" href="guides/csv-to-campaign/">
+        <span class="play-name">CSV to Campaign</span>
+        <span class="play-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</span>
+        <span class="play-meta">15 min</span>
+      </a>
+      <a class="play" href="guides/reverse-prospecting-engine/">
+        <span class="play-name">Reverse Prospecting Engine</span>
+        <span class="play-desc">Your MLS shows which agents have matching buyers. One paste turns it into agent outreach, a seller update, and a demand campaign.</span>
+        <span class="play-meta">20 min per listing</span>
+      </a>
+      <a class="play" href="guides/cma-assistant/">
+        <span class="play-name">The CMA Assistant</span>
+        <span class="play-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</span>
+        <span class="play-meta">20 min per CMA</span>
+      </a>
+      <a class="play" href="guides/ai-transaction-coordinator/">
+        <span class="play-name">AI Transaction Coordination</span>
+        <span class="play-desc">Contract dates in, a full contract-to-close timeline, weekly client updates, and an at-risk radar out.</span>
+        <span class="play-meta">20 min per contract</span>
+      </a>
+    </div>
+
+    <p class="level-label">Level 2 &middot; Connected Plays (one-time setup)</p>
+    <div class="play-grid">
+      <a class="play" href="guides/connect-your-crm/">
+        <span class="play-name">Connect Your CRM</span>
+        <span class="play-desc">Ask questions of your own database and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</span>
+        <span class="play-meta">30-60 min, once</span>
+      </a>
+      <a class="play" href="guides/calendar-connection/">
+        <span class="play-name">Connect Your Calendar</span>
+        <span class="play-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</span>
+        <span class="play-meta">20-30 min, once</span>
+      </a>
+      <a class="play" href="guides/farming-landing-pages/">
+        <span class="play-name">Neighborhood Landing Pages</span>
+        <span class="play-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</span>
+        <span class="play-meta">45-60 min</span>
+      </a>
+    </div>
+
+    <p class="level-label">Level 3 &middot; Autopilot Plays (routines that run without you)</p>
+    <div class="play-grid">
+      <a class="play" href="guides/market-research-routines/">
+        <span class="play-name">Market Research Routines</span>
+        <span class="play-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</span>
+        <span class="play-meta">30 min to set up</span>
+      </a>
+      <a class="play" href="guides/farm-watchlist/">
+        <span class="play-name">The Farm Watchlist</span>
+        <span class="play-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</span>
+        <span class="play-meta">15 min a month</span>
+      </a>
+      <a class="play" href="guides/campaign-autopilot/">
+        <span class="play-name">The Campaign Autopilot</span>
+        <span class="play-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</span>
+        <span class="play-meta">Build over a week</span>
+      </a>
+    </div>
+  </section>
 
   <!-- PROMPTS -->
   <section id="prompts">
@@ -279,6 +363,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
         <li><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</li>
         <li><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</li>
         <li><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</li>
+        <li><strong>This month:</strong> set up your <a class="inline" href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board above and build it.</li>
       </ul>
     </div>
   </section>

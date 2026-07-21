@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Transaction Coordination | Keeping AI on Things | CNAT Title</title>
+<meta name="description" content="Turn contract dates into a full contract-to-close timeline, weekly client updates, and an at-risk radar with your AI assistant.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/guides/ai-transaction-coordinator/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/guides/ai-transaction-coordinator/">
+<meta property="og:title" content="AI Transaction Coordination | CNAT Title">
+<meta property="og:description" content="Contract dates in, full timeline and weekly updates out.">
+<meta property="og:site_name" content="CNAT Education">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+</head>
+<body>
+
+<header class="guide">
+  <div class="wrap">
+    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
+    <h1>AI Transaction Coordination</h1>
+    <p class="sub">Feed your assistant the contract dates once. Get the full timeline, weekly client updates, and an at-risk radar for the life of the deal.</p>
+    <p class="meta">Level 1 &middot; Copy-Paste &middot; 20 minutes per contract, then 5 a week</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>What this <span class="em">does</span></h2>
+    <ul class="plain">
+      <li>Builds a complete contract-to-close timeline from the executed contract's key dates: option/inspection period, financing and appraisal deadlines, title commitment delivery and objection windows, HOA (homeowners association) documents, and closing.</li>
+      <li>Writes the weekly client update in two versions: calm and jargon-free for the client, blunt with owners and deadlines for you.</li>
+      <li>Flags what's quietly at risk before it becomes a phone call nobody enjoys.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What you'll <span class="em">need</span></h2>
+    <ul class="plain">
+      <li>The executed contract's key dates. You read them off the contract; the AI never guesses them.</li>
+      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace. Make one chat (or project sub-folder) per transaction and keep everything about that deal in it.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The <span class="em">setup</span></h2>
+    <ol class="recipe">
+      <li><strong>When a contract goes executed,</strong> start a dedicated chat named for the property and run the Timeline Builder below with the real dates.</li>
+      <li><strong>Check the output against the contract.</strong> You are the source of truth for every date. Fix anything off by even a day.</li>
+      <li><strong>Put the deadlines where you live:</strong> your CRM's transaction checklist or your calendar. (With a <a class="inline" href="/keeping-ai-on-things/guides/calendar-connection/">connected calendar</a>, ask the assistant to draft the events for your review.)</li>
+      <li><strong>Every Friday,</strong> return to the deal's chat, paste what happened this week, and run the Weekly Brief. Send the client version after you've read it.</li>
+      <li><strong>When anything changes</strong> (amendment, extension, repair negotiation), tell the chat. The timeline updates and the next brief reflects reality.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The <span class="em">prompts</span></h2>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3>The Timeline Builder</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <pre id="p1">You are my transaction coordinator's assistant for this deal. I will give you the dates from the executed contract; you organize, you never invent.
+
+DEAL:
+- Property / parties / my side (listing or buyer): [ ]
+- Effective date: [ ]  Closing date: [ ]
+- Option or inspection period ends: [ ]
+- Financing deadline: [ ]  Appraisal ordered/due: [ ]
+- Title commitment due: [ ]  Objection deadline: [ ]
+- HOA documents due (if any): [ ]
+- Other negotiated deadlines: [ ]
+
+Produce:
+1. MASTER TIMELINE: every deadline in date order, with what must be TRUE by that date, who owns it (me / my client / lender / title company / other agent), and the date I should check in (2-3 days before each deadline, adjusted for weekends).
+2. THE CRITICAL THREE: which three dates on this deal have the least slack, and why.
+3. WEEK ONE CHECKLIST: everything that should happen in the next 7 days.
+
+If any date I gave you conflicts with another (for example a deadline after closing), stop and flag it before producing the timeline.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3>The Weekly Brief</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+      <pre id="p2">Using this deal's timeline, here's what happened this week: [2-5 bullets: done, pending, new issues]
+
+Produce:
+1. CLIENT VERSION: a short, reassuring, plain-English update. What happened, what's next, exactly what (if anything) I need from them. No jargon without a translation.
+2. MY VERSION: every open item with a deadline and an owner, anything now at risk of slipping flagged at the top, and the one phone call I should make Monday morning.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch-<span class="em">outs</span></h2>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>The contract is the only calendar that counts.</strong> Verify every AI-organized date against the executed documents. A missed option period is not an AI mistake; it's yours.</li>
+        <li><strong>This assists coordination; it isn't a TC (transaction coordinator).</strong> Your broker's supervision requirements and your TC's process don't change because a chat window got involved.</li>
+        <li><strong>Watch what you paste.</strong> Deal terms are fine in a training-off business account; buyers' financial documents are never fine. Dates and statuses, not bank statements.</li>
+        <li><strong>Escalating issues need humans.</strong> The moment something goes sideways (appraisal gap, title issue, repair standoff), the AI helps you think; the phone call is you. Your title company's escrow team has seen it all before: use them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="next-links"><strong>Next up:</strong> <a class="inline" href="/keeping-ai-on-things/guides/calendar-connection/">connect your calendar</a> so deadlines place themselves.</p>
+  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+  </div>
+</footer>
+
+<script src="/keeping-ai-on-things/assets/guide.js"></script>
+</body>
+</html>
