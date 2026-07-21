@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keeping AI on Things Resource Hub | CNAT Title</title>
+<meta name="description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="canonical" href="https://classes.cnattitle.com/keeping-ai-on-things/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/">
+<meta property="og:title" content="Keeping AI on Things Resource Hub | CNAT Title">
+<meta property="og:description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<meta property="og:site_name" content="CNAT Education">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keeping AI on Things Resource Hub | CNAT Title">
+<meta name="twitter:description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F1A2E; --navy-mid:#162240; --navy-light:#1B2A4A;
+    --cyan:#00C8F0; --gold:#FFB833; --gold-soft:#FFD175;
+    --white:#F2F6FA; --green:#36D97A; --coral:#FF7373;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--navy);color:var(--white);font-family:'Source Sans 3',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 55%,#0a2540 100%);padding:44px 0 34px;text-align:center;border-bottom:3px solid var(--cyan);}
+  header .kicker{text-transform:uppercase;letter-spacing:4px;font-size:.8rem;opacity:.7;margin-bottom:.6rem;}
+  header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,9vw,4rem);letter-spacing:3px;line-height:1;}
+  header p.sub{font-size:clamp(1rem,4vw,1.25rem);opacity:.9;font-weight:300;margin-top:.5rem;}
+  header p.by{opacity:.5;font-size:.85rem;margin-top:1rem;}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(15,26,46,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 0;}
+  nav.toc .wrap{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  nav.toc a{flex:0 0 auto;color:var(--white);text-decoration:none;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(0,200,240,.3);border-radius:20px;opacity:.85;}
+  nav.toc a:active{background:var(--cyan);color:var(--navy);}
+  section{padding:34px 0 8px;}
+  h2{font-family:'Oswald',sans-serif;font-size:clamp(1.5rem,6vw,2rem);font-weight:500;color:var(--cyan);margin-bottom:.4rem;}
+  h2 .em{color:var(--gold);}
+  .lead{opacity:.85;margin-bottom:1.2rem;font-size:1.02rem;}
+  h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.2rem;margin-bottom:.35rem;}
+  .card{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;margin-bottom:16px;}
+  .card.cyan{border-left:5px solid var(--cyan);}
+  .card.gold{border-left:5px solid var(--gold);}
+  .card.green{border-left:5px solid var(--green);}
+  .card.red{border-left:5px solid var(--coral);}
+  .prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:.5rem;}
+  .tagline{font-size:.95rem;opacity:.8;margin-bottom:.75rem;}
+  .num{font-family:'Bebas Neue',sans-serif;background:var(--cyan);color:var(--navy);width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;flex:0 0 auto;}
+  pre{background:#0a1120;border:1px solid rgba(0,200,240,.25);border-radius:10px;padding:16px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.86rem;line-height:1.5;color:#d6e6f2;white-space:pre-wrap;word-break:break-word;}
+  .copy-btn{font-family:'Oswald',sans-serif;background:var(--cyan);color:var(--navy);border:none;border-radius:8px;padding:8px 16px;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-weight:500;flex:0 0 auto;}
+  .copy-btn:active{transform:scale(.97);}
+  .copy-btn.done{background:var(--green);}
+  ol.recipe{list-style:none;counter-reset:step;}
+  ol.recipe li{counter-increment:step;position:relative;padding:8px 0 8px 42px;border-bottom:1px solid rgba(255,255,255,.07);}
+  ol.recipe li:last-child{border-bottom:none;}
+  ol.recipe li::before{content:counter(step);position:absolute;left:0;top:8px;background:var(--gold);color:var(--navy);font-family:'Bebas Neue',sans-serif;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+  ul.plain{list-style:none;}
+  ul.plain li{padding:6px 0 6px 26px;position:relative;}
+  ul.plain li::before{content:'\2192';position:absolute;left:0;color:var(--cyan);font-weight:700;}
+  ul.check li::before{content:'\2610';color:var(--gold);font-size:1.1rem;top:4px;}
+  .tool-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+  .tool-job{font-family:'Oswald',sans-serif;color:var(--gold-soft);font-size:1.05rem;}
+  .muted{opacity:.6;font-size:.85rem;}
+  .disclaimer{background:rgba(255,184,51,.08);border:1px solid rgba(255,184,51,.3);border-radius:12px;padding:14px 18px;font-size:.9rem;}
+  footer{text-align:center;padding:34px 20px 48px;margin-top:24px;border-top:1px solid rgba(255,255,255,.1);opacity:.6;font-size:.85rem;}
+  a.inline{color:var(--cyan);}
+  @media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}}
+  @media print{
+    nav.toc{display:none;}.copy-btn{display:none;}body{background:#fff;color:#111;}
+    header{background:#fff;color:#111;border-bottom:2px solid #111;}pre{background:#f4f4f4;color:#111;border-color:#ccc;}
+    .card{border-color:#ccc;} h2{color:#0F1A2E;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">CNAT Title &middot; Class Resource Hub</p>
+    <h1>Keeping AI on Things</h1>
+    <p class="sub">Practical AI for Real Estate Agents</p>
+    <p class="by">Everything from today's class: prompts, tools, recipes, and your action plan.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#prompts">Prompts</a>
+    <a href="#recipes">Demo Recipes</a>
+    <a href="#tools">Tools</a>
+    <a href="#guardrails">Guardrails</a>
+    <a href="#action">This Week</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- PROMPTS -->
+  <section id="prompts">
+    <h2>The 5 <span class="em">Prompts</span></h2>
+    <p class="lead">Copy any prompt, paste it into whatever AI assistant you use, and replace the <strong>[bracketed]</strong> parts with your details. That's it.</p>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3><span class="num">1</span>&nbsp; One Listing &rarr; A Full Campaign</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+      <p class="tagline">Turn a single listing into a sphere email, three social captions, and an open-house angle, all in one pass.</p>
+      <pre id="p1">You are my real estate marketing assistant. Create a complete launch package for this new listing.
+
+LISTING:
+- Address / area: [neighborhood or street, city]
+- Price: [$]
+- Beds / baths / size: [e.g. 4 bed / 3.5 bath / 4,200 sqft]
+- 2-3 standout features: [e.g. resort pool, chef's kitchen, quiet cul-de-sac]
+- One lifestyle hook: [e.g. walkable to the village, entertainer's backyard]
+- My voice: [warm and personal / polished and concise / high-energy]
+
+Produce, clearly labeled:
+1. A short "just listed" email to my database (subject line + 120-150 words), ending with a soft "know someone who'd love it?" ask.
+2. Three social captions with different angles: feature-forward, lifestyle, and scarcity. Add 3-5 relevant hashtags each.
+3. An open-house angle: a one-line hook, three talking points, and one question that starts a conversation with every buyer who walks in.
+
+Keep fair-housing safe: describe the home and lifestyle, never the ideal buyer or neighborhood demographics.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3><span class="num">2</span>&nbsp; Conversation &rarr; Client Dossier + Tasks</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+      <p class="tagline">Paste messy consult notes or a voice-note transcript and get a clean, one-page client record plus a next-action task list.</p>
+      <pre id="p2">You are my executive assistant. Below are my raw notes / transcript from a client conversation. Turn them into a clean, one-page dossier I can attach to their record.
+
+CONVERSATION:
+[paste your messy notes or voice-note transcript here]
+
+Extract and label clearly:
+1. Must-haves (non-negotiable requirements)
+2. Nice-to-haves (don't filter on these)
+3. Dealbreakers (what eliminates a property)
+4. Timeline + key dates
+5. Financing context (budget, pre-approval, lender)
+6. Privacy / communication preferences
+7. Lifestyle & family details worth remembering
+8. Open questions I still need to answer
+
+Then give me a NEXT-ACTION TASK LIST: each task with an owner (me / lender / client) and a deadline.
+
+Only use what's in the notes. If something wasn't mentioned, mark it "not discussed" - do not guess.</pre>
+    </div>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3><span class="num">3</span>&nbsp; Next-Best-Action Queue</h3><button class="copy-btn" data-target="p3">Copy</button></div>
+      <p class="tagline">Decide who to reach out to, when, and how, without staring at your whole database.</p>
+      <pre id="p3">You are my business-development assistant. Below is a list of contacts from my CRM (client database). For each one I've included the last time we talked, their role, and one recent note.
+
+CONTACTS:
+[paste 10-20 rows: name | role (past client / referral partner / active lead) | last contact date | one recent note]
+
+For each contact, recommend:
+1. The single next action (call, text, email, drop-by, handwritten note)
+2. Why now (the trigger)
+3. A suggested timeframe (today / this week / this month)
+
+Then rank the top 5 I should do FIRST and explain the ranking in one line each.
+Do not write the messages - just the action plan. I'll decide what to say.</pre>
+    </div>
+
+    <div class="card gold">
+      <div class="prompt-head"><h3><span class="num">4</span>&nbsp; Neighborhood Market-Update Post</h3><button class="copy-btn" data-target="p4">Copy</button></div>
+      <p class="tagline">Turn a few local numbers into a value post + sphere email that positions you as the area expert.</p>
+      <pre id="p4">You are my content assistant. Turn these local market numbers into a value-first update for my audience - not a sales pitch.
+
+AREA: [neighborhood / zip]
+NUMBERS (most recent I have):
+- Median sale price + year-over-year change: [ ]
+- Active listings / months of supply: [ ]
+- Average days on market: [ ]
+- One notable trend: [e.g. cash buyers, new construction, low inventory]
+
+Produce:
+1. A short social post (100-130 words) that explains what these numbers mean for a normal buyer or seller, in plain English. One clear takeaway.
+2. A matching email to my database with a subject line and a soft call to action ("reply if you want the full picture for your street").
+
+Neutral, factual, fair-housing safe. Cite the numbers as "recent local data," and remind me to double-check figures before posting.</pre>
+    </div>
+
+    <div class="card cyan">
+      <div class="prompt-head"><h3><span class="num">5</span>&nbsp; Weekly Transaction Status Brief</h3><button class="copy-btn" data-target="p5">Copy</button></div>
+      <p class="tagline">Turn a deal's moving parts into a calm client update and an internal checklist, so nothing slips.</p>
+      <pre id="p5">You are my transaction coordinator. Based on the deal details below, write two things.
+
+DEAL:
+- Property / client: [ ]
+- Contract date & closing date: [ ]
+- Key upcoming deadlines: [option period, financing, appraisal, inspection, etc.]
+- What's done / what's pending: [ ]
+- Any issues or risks: [ ]
+
+Produce:
+1. A CLIENT-FACING weekly update (short, reassuring, plain English): what happened this week, what's next, anything I need from them.
+2. An INTERNAL action checklist for me: every open item with a deadline and who owns it, flagging anything at risk of being late.
+
+Keep the client version free of jargon. Keep the internal version blunt.</pre>
+    </div>
+  </section>
+
+  <!-- RECIPES -->
+  <section id="recipes">
+    <h2>The Two <span class="em">Demo Recipes</span></h2>
+    <p class="lead">The exact steps from today, so you can repeat them cold.</p>
+
+    <div class="card green">
+      <h3>Recipe A: One Listing to a Full Campaign</h3>
+      <ol class="recipe">
+        <li>Open your AI assistant. Copy <strong>Prompt 1</strong> above.</li>
+        <li>Fill the brackets with one real listing (yours or a colleague's).</li>
+        <li>Run it. Read the email, the three captions, and the open-house angle.</li>
+        <li>Edit to sound like <em>you</em>. AI gets you 80% there, your voice does the rest.</li>
+        <li>Send the email to your sphere and post one caption <strong>today</strong>. Done beats perfect.</li>
+      </ol>
+    </div>
+
+    <div class="card green">
+      <h3>Recipe B: A Conversation to a Client Dossier</h3>
+      <ol class="recipe">
+        <li>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
+        <li>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
+        <li>Run it. You'll get a one-page dossier plus a task list.</li>
+        <li>Scan it for accuracy and fix anything the AI misread.</li>
+        <li>Attach the dossier to the client's record and drop the tasks into your CRM. Never lose a detail again.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <h2>A <span class="em">Starter</span> Tool List</h2>
+    <p class="lead">Organized by the job, not the brand. Pick one per row and learn it well before adding more.</p>
+    <div class="tool-grid">
+      <div class="card">
+        <div class="tool-job">General AI assistant</div>
+        <p class="muted">Your everyday chat tool for the prompts above. Popular options: ChatGPT, Claude, Gemini, Copilot.</p>
+      </div>
+      <div class="card">
+        <div class="tool-job">Meeting / call notes</div>
+        <p class="muted">Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p>
+      </div>
+      <div class="card">
+        <div class="tool-job">Social scheduling</div>
+        <p class="muted">Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p>
+      </div>
+      <div class="card">
+        <div class="tool-job">Your CRM (client database)</div>
+        <p class="muted">The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p>
+      </div>
+    </div>
+    <div class="disclaimer" style="margin-top:14px;">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
+  </section>
+
+  <!-- GUARDRAILS -->
+  <section id="guardrails">
+    <h2>Four <span class="em">Guardrails</span></h2>
+    <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
+    <div class="card red">
+      <ul class="plain">
+        <li><strong>Fair Housing applies to AI.</strong> HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</li>
+        <li><strong>Never feed it private data.</strong> No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</li>
+        <li><strong>Human review, every time.</strong> AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</li>
+        <li><strong>Keep your claims honest.</strong> Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ACTION -->
+  <section id="action">
+    <h2>Do This <span class="em">Week</span></h2>
+    <div class="card gold">
+      <ul class="plain check">
+        <li><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</li>
+        <li><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</li>
+        <li><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
+    <p style="margin-top:6px;">Questions about a class? Reach out to your CNAT Title contact.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-target'));
+      var text=el.innerText;
+      function ok(){var t=btn.textContent;btn.textContent='Copied!';btn.classList.add('done');setTimeout(function(){btn.textContent=t;btn.classList.remove('done');},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fallback);}else{fallback();}
+      function fallback(){var r=document.createRange();r.selectNode(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
+    });
+  });
+</script>
+</body>
+</html>
