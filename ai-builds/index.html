@@ -306,6 +306,54 @@ body.client .cnatlogo{display:inline-flex}
 .cprog{height:2px; background:var(--hair); margin:0 0 18px; position:relative}
 .cprog i{position:absolute; left:0; top:0; bottom:0; background:var(--gold); transition:width .2s ease}
 
+/* interactive flowchart */
+.fchart{border:1px solid var(--hair2); background:var(--paper); padding:16px 16px 4px; margin:4px 0 14px}
+.fchart .fhead{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; gap:10px}
+.fchart .flabel{font-family:'Libre Franklin',sans-serif; font-size:10px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--muted)}
+.fwalk{
+  border:1px solid var(--hair2); background:var(--paper); color:var(--ink); cursor:pointer;
+  font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  padding:6px 12px; min-height:30px; border-radius:0;
+}
+.fwalk:hover{border-color:var(--gold)}
+.fwalk.walking{background:var(--green); border-color:var(--green); color:var(--paper)}
+.fcol{display:flex; flex-direction:column; max-width:540px; margin:0 auto}
+.fstep-wrap{display:flex; gap:10px; align-items:stretch}
+.fnum2{font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:15px; color:var(--gold); flex:0 0 20px; padding-top:9px; text-align:right}
+.fnode{
+  flex:1; text-align:left; border:1px solid var(--hair2); background:var(--paper);
+  padding:10px 12px; font-family:'Libre Franklin',sans-serif; font-size:13px; font-weight:600;
+  line-height:1.45; color:var(--ink); cursor:pointer; border-radius:0;
+  display:flex; gap:10px; align-items:baseline; min-height:44px;
+}
+.fnode:hover{border-color:var(--gold)}
+.fnode.on{border-color:var(--gold); background:var(--paper2); box-shadow:inset 3px 0 0 var(--gold)}
+.fnode:focus-visible{outline:2px solid var(--green); outline-offset:2px}
+.ftag{
+  font-family:ui-monospace,Menlo,monospace; font-size:8.5px; font-weight:700;
+  letter-spacing:.12em; color:var(--muted); flex:0 0 auto; padding-top:2px;
+}
+.t-trigger{border-left:3px solid var(--gold)}
+.t-ai{border-top:2px solid var(--green)} .t-ai .ftag{color:var(--green)}
+.t-human{border-left:3px solid var(--rust)} .t-human .ftag{color:var(--rust)}
+.t-data{border-top:3px double var(--hair2); border-bottom:3px double var(--hair2)}
+.t-out{background:var(--paper2)}
+.fconn{width:1px; height:20px; background:var(--hair2); margin:0 auto; position:relative}
+.fconn::after{content:""; position:absolute; bottom:0; left:-3.5px; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--hair2)}
+.fside-wrap{display:flex; gap:10px}
+.fside-wrap .fnum2{visibility:hidden}
+.fside{
+  flex:1; margin:8px 0 0 26px; position:relative; border-style:dashed; font-weight:500;
+  color:var(--muted); font-size:12.5px;
+}
+.fside::before{
+  content:""; position:absolute; left:-17px; top:-14px; width:16px; height:calc(50% + 14px);
+  border-left:1px dashed var(--hair2); border-bottom:1px dashed var(--hair2);
+}
+.fdetail{border-top:1px solid var(--hair2); margin-top:16px; padding:12px 2px; font-size:14.5px; line-height:1.6; min-height:60px}
+.fdetail b{font-family:'Libre Franklin',sans-serif; font-size:12.5px}
+.fdetail .fd-tag{font-family:ui-monospace,Menlo,monospace; font-size:9px; letter-spacing:.12em; color:var(--gold); margin-right:8px; text-transform:uppercase}
+
 /* section cross-reference links */
 .secref{
   border:0; background:none; padding:0; margin:0; cursor:pointer;
@@ -532,6 +580,148 @@ const TOOL_MATCH = [
 function toolLogo(title){
   for(const [re,d] of TOOL_MATCH){ if(re.test(title) && TOOL_LOGOS[d]) return '<img class="tlogo" alt="" src="data:image/png;base64,'+TOOL_LOGOS[d]+'">'; }
   return '';
+}
+
+const FLOW_TAGS = {trigger:'TRIGGER', system:'SYSTEM', ai:'AI', human:'YOU', data:'DATA', out:'RESULT'};
+const FLOWS = {
+b01:[
+ {t:'trigger',l:'You draw the farm boundary',d:'One deliberate choice: 300 to 800 homes, 6 percent or better turnover. Everything downstream inherits this boundary.'},
+ {t:'data',l:'TitlePro seed export becomes the farm database',d:'One record per property in your CRM or sheet: owner, mailing address, absentee flag, deed date, last sale. Bought once for about seven cents a home.'},
+ {t:'system',l:'Weekly check of your own IDX search URL',d:'A routine opens your branded search page with the boundary and Pending/Sold filters baked into the URL and reads the structured results. Nothing scraped, nothing clicked.',
+  s:{t:'system',l:'No feed? Quarterly TitlePro re-pull diff',d:'A full boundary re-pull every quarter, diffed on deed dates, catches every transfer including off-market ones. Slower, but it never breaks.'}},
+ {t:'ai',l:'AI diffs results against the farm list',d:'Detected sales and listings are matched to farm records by address and returned as clean JSON. A 7-cent TitlePro pull verifies the deed when it records.'},
+ {t:'system',l:'Matched records update; sale plays fire',d:'Status, sale date, price, and new owner update on the contact. Tasks appear: comp postcard to the surrounding homes, welcome letter, absentee letter when the mailing address differs.'},
+ {t:'ai',l:'Monthly: stats + activity become your farm report',d:'The saved market-area link and the month\'s detected activity go to the AI, which writes the report, postcard copy, social caption, and door-knock talking points, citing real streets.'},
+ {t:'human',l:'You review, then mail and knock',d:'Nothing auto-sends to the farm, ever. You approve the report, send it to print, and say the talking points at real doors.'},
+],
+b02:[
+ {t:'trigger',l:'Executed contract PDF arrives',d:'Uploaded to the Project (Starter) or emailed into a watched inbox (Full Build) the moment the file goes executed.'},
+ {t:'ai',l:'AI extracts every date to a structured timeline',d:'Effective date, option period, earnest money, financing and appraisal deadlines, HOA docs, title commitment, closing. Returned as structured data, not prose.',
+  s:{t:'ai',l:'Blank effective date? It refuses to guess',d:'Missing or ambiguous fields come back flagged for a human instead of invented. That refusal is the trust feature.'}},
+ {t:'system',l:'CRM tasks + calendar events created',d:'Each deadline lands as a dated task and a calendar event labeled with what happens if you miss it.'},
+ {t:'ai',l:'Intro emails drafted',d:'Lender, title company, and co-op agent intros written from the contract\'s actual parties and dates, sitting in drafts.'},
+ {t:'human',l:'You verify against the paper, then send',d:'Two minutes with the contract: confirm the effective date and count the option days yourself. Then the drafts go out under your name.'},
+ {t:'out',l:'The file runs itself',d:'Every date is on the calendar with context. No 9 PM highlighter sessions, no day-4 surprises.'},
+],
+b03:[
+ {t:'trigger',l:'Nightly schedule fires',d:'A scheduled workflow runs while you sleep. No input needed.'},
+ {t:'data',l:'CRM contacts pulled via API',d:'The full database with custom fields: purchase dates, tags, last activity, addresses.'},
+ {t:'ai',l:'Revenue signals scored',d:'Home anniversaries, 5-to-10-year tenure, engaged-then-cold leads, lease-end renters, and activity near their address, weighted into a daily shortlist.',
+  s:{t:'data',l:'Optional: MLS activity cross-reference',d:'A feed or weekly hotsheet export adds the "new listing near your contact" signal. The build works without it.'}},
+ {t:'ai',l:'Top five picked, openers drafted',d:'Each name arrives with the reason it surfaced, a talking point, and a text or email opener written in your voice.'},
+ {t:'system',l:'Morning digest lands',d:'The five names hit your inbox (or appear as CRM tasks) before your coffee.'},
+ {t:'human',l:'You make five calls that matter',d:'The AI never contacts anyone. It hands you the list; the relationship work stays yours.'},
+],
+b04:[
+ {t:'trigger',l:'A past client hits their closing anniversary',d:'A workflow watches the home_anniversary field and fires on the date, eleven months after the Post-Closing Engine set it.'},
+ {t:'data',l:'Purchase data and fresh comps gathered',d:'Original price and date from the CRM, current comps from your MLS data source.',
+  s:{t:'data',l:'No feed? RPR or Cloud CMA export',d:'A manually exported report feeds the same prompt. Five extra minutes, same output.'}},
+ {t:'ai',l:'Equity one-pager drafted',d:'What they paid, an estimated range today, equity gained, neighborhood activity, and the required not-an-appraisal disclaimer.'},
+ {t:'human',l:'You review the number before anything moves',d:'The hard gate: no value estimate leaves the building without your eyes on the range and the comps behind it.'},
+ {t:'system',l:'Report sends from your CRM',d:'Delivered on the anniversary with a soft CTA. Replies land in your inbox like any other conversation.'},
+ {t:'out',l:'The listing conversation starts itself',d:'A yearly touch nobody else sends, built entirely from data you already had.'},
+],
+b05:[
+ {t:'trigger',l:'New lead hits the CRM',d:'Website form, portal lead, Facebook ad, or a yard-sign QR scan. A tag like new-lead starts the clock.'},
+ {t:'system',l:'First text sends in under 60 seconds',d:'From your registered business number, identified as your assistant, 24/7. This single step captures most of the value.'},
+ {t:'ai',l:'Every reply gets a drafted next question',d:'The AI holds a natural conversation one question at a time: buying or selling, area, timeline, lender. Short, human-sounding, on-script.',
+  s:{t:'human',l:'You type in the thread: kill switch',d:'The moment a human replies in the conversation, a tag silences the AI instantly. It stays silent until you turn it back on.'}},
+ {t:'system',l:'Qualified lead gets booking options',d:'When the answers signal readiness, the AI sends your booking link or proposes two specific times.'},
+ {t:'data',l:'Appointment + qualification notes land',d:'The meeting hits your calendar with the whole conversation and answers attached to the contact.'},
+ {t:'human',l:'You take the booked conversation',d:'The AI covered the first five minutes you can never seem to be available for. The relationship is yours from here.'},
+],
+b06:[
+ {t:'trigger',l:'You record a two-minute voice note',d:'After the showing day, in the car: what they saw, what they loved, what worried them. With the buyer present, consent on tape.'},
+ {t:'system',l:'Transcript syncs automatically',d:'Plaud auto-sync or Otter export delivers the raw transcript without you touching a keyboard.'},
+ {t:'ai',l:'Three outputs drafted at once',d:'A polished recap email to the buyer, an updated preference profile, and your own action items, all from one rambling recording.'},
+ {t:'human',l:'One-click review and send',d:'The recap is a draft in your CRM or inbox. You read it, adjust, and send. It never goes out untouched.'},
+ {t:'data',l:'The preference profile compounds',d:'Budget shifts, dealbreakers, and must-haves accumulate on the contact so every future match and conversation gets smarter.'},
+],
+b07:[
+ {t:'trigger',l:'An address comes in',d:'You type it, or a seller lands on your what\'s-my-home-worth page and enters theirs.'},
+ {t:'data',l:'Comps gathered',d:'From your MLS feed if you have one, or a 5-minute export of 4 to 6 comps from your MLS.',
+  s:{t:'data',l:'Capture page books the appointment',d:'The public version returns a teaser range, not a number, and its real job is booking the listing conversation with the lead tagged in your CRM.'}},
+ {t:'ai',l:'Priced with written reasoning',d:'A suggested range with the paragraph portals cannot produce: why these comps, which adjustments, and what would change the answer. Plus a Texas seller net sheet at a chosen price.'},
+ {t:'human',l:'You sanity-check comps and range',d:'A CMA is your professional opinion. You verify the comps are honest before your name goes on it.'},
+ {t:'out',l:'Branded package in fifteen minutes',d:'Most sellers hire the agent who answered first and best. That is now you, by default.'},
+],
+b08:[
+ {t:'trigger',l:'A new listing goes live',d:'The MLS data sheet and the photo folder are all the system needs.'},
+ {t:'ai',l:'Copy written from the data sheet',d:'Headline, description, and feature blocks written from actual fields, checked against invented-amenity mistakes.'},
+ {t:'system',l:'One-page site deploys with a QR code',d:'The template fills, publishes to your domain (address as the URL), and the yard-sign QR generates automatically.'},
+ {t:'data',l:'Every form lead lands tagged',d:'The contact form wires to your CRM with source tracking, so sign scans become measurable leads.'},
+ {t:'out',l:'The sign works around the clock',d:'Every drive-by becomes a tracked visit with your branding, not a portal search that shows them nine other agents.'},
+],
+b09:[
+ {t:'trigger',l:'Deal stage changes to Closed',d:'The pipeline change (or your title company\'s closing notification) is the only trigger needed.'},
+ {t:'ai',l:'Closing package drafted',d:'Just Closed graphic and caption, a personalized review request text and email, all waiting for approval.'},
+ {t:'human',l:'You approve the post and the ask',d:'Client permission for the post, your eyes on the caption, then send. Nothing publishes itself.'},
+ {t:'system',l:'Review sequence runs',d:'Text day one, email day two, one polite nudge a week later that skips itself if the review already appeared.'},
+ {t:'data',l:'The anniversary loop arms',d:'Closing date copies into the home_anniversary field, and the Home Anniversary build takes it from there in eleven months.'},
+ {t:'out',l:'Reviews compound into the next listing',d:'Every closing feeds the Google profile referrals check first, and seeds the touch that wins the next cycle.'},
+],
+b10:[
+ {t:'trigger',l:'Any copy is ready to publish',d:'Listing description, social post, ad, farm mailer. The gate sits between written and published.'},
+ {t:'ai',l:'Checked against the rules that end careers',d:'Fair housing steering and protected-class language, TREC advertising requirements, MLS remarks rules, misrepresentation risk.',
+  s:{t:'ai',l:'FAIL: flagged phrases + compliant rewrite',d:'Every flag explains why it is risky and offers a rewrite that still sells. Fix and run it again.'}},
+ {t:'system',l:'PASS/FAIL verdict with receipts',d:'A pass means screened, not safe: facts, permissions, and photo rights are still on you.'},
+ {t:'human',l:'You publish only what passed',d:'The habit that lets a broker say yes to AI content: every piece through the gate, every time.'},
+ {t:'out',l:'A paper trail of diligence',d:'A saved log of checks is worth a great deal the day a complaint arrives.'},
+],
+b11:[
+ {t:'trigger',l:'An agent texts a property address',d:'"Status on 123 Main St" to the status line, any hour.'},
+ {t:'system',l:'Permission check first',d:'The sender\'s number maps to their files only. No match, no answer, just a polite referral to the closer.',
+  s:{t:'human',l:'Wire questions hit a hard block',d:'Anything touching wire instructions gets a refusal plus instant human escalation. The rule lives in the prompt, a keyword filter, and training.'}},
+ {t:'data',l:'Production data looked up',d:'The nightly sync from the title production system (or the closer-maintained status sheet) answers from data, never from memory.'},
+ {t:'ai',l:'Plain-English status drafted',d:'File opened, commitment issued, cleared to close, what is outstanding, and who the ball is with.'},
+ {t:'system',l:'Reply lands in seconds',d:'The agent gets their answer; escalations and unknowns CC the closer so nothing silently dead-ends.'},
+ {t:'out',l:'Status calls disappear',d:'The office phone stops ringing with questions a database can answer, and closers close.'},
+],
+};
+
+function buildFlow(d){
+  const flow = FLOWS[d.id]; if(!flow) return null;
+  const box=document.createElement('div'); box.className='fchart';
+  const head=document.createElement('div'); head.className='fhead';
+  head.innerHTML='<span class="flabel">The system at a glance</span>';
+  const walkBtn=document.createElement('button'); walkBtn.className='fwalk'; walkBtn.textContent='Walk through';
+  head.appendChild(walkBtn); box.appendChild(head);
+  const col=document.createElement('div'); col.className='fcol'; box.appendChild(col);
+  const detail=document.createElement('div'); detail.className='fdetail'; box.appendChild(detail);
+  const nodes=[];
+  flow.forEach((st,i)=>{
+    const wrap=document.createElement('div'); wrap.className='fstep-wrap';
+    wrap.innerHTML='<span class="fnum2">'+(i+1)+'</span>';
+    const b=document.createElement('button'); b.className='fnode t-'+st.t; b.type='button';
+    b.innerHTML='<span class="ftag">'+FLOW_TAGS[st.t]+'</span><span>'+st.l+'</span>';
+    wrap.appendChild(b); col.appendChild(wrap);
+    nodes.push({btn:b, st:st});
+    if(st.s){
+      const sw=document.createElement('div'); sw.className='fstep-wrap fside-wrap';
+      sw.innerHTML='<span class="fnum2">0</span>';
+      const sb=document.createElement('button'); sb.className='fnode fside t-'+st.s.t; sb.type='button';
+      sb.innerHTML='<span class="ftag">'+FLOW_TAGS[st.s.t]+'</span><span>'+st.s.l+'</span>';
+      sw.appendChild(sb); col.appendChild(sw);
+      nodes.push({btn:sb, st:st.s, side:true});
+    }
+    if(i<flow.length-1){ const c=document.createElement('div'); c.className='fconn'; col.appendChild(c); }
+  });
+  let walkTimer=null, walkIdx=-1;
+  function select(i){
+    nodes.forEach((n,j)=>n.btn.classList.toggle('on', j===i));
+    const n=nodes[i];
+    detail.innerHTML='<span class="fd-tag">'+FLOW_TAGS[n.st.t]+'</span><b>'+n.st.l+'.</b> '+n.st.d;
+  }
+  function stopWalk(){ if(walkTimer){ clearInterval(walkTimer); walkTimer=null; walkBtn.classList.remove('walking'); walkBtn.textContent='Walk through'; } }
+  nodes.forEach((n,i)=>n.btn.addEventListener('click',()=>{ stopWalk(); select(i); }));
+  walkBtn.addEventListener('click',()=>{
+    if(walkTimer){ stopWalk(); return; }
+    walkIdx=-1; walkBtn.classList.add('walking'); walkBtn.textContent='Stop';
+    const step=()=>{ walkIdx++; if(walkIdx>=nodes.length){ stopWalk(); return; } select(walkIdx); };
+    step(); walkTimer=setInterval(step, 2600);
+  });
+  detail.innerHTML='<span class="fd-tag">&nbsp;</span>Tap any step to see what happens there, or press Walk through.';
+  return box;
 }
 
 const SECTION_SHORT = [
@@ -781,6 +971,14 @@ function showPane(d,tabs,orig2tab,i,scroll){
   pane.appendChild(head);
 
   let chkDiv=null, chkLabel=null;
+  if(t.label==='How It Works'){
+    const chart=buildFlow(d);
+    if(chart){
+      pane.appendChild(chart);
+      const dv=document.createElement('div'); dv.className='subdiv'; dv.textContent='Step by step';
+      pane.appendChild(dv);
+    }
+  }
   t.parts.forEach((part,pi)=>{
     const pd=document.createElement('div'); pd.className='part';
     if(pi>0){
