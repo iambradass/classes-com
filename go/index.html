@@ -145,7 +145,10 @@ function unlock(remember){
   wb.style.display='block';
   try{ if(remember) localStorage.setItem(KEY,'1'); }catch(e){}
 }
-try{ if(localStorage.getItem(KEY)==='1') unlock(false); }catch(e){}
+try{
+  if(location.search.indexOf('reset')>-1){ localStorage.removeItem(KEY); }
+  else if(localStorage.getItem(KEY)==='1') unlock(false);
+}catch(e){}
 
 form.addEventListener('submit', function(ev){
   ev.preventDefault();
