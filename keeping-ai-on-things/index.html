@@ -204,6 +204,45 @@ ol.mini-rail li strong{color:var(--white);}
 footer{text-align:center;padding:36px 20px 48px;border-top:1px solid var(--line);color:var(--faint);font-size:.86rem;}
 footer b{color:var(--dim);font-weight:600;}
 
+/* ── v6 energy: per-level accents + paper/tint views ── */
+:root{--ter:#CE7A56;--ter-soft:#E09B7C;--ter-dim:rgba(206,122,86,.12);--ter-line:rgba(206,122,86,.4);}
+h2{font-size:clamp(1.75rem,6vw,2.55rem);}
+.level-head.l1 b{color:var(--gold-soft);}
+.level-head.l1 .lv i.on{background:var(--gold);}
+.level-head.l2 b{color:#9CC3E2;}
+.level-head.l2 .lv i.on{background:var(--cyan);}
+.level-head.l3 b{color:var(--ter-soft);}
+.level-head.l3 .lv i.on{background:var(--ter);}
+.level-head.l1 + .play-grid .play-ic{background:var(--gold-dim);border-color:var(--gold-line);color:var(--gold-soft);}
+.level-head.l1 + .play-grid .play-meta svg,.level-head.l1 + .play-grid .play-meta .arrow{color:var(--gold-soft);}
+.level-head.l1 + .play-grid a.play:hover{border-color:var(--gold-line);}
+.level-head.l3 + .play-grid .play-ic{background:var(--ter-dim);border-color:var(--ter-line);color:var(--ter-soft);}
+.level-head.l3 + .play-grid .play-meta svg,.level-head.l3 + .play-grid .play-meta .arrow{color:var(--ter-soft);}
+.level-head.l3 + .play-grid a.play:hover{border-color:var(--ter-line);}
+.level-head.l3 + .play-grid a.play::after{background:radial-gradient(ellipse 75% 65% at 100% 0%,rgba(206,122,86,.1),transparent 60%);}
+
+.view.paper{background:#F3EDE2;color:#212B3A;}
+.view.paper .view-head h2{color:#212B3A;}
+.view.paper h2 .em{color:#A9854A;}
+.view.paper .lead{color:#5C6678;}
+.view.paper .lead strong{color:#212B3A;}
+.view.paper a.inline{color:#3E6C93;text-decoration-color:rgba(62,108,147,.4);}
+.view.paper .tool{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
+.view.paper .tool:hover{border-color:rgba(62,108,147,.4);}
+.view.paper .tool b{color:#212B3A;}
+.view.paper .tool p{color:#5C6678;}
+.view.paper .tool .ic{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.35);color:#3E6C93;}
+.view.paper .note{background:rgba(201,164,92,.14);border-color:rgba(169,133,74,.4);color:#5C6678;}
+.view.paper .check-card{background:#fff;border-color:rgba(169,133,74,.45);box-shadow:0 14px 40px rgba(33,43,58,.09);backdrop-filter:none;}
+.view.paper .check-item:hover{background:rgba(33,43,58,.03);}
+.view.paper .check-text{color:#4A5568;}
+.view.paper .check-text strong{color:#212B3A;}
+.view.paper .check-text a{color:#3E6C93;}
+.view.paper .check-box{border-color:rgba(169,133,74,.6);}
+.view.tint{background:linear-gradient(180deg,rgba(201,127,127,.08),rgba(201,127,127,.015));}
+details.prompt{color:var(--white);}
+details.prompt .pr-text span{color:var(--faint);}
+
 @media print{
   .bg-fx,nav.tabsbar,.copy-btn{display:none !important;}
   body{background:#fff;color:#111;}
@@ -273,10 +312,10 @@ footer b{color:var(--dim);font-weight:600;}
   </div>
 </nav>
 
-<main class="wrap">
+<main>
 
   <!-- PLAYBOOKS VIEW -->
-  <section class="view on" id="view-playbooks">
+  <section class="view on" id="view-playbooks"><div class="wrap">
     <div class="view-head">
       <h2>The Playbook <span class="em">Board</span></h2>
       <p class="lead">What "using AI to run your business" actually looks like. Every play opens a step-by-step guide with the whole process and the result up front. Start at Level 1 tonight.</p>
@@ -298,7 +337,7 @@ footer b{color:var(--dim);font-weight:600;}
       </div>
     </a>
 
-    <div class="level-head"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
+    <div class="level-head l1"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
     <div class="play-grid">
       <a class="play" href="guides/csv-to-campaign/">
         <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-table"/></svg></div><div class="play-name">CSV to Campaign</div></div>
@@ -322,7 +361,7 @@ footer b{color:var(--dim);font-weight:600;}
       </a>
     </div>
 
-    <div class="level-head"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span><b>Level 2 &middot; Connected</b><span>one-time setup</span></div>
+    <div class="level-head l2"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span><b>Level 2 &middot; Connected</b><span>one-time setup</span></div>
     <div class="play-grid">
       <a class="play" href="guides/connect-your-crm/">
         <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="play-name">Connect Your CRM</div></div>
@@ -341,7 +380,7 @@ footer b{color:var(--dim);font-weight:600;}
       </a>
     </div>
 
-    <div class="level-head"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
+    <div class="level-head l3"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
     <div class="play-grid">
       <a class="play" href="guides/market-research-routines/">
         <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="play-name">Market Research Routines</div></div>
@@ -359,10 +398,10 @@ footer b{color:var(--dim);font-weight:600;}
         <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build in a week<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
-  </section>
+  </div></section>
 
   <!-- PROMPTS VIEW -->
-  <section class="view" id="view-prompts">
+  <section class="view paper" id="view-prompts"><div class="wrap">
     <div class="view-head">
       <h2>The 5 <span class="em">Prompts</span></h2>
       <p class="lead">Tap a prompt to open it, copy it into whatever AI assistant you use, and replace the <strong>[bracketed]</strong> parts with your details. That's it.</p>
@@ -476,10 +515,10 @@ Produce:
 Keep the client version free of jargon. Keep the internal version blunt.</pre>
       </div>
     </details>
-  </section>
+  </div></section>
 
   <!-- RECIPES VIEW -->
-  <section class="view" id="view-recipes">
+  <section class="view" id="view-recipes"><div class="wrap">
     <div class="view-head">
       <h2>The Two <span class="em">Demo Recipes</span></h2>
       <p class="lead">Repeat today's live demos cold, on your own listing and your own client. Both use prompts from the <a class="inline" href="#prompts">Prompts tab</a>.</p>
@@ -506,10 +545,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
         </ol>
       </div>
     </div>
-  </section>
+  </div></section>
 
   <!-- TOOLS VIEW -->
-  <section class="view" id="view-tools">
+  <section class="view paper" id="view-tools"><div class="wrap">
     <div class="view-head">
       <h2>A <span class="em">Starter</span> Tool List</h2>
       <p class="lead">Organized by the job, not the brand. Pick one per row and learn it well before adding more.</p>
@@ -521,10 +560,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div><b>Your CRM (client database)</b><p>The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p></div></div>
     </div>
     <div class="note">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
-  </section>
+  </div></section>
 
   <!-- GUARDRAILS VIEW -->
-  <section class="view" id="view-guardrails">
+  <section class="view tint" id="view-guardrails"><div class="wrap">
     <div class="view-head">
       <h2>Four <span class="em">Guardrails</span></h2>
       <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
@@ -535,10 +574,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></div><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
       <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
     </div>
-  </section>
+  </div></section>
 
   <!-- ACTION VIEW -->
-  <section class="view" id="view-action">
+  <section class="view paper" id="view-action"><div class="wrap">
     <div class="view-head">
       <h2>Do This <span class="em">Week</span></h2>
       <p class="lead">Momentum beats knowledge. Four moves, in order.</p>
@@ -549,7 +588,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
       <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
     </div>
-  </section>
+  </div></section>
 
 </main>
 

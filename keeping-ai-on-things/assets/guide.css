@@ -312,3 +312,71 @@ a.brand img{height:26px;width:auto;display:block;}
 a.brand span{font-family:var(--font-head);font-weight:500;font-size:.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);padding-left:12px;border-left:1px solid var(--line-2);transition:color .2s var(--ease);}
 a.brand:hover span{color:var(--white);}
 .foot-logo{height:22px;width:auto;opacity:.65;margin-bottom:10px;}
+
+/* ══════════ v6: energy pass — accents per level, paper bands ══════════ */
+body{--accent:#C9A45C;--accent-deep:#A9854A;--accent-soft:#D9BC85;--accent-dim:rgba(201,164,92,.12);--accent-line:rgba(201,164,92,.4);}
+body.lv2{--accent:#6FA8D4;--accent-deep:#4E7FA6;--accent-soft:#9CC3E2;--accent-dim:rgba(111,168,212,.12);--accent-line:rgba(111,168,212,.4);}
+body.lv3{--accent:#CE7A56;--accent-deep:#A85B3D;--accent-soft:#E09B7C;--accent-dim:rgba(206,122,86,.12);--accent-line:rgba(206,122,86,.4);}
+header.guide h1 .hl{color:var(--accent);}
+.guide-level{color:var(--accent-soft);}
+.lv i.on{background:var(--accent);}
+h2 .em{color:var(--accent-soft);}
+.meta-chips .chip svg{color:var(--accent);}
+.fnode.result .fic{background:var(--accent-dim);border-color:var(--accent-line);color:var(--accent);}
+.fnode.result b{color:var(--accent-soft);}
+.stepnum{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;}
+.step.open .snum{background:linear-gradient(135deg,var(--accent),var(--accent-deep));border-color:transparent;color:#fff;}
+.stepper-progress i{background:linear-gradient(90deg,var(--accent),var(--accent-deep));}
+ol.rail::before{background:linear-gradient(180deg,var(--accent) 0%,transparent 100%);}
+h2{font-size:clamp(1.6rem,5.5vw,2.25rem);}
+
+/* Full-bleed bands */
+main>section.band{padding:clamp(38px,6vw,60px) 0 clamp(30px,5vw,46px);}
+.band-paper{background:#F3EDE2;color:#212B3A;}
+.band-paper h2{color:#212B3A;}
+.band-paper h2 .em{color:var(--accent-deep);}
+.band-paper .lead{color:#5C6678;}
+.band-paper a.inline{color:#3E6C93;text-decoration-color:rgba(62,108,147,.4);}
+.band-paper .needs .need{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 2px 12px rgba(33,43,58,.05);}
+.band-paper .need p{color:#4A5568;}
+.band-paper .need p strong{color:#212B3A;}
+.band-paper .need p a{color:#3E6C93;}
+.band-paper .need svg{color:#3F8862;}
+.band-paper .stepper{background:#fff;border-color:rgba(33,43,58,.12);box-shadow:0 18px 48px rgba(33,43,58,.1);backdrop-filter:none;}
+.band-paper .stepper-top{background:rgba(33,43,58,.03);border-color:rgba(33,43,58,.08);}
+.band-paper .stepper-count{color:#5C6678;}
+.band-paper .stepper-done{color:#8A93A5;}
+.band-paper .stepper-progress{background:rgba(33,43,58,.1);}
+.band-paper .step{border-color:rgba(33,43,58,.08);}
+.band-paper .step-head{color:#212B3A;}
+.band-paper .step-head:hover{background:rgba(33,43,58,.03);}
+.band-paper .snum{background:rgba(33,43,58,.06);border-color:rgba(33,43,58,.16);color:#5C6678;}
+.band-paper .step.done .snum{background:rgba(103,185,141,.16);border-color:rgba(63,136,98,.5);color:#3F8862;}
+.band-paper .stext span{color:#8A93A5;}
+.band-paper .step.done .stext b{color:#8A93A5;}
+.band-paper .step-pad p{color:#4A5568;}
+.band-paper .step-pad p strong{color:#212B3A;}
+.band-paper .schev{color:#8A93A5;}
+.band-paper .step.open .schev{color:var(--accent-deep);}
+.band-paper .step-next{background:#212B3A;color:#F3EDE2;}
+.band-paper .mock-note{color:#8A93A5;}
+.band-paper .tabbar{background:#fff;border-color:rgba(33,43,58,.12);}
+.band-paper .tab-btn{color:#5C6678;}
+.band-paper .tab-btn:hover{color:#212B3A;}
+.band-paper .tab-btn.active{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.4);color:#3E6C93;}
+.band-paper .stepcard{background:#fff;border-color:rgba(33,43,58,.1);backdrop-filter:none;}
+.band-paper .stepcard p{color:#4A5568;}
+.band-paper .stepcard p strong{color:#212B3A;}
+.band-paper .path-note{color:#8A93A5;}
+.band-paper .demo-caption{color:#8A93A5;}
+.band-tint{background:linear-gradient(180deg,rgba(201,127,127,.08),rgba(201,127,127,.015));}
+
+/* Phone gets a little life */
+@media(min-width:760px){
+  .phone{transform:rotate(-1.5deg);transition:transform .35s var(--ease);}
+  .phone:hover{transform:rotate(0deg);}
+}
+
+/* Dark components keep light text even inside paper bands */
+details.prompt,.prompt-card,.window,.phone{color:var(--white);}
+details.prompt .pr-text span{color:var(--faint);}
