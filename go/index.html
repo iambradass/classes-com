@@ -99,7 +99,6 @@ input:focus{outline:2px solid var(--brass); outline-offset:0; border-color:var(-
     <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
     <label for="f-license">License number <span class="opt">(optional)</span></label>
     <input id="f-license" name="license" autocomplete="off">
-    <div class="hp"><label>Company</label><input name="company" tabindex="-1" autocomplete="off"></div>
     <button class="btn" id="btn" type="submit">Unlock today's resources</button>
     <p class="msg" id="msg"></p>
     <p class="bypass" id="bypass">Trouble signing in? <a id="skip">Continue without signing in</a></p>
@@ -138,6 +137,7 @@ var form=document.getElementById('form'), tiles=document.getElementById('tiles')
     msg=document.getElementById('msg'), btn=document.getElementById('btn'),
     wb=document.getElementById('wb'), bypass=document.getElementById('bypass');
 var fails=0;
+var t0=Date.now();
 
 function unlock(remember){
   tiles.classList.remove('locked');
@@ -154,8 +154,7 @@ form.addEventListener('submit', function(ev){
   var email=document.getElementById('f-email').value.trim();
   var phone=document.getElementById('f-phone').value.trim();
   var license=document.getElementById('f-license').value.trim();
-  var hp=form.querySelector('[name=company]').value;
-  if(hp){ unlock(true); return; }
+  if(Date.now()-t0 < 1500){ unlock(true); return; }
   if(name.length<2){ msg.textContent='Please enter your name.'; msg.className='msg err'; return; }
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent='That email does not look right.'; msg.className='msg err'; return; }
   if(phone.replace(/\D/g,'').length<10){ msg.textContent='Please enter a 10-digit cell number.'; msg.className='msg err'; return; }
