@@ -24,13 +24,15 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 <g id="i-mic"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0 M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-doc"><path d="M6 3h8l4 4v14H6z M14 3v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6 M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
-<g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chat"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12h.01 M12 12h.01 M15.5 12h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
+<g id="i-lock"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></g>
 </defs></svg>
 
 <header class="guide">
@@ -49,12 +51,20 @@
 <main class="wrap">
 
   <section class="reveal">
-    <p class="kicker">Why this is play zero</p>
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></div><p><strong>Ends the generic AI voice.</strong> Your assistant learns your market, voice, and rules one time instead of you re-explaining them in every chat.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></div><p><strong>Creates a permanent workspace</strong> (a "Project," "Gem," or custom assistant, depending on your tool) where all your business work happens.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Powers every other play.</strong> Each guide on the hub assumes this exists. Do this one first.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg></div><b>Lock it down</b><span>training off</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></div><b>Get interviewed</b><span>15 min of questions</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></div><b>Agent Profile</b><span>one page, your rules</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><b>Test the voice</b><span>would clients know?</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></div><b>The result</b><span>a workspace that writes like you</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> a permanent workspace (Project, Gem, or custom assistant) that knows your market, voice, and rules. No more generic AI voice, no more re-explaining yourself in every chat. Every other play on the board plugs into this.</p>
     </div>
   </section>
 
@@ -68,44 +78,94 @@
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Turn off training</h3><p>In your assistant's settings, find the data or privacy controls and turn off "improve the model with my data" (the wording varies by tool). Business accounts usually default to off. Do this before anything else.</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Run the interview prompt</h3><p>The AI interviews you, then writes your Agent Profile: a one-page document describing your business, voice, and rules. The prompt is below.</p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Read the profile and fix what's wrong</h3><p>This document is the foundation. If it says you're "high-energy" and you're not, every future draft will be off.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Create your workspace</h3><p>ChatGPT calls it a Project or custom GPT, Claude calls it a Project, Gemini calls it a Gem. Create one named "My Real Estate Business" and paste the Agent Profile into its instructions or knowledge area.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Test it</h3><p>Inside the workspace, ask for a short sphere email about staying in touch over the summer. If it sounds like you, you're done. If not, edit the profile and test again.</p></div></li>
-      <li><span class="stepnum">6</span><div class="stepcard"><h3>Refresh it quarterly</h3><p>Markets and goals change. Put a calendar reminder to re-read the profile every quarter.</p></div></li>
-    </ol>
-  </section>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">6 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 6 done</span></div>
 
-  <section class="reveal">
-    <p class="kicker">What "sounds like you" looks like</p>
-    <h2>The test, on your <span class="em">phone</span></h2>
-    <div class="demo-strip split">
-      <div>
-        <p class="lead">Step 5 is the whole point. Ask for something small you'd actually send, and judge one thing only: would your past clients know it wasn't you? Keep editing the profile until the answer is no.</p>
-      </div>
-      <div class="phone">
-        <div class="phone-notch"><i></i></div>
-        <div class="phone-screen">
-          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>My Real Estate Business</b><span>Workspace active</span></div></div>
-          <div class="chat-body">
-            <div class="msg user">Write a short summer check-in email to my sphere.</div>
-            <div class="msg ai"><b>Subject: The pool's open and so is the market</b><br>Hey [First name], it's been a minute! Quick note before the summer gets away from us... two homes on your street traded above list last month, and I keep hearing "we'd move if we found the right one." If that's ever you, I'll do the digging. Either way, come by the office; the cold brew is stocked.<span class="tick">Drafted in your voice &middot; review before sending</span></div>
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Turn off training</b><span>Before anything else</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>In your assistant's settings, find the data or privacy controls and turn off "improve the model with my data" (the wording varies by tool). Business accounts usually default to off.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">Settings &rsaquo; Data controls</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><b>Improve the model for everyone</b></span><span class="ui-state off">Off</span><span class="toggle"></span></div>
+              <div class="ui-row"><span class="ui-l"><b>Chat history in workspace</b></span><span class="ui-state on">On</span><span class="toggle on"></span></div>
+            </div>
           </div>
-        </div>
+          <p class="mock-note">What your data controls should look like before you continue: model training off.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
       </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Run the interview prompt</b><span>The AI asks, you answer, it writes</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>The AI interviews you, then writes your Agent Profile: a one-page document describing your business, voice, and rules. The prompt is in the Prompts section below; copy it into a fresh chat and answer honestly.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Read the profile and fix what's wrong</b><span>This document is the foundation</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>If it says you're "high-energy" and you're not, every future draft will be off. Edit until it reads true.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Create your workspace</b><span>Project, Gem, or custom assistant</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>ChatGPT calls it a Project or custom GPT, Claude calls it a Project, Gemini calls it a Gem. Create one named "My Real Estate Business" and paste the Agent Profile into its instructions or knowledge area.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">New project</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><span><b>My Real Estate Business</b><small>Workspace &middot; instructions saved</small></span></span><span class="ui-btn">Created</span></div>
+              <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></span><span><b>Agent Profile.docx</b><small>Added to project knowledge</small></span></span><span class="ui-state on">Saved</span></div>
+            </div>
+          </div>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Test the voice</b><span>Would your past clients know it wasn't you?</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Inside the workspace, ask for a short sphere email about staying in touch over the summer. Judge one thing only: does it sound like you? If not, edit the profile and test again.</p>
+          <div class="phone">
+            <div class="phone-notch"><i></i></div>
+            <div class="phone-screen">
+              <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>My Real Estate Business</b><span>Workspace active</span></div></div>
+              <div class="chat-body">
+                <div class="msg user">Write a short summer check-in email to my sphere.</div>
+                <div class="msg ai"><b>Subject: The pool's open and so is the market</b><br>Hey [First name], it's been a minute! Quick note before the summer gets away from us... two homes on your street traded above list last month, and I keep hearing "we'd move if we found the right one." If that's ever you, I'll do the digging.<span class="tick">Drafted in your voice &middot; review before sending</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-note">A voice-matched draft: casual, local, zero corporate filler. Yours will sound like you instead.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">6</span><span class="stext"><b>Refresh it quarterly</b><span>Markets and goals change</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Put a calendar reminder to re-read the profile every quarter and update what changed.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
     </div>
-    <p class="demo-caption">A voice-matched draft: casual, local, zero corporate filler. Yours will sound like you instead.</p>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">agent-profile-interview.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="prompt-tag">Run this in a fresh chat. Answer its questions, then it writes your profile.</p>
-      <pre id="p1">You are helping me build my "Agent Profile" - a one-page document that will live in my AI workspace so every future draft matches my business and voice.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span><span class="pr-text"><b>The Agent Profile Interview</b><span>Run in a fresh chat; it asks, you answer, it writes your profile</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">agent-profile-interview.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are helping me build my "Agent Profile" - a one-page document that will live in my AI workspace so every future draft matches my business and voice.
 
 Interview me one question at a time. Cover:
 1. My market: the areas and price points I actually work, and the ones I'm trying to grow.
@@ -115,16 +175,19 @@ Interview me one question at a time. Cover:
 5. My standing guardrails: fair-housing safe language always (describe homes and lifestyle, never the "ideal buyer"), no private client data, and I review everything before it goes out.
 
 When the interview is done, write the Agent Profile as a clean one-page document with these headings: Market, Clients, Voice, Rules, Guardrails. Keep it under 400 words so it's easy to maintain.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">voice-check.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
-      <p class="prompt-tag">Use this any time a draft doesn't sound like you.</p>
-      <pre id="p2">Compare this draft against my Agent Profile. List every line that doesn't sound like me and rewrite just those lines in my voice. Then tell me in one sentence what pattern you keep getting wrong, so I can add a rule to my profile.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></span><span class="pr-text"><b>The Voice Check</b><span>Use any time a draft doesn't sound like you</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">voice-check.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+        <pre id="p2">Compare this draft against my Agent Profile. List every line that doesn't sound like me and rewrite just those lines in my voice. Then tell me in one sentence what pattern you keep getting wrong, so I can add a rule to my profile.
 
 DRAFT:
 [paste the draft]</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">

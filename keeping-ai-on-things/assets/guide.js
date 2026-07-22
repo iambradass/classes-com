@@ -55,3 +55,37 @@
     update();
   }
 })();
+
+/* Stepper: one step open at a time, done tracking, progress meter */
+(function(){
+  document.querySelectorAll('[data-stepper]').forEach(function(st){
+    var steps=Array.prototype.slice.call(st.querySelectorAll('.step'));
+    var fill=st.querySelector('.stepper-progress i');
+    var doneEl=st.querySelector('.stepper-done');
+    function paint(){
+      var done=st.querySelectorAll('.step.done').length;
+      if(fill)fill.style.width=(steps.length?Math.round(done/steps.length*100):0)+'%';
+      if(doneEl)doneEl.textContent=done+' of '+steps.length+' done';
+    }
+    function openStep(step){
+      steps.forEach(function(s){s.classList.remove('open');});
+      if(step){step.classList.add('open');}
+    }
+    steps.forEach(function(s,i){
+      var head=s.querySelector('.step-head');
+      if(head)head.addEventListener('click',function(){
+        if(s.classList.contains('open')){s.classList.remove('open');}
+        else{openStep(s);}
+      });
+      var next=s.querySelector('.step-next');
+      if(next)next.addEventListener('click',function(){
+        s.classList.add('done');
+        var n=steps[i+1];
+        openStep(n||null);
+        paint();
+        if(n){var top=n.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:top,behavior:'smooth'});}
+      });
+    });
+    paint();
+  });
+})();

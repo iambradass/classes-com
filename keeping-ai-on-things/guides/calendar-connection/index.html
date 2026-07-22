@@ -24,12 +24,14 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18 M8 3v4 M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
-<g id="i-route"><circle cx="6" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 19h7a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-plug"><path d="M9 7V3 M15 7V3 M6 7h12v4a6 6 0 0 1-12 0z M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-sun"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5 M12 19.5V22 M2 12h2.5 M19.5 12H22 M4.9 4.9l1.8 1.8 M17.3 17.3l1.8 1.8 M19.1 4.9l-1.8 1.8 M6.7 17.3l-1.8 1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-route"><circle cx="6" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 19h7a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
@@ -50,11 +52,18 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></div><p><strong>A morning brief:</strong> today's appointments, what each one needs from you, and the gaps where real work can happen.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></div><p><strong>Showing-day plans:</strong> a sensible route and time blocks for a multi-stop day, with buffers you'll actually keep.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Follow-up scaffolding:</strong> every client appointment automatically gets a "what's the next touch" answer instead of relying on memory.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><b>Connect</b><span>or paste your week</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></div><b>Morning brief</b><span>60 seconds, on your phone</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></div><b>Showing plans</b><span>routes + buffers</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><b>The result</b><span>every appointment gets a follow-up</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> a daily brief that flags what isn't prepped, showing days planned with buffers you'll actually keep, and a follow-up scaffold so no client meeting evaporates from memory.</p>
     </div>
   </section>
 
@@ -67,8 +76,15 @@
       </div>
 
       <div class="tab-panel active" id="cal-a" role="tabpanel">
+        <div class="window">
+          <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">Settings &rsaquo; Connectors</span></div>
+          <div class="window-body">
+            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></span><span><b>Your calendar</b><small>Read events &middot; write off for now</small></span></span><span class="ui-btn">Connect</span></div>
+          </div>
+        </div>
+        <p class="mock-note">The major assistants support the big calendar platforms (examples, not endorsements: ChatGPT, Claude, Gemini with Google and Microsoft calendars).</p>
         <ol class="rail">
-          <li><span class="stepnum">1</span><div class="stepcard"><h3>Find the calendar connector</h3><p>In your assistant's settings, open connectors or integrations and look for your calendar. The major assistants support the big calendar platforms (examples, not endorsements: ChatGPT, Claude, Gemini with Google and Microsoft calendars).</p></div></li>
+          <li><span class="stepnum">1</span><div class="stepcard"><h3>Find the calendar connector</h3><p>In your assistant's settings, open connectors or integrations and look for your calendar.</p></div></li>
           <li><span class="stepnum">2</span><div class="stepcard"><h3>Connect and grant access</h3><p>Start with read access only if the tool offers the choice.</p></div></li>
           <li><span class="stepnum">3</span><div class="stepcard"><h3>Test it</h3><p>Ask "what's on my calendar Thursday?" and check it against the real thing.</p></div></li>
           <li><span class="stepnum">4</span><div class="stepcard"><h3>Check your tier</h3><p>Calendar connectors are typically paid-tier features, and business tiers keep your data out of model training.</p></div></li>
@@ -82,8 +98,7 @@
   </section>
 
   <section class="reveal">
-    <p class="kicker">Coffee, phone, sixty seconds</p>
-    <h2>The morning <span class="em">brief</span></h2>
+    <h2>What you get every <span class="em">morning</span></h2>
     <div class="demo-strip split">
       <div>
         <p class="lead">Save the Morning Brief prompt in your workspace and run it with coffee. It reads the day, flags what isn't prepped, and names the single best use of your biggest gap. Under 200 words, built for a phone screen.</p>
@@ -104,9 +119,11 @@
   <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">morning-brief.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">Look at my calendar for today (or use what I paste below). Give me:
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><span class="pr-text"><b>The Morning Brief</b><span>Save it, run it with coffee</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">morning-brief.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">Look at my calendar for today (or use what I paste below). Give me:
 
 1. THE DAY AT A GLANCE: each appointment with one line on what it is and what I need to walk in with (documents, comps, keys, lockbox codes noted in the event).
 2. PREP FLAGS: anything that needs work BEFORE the meeting that isn't done or scheduled.
@@ -114,23 +131,30 @@
 4. TOMORROW'S ONE THING: what I should set up today so tomorrow starts easy.
 
 Keep it under 200 words. I'm reading this on my phone.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">showing-day-planner.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
-      <pre id="p2">I'm building a showing day. Here are the stops and constraints:
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></span><span class="pr-text"><b>The Showing-Day Planner</b><span>Stop order, time blocks, buffers</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">showing-day-planner.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+        <pre id="p2">I'm building a showing day. Here are the stops and constraints:
 
 SHOWINGS: [address or area + any time restrictions for each]
 CLIENT: [name, what they care about, energy level for a long day]
 MY CONSTRAINTS: [start/end time, lunch, school pickup, etc.]
 
 Plan the day: a stop order that minimizes backtracking (group by area; I'll gut-check drive times), a time block per stop with a 15-minute buffer every 2-3 stops, and a one-line reminder of what this client should notice at each property. End with the two questions I should ask the client at the end of the day to move toward a decision.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">follow-up-scaffold.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
-      <pre id="p3">Look at my client-facing appointments from the last 2 business days (or the list I paste). For each one, tell me: the natural next touch, the channel, and when it should happen. Then draft the one follow-up message that's most overdue, in my voice, ready to send after my review.</pre>
-    </div>
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></span><span class="pr-text"><b>The Follow-Up Scaffold</b><span>Every appointment gets a next touch</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">follow-up-scaffold.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
+        <pre id="p3">Look at my client-facing appointments from the last 2 business days (or the list I paste). For each one, tell me: the natural next touch, the channel, and when it should happen. Then draft the one follow-up message that's most overdue, in my voice, ready to send after my review.</pre>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">

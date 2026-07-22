@@ -24,6 +24,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
@@ -31,6 +32,7 @@
 <g id="i-pin"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></g>
 <g id="i-qr"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M5.5 5.5h2v2h-2z M16.5 5.5h2v2h-2z M5.5 16.5h2v2h-2z M14 14h3v3h-3z M18.5 14H21v2.5h-2.5z M14 18.5h2.5V21H14z M18 18h3v3h-3z" fill="none" stroke="currentColor" stroke-width="1.6"/></g>
 <g id="i-form"><rect x="4" y="3" width="16" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8h8 M8 12h8 M8 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
 
 <header class="guide">
@@ -49,18 +51,27 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><p><strong>One polished page about one neighborhood:</strong> what makes it special, a current market snapshot, and a "what's my home worth" call to action that feeds your CRM (client database).</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><p><strong>Gives your farm a destination.</strong> A QR code on a postcard that opens a page about <strong>their street</strong> outperforms one that opens your generic homepage.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-form"/></svg></div><p><strong>Costs nothing but time.</strong> Modern AI assistants write complete, working web pages; you supply the local knowledge.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><b>Gather facts</b><span>10 min of local notes</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></div><b>AI builds it</b><span>one complete file</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-form"/></svg></div><b>Wire the form</b><span>leads land in your CRM</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-qr"/></svg></div><b>Publish + QR</b><span>postcards, signs, hangers</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><b>The result</b><span>a farm page that captures leads</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> one polished page about one neighborhood: what makes it special, a dated market snapshot, and a "what's my home worth" call to action wired to your CRM. A QR that opens a page about <strong>their street</strong> beats one that opens your generic homepage.</p>
     </div>
   </section>
 
   <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
     <div class="needs">
-      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Real facts about the neighborhood:</strong> your recent market numbers (from the MLS), amenities, and what residents actually love about it. Ten minutes of notes.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Real facts about the neighborhood:</strong> your recent MLS numbers, amenities, and what residents actually love about it.</p></div>
       <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Somewhere to host the page.</strong> In order of ease: a landing-page or funnel builder inside your CRM, your website provider's "add a page" feature, or a simple static-hosting service. Your assistant can walk you through whichever one you name.</p></div>
       <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</p></div>
     </div>
@@ -68,22 +79,91 @@
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Gather your inputs</h3><p>Neighborhood name, 5 amenity/lifestyle facts, 3 recent market numbers with dates, your contact info and photo, and where leads should go.</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Run the Page Builder prompt</h3><p>Ask for the result as a single, complete HTML file.</p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Preview it</h3><p>Save the file and open it in your browser. It works right off your desktop. <strong>Check it on your phone:</strong> most visitors arrive from a QR scan.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Iterate in plain English</h3><p>"Make the header taller," "warmer colors," "shorter intro." The assistant edits, you re-preview. Two or three rounds gets it right.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Wire the form</h3><p>Easiest reliable route: build a form in your CRM, copy its embed code or link, and have the assistant place it in the page. Now every lead lands in your database with tags and automation.</p></div></li>
-      <li><span class="stepnum">6</span><div class="stepcard"><h3>Publish and print</h3><p>Publish on your chosen host, generate a QR code for the page URL, and put it on your farm postcards, door hangers, and open-house signs.</p></div></li>
-      <li><span class="stepnum">7</span><div class="stepcard"><h3>Update quarterly</h3><p>Stale market numbers on a farming page quietly tell the neighborhood you stopped paying attention. Calendar reminder, 15 minutes.</p></div></li>
-    </ol>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">7 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 7 done</span></div>
+
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Gather your inputs</b><span>Facts, numbers with dates, contact info</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Neighborhood name, 5 amenity/lifestyle facts, 3 recent market numbers with dates, your contact info and photo, and where leads should go.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Run the Page Builder prompt</b><span>Ask for one complete HTML file</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>The prompt in the Prompts section below produces the whole page as a single file, plus a list of exactly what to customize before publishing.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Preview it, phone first</b><span>Most visitors arrive from a QR scan</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Save the file the assistant gives you and open it in your browser; it works right off your desktop. Then check it on your phone.</p>
+          <div class="phone">
+            <div class="phone-notch"><i></i></div>
+            <div class="phone-screen">
+              <div class="window-body" style="padding:18px 16px;">
+                <div class="doc-h gold" style="width:70%;height:16px;"></div>
+                <div class="doc-line w60"></div>
+                <div class="doc-line w40" style="margin-bottom:18px;"></div>
+                <div class="doc-h" style="width:38%;"></div>
+                <div class="doc-line"></div><div class="doc-line w80"></div>
+                <div class="doc-h" style="width:46%;"></div>
+                <div class="doc-line w60"></div><div class="doc-line w80"></div>
+                <div class="ui-row" style="margin-top:16px;"><span class="ui-l"><span><b>What's my home worth?</b><small>Name, email, address</small></span></span><span class="ui-btn">Send</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-note">The shape of the page on a phone: neighborhood hero, "living here" highlights, dated market snapshot, and the home-value form.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Iterate in plain English</b><span>Two or three rounds gets it right</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>"Make the header taller," "warmer colors," "shorter intro." The assistant edits, you re-preview.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Wire the form</b><span>Leads land tagged in your database</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Easiest reliable route: build a form in your CRM, copy its embed code or link, and have the assistant place it in the page. Now every lead lands in your database with tags and automation.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">6</span><span class="stext"><b>Publish and print</b><span>Test the form BEFORE ordering postcards</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Publish on your chosen host, submit the form yourself, and confirm the lead shows up in your CRM. Then generate a QR code for the page URL and put it on your farm postcards, door hangers, and open-house signs.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">7</span><span class="stext"><b>Update quarterly</b><span>Stale numbers say you stopped paying attention</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Calendar reminder, 15 minutes: refresh the market snapshot and anything that changed in the neighborhood.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
+    </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">page-builder.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">You are my web developer and copywriter. Build me a complete, single-file HTML landing page for a neighborhood I farm. Everything (styles, scripts) inline in one file so I can preview it by opening the file in a browser.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-layout"/></svg></span><span class="pr-text"><b>The Page Builder</b><span>One complete, mobile-first HTML file</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">page-builder.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my web developer and copywriter. Build me a complete, single-file HTML landing page for a neighborhood I farm. Everything (styles, scripts) inline in one file so I can preview it by opening the file in a browser.
 
 NEIGHBORHOOD: [name, city]
 WHAT RESIDENTS LOVE (my notes): [5 bullets: parks, schools zone info stated neutrally, walkability, architecture, community events]
@@ -99,7 +179,8 @@ Requirements:
 - Include a title tag and meta description for search.
 
 Give me the complete file, then a bulleted list of exactly what I should customize before publishing.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">
@@ -107,7 +188,6 @@ Give me the complete file, then a bulleted list of exactly what I should customi
     <div class="alerts">
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Fair housing applies to farming pages twice:</strong> the page copy AND any advertising you run to promote it. Describe property and place, keep ad targeting broad, document what you ran.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Source your numbers.</strong> Every market stat on the page needs a date and a source you could show if asked. "Numbers as of June 2026, [your MLS]" is the habit.</p></div>
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Test the form before printing anything.</strong> Submit it yourself, confirm the lead shows up in your CRM, then order postcards. Not the other way around.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Brokerage advertising rules still apply:</strong> required broker identification, license disclosures, and ad review policies cover this page like any other ad.</p></div>
     </div>
   </section>

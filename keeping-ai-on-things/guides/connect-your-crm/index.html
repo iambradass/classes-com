@@ -24,13 +24,16 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-db"><ellipse cx="12" cy="5.5" rx="8" ry="2.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 5.5V18.5c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8V5.5 M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8" fill="none" stroke="currentColor" stroke-width="2"/></g>
-<g id="i-search"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
-<g id="i-clip"><path d="M9 4h6v3H9z M9 4H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2 M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-plug"><path d="M9 7V3 M15 7V3 M6 7h12v4a6 6 0 0 1-12 0z M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-search"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-flask"><path d="M10 3v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V3 M8.5 3h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-brief"><rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2 M3 12h18" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
 
 <header class="guide">
@@ -49,18 +52,24 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg></div><p><strong>Ask questions of your own database:</strong> "who haven't I talked to in 90 days," "which leads mentioned relocating," "build today's call list."</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><p><strong>Work lands where you work.</strong> The dossiers and task lists your assistant writes become records and tasks inside the CRM, not text you re-type.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><p><strong>Unlocks the connected versions</strong> of every other playbook on the hub.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg></div><b>Pick a path</b><span>built-in, direct, or export</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><b>Connect</b><span>read-only first</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-flask"/></svg></div><b>Test safely</b><span>fake contact first</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></div><b>The result</b><span>a Monday brief from your own data</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> an assistant that can answer "who haven't I talked to in 90 days," build today's call list, and file dossiers and tasks straight into the CRM. It also unlocks the connected versions of every other play.</p>
     </div>
   </section>
 
   <section class="reveal">
-    <p class="kicker">Check them in order, stop at the first that works</p>
     <h2>Pick your <span class="em">path</span></h2>
-
+    <p class="lead">Check them in this order and stop at the first one that works for you.</p>
     <div class="tabs" data-tabs>
       <div class="tabbar" role="tablist">
         <button class="tab-btn active" data-panel="path-a" role="tab" aria-selected="true">A &middot; Built-in AI</button>
@@ -73,12 +82,20 @@
         <ol class="rail">
           <li><span class="stepnum">1</span><div class="stepcard"><h3>Search your CRM's settings for "AI"</h3><p>Check the settings and help center. You may already be paying for it.</p></div></li>
           <li><span class="stepnum">2</span><div class="stepcard"><h3>Turn it on and test</h3><p>Run it against one real lead and judge the output honestly.</p></div></li>
-          <li><span class="stepnum">3</span><div class="stepcard"><h3>Split the jobs</h3><p>Keep your general assistant for everything the built-in AI can't do (voice, strategy, content), and let the CRM's AI handle in-app suggestions. Fine to run this alongside Path B or C.</p></div></li>
+          <li><span class="stepnum">3</span><div class="stepcard"><h3>Split the jobs</h3><p>Keep your general assistant for everything the built-in AI can't do (voice, strategy, content). Fine to run this alongside Path B or C.</p></div></li>
         </ol>
       </div>
 
       <div class="tab-panel" id="path-b" role="tabpanel">
         <p class="lead">The big assistants (examples, not endorsements: ChatGPT, Claude, Gemini) all support "connectors" or "integrations" that link outside apps into your chats. Middleware automation tools can bridge assistants to hundreds of CRMs the assistants don't support natively.</p>
+        <div class="window">
+          <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">Settings &rsaquo; Connectors</span></div>
+          <div class="window-body">
+            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></span><span><b>Your CRM</b><small>Read contacts, notes, and tasks</small></span></span><span class="ui-btn">Connect</span></div>
+            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span><b>Your calendar</b><small>Connected last week</small></span></span><span class="ui-state on">Connected</span></div>
+          </div>
+        </div>
+        <p class="mock-note">What the connectors screen looks like in most assistants: search for your CRM by name, sign in with your CRM login, done.</p>
         <ol class="rail">
           <li><span class="stepnum">1</span><div class="stepcard"><h3>Look for your CRM in the connectors list</h3><p>In your assistant's settings, open the connectors or integrations screen and search for your CRM by name. If it's listed, connect it with your CRM login and you're done.</p></div></li>
           <li><span class="stepnum">2</span><div class="stepcard"><h3>No listing? Bridge it</h3><p>Check whether your CRM connects to a middleware automation platform (the tools that link app A to app B). The common recipe: assistant drafts, middleware pushes contacts, notes, and tasks into the CRM.</p></div></li>
@@ -88,7 +105,7 @@
       </div>
 
       <div class="tab-panel" id="path-c" role="tabpanel">
-        <p class="lead">No connector? No problem. CSV out, work in the assistant, CSV back in. This path works with every CRM ever made and gets you 80% of the value of a live connection with zero setup.</p>
+        <p class="lead">No connector? No problem. CSV out, work in the assistant, CSV back in. Works with every CRM ever made and gets you 80% of the value of a live connection with zero setup.</p>
         <div class="needs">
           <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>It's a full playbook of its own, with prompts ready to go: <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV Export Into a Campaign</a>. Run it monthly.</p></div>
         </div>
@@ -98,17 +115,19 @@
 
   <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">database-analyst.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="prompt-tag">Once connected (Path B), save this in your workspace and run it every Monday.</p>
-      <pre id="p1">You are my database analyst with access to my CRM. Every time I run this, do the following:
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span class="pr-text"><b>The Database Analyst</b><span>Save it in your workspace; run it every Monday</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">database-analyst.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my database analyst with access to my CRM. Every time I run this, do the following:
 
 1. Who needs me today: the 5 contacts with the highest urgency to hear from me, and why. Urgency = active deals first, then time-sensitive notes, then longest silence among past clients.
 2. What changed: any new leads, new notes, or status changes since last week worth knowing about.
 3. One risk: a contact or deal that looks like it's slipping through the cracks.
 
 Format it as a brief I can read in 2 minutes. Do not draft messages unless I ask. If you can't read a field or the connection fails, say so plainly instead of working from memory.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">

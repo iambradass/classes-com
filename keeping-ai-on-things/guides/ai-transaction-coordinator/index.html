@@ -24,6 +24,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
@@ -31,6 +32,7 @@
 <g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18 M8 3v4 M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-radar"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g>
 <g id="i-chat"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12h.01 M12 12h.01 M15.5 12h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
+<g id="i-doc"><path d="M6 3h8l4 4v14H6z M14 3v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6 M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 </defs></svg>
 
 <header class="guide">
@@ -49,39 +51,94 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><p><strong>Builds the complete contract-to-close timeline</strong> from the executed contract's key dates: option/inspection period, financing and appraisal deadlines, title commitment delivery and objection windows, HOA (homeowners association) documents, and closing.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><p><strong>Writes the weekly update in two versions:</strong> calm and jargon-free for the client, blunt with owners and deadlines for you.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><p><strong>Flags what's quietly at risk</strong> before it becomes a phone call nobody enjoys.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></div><b>Contract dates</b><span>you read, AI never guesses</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><b>Master timeline</b><span>every deadline, owned</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><b>Friday brief</b><span>client + internal versions</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><b>The result</b><span>nothing slips, clients stay calm</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> a full contract-to-close timeline (option period, financing, appraisal, title commitment and objection windows, HOA documents, closing), a weekly two-version update, and early flags on whatever is quietly at risk.</p>
     </div>
   </section>
 
   <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
     <div class="needs">
-      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>The executed contract's key dates.</strong> You read them off the contract; the AI never guesses them.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>The executed contract's key dates.</strong> You read them off the contract; the AI organizes, it never guesses.</p></div>
       <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace. Make <strong>one chat per transaction</strong> and keep everything about that deal in it.</p></div>
     </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Contract goes executed? Start the deal chat</h3><p>Name it for the property and run the Timeline Builder below with the real dates.</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Check the output against the contract</h3><p>You are the source of truth for every date. Fix anything off by even a day.</p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Put the deadlines where you live</h3><p>Your CRM's transaction checklist or your calendar. With a <a class="inline" href="/keeping-ai-on-things/guides/calendar-connection/">connected calendar</a>, ask the assistant to draft the events for your review.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Every Friday, run the Weekly Brief</h3><p>Return to the deal's chat, paste what happened this week, and send the client version after you've read it.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Tell the chat when anything changes</h3><p>Amendment, extension, repair negotiation: the timeline updates and the next brief reflects reality.</p></div></li>
-    </ol>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">5 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 5 done</span></div>
+
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Contract executed? Start the deal chat</b><span>Named for the property</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Run the Timeline Builder (Prompts section below) with the real dates from the executed contract.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">Deal: 4312 Warnock Ct &rsaquo; master timeline</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><span><b>Option period ends &middot; Jul 28</b><small>Owner: me &middot; check in Jul 25</small></span></span><span class="ui-state on">On track</span></div>
+              <div class="ui-row ui-flag"><span class="ui-l"><span><b>Appraisal due &middot; Aug 8</b><small>Owner: lender &middot; not yet ordered</small></span></span><span class="ui-state">At risk</span></div>
+              <div class="ui-row"><span class="ui-l"><span><b>Title commitment &middot; Aug 4</b><small>Owner: title company</small></span></span><span class="ui-state on">On track</span></div>
+            </div>
+          </div>
+          <p class="mock-note">The shape of the master timeline: every deadline with an owner, a check-in date, and at-risk items flagged before they become phone calls.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Check the output against the contract</b><span>You are the source of truth</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Fix anything off by even a day. A missed option period is not an AI mistake; it's yours.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Put the deadlines where you live</b><span>CRM checklist or calendar</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Load them into your CRM's transaction checklist or your calendar. With a <a class="inline" href="/keeping-ai-on-things/guides/calendar-connection/">connected calendar</a>, ask the assistant to draft the events for your review.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Every Friday, run the Weekly Brief</b><span>Paste the week, send after review</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Return to the deal's chat, paste what happened this week, and run the Weekly Brief. Send the client version after you've read it; keep the blunt version for yourself.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Tell the chat when anything changes</b><span>Amendments, extensions, repairs</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>The timeline updates and the next brief reflects reality. The deal chat becomes the deal's memory.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
+    </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">timeline-builder.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">You are my transaction coordinator's assistant for this deal. I will give you the dates from the executed contract; you organize, you never invent.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></span><span class="pr-text"><b>The Timeline Builder</b><span>Dates in, master timeline + critical three + week-one checklist out</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">timeline-builder.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my transaction coordinator's assistant for this deal. I will give you the dates from the executed contract; you organize, you never invent.
 
 DEAL:
 - Property / parties / my side (listing or buyer): [ ]
@@ -98,22 +155,26 @@ Produce:
 3. WEEK ONE CHECKLIST: everything that should happen in the next 7 days.
 
 If any date I gave you conflicts with another (for example a deadline after closing), stop and flag it before producing the timeline.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-brief.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
-      <pre id="p2">Using this deal's timeline, here's what happened this week: [2-5 bullets: done, pending, new issues]
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></span><span class="pr-text"><b>The Weekly Brief</b><span>A calm client version and a blunt internal version</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-brief.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+        <pre id="p2">Using this deal's timeline, here's what happened this week: [2-5 bullets: done, pending, new issues]
 
 Produce:
 1. CLIENT VERSION: a short, reassuring, plain-English update. What happened, what's next, exactly what (if anything) I need from them. No jargon without a translation.
 2. MY VERSION: every open item with a deadline and an owner, anything now at risk of slipping flagged at the top, and the one phone call I should make Monday morning.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
     <div class="alerts">
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>The contract is the only calendar that counts.</strong> Verify every AI-organized date against the executed documents. A missed option period is not an AI mistake; it's yours.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>The contract is the only calendar that counts.</strong> Verify every AI-organized date against the executed documents.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>This assists coordination; it isn't a TC (transaction coordinator).</strong> Your broker's supervision requirements and your TC's process don't change because a chat window got involved.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Watch what you paste.</strong> Deal terms are fine in a training-off business account; buyers' financial documents are never fine. Dates and statuses, not bank statements.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Escalating issues need humans.</strong> Appraisal gap, title issue, repair standoff: the AI helps you think; the phone call is you. Your title company's escrow team has seen it all before. Use them.</p></div>

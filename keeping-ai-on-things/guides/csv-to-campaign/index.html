@@ -24,6 +24,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
@@ -31,6 +32,8 @@
 <g id="i-users"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6 M16 5a3.5 3.5 0 0 1 0 7 M17 14.5c2.4.8 4 2.9 4 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-send"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-scrub"><path d="M4 7h16 M9 7V5h6v2 M6 7l1 13h10l1-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 13l3 3m0-3l-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-doc"><path d="M6 3h8l4 4v14H6z M14 3v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6 M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 </defs></svg>
 
 <header class="guide">
@@ -38,7 +41,7 @@
     <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
     <div class="guide-level"><span class="lv"><i class="on"></i><i></i><i></i></span>Level 1 &middot; Copy-Paste</div>
     <h1>CSV to <span class="hl">Campaign</span></h1>
-    <p class="sub">The universal move: every CRM (client database) and MLS (Multiple Listing Service) can export a CSV spreadsheet file. Your AI assistant can turn that file into a campaign.</p>
+    <p class="sub">Every CRM (client database) can export a CSV spreadsheet file. Your AI assistant can turn that file into segments and a ready-to-load campaign.</p>
     <div class="meta-chips">
       <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>About 15 minutes</span>
       <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg>Works with any CRM</span>
@@ -49,12 +52,20 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></div><p><strong>Segments your database</strong> into groups that mean something: past clients due for a check-in, cold leads worth one more touch, referral partners, likely movers.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><p><strong>Writes a campaign per segment:</strong> the message, the channel, and the timing.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Round-trips into your CRM.</strong> You get a spreadsheet back with tags you can re-import, so the work lands in your CRM instead of dying in a chat window.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><p><strong>Zero integration required.</strong> No connectors, no settings, no IT help.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><b>Export</b><span>CSV out of your CRM</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-scrub"/></svg></div><b>Sanitize</b><span>delete sensitive columns</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></div><b>Segment</b><span>AI sorts your people</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><b>Build</b><span>3-touch campaign</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><b>The result</b><span>tags + campaign back in your CRM</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> your database sorted into segments that mean something, a written campaign for the segment that matters most this month, and a tagged spreadsheet imported back into your CRM. No integration, no settings, no IT help.</p>
     </div>
   </section>
 
@@ -68,22 +79,88 @@
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Export the CSV from your CRM</h3><p>Contacts view, select all (or one smart list), export.</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Sanitize it</h3><p>Open the file and delete columns you'd never want outside your CRM: birthdays paired with full addresses, financial notes, anything sensitive. Keep name, contact type, last contact date, and general notes. <strong>When in doubt, delete the column.</strong></p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Upload and run the Segmenter</h3><p>Drop the file into your workspace and run the Segmenter prompt below.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Review the segments</h3><p>You know your people. Move anyone the AI mis-bucketed.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Run the Campaign Builder</h3><p>Point it at the segment you care about most this month.</p></div></li>
-      <li><span class="stepnum">6</span><div class="stepcard"><h3>Re-import</h3><p>Ask for the updated CSV with a "segment" column, download it, and import it back into your CRM as tags. Now your CRM knows what your AI figured out.</p></div></li>
-    </ol>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">6 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 6 done</span></div>
+
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Export the CSV from your CRM</b><span>Contacts view, select all, export</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Open your contacts list, select all (or one smart list), and export. Every CRM has this; search its help for "export contacts" if you've never used it.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Sanitize it</b><span>When in doubt, delete the column</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Open the file and delete columns you'd never want outside your CRM: birthdays paired with full addresses, financial notes, anything sensitive. Keep name, contact type, last contact date, and general notes.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Upload and run the Segmenter</b><span>Drop the file in your workspace</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Attach the file in your workspace chat and run the Segmenter prompt from the Prompts section below.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">My Real Estate Business &rsaquo; new chat</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><span class="file-chip"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg>contacts-export.csv</span></span><span class="ui-state on">Attached</span></div>
+              <div class="ui-row"><span class="ui-l"><span><b>"I see 412 contacts and 5 columns..."</b><small>The assistant confirms what it read before sorting. If the count is wrong, stop here.</small></span></span></div>
+            </div>
+          </div>
+          <p class="mock-note">What a good start looks like: the file attached, and the assistant confirming columns and count before touching anything.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Review the segments</b><span>You know your people</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Check the counts and the example contacts it shows from each segment. Move anyone the AI mis-bucketed.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Run the Campaign Builder</b><span>One segment, three touches, 30 days</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Point the Campaign Builder prompt at the segment you care about most this month. Read every message; you send, not the AI.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">6</span><span class="stext"><b>Re-import the tagged file</b><span>The work lands in your CRM</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Ask for the updated CSV with a "segment" column, download it, and import it back into your CRM as tags. Now your CRM knows what your AI figured out.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">contacts-tagged.csv</span></div>
+            <div class="window-body">
+              <div class="sheet">
+                <div class="sheet-row head"><span>Name</span><span>Last contact</span><span class="hl">segment</span></div>
+                <div class="sheet-row"><span>J. Rivera</span><span>2026-03-12</span><span class="hl">PAST CLIENT - DUE</span></div>
+                <div class="sheet-row"><span>M. Chen</span><span>2026-07-02</span><span class="hl">ACTIVE OPPORTUNITY</span></div>
+                <div class="sheet-row"><span>D. Okafor</span><span>2025-11-28</span><span class="hl">COLD - ONE MORE TRY</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-note">The file you import back: identical to your export, plus one new segment column your CRM turns into tags.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
+    </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">segmenter.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">You are my database strategist. I've uploaded a CSV export from my CRM.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></span><span class="pr-text"><b>The Segmenter</b><span>Sorts every contact and hands back a tagged file</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">segmenter.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my database strategist. I've uploaded a CSV export from my CRM.
 
 1. Tell me what columns you see and how many contacts, so I can confirm you read it right.
 2. Segment every contact into exactly one of: PAST CLIENT - DUE FOR TOUCH (no contact in 90+ days), ACTIVE OPPORTUNITY, REFERRAL PARTNER, COLD - ONE MORE TRY, ARCHIVE. Use the notes and last-contact columns to decide.
@@ -91,16 +168,20 @@
 4. Then produce a downloadable CSV identical to my upload plus one new "segment" column, so I can import it back into my CRM as tags.
 
 Do not invent data. If a contact is missing the info you need, put them in a NEEDS REVIEW segment instead of guessing.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">campaign-builder.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
-      <pre id="p2">Using the [SEGMENT NAME] segment from the file above, build me a 3-touch campaign for the next 30 days.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></span><span class="pr-text"><b>The Campaign Builder</b><span>Three touches over 30 days, in your voice</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">campaign-builder.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+        <pre id="p2">Using the [SEGMENT NAME] segment from the file above, build me a 3-touch campaign for the next 30 days.
 
 For each touch: the channel (text, email, or call), the day it goes out, and the full message written in my voice from my Agent Profile. Texts under 300 characters. Emails under 150 words with a subject line.
 
 Rules: value first, no hard pitch until touch 3, every message must read like it came from one human to one human. Fair-housing safe. Flag any contact in the segment where the notes suggest the campaign doesn't fit, so I can pull them out.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">

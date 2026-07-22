@@ -24,13 +24,14 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-pin"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-table"><path d="M3 5h18v14H3z M3 10h18 M9 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-diff"><path d="M8 3v13a3 3 0 0 0 3 3h2 M8 3L5 6 M8 3l3 3 M16 21V8a3 3 0 0 0-3-3h-2 M16 21l-3-3 M16 21l3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-rank"><path d="M4 20h4V10H4z M10 20h4V4h-4z M16 20h4v-7h-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
-<g id="i-chat"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12h.01 M12 12h.01 M15.5 12h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
 <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
 
@@ -50,18 +51,25 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-diff"/></svg></div><p><strong>Compares your master farm list</strong> against this month's activity export (new listings, solds, expireds, withdrawn) and finds the intersections that matter.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-rank"/></svg></div><p><strong>Produces a ranked touch list:</strong> the neighbor of the house that just sold high, the expired two streets from your last closing, the long-time owner on a street where three homes just moved.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><p><strong>Gives every touch a reason.</strong> "The Hendersons' street just set a record" is a conversation. "Just checking in" is a delete.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><b>Two files</b><span>farm list + monthly activity</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-diff"/></svg></div><b>Cross-reference</b><span>AI finds the intersections</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-rank"/></svg></div><b>Ranked ten</b><span>reason + channel + opener</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><b>The result</b><span>ten real conversations a month</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> direct hits (farm addresses in this month's activity), ripple touches (neighbors of notable events, with the conversation opener each one creates), a ranked top ten, and list-health flags that keep your master file clean. "The Hendersons' street just set a record" is a conversation; "just checking in" is a delete.</p>
     </div>
   </section>
 
   <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
     <div class="needs">
-      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Your master farm list as a CSV spreadsheet file:</strong> address, owner name if you have it, and any history column (past touches, responses). Keep one master file; update it, don't fork it.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Your master farm list as a CSV spreadsheet file:</strong> address, owner name if you have it, and any history column. Keep one master file; update it, don't fork it.</p></div>
       <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>A monthly activity export</strong> for the farm area from your MLS (Multiple Listing Service): actives, pendings, solds, expireds with addresses and prices.</p></div>
       <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace, with the sanitize-before-upload habit from the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV guide</a>.</p></div>
     </div>
@@ -69,41 +77,84 @@
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Make it a monthly ritual</h3><p>First Tuesday of the month, 15 minutes, calendar reminder titled "Run the farm watchlist."</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Export this month's activity</h3><p>For the farm boundaries, from the MLS.</p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Upload both files and run the Cross-Reference</h3><p>Master farm list plus activity export, into your workspace, prompt below.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Work the top ten</h3><p>The output ranks touches by strength of reason. Ten real conversations beat a hundred generic postcards.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Feed results back</h3><p>Add a note to your master list for every touch made ("6/26: talked, thinking of selling next spring"). Next month's run gets smarter because the file remembers.</p></div></li>
-      <li><span class="stepnum">6</span><div class="stepcard"><h3>Optional autopilot</h3><p>If your assistant supports scheduled tasks, schedule the monthly reminder with the prompt pre-loaded so the run is one upload away.</p></div></li>
-    </ol>
-  </section>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">6 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 6 done</span></div>
 
-  <section class="reveal">
-    <p class="kicker">What comes back</p>
-    <h2>The ranked <span class="em">ten</span></h2>
-    <div class="demo-strip split">
-      <div>
-        <p class="lead">Every entry pairs a name with a reason and an opener. You're never cold-knocking; you're following up on something real that happened on their street this month.</p>
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Make it a monthly ritual</b><span>First Tuesday, 15 minutes</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Calendar reminder titled "Run the farm watchlist." Consistency is the whole trick; the tenth run is worth five times the first.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
       </div>
-      <div class="phone">
-        <div class="phone-notch"><i></i></div>
-        <div class="phone-screen">
-          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Farm Watchlist</b><span>July run &middot; 10 touches ranked</span></div></div>
-          <div class="chat-body">
-            <div class="msg ai"><b>#1 &middot; 4417 Belmont (Nguyen)</b><br>Reason: two doors from the record-setting sale on 6/28. Channel: door knock.<br>Opener: "Your neighbor's sale just reset the bar for the street; happy to share what it means for your place."<span class="tick">Verify the sale in the MLS before you knock</span></div>
-            <div class="msg ai"><b>#2 &middot; 4508 Belmont (12-yr owner)</b><br>Reason: 3 homes moved on this block in 90 days. Channel: handwritten note.</div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Export this month's activity</b><span>For the farm boundaries, from the MLS</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Actives, pendings, solds, expireds with addresses and prices.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Upload both files, run the Cross-Reference</b><span>Prompt below</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Master farm list plus activity export, into your workspace.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">My Real Estate Business &rsaquo; farm watchlist</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><span class="file-chip"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg>master-farm-list.csv</span></span><span class="ui-state on">Attached</span></div>
+              <div class="ui-row"><span class="ui-l"><span class="file-chip"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg>july-activity.csv</span></span><span class="ui-state on">Attached</span></div>
+            </div>
           </div>
-        </div>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
       </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Work the top ten</b><span>Ranked by strength of reason</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Ten real conversations beat a hundred generic postcards. Verify each trigger in the MLS before you lead with it.</p>
+          <div class="phone">
+            <div class="phone-notch"><i></i></div>
+            <div class="phone-screen">
+              <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Farm Watchlist</b><span>July run &middot; 10 touches ranked</span></div></div>
+              <div class="chat-body">
+                <div class="msg ai"><b>#1 &middot; 4417 Belmont (Nguyen)</b><br>Reason: two doors from the record sale on 6/28. Channel: door knock.<br>Opener: "Your neighbor's sale just reset the bar for the street; happy to share what it means for your place."<span class="tick">Verify the sale in the MLS before you knock</span></div>
+                <div class="msg ai"><b>#2 &middot; 4508 Belmont (12-yr owner)</b><br>Reason: 3 homes moved on this block in 90 days. Channel: handwritten note.</div>
+              </div>
+            </div>
+          </div>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Feed results back</b><span>The file remembers, so next month is smarter</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Add a note to your master list for every touch made ("6/26: talked, thinking of selling next spring").</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">6</span><span class="stext"><b>Optional autopilot</b><span>Schedule the run</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>If your assistant supports scheduled tasks, schedule the monthly reminder with the prompt pre-loaded so the run is one upload away.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
     </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">farm-cross-reference.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">You are my farm analyst. I've uploaded two files:
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-diff"/></svg></span><span class="pr-text"><b>The Cross-Reference</b><span>Two files in, a ranked touch list out</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">farm-cross-reference.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my farm analyst. I've uploaded two files:
 1. MASTER FARM LIST: the homes/owners in my geographic farm, with my touch history.
 2. THIS MONTH'S ACTIVITY: MLS activity in the same area (actives, pendings, solds, expireds).
 
@@ -114,7 +165,8 @@ Cross-reference them:
 4. LIST HEALTH: anything in my master list that looks stale or inconsistent (owner sold last year, duplicate rows), so I can clean it.
 
 Match addresses carefully (abbreviations like St/Street, unit numbers). List any rows you couldn't confidently match instead of guessing.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">
@@ -122,7 +174,7 @@ Match addresses carefully (abbreviations like St/Street, unit numbers). List any
     <div class="alerts">
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Verify the trigger before you knock.</strong> "I saw the home on Maple sold" had better be true. Check the MLS record before you lead with it.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Expireds and withdrawns have rules.</strong> Solicitation of expired listings is regulated and brokerage-policy-sensitive. Know your rules before that touch.</p></div>
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Owner data comes with obligations.</strong> If your farm list came from a data provider, its license says what you can do with it. Uploading to your training-off business assistant for your own analysis is the conservative pattern; republishing is not.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Owner data comes with obligations.</strong> If your farm list came from a data provider, its license says what you can do with it. Analysis in a training-off business assistant is the conservative pattern; republishing is not.</p></div>
       <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Ripple touches never speculate about people.</strong> The market event is the opener. Who's moving, why they left, what they got: not yours to discuss.</p></div>
     </div>
   </section>

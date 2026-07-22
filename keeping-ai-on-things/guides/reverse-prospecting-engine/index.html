@@ -24,12 +24,13 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
 <g id="i-radar"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g>
+<g id="i-copy"><rect x="9" y="9" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/></g>
 <g id="i-users"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6 M16 5a3.5 3.5 0 0 1 0 7 M17 14.5c2.4.8 4 2.9 4 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
-<g id="i-home"><path d="M3 11l9-8 9 8 M5 9.5V20h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-send"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
@@ -50,11 +51,18 @@
 <main class="wrap">
 
   <section class="reveal">
-    <h2>What this <span class="em">does</span></h2>
-    <div class="win-grid">
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></div><p><strong>Agent outreach, one by one, in your voice.</strong> The MLS report shows whose buyer searches match your listing; the engine writes the message to each of them.</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg></div><p><strong>The seller update that proves you're marketing:</strong> "X agents have active buyers matching our home, here's what I'm doing about it."</p></div>
-      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><p><strong>A proof-of-demand campaign</strong> for your channels: sphere email, social posts, and an open-house angle, all keyed to real buyer demand instead of generic "just listed" noise.</p></div>
+    <h2>The whole play, at a <span class="em">glance</span></h2>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><b>Run the report</b><span>reverse prospecting in the MLS</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-copy"/></svg></div><b>Paste it</b><span>counts + criteria</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></div><b>Run the Engine</b><span>one prompt</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><b>The result</b><span>agent outreach + seller update + demand campaign</span></div>
+      </div>
+      <p class="flow-note"><strong>You walk away with:</strong> a message to every matching agent (the warmest call in real estate), a seller update that proves you're marketing, a demand-story campaign for your channels, and a 21-day follow-up cadence. Repeat weekly while the listing is active.</p>
     </div>
   </section>
 
@@ -68,42 +76,95 @@
 
   <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="rail">
-      <li><span class="stepnum">1</span><div class="stepcard"><h3>Run reverse prospecting in the MLS</h3><p>Copy the results: the count of matching buyer searches and, where shown, the agent names and search criteria.</p></div></li>
-      <li><span class="stepnum">2</span><div class="stepcard"><h3>Strip anything marked confidential</h3><p>Counts and criteria are what the engine needs. When in doubt, paste the counts only.</p></div></li>
-      <li><span class="stepnum">3</span><div class="stepcard"><h3>Run the Engine prompt</h3><p>Feed it your listing details and the pasted results.</p></div></li>
-      <li><span class="stepnum">4</span><div class="stepcard"><h3>Send the agent outreach first</h3><p>Those are the warmest possible calls in real estate: their buyer is already looking for your listing.</p></div></li>
-      <li><span class="stepnum">5</span><div class="stepcard"><h3>Send the seller update</h3><p>Nothing builds seller confidence like evidence of demand.</p></div></li>
-      <li><span class="stepnum">6</span><div class="stepcard"><h3>Queue the public campaign</h3><p>Load it through your CRM or scheduler.</p></div></li>
-      <li><span class="stepnum">7</span><div class="stepcard"><h3>Repeat weekly while active</h3><p>New matches appear as new buyers enter the market.</p></div></li>
-    </ol>
-  </section>
+    <div class="stepper" data-stepper>
+      <div class="stepper-top"><span class="stepper-count">7 steps</span><span class="stepper-progress"><i></i></span><span class="stepper-done">0 of 7 done</span></div>
 
-  <section class="reveal">
-    <p class="kicker">The warmest message in real estate</p>
-    <h2>What the outreach <span class="em">looks like</span></h2>
-    <div class="demo-strip split">
-      <div>
-        <p class="lead">Peer to peer, zero pressure, specific. The engine drafts a text and email version for every matching agent; you review and hit send. Most agents answer this message the same day, because it's about their buyer, not your listing.</p>
-      </div>
-      <div class="phone">
-        <div class="phone-notch"><i></i></div>
-        <div class="phone-screen">
-          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Draft: text to matching agent</b><span>Ready for your review</span></div></div>
-          <div class="chat-body">
-            <div class="msg user">Draft the text for agent #3 (buyer search: 4+ bed, pool, under $1.2M).</div>
-            <div class="msg ai">Hi Dana, Bradley with [brokerage]. The MLS matched your buyer search (4+ bed, pool, under $1.2M) to my new listing on Warnock Ct. Happy to get you in ahead of the weekend if it fits their list. Want the details?<span class="tick">Text version &middot; 288 characters &middot; email version below</span></div>
+      <div class="step open">
+        <button class="step-head" type="button"><span class="snum">1</span><span class="stext"><b>Run reverse prospecting in the MLS</b><span>Copy the results</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Copy the count of matching buyer searches and, where shown, the agent names and search criteria.</p>
+          <div class="window">
+            <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">MLS &rsaquo; My Listings &rsaquo; Reverse Prospecting</span></div>
+            <div class="window-body">
+              <div class="ui-row"><span class="ui-l"><span><b>14 matching buyer searches</b><small>for 4312 Warnock Ct &middot; updated today</small></span></span><span class="ui-state on">Active</span></div>
+              <div class="ui-row"><span class="ui-l"><span><b>Agent D. Miller</b><small>Search: 4+ bed &middot; pool &middot; under $1.2M</small></span></span></div>
+              <div class="ui-row"><span class="ui-l"><span><b>Agent K. Vaughn</b><small>Search: this zip &middot; 3,500+ sqft</small></span></span></div>
+            </div>
           </div>
-        </div>
+          <p class="mock-note">What the report looks like in most MLS systems: a match count plus the agents whose buyer searches fit your listing.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
       </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">2</span><span class="stext"><b>Strip anything marked confidential</b><span>When in doubt, counts only</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Counts and criteria are what the engine needs. If your MLS marks anything confidential, leave it out.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">3</span><span class="stext"><b>Run the Engine prompt</b><span>Listing details + pasted results</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>The prompt is in the Prompts section below. Fill the listing brackets, paste the report, run it.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">4</span><span class="stext"><b>Send the agent outreach first</b><span>Their buyer is already looking</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Review each draft, then send. These are the warmest possible messages in real estate.</p>
+          <div class="phone">
+            <div class="phone-notch"><i></i></div>
+            <div class="phone-screen">
+              <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Draft: text to matching agent</b><span>Ready for your review</span></div></div>
+              <div class="chat-body">
+                <div class="msg user">Draft the text for agent #2 (buyer search: 4+ bed, pool, under $1.2M).</div>
+                <div class="msg ai">Hi Dana, Bradley with [brokerage]. The MLS matched your buyer search (4+ bed, pool, under $1.2M) to my new listing on Warnock Ct. Happy to get you in ahead of the weekend if it fits their list. Want the details?<span class="tick">Text version &middot; 288 characters &middot; email version below</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-note">Peer to peer, zero pressure, specific. Most agents answer this the same day, because it's about their buyer.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">5</span><span class="stext"><b>Send the seller update</b><span>Evidence of demand builds confidence</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>"X agents have active buyers matching our home, here's what I'm doing about it this week." Nothing calms a seller like proof you're working.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">6</span><span class="stext"><b>Queue the public campaign</b><span>Through your CRM or scheduler</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Load the sphere email and social captions into the tools you already use to send.</p>
+          <button class="step-next" type="button">Done, next step <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div></div></div>
+      </div>
+
+      <div class="step">
+        <button class="step-head" type="button"><span class="snum">7</span><span class="stext"><b>Repeat weekly while active</b><span>New buyers enter the market constantly</span></span><span class="schev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></button>
+        <div class="step-body"><div class="step-inner"><div class="step-pad">
+          <p>Save the Engine prompt as a template in your workspace so each re-run is fill-in-the-brackets, 5 minutes flat. Connected CRM? Have the assistant drop the follow-up cadence in as dated tasks.</p>
+          <button class="step-next" type="button">Mark play complete <svg viewBox="0 0 24 24"><use href="#i-check"/></svg></button>
+        </div></div></div>
+      </div>
+
     </div>
   </section>
 
   <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="prompt-card">
-      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">reverse-prospecting-engine.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
-      <pre id="p1">You are my listing marketing strategist. My MLS's reverse prospecting report shows real buyer demand for my listing. Build the full campaign.
+    <details class="prompt">
+      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></span><span class="pr-text"><b>The Engine</b><span>The full campaign from one pasted report</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">reverse-prospecting-engine.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my listing marketing strategist. My MLS's reverse prospecting report shows real buyer demand for my listing. Build the full campaign.
 
 LISTING:
 - Address / area: [ ]
@@ -120,15 +181,8 @@ Produce, clearly labeled:
 4. FOLLOW-UP CADENCE: when I re-run this report and re-touch each audience over the next 21 days.
 
 Use only the numbers I pasted. Do not inflate or invent demand.</pre>
-    </div>
-  </section>
-
-  <section class="reveal">
-    <h2>Level it <span class="em">up</span></h2>
-    <div class="needs">
-      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Save it as a template.</strong> Store the Engine prompt in your workspace so each new listing is fill-in-the-brackets, 5 minutes flat.</p></div>
-      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Connected version:</strong> with your <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">CRM connected</a>, have the assistant drop the follow-up cadence in as dated tasks so nothing depends on your memory.</p></div>
-    </div>
+      </div>
+    </details>
   </section>
 
   <section class="reveal">
