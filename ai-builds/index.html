@@ -108,6 +108,14 @@ body.client .cnatlogo{display:inline-flex}
   color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 .mast .folio b{color:var(--ink); font-weight:600}
+.mastcal{
+  display:none; margin-left:14px; border:1px solid var(--gold); color:var(--gold);
+  padding:7px 12px; text-decoration:none; font-size:10px; font-weight:800;
+  letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; min-height:32px; align-items:center;
+}
+.mastcal:hover{background:var(--gold); color:var(--paper)}
+body.client .mastcal{display:inline-flex}
+@media (max-width:560px){ .mast .folio{display:none} }
 
 /* ============ frame ============ */
 .frame{display:flex}
@@ -518,6 +526,7 @@ body.client .cnatlogo{display:inline-flex}
   </span>
   <div class="wordmark">AI Agent <b>Builds</b></div>
   <div class="folio" id="folio"></div>
+  <a class="mastcal" href="https://calendly.com/cnattitle" target="_blank" rel="noopener">Book Time</a>
 </header>
 <div class="scrim" id="scrim"></div>
 
