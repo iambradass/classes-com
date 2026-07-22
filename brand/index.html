@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" data-cnat-theme="bright" class="cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/img/favicon-32.png">
+<title>CNAT Design System</title>
+<link rel="stylesheet" href="/brand/cnat.css">
+<style>
+body{margin:0}
+.wrap{max-width:900px; margin:0 auto; padding:0 22px 100px}
+section{margin-top:64px}
+.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px}
+.sw{border:1px solid var(--cn-hair)}
+.sw .chip{height:64px}
+.sw .meta{padding:8px 10px; font-size:11px}
+.sw .meta b{display:block; font-family:var(--cn-mono); font-size:10.5px}
+.demo{border:1px solid var(--cn-hair); padding:22px; margin:14px 0}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.themebar{display:flex; gap:7px; margin-left:auto}
+h2.cn-display{margin:0 0 6px}
+p.note{color:var(--cn-muted); font-size:14.5px; max-width:64ch; margin-top:0}
+</style>
+</head>
+<body class="cn">
+
+<header class="cn-masthead">
+  <span class="wordmark">CNAT <b>Design System</b></span>
+  <div class="right themebar" id="themes">
+    <button class="cn-chip on" data-t="bright">Bright</button>
+    <button class="cn-chip" data-t="manual-light">Manual Light</button>
+    <button class="cn-chip" data-t="manual-dark">Manual Dark</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <p class="cn-kicker">House Style &middot; v1.0 &middot; July 2026</p>
+  <h1 class="cn-display cn-h1">One system. Every CNAT page.</h1>
+  <p class="cn-lede">Distilled from the AI Builds Field Manual and the class landing pages. Load one stylesheet, pick a theme, and everything you build looks like us.</p>
+  <hr class="cn-rule">
+  <div class="cn-specimen"><div class="bar"><span class="cn-label">How to use on any page</span></div>
+<pre>&lt;link rel="stylesheet" href="https://classes.cnattitle.com/brand/cnat.css"&gt;
+&lt;html data-cnat-theme="bright"&gt;   &lt;!-- or manual-light / manual-dark --&gt;
+&lt;body class="cn"&gt;                 &lt;!-- add .cn-longform for reading pages --&gt;</pre></div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Palette</h2>
+  <p class="note">Tokens change with the theme; class names never do. Brass/gold is the only decorative accent and is spent sparingly. Rust means warning or a human gate, never decoration.</p>
+  <div class="swatches" id="swatches"></div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Type</h2>
+  <p class="note">Fraunces for display and italic structural numerals. Libre Franklin for UI and uppercase letterspaced labels. Charter/Georgia for long-form body. Monospace for money and data.</p>
+  <div class="demo">
+    <p class="cn-kicker">Kicker label above a headline</p>
+    <p class="cn-display cn-h1" style="margin:0 0 8px">Display with an <em>italic accent.</em></p>
+    <p class="cn-lede">The lede paragraph is italic Fraunces, muted, and never wider than 62 characters.</p>
+    <p class="cn-longform" style="max-width:68ch">Long-form body text is set in Charter or Georgia at 17px with generous leading. It is for guides and editorial pages, not UI chrome.</p>
+    <p><span class="cn-num" style="font-size:28px">01</span> &nbsp; <span class="cn-label">Numerals are italic Fraunces in accent</span></p>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Buttons &amp; Chip Nav</h2>
+  <div class="demo">
+    <p><a class="cn-btn" href="#">Primary action</a> &nbsp; <a class="cn-btn cn-btn--outline" href="#">Book Time</a></p>
+    <div class="cn-chipnav" style="margin-top:16px">
+      <button class="cn-chip on"><span class="cn-num">1</span>Overview</button>
+      <button class="cn-chip"><span class="cn-num">2</span>How It Works</button>
+      <button class="cn-chip"><span class="cn-num">3</span>Tools &amp; Costs</button>
+      <button class="cn-chip"><span class="cn-num">4</span>Setup</button>
+    </div>
+    <p class="note" style="margin-top:12px">Chip navs wrap; they never overflow-scroll. Active chips fill with the good/green token.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Cards, Tiles &amp; Stats</h2>
+  <div class="two">
+    <div class="cn-card">
+      <p class="cn-label" style="margin:0 0 8px">Card with brass top rule</p>
+      <p style="margin:0">White surface on Bright, paper on Manual. Square corners, hairline border, soft shadow only on Bright.</p>
+    </div>
+    <a class="cn-tile" href="#">
+      <span class="cn-num">01</span>
+      <span><span class="cn-tile-title">Navy tile link</span><br>
+      <span class="cn-tile-desc">Big tappable destination with an italic numeral and brass arrow.</span></span>
+      <span class="cn-arrow">&rarr;</span>
+    </a>
+  </div>
+  <div class="cn-statrow" style="margin-top:18px">
+    <div class="cn-stat"><div class="v">11</div><div class="k">Builds</div></div>
+    <div class="cn-stat"><div class="v">$25-55</div><div class="k">Starter / mo</div></div>
+    <div class="cn-stat"><div class="v">&lt;1 hr</div><div class="k">Per Setup</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Ledger &amp; Receipt</h2>
+  <div class="two">
+    <div class="cn-tablewrap"><table class="cn-ledger">
+      <tr><th>Item</th><th>Detail</th><th>Cost</th></tr>
+      <tr><td>Seed list</td><td>500 homes</td><td class="cn-mono">$30-40</td></tr>
+      <tr><td>API usage</td><td>monthly</td><td class="cn-mono">$2-8</td></tr>
+    </table></div>
+    <div class="cn-receipt">
+      <div class="cn-rline"><span>CRM (GoHighLevel)</span><span class="dots"></span><span>$97</span></div>
+      <div class="cn-rline"><span>Automation (VPS)</span><span class="dots"></span><span>$5-10</span></div>
+      <div class="cn-rline mut"><span>AI subscription (yours)</span><span class="dots"></span><span>$0</span></div>
+      <div class="cn-rtotal"><span class="cn-label">Total / mo</span><span class="dots"></span><span class="v">$102-107</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Form</h2>
+  <div class="cn-card cn-field" style="max-width:460px">
+    <label class="cn-label" for="d1">Full name</label>
+    <input class="cn-input" id="d1">
+    <label class="cn-label" for="d2">Email</label>
+    <input class="cn-input" id="d2" type="email">
+    <button class="cn-btn cn-btn--block" style="margin-top:20px">Unlock today's resources</button>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">Flow Nodes, Checklist &amp; Meter</h2>
+  <div class="demo">
+    <div class="cn-flow">
+      <div class="cn-fstep"><span class="cn-num">1</span><button class="cn-fnode cn-fnode--trigger"><span class="cn-ftag">TRIGGER</span><span>New lead hits the CRM</span></button></div>
+      <div class="cn-fconn"></div>
+      <div class="cn-fstep"><span class="cn-num">2</span><button class="cn-fnode cn-fnode--ai on"><span class="cn-ftag">AI</span><span>Reply drafted, one question at a time</span></button></div>
+      <div class="cn-fconn"></div>
+      <div class="cn-fstep"><span class="cn-num">3</span><button class="cn-fnode cn-fnode--human"><span class="cn-ftag">YOU</span><span>You take the booked conversation</span></button></div>
+    </div>
+    <div class="cn-check" style="max-width:540px; margin-top:24px">
+      <div class="item done"><span class="box">&#10003;</span><span class="txt">Register A2P 10DLC first.</span></div>
+      <div class="item"><span class="box">&#10003;</span><span class="txt">Build the instant first text.</span></div>
+    </div>
+    <p style="margin-top:20px"><span class="cn-meter l1"><i></i><i></i><i></i></span> Easy &nbsp;
+    <span class="cn-meter l2"><i></i><i></i><i></i></span> Medium &nbsp;
+    <span class="cn-meter l3"><i></i><i></i><i></i></span> Advanced</p>
+    <div class="cn-warnitem" style="margin-top:20px">Rust-ruled warning entries replace alert boxes. No pills, no icons.</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="cn-display cn-h2">House Rules</h2>
+  <div class="cn-tablewrap"><table class="cn-ledger">
+    <tr><th>Rule</th><th>Meaning</th></tr>
+    <tr><td>Square corners</td><td>No border-radius anywhere. No pill shapes, ever.</td></tr>
+    <tr><td>Rules over boxes</td><td>Hairlines and double rules structure the page. Shadows only on Bright cards.</td></tr>
+    <tr><td>One accent</td><td>Brass/gold, spent sparingly. Rust only for warnings and human gates.</td></tr>
+    <tr><td>Typography is the brand</td><td>Fraunces display + italic numerals, Franklin labels, serif long-form, mono data.</td></tr>
+    <tr><td>No em dashes</td><td>Commas, periods, or "to". Applies to every word on every page.</td></tr>
+    <tr><td>44px touch targets</td><td>Mobile-first, always. Chip navs wrap instead of scrolling.</td></tr>
+    <tr><td>Humans on the buttons</td><td>Rust marks every human gate in flows. Nothing auto-sends.</td></tr>
+  </table></div>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('#themes .cn-chip').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.documentElement.setAttribute('data-cnat-theme', b.dataset.t);
+    document.querySelectorAll('#themes .cn-chip').forEach(function(x){ x.classList.toggle('on', x===b); });
+    paint();
+  });
+});
+function paint(){
+  var names=['--cn-paper','--cn-card','--cn-panel','--cn-ink','--cn-accent','--cn-muted','--cn-hair','--cn-hair2','--cn-good','--cn-warn'];
+  var cs=getComputedStyle(document.documentElement);
+  document.getElementById('swatches').innerHTML=names.map(function(n){
+    var v=cs.getPropertyValue(n).trim();
+    return '<div class="sw"><div class="chip" style="background:'+v+'"></div><div class="meta"><b>'+v+'</b>'+n+'</div></div>';
+  }).join('');
+}
+paint();
+</script>
+</body>
+</html>
