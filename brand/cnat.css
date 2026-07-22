@@ -1,0 +1,279 @@
+/* ============================================================
+   CNAT DESIGN SYSTEM  ·  v1.0  ·  July 2026
+   The house style distilled from the AI Builds Field Manual
+   and the /go class landing page.
+   Canonical copy: https://classes.cnattitle.com/brand/cnat.css
+   Style guide:    https://classes.cnattitle.com/brand/
+   ------------------------------------------------------------
+   THEMES (set data-cnat-theme on <html> or any container):
+     "bright"        white/cream + CNAT navy + brass (default;
+                     client-facing pages, forms, landing pages)
+     "manual-light"  cream paper + ink + ledger green + gold
+                     (long-form reading, guides, editorial)
+     "manual-dark"   green-black paper + cream + gold
+                     (dark counterpart of manual-light)
+   ------------------------------------------------------------
+   HOUSE RULES (non-negotiable):
+   - Type: Fraunces (display), Libre Franklin (UI/labels),
+     Charter/Georgia (long-form body), ui-monospace (money/data)
+   - Square corners everywhere. No border-radius, no pills.
+   - Hairline rules and double rules structure the page,
+     not boxes and shadows. One brass/gold accent, spent
+     sparingly. Rust reserved for warnings/human-gates.
+   - Uppercase Franklin letterspaced labels; italic Fraunces
+     numerals as structural markers.
+   - No em dashes in any copy. No emojis. No decorative pills.
+   - 44px minimum touch targets. Mobile-first.
+   ============================================================ */
+
+/* ---------- fonts (hosted beside this file) ---------- */
+@font-face{
+  font-family:'Fraunces'; font-style:normal; font-weight:400 700; font-display:swap;
+  src:url('/brand/fonts/fraunces-var.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Libre Franklin'; font-style:normal; font-weight:100 900; font-display:swap;
+  src:url('/brand/fonts/libre-franklin-var.woff2') format('woff2');
+}
+
+/* ---------- tokens ---------- */
+:root, [data-cnat-theme="bright"]{
+  color-scheme:light;
+  --cn-paper:#F4F1E9;      /* page ground */
+  --cn-card:#FFFFFF;       /* raised surface */
+  --cn-panel:#EDE9DD;      /* recessed surface */
+  --cn-ink:#0B1522;        /* CNAT navy = text + solid buttons */
+  --cn-ink2:#152238;       /* hover navy */
+  --cn-accent:#B9974E;     /* matte brass */
+  --cn-muted:#5C6470;
+  --cn-hair:#DDD6C6;       /* hairline rules */
+  --cn-hair2:#C9BFA8;      /* stronger rules */
+  --cn-good:#2E6B4F;
+  --cn-warn:#A03B2E;       /* rust: errors, warnings, human gates */
+  --cn-code-bg:#F0ECE1;
+  --cn-shadow:rgba(11,21,34,.08);
+  --cn-display:'Fraunces',Georgia,serif;
+  --cn-ui:'Libre Franklin',system-ui,sans-serif;
+  --cn-body:Charter,Georgia,'Times New Roman',serif;
+  --cn-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+[data-cnat-theme="manual-light"]{
+  color-scheme:light;
+  --cn-paper:#F5F0E3; --cn-card:#F5F0E3; --cn-panel:#EDE6D2;
+  --cn-ink:#1B1712; --cn-ink2:#000000;
+  --cn-accent:#A97F1F;               /* gold */
+  --cn-muted:#6F6553;
+  --cn-hair:#D9D0BA; --cn-hair2:#BFB393;
+  --cn-good:#2A4F3B;                 /* ledger green doubles as good */
+  --cn-warn:#96482B;
+  --cn-code-bg:#EFE9D8;
+  --cn-shadow:rgba(60,48,20,.10);
+  --cn-green:#2A4F3B; --cn-green-link:#2F5A43;
+}
+[data-cnat-theme="manual-dark"]{
+  color-scheme:dark;
+  --cn-paper:#141811; --cn-card:#141811; --cn-panel:#1B211A;
+  --cn-ink:#E9E1CB; --cn-ink2:#FFFFFF;
+  --cn-accent:#C9A44E;
+  --cn-muted:#9C927A;
+  --cn-hair:#2B3227; --cn-hair2:#455040;
+  --cn-good:#8FB89E;
+  --cn-warn:#C97C55;
+  --cn-code-bg:#191F18;
+  --cn-shadow:rgba(0,0,0,.5);
+  --cn-green:#8FB89E; --cn-green-link:#9CC3AB;
+}
+
+/* ---------- base ---------- */
+.cn, .cn body{
+  background:var(--cn-paper); color:var(--cn-ink);
+  font-family:var(--cn-ui); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.cn-longform{font-family:var(--cn-body); font-size:17px; line-height:1.66}
+
+/* ---------- type ---------- */
+.cn-display{font-family:var(--cn-display); font-weight:600; line-height:1.05; letter-spacing:-.01em; text-wrap:balance}
+.cn-display em{font-style:italic; color:var(--cn-accent)}
+.cn-h1{font-size:clamp(32px,5vw,56px)}
+.cn-h2{font-size:clamp(24px,3.5vw,36px)}
+.cn-lede{font-family:var(--cn-display); font-style:italic; font-weight:430; font-size:20px; line-height:1.5; color:var(--cn-muted); text-wrap:pretty}
+.cn-kicker{
+  font-family:var(--cn-ui); font-size:11px; font-weight:800;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--cn-accent); margin:0 0 10px;
+}
+.cn-label{
+  font-family:var(--cn-ui); font-size:11px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--cn-muted);
+}
+.cn-num{font-family:var(--cn-display); font-style:italic; font-weight:600; color:var(--cn-accent); font-variant-numeric:tabular-nums}
+.cn-mono{font-family:var(--cn-mono); font-variant-numeric:tabular-nums}
+
+/* ---------- rules & dividers ---------- */
+.cn-rule{width:44px; height:3px; background:var(--cn-accent); border:0; margin:18px 0}
+.cn-rule--center{margin-left:auto; margin-right:auto}
+.cn-hairline{border:0; border-top:1px solid var(--cn-hair)}
+.cn-doubleline{border:0; border-top:3px double var(--cn-hair2)}
+.cn-subdiv{
+  display:flex; align-items:center; gap:12px; margin:44px 0 16px;
+  font-family:var(--cn-ui); font-size:11px; font-weight:800;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--cn-muted);
+}
+.cn-subdiv::after{content:""; flex:1; border-top:1px solid var(--cn-hair2)}
+
+/* ---------- buttons ---------- */
+.cn-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:44px; padding:12px 22px; border:0; cursor:pointer; text-decoration:none;
+  background:var(--cn-ink); color:var(--cn-paper);
+  font-family:var(--cn-ui); font-size:13px; font-weight:800;
+  letter-spacing:.12em; text-transform:uppercase; border-radius:0;
+}
+.cn-btn:hover{background:var(--cn-ink2)}
+.cn-btn--outline{
+  background:transparent; color:var(--cn-ink);
+  border:1px solid var(--cn-accent); font-size:11px; padding:9px 14px; min-height:40px;
+}
+.cn-btn--outline:hover{background:var(--cn-accent); color:var(--cn-paper)}
+.cn-btn--block{display:flex; width:100%}
+.cn-btn:focus-visible, .cn-chip:focus-visible{outline:2px solid var(--cn-accent); outline-offset:2px}
+
+/* ---------- chip nav (wrapping selector, never overflow-scroll) ---------- */
+.cn-chipnav{display:flex; flex-wrap:wrap; gap:7px}
+.cn-chip{
+  display:inline-flex; align-items:baseline; gap:7px; cursor:pointer;
+  border:1px solid var(--cn-hair2); background:var(--cn-paper); color:var(--cn-muted);
+  font-family:var(--cn-ui); font-size:11px; font-weight:700; letter-spacing:.05em;
+  text-transform:uppercase; padding:9px 13px; min-height:38px; white-space:nowrap; border-radius:0;
+}
+.cn-chip:hover{color:var(--cn-ink); border-color:var(--cn-accent)}
+.cn-chip.on{background:var(--cn-good); border-color:var(--cn-good); color:var(--cn-paper)}
+.cn-chip .cn-num{font-size:12px}
+.cn-chip.on .cn-num{color:inherit; opacity:.75}
+
+/* ---------- cards ---------- */
+.cn-card{
+  background:var(--cn-card); border:1px solid var(--cn-hair);
+  border-top:3px solid var(--cn-accent); padding:24px 22px;
+  box-shadow:0 10px 30px var(--cn-shadow);
+}
+.cn-card--flat{box-shadow:none; border-top-width:1px}
+.cn-card--accent-side{border-top:1px solid var(--cn-hair); border-left:3px solid var(--cn-accent)}
+
+/* ---------- navy tile (big tappable link) ---------- */
+.cn-tile{
+  display:flex; align-items:center; gap:16px; width:100%; text-align:left;
+  background:var(--cn-ink); color:var(--cn-paper); text-decoration:none;
+  padding:22px 20px; border:0; cursor:pointer;
+}
+.cn-tile:hover{background:var(--cn-ink2)}
+.cn-tile .cn-num{font-size:30px; flex:0 0 44px}
+.cn-tile-title{font-family:var(--cn-ui); font-size:18px; font-weight:800; letter-spacing:-.01em}
+.cn-tile-desc{font-size:13.5px; opacity:.75; line-height:1.45}
+.cn-tile .cn-arrow{font-family:var(--cn-display); font-size:24px; color:var(--cn-accent); margin-left:auto}
+
+/* ---------- stat row (ruled, not boxed) ---------- */
+.cn-statrow{display:flex; flex-wrap:wrap; border-top:2px solid var(--cn-ink); border-bottom:1px solid var(--cn-hair2)}
+.cn-stat{flex:1 1 150px; padding:14px 18px 14px 0; margin-right:18px; border-right:1px solid var(--cn-hair)}
+.cn-stat:last-child{border-right:0; margin-right:0}
+.cn-stat .v{font-family:var(--cn-display); font-size:26px; font-weight:600; font-variant-numeric:tabular-nums}
+.cn-stat .k{font-family:var(--cn-ui); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--cn-muted); margin-top:2px}
+
+/* ---------- ledger table ---------- */
+.cn-tablewrap{overflow-x:auto}
+.cn-ledger{border-collapse:collapse; width:100%; font-size:14px; border-top:2px solid var(--cn-ink)}
+.cn-ledger th{
+  font-family:var(--cn-ui); text-align:left; font-size:10.5px; font-weight:800;
+  text-transform:uppercase; letter-spacing:.14em; color:var(--cn-muted);
+  padding:10px 14px 8px 0; border-bottom:1px solid var(--cn-hair2);
+}
+.cn-ledger td{padding:10px 14px 10px 0; border-bottom:1px solid var(--cn-hair); vertical-align:top; font-variant-numeric:tabular-nums}
+.cn-ledger tr:last-child td{border-bottom:1px solid var(--cn-hair2)}
+
+/* ---------- receipt (dot leaders + total) ---------- */
+.cn-receipt{font-family:var(--cn-mono); font-size:12.5px; line-height:2.05}
+.cn-rline{display:flex; align-items:baseline; gap:8px}
+.cn-rline .dots{flex:1; border-bottom:1px dotted var(--cn-hair2); transform:translateY(-4px)}
+.cn-rline.mut{color:var(--cn-muted)}
+.cn-rtotal{border-top:1px solid var(--cn-ink); margin-top:10px; padding-top:8px; display:flex; align-items:baseline; gap:8px}
+.cn-rtotal .v{font-family:var(--cn-display); font-size:24px; font-weight:600}
+.cn-rtotal .dots{flex:1; border-bottom:1px dotted var(--cn-hair2); transform:translateY(-5px)}
+
+/* ---------- forms ---------- */
+.cn-field label{display:block; margin:16px 0 6px}
+.cn-input{
+  width:100%; min-height:50px; padding:12px 14px; font:inherit; font-size:16px;
+  border:1.5px solid var(--cn-hair); border-radius:0; background:var(--cn-card); color:var(--cn-ink);
+}
+.cn-input:focus{outline:2px solid var(--cn-accent); outline-offset:0; border-color:var(--cn-accent)}
+.cn-msg-err{color:var(--cn-warn); font-size:14px}
+.cn-msg-ok{color:var(--cn-good); font-size:14px}
+
+/* ---------- flow stepper (typed nodes) ---------- */
+.cn-flow{display:flex; flex-direction:column; max-width:540px}
+.cn-fstep{display:flex; gap:10px; align-items:stretch}
+.cn-fstep .cn-num{flex:0 0 20px; padding-top:9px; text-align:right; font-size:15px}
+.cn-fnode{
+  flex:1; text-align:left; border:1px solid var(--cn-hair2); background:var(--cn-paper);
+  padding:10px 12px; font-family:var(--cn-ui); font-size:13px; font-weight:600;
+  line-height:1.45; color:var(--cn-ink); cursor:pointer; border-radius:0;
+  display:flex; gap:10px; align-items:baseline; min-height:44px;
+}
+.cn-fnode:hover{border-color:var(--cn-accent)}
+.cn-fnode.on{border-color:var(--cn-accent); background:var(--cn-panel); box-shadow:inset 3px 0 0 var(--cn-accent)}
+.cn-ftag{font-family:var(--cn-mono); font-size:8.5px; font-weight:700; letter-spacing:.12em; color:var(--cn-muted); padding-top:2px}
+.cn-fnode--trigger{border-left:3px solid var(--cn-accent)}
+.cn-fnode--ai{border-top:2px solid var(--cn-good)} .cn-fnode--ai .cn-ftag{color:var(--cn-good)}
+.cn-fnode--human{border-left:3px solid var(--cn-warn)} .cn-fnode--human .cn-ftag{color:var(--cn-warn)}
+.cn-fnode--data{border-top:3px double var(--cn-hair2); border-bottom:3px double var(--cn-hair2)}
+.cn-fnode--out{background:var(--cn-panel)}
+.cn-fconn{width:1px; height:20px; background:var(--cn-hair2); margin:0 auto; position:relative}
+.cn-fconn::after{content:""; position:absolute; bottom:0; left:-3.5px; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--cn-hair2)}
+
+/* ---------- checklist ---------- */
+.cn-check .item{display:flex; gap:13px; padding:11px 8px 11px 2px; border-bottom:1px solid var(--cn-hair); cursor:pointer}
+.cn-check .item:hover{background:var(--cn-panel)}
+.cn-check .box{
+  flex:0 0 21px; height:21px; margin-top:3px; border:1.5px solid var(--cn-hair2);
+  background:var(--cn-paper); display:flex; align-items:center; justify-content:center;
+  color:transparent; font-size:13px; font-weight:800;
+}
+.cn-check .item.done .box{border-color:var(--cn-accent); color:var(--cn-accent)}
+.cn-check .item.done .txt{color:var(--cn-muted)}
+.cn-progress{height:2px; background:var(--cn-hair); position:relative}
+.cn-progress i{position:absolute; left:0; top:0; bottom:0; background:var(--cn-accent)}
+
+/* ---------- specimen block (labeled copy-paste) ---------- */
+.cn-specimen{border:1px solid var(--cn-hair2); background:var(--cn-code-bg)}
+.cn-specimen .bar{display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--cn-hair2); padding:7px 12px}
+.cn-specimen .bar .cn-label{font-size:10px; letter-spacing:.22em}
+.cn-specimen pre{margin:0; padding:16px; overflow-x:auto; font-family:var(--cn-mono); font-size:13px; line-height:1.55}
+
+/* ---------- difficulty meter ---------- */
+.cn-meter{display:inline-flex; gap:2px; align-items:flex-end; height:11px}
+.cn-meter i{width:3.5px; background:var(--cn-hair2); display:block}
+.cn-meter i:nth-child(1){height:5px}.cn-meter i:nth-child(2){height:8px}.cn-meter i:nth-child(3){height:11px}
+.cn-meter.l1 i:nth-child(-n+1){background:var(--cn-good)}
+.cn-meter.l2 i:nth-child(-n+2){background:var(--cn-accent)}
+.cn-meter.l3 i:nth-child(-n+3){background:var(--cn-warn)}
+
+/* ---------- masthead ---------- */
+.cn-masthead{
+  position:sticky; top:0; z-index:50; min-height:56px;
+  background:var(--cn-paper); border-bottom:3px double var(--cn-hair2);
+  display:flex; align-items:center; gap:14px; padding:0 20px;
+  font-family:var(--cn-ui);
+}
+.cn-masthead .wordmark{font-weight:800; font-size:14px; letter-spacing:.22em; text-transform:uppercase}
+.cn-masthead .wordmark b{color:var(--cn-accent)}
+.cn-masthead .right{margin-left:auto; display:flex; align-items:center; gap:14px}
+
+/* ---------- warnings (rust rule, no boxes) ---------- */
+.cn-warnitem{border-left:2px solid var(--cn-warn); padding:10px 0 10px 16px; margin:0 0 10px}
+
+/* ---------- paper grain (optional, subtle) ---------- */
+.cn-grain{position:relative}
+.cn-grain::after{
+  content:""; position:fixed; inset:0; z-index:200; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
