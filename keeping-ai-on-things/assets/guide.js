@@ -83,9 +83,52 @@
         var n=steps[i+1];
         openStep(n||null);
         paint();
-        if(n){var top=n.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:top,behavior:'smooth'});}
+        if(n){setTimeout(function(){
+          var h=n.querySelector('.step-head');if(!h)return;
+          var r=h.getBoundingClientRect();
+          if(r.top<80||r.top>window.innerHeight-180){
+            window.scrollTo({top:r.top+window.pageYOffset-110,behavior:'smooth'});
+          }
+        },430);}
       });
     });
     paint();
+  });
+})();
+
+
+/* Prompt modal: open a prompt in an overlay so users keep their place */
+(function(){
+  function copyText(text,btn){
+    function ok(){var t=btn.innerHTML;btn.innerHTML='Copied!';btn.classList.add('done');setTimeout(function(){btn.innerHTML=t;btn.classList.remove('done');},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(function(){ok();});}else{ok();}
+  }
+  function openModal(title,text){
+    var wrap=document.createElement('div');
+    wrap.className='pmodal';
+    wrap.innerHTML='<div class="pmodal-backdrop"></div>'+
+      '<div class="pmodal-panel" role="dialog" aria-modal="true">'+
+      '<div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span>'+
+      '<span class="prompt-name"></span>'+
+      '<button class="copy-btn pmodal-copy" type="button">Copy</button>'+
+      '<button class="pmodal-x" type="button" aria-label="Close">&#10005;</button></div>'+
+      '<pre></pre></div>';
+    wrap.querySelector('.prompt-name').textContent=title;
+    wrap.querySelector('pre').textContent=text;
+    function close(){document.body.removeChild(wrap);document.removeEventListener('keydown',esc);document.body.style.overflow='';}
+    function esc(e){if(e.key==='Escape')close();}
+    wrap.querySelector('.pmodal-backdrop').addEventListener('click',close);
+    wrap.querySelector('.pmodal-x').addEventListener('click',close);
+    wrap.querySelector('.pmodal-copy').addEventListener('click',function(){copyText(text,this);});
+    document.addEventListener('keydown',esc);
+    document.body.style.overflow='hidden';
+    document.body.appendChild(wrap);
+  }
+  document.querySelectorAll('.prompt-open').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var src=document.getElementById(btn.getAttribute('data-prompt'));
+      if(!src)return;
+      openModal(btn.textContent.replace(/^View prompt:\s*/i,''),src.textContent);
+    });
   });
 })();
