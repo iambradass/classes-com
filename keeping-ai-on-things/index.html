@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Keeping AI on Things Resource Hub | CNAT Title</title>
-<meta name="description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<meta name="description" content="Prompts, playbooks, and setup guides from the Keeping AI on Things class with CNAT Title.">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -12,186 +12,360 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://classes.cnattitle.com/keeping-ai-on-things/">
 <meta property="og:title" content="Keeping AI on Things Resource Hub | CNAT Title">
-<meta property="og:description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<meta property="og:description" content="Prompts, playbooks, and setup guides from the Keeping AI on Things class with CNAT Title.">
 <meta property="og:site_name" content="CNAT Education">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keeping AI on Things Resource Hub | CNAT Title">
-<meta name="twitter:description" content="Prompts, tools, and recipes from the Keeping AI on Things class with CNAT Title.">
+<meta name="twitter:description" content="Prompts, playbooks, and setup guides from the Keeping AI on Things class with CNAT Title.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --navy:#0F1A2E; --navy-mid:#162240; --navy-light:#1B2A4A;
-    --cyan:#00C8F0; --gold:#FFB833; --gold-soft:#FFD175;
-    --white:#F2F6FA; --green:#36D97A; --coral:#FF7373;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--navy);color:var(--white);font-family:'Source Sans 3',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;}
-  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
-  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 55%,#0a2540 100%);padding:44px 0 34px;text-align:center;border-bottom:3px solid var(--cyan);}
-  header .kicker{text-transform:uppercase;letter-spacing:4px;font-size:.8rem;opacity:.7;margin-bottom:.6rem;}
-  header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,9vw,4rem);letter-spacing:3px;line-height:1;}
-  header p.sub{font-size:clamp(1rem,4vw,1.25rem);opacity:.9;font-weight:300;margin-top:.5rem;}
-  header p.by{opacity:.5;font-size:.85rem;margin-top:1rem;}
-  nav.toc{position:sticky;top:0;z-index:20;background:rgba(15,26,46,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 0;}
-  nav.toc .wrap{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  nav.toc a{flex:0 0 auto;color:var(--white);text-decoration:none;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(0,200,240,.3);border-radius:20px;opacity:.85;}
-  nav.toc a:active{background:var(--cyan);color:var(--navy);}
-  section{padding:34px 0 8px;}
-  h2{font-family:'Oswald',sans-serif;font-size:clamp(1.5rem,6vw,2rem);font-weight:500;color:var(--cyan);margin-bottom:.4rem;}
-  h2 .em{color:var(--gold);}
-  .lead{opacity:.85;margin-bottom:1.2rem;font-size:1.02rem;}
-  h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.2rem;margin-bottom:.35rem;}
-  .card{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;margin-bottom:16px;}
-  .card.cyan{border-left:5px solid var(--cyan);}
-  .card.gold{border-left:5px solid var(--gold);}
-  .card.green{border-left:5px solid var(--green);}
-  .card.red{border-left:5px solid var(--coral);}
-  .prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:.5rem;}
-  .tagline{font-size:.95rem;opacity:.8;margin-bottom:.75rem;}
-  .num{font-family:'Bebas Neue',sans-serif;background:var(--cyan);color:var(--navy);width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;flex:0 0 auto;}
-  pre{background:#0a1120;border:1px solid rgba(0,200,240,.25);border-radius:10px;padding:16px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.86rem;line-height:1.5;color:#d6e6f2;white-space:pre-wrap;word-break:break-word;}
-  .copy-btn{font-family:'Oswald',sans-serif;background:var(--cyan);color:var(--navy);border:none;border-radius:8px;padding:8px 16px;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-weight:500;flex:0 0 auto;}
-  .copy-btn:active{transform:scale(.97);}
-  .copy-btn.done{background:var(--green);}
-  ol.recipe{list-style:none;counter-reset:step;}
-  ol.recipe li{counter-increment:step;position:relative;padding:8px 0 8px 42px;border-bottom:1px solid rgba(255,255,255,.07);}
-  ol.recipe li:last-child{border-bottom:none;}
-  ol.recipe li::before{content:counter(step);position:absolute;left:0;top:8px;background:var(--gold);color:var(--navy);font-family:'Bebas Neue',sans-serif;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;}
-  ul.plain{list-style:none;}
-  ul.plain li{padding:6px 0 6px 26px;position:relative;}
-  ul.plain li::before{content:'\2192';position:absolute;left:0;color:var(--cyan);font-weight:700;}
-  ul.check li::before{content:'\2610';color:var(--gold);font-size:1.1rem;top:4px;}
-  .tool-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-  .tool-job{font-family:'Oswald',sans-serif;color:var(--gold-soft);font-size:1.05rem;}
-  .muted{opacity:.6;font-size:.85rem;}
-  .disclaimer{background:rgba(255,184,51,.08);border:1px solid rgba(255,184,51,.3);border-radius:12px;padding:14px 18px;font-size:.9rem;}
-  footer{text-align:center;padding:34px 20px 48px;margin-top:24px;border-top:1px solid rgba(255,255,255,.1);opacity:.6;font-size:.85rem;}
-  a.inline{color:var(--cyan);}
-  .level-label{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);margin:18px 0 8px;}
-  .play-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-  a.play{display:block;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-left:5px solid var(--cyan);border-radius:14px;padding:16px 18px;color:var(--white);text-decoration:none;}
-  a.play:active{background:rgba(0,200,240,.12);}
-  a.play.start{border-left-color:var(--gold);}
-  a.play .play-name{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:1.08rem;color:var(--cyan);}
-  a.play.start .play-name{color:var(--gold);}
-  a.play .play-desc{display:block;font-size:.9rem;opacity:.8;margin-top:2px;}
-  a.play .play-meta{display:block;font-size:.78rem;opacity:.55;margin-top:6px;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase;}
-  @media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}.play-grid{grid-template-columns:1fr 1fr;}}
-  @media print{
-    nav.toc{display:none;}.copy-btn{display:none;}body{background:#fff;color:#111;}
-    header{background:#fff;color:#111;border-bottom:2px solid #111;}pre{background:#f4f4f4;color:#111;border-color:#ccc;}
-    .card{border-color:#ccc;} h2{color:#0F1A2E;}
-  }
+:root{
+  --bg:#0A1322; --bg2:#0F1A2E;
+  --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --cyan:#00C8F0; --cyan-dim:rgba(0,200,240,.12); --cyan-line:rgba(0,200,240,.35);
+  --gold:#FFB833; --gold-soft:#FFD175; --gold-dim:rgba(255,184,51,.12); --gold-line:rgba(255,184,51,.35);
+  --white:#F2F6FA; --dim:#A6B5CC; --faint:#64789B;
+  --green:#36D97A; --coral:#FF7373;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-display:'Bebas Neue',sans-serif;
+  --font-head:'Oswald',sans-serif;
+  --font-body:'Source Sans 3',sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html{overflow-x:clip;}
+body{background:var(--bg);color:var(--white);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px;}
+.bg-fx{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(ellipse 60% 45% at 12% -5%, rgba(0,200,240,.11), transparent 60%),
+  radial-gradient(ellipse 55% 40% at 95% 12%, rgba(255,184,51,.08), transparent 60%),
+  radial-gradient(ellipse 70% 50% at 50% 110%, rgba(0,200,240,.05), transparent 60%),
+  linear-gradient(180deg,var(--bg2) 0%,var(--bg) 40%);}
+.bg-fx::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(160,180,210,.05) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,rgba(0,0,0,.7),transparent 65%);}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));transform-origin:0 50%;transform:scaleX(0);}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}*{animation:none !important;transition:none !important;}}
+
+/* ── Hero ── */
+header.hero{padding:clamp(44px,9vw,84px) 0 clamp(26px,5vw,44px);text-align:center;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid var(--gold-line);background:var(--gold-dim);font-family:var(--font-head);font-size:.74rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:22px;}
+.hero-badge i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px rgba(255,184,51,.8);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+header.hero h1{font-family:var(--font-display);font-size:clamp(3.4rem,13vw,6.4rem);letter-spacing:3px;line-height:.94;}
+header.hero h1 .cy{color:var(--cyan);text-shadow:0 0 40px rgba(0,200,240,.35);}
+header.hero .sub{font-size:clamp(1.05rem,4vw,1.3rem);color:var(--dim);font-weight:300;margin:14px auto 0;max-width:52ch;}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
+.btn{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:13px 26px;border-radius:100px;font-family:var(--font-head);font-size:.88rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);}
+.btn svg{width:16px;height:16px;}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),#00A5D8);color:#06202b;font-weight:500;box-shadow:0 10px 30px rgba(0,200,240,.28);}
+.btn.primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 40px rgba(0,200,240,.4);}
+.btn.ghost{border:1px solid var(--line-2);color:var(--white);background:var(--panel);backdrop-filter:blur(10px);}
+.btn.ghost:hover{transform:translateY(-2px);border-color:var(--cyan-line);}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:18px clamp(18px,6vw,52px);margin-top:36px;}
+.hstat{text-align:center;}
+.hstat b{display:block;font-family:var(--font-display);font-size:clamp(1.9rem,7vw,2.6rem);line-height:1;color:var(--white);}
+.hstat b span{color:var(--cyan);}
+.hstat small{font-family:var(--font-head);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);}
+
+/* ── Sticky nav ── */
+nav.toc{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;padding:0 12px;margin-top:8px;}
+nav.toc .rail{display:flex;gap:4px;padding:5px;border-radius:100px;border:1px solid var(--line-2);background:rgba(10,19,34,.82);backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(0,0,0,.45);overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;scrollbar-width:none;}
+nav.toc .rail::-webkit-scrollbar{display:none;}
+nav.toc a{flex:0 0 auto;display:flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:100px;color:var(--dim);text-decoration:none;font-family:var(--font-head);font-size:.78rem;letter-spacing:1.2px;text-transform:uppercase;border:1px solid transparent;transition:color .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease);}
+nav.toc a:hover{color:var(--white);}
+nav.toc a.active{background:var(--cyan-dim);border-color:var(--cyan-line);color:var(--cyan);}
+
+/* ── Sections ── */
+section{padding:clamp(44px,8vw,72px) 0 8px;scroll-margin-top:84px;}
+.kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
+h2{font-family:var(--font-head);font-weight:500;font-size:clamp(1.6rem,6vw,2.2rem);letter-spacing:.5px;margin-bottom:8px;}
+h2 .em{color:var(--gold);}
+.lead{color:var(--dim);max-width:64ch;margin-bottom:22px;}
+h3{font-family:var(--font-head);font-weight:500;font-size:1.14rem;}
+
+/* ── Playbook board ── */
+.start-tile{position:relative;display:block;text-decoration:none;color:var(--white);border-radius:22px;border:1px solid var(--gold-line);background:linear-gradient(135deg,rgba(255,184,51,.10),rgba(255,184,51,.03) 55%),var(--panel);overflow:hidden;padding:clamp(22px,4vw,34px);margin-bottom:26px;transition:transform .25s var(--ease),box-shadow .25s var(--ease);}
+.start-tile::before{content:'';position:absolute;top:-70px;right:-70px;width:280px;height:280px;background:radial-gradient(circle,rgba(255,184,51,.22),transparent 65%);pointer-events:none;}
+.start-tile:hover{transform:translateY(-4px);box-shadow:0 22px 54px rgba(0,0,0,.45);}
+.start-flex{display:flex;gap:22px;align-items:center;position:relative;}
+.start-icon{width:72px;height:72px;flex:0 0 auto;border-radius:20px;background:var(--gold-dim);border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;color:var(--gold);}
+.start-icon svg{width:36px;height:36px;}
+.start-kicker{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.start-tile h3{font-size:clamp(1.25rem,4.5vw,1.6rem);margin-bottom:4px;}
+.start-tile p{color:var(--dim);font-size:.97rem;max-width:56ch;}
+.start-cta{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--font-head);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
+.start-cta svg{width:15px;height:15px;transition:transform .25s var(--ease);}
+.start-tile:hover .start-cta svg{transform:translateX(5px);}
+@media(max-width:560px){.start-flex{flex-direction:column;align-items:flex-start;}}
+
+.level-head{display:flex;align-items:center;gap:12px;margin:30px 0 14px;}
+.level-head .lv{display:inline-flex;gap:4px;}
+.level-head .lv i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.13);}
+.level-head .lv i.on{background:var(--gold);box-shadow:0 0 9px rgba(255,184,51,.6);}
+.level-head b{font-family:var(--font-head);font-weight:500;font-size:.95rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);}
+.level-head span{font-size:.85rem;color:var(--faint);}
+.level-head::after{content:'';flex:1;height:1px;background:var(--line);}
+
+.play-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:640px){.play-grid{grid-template-columns:1fr 1fr;}}
+a.play{display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;color:var(--white);position:relative;overflow:hidden;backdrop-filter:blur(10px);transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);}
+a.play::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 75% 65% at 100% 0%,rgba(0,200,240,.09),transparent 60%);opacity:0;transition:opacity .25s var(--ease);}
+a.play:hover{transform:translateY(-4px);border-color:var(--cyan-line);box-shadow:0 18px 44px rgba(0,0,0,.42);}
+a.play:hover::after{opacity:1;}
+.play-top{display:flex;align-items:center;gap:12px;}
+.play-ic{width:44px;height:44px;flex:0 0 auto;border-radius:13px;background:var(--cyan-dim);border:1px solid var(--cyan-line);display:flex;align-items:center;justify-content:center;color:var(--cyan);}
+.play-ic svg{width:21px;height:21px;}
+.play-name{font-family:var(--font-head);font-weight:500;font-size:1.1rem;line-height:1.25;}
+.play-desc{font-size:.9rem;color:var(--dim);flex:1;}
+.play-meta{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:.72rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);}
+.play-meta svg{width:13px;height:13px;color:var(--cyan);}
+.play-meta .arrow{margin-left:auto;color:var(--cyan);transition:transform .25s var(--ease);}
+a.play:hover .play-meta .arrow{transform:translateX(5px);}
+
+/* ── Prompt accordions ── */
+details.prompt{border:1px solid var(--line);border-radius:18px;background:#0A1120;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.3);}
+details.prompt[open]{border-color:var(--cyan-line);}
+details.prompt summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 18px;min-height:64px;transition:background .2s var(--ease);}
+details.prompt summary::-webkit-details-marker{display:none;}
+details.prompt summary:hover{background:rgba(255,255,255,.03);}
+.pr-num{width:40px;height:40px;flex:0 0 auto;border-radius:12px;background:linear-gradient(135deg,var(--cyan),#0091bd);color:#06202b;font-family:var(--font-display);font-size:1.25rem;display:flex;align-items:center;justify-content:center;}
+.pr-text{flex:1;min-width:0;}
+.pr-text b{display:block;font-family:var(--font-head);font-weight:500;font-size:1.04rem;}
+.pr-text span{display:block;font-size:.85rem;color:var(--faint);margin-top:1px;}
+.pr-chev{flex:0 0 auto;color:var(--faint);transition:transform .3s var(--ease);}
+.pr-chev svg{width:18px;height:18px;}
+details.prompt[open] .pr-chev{transform:rotate(180deg);color:var(--cyan);}
+.pr-body{border-top:1px solid var(--line);}
+.prompt-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,.035);border-bottom:1px solid var(--line);}
+.pdot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+.pdot.r{background:var(--coral);}.pdot.y{background:var(--gold);}.pdot.g{background:var(--green);}
+.prompt-name{font-family:var(--font-mono);font-size:.72rem;color:var(--dim);margin-left:6px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.copy-btn{appearance:none;display:inline-flex;align-items:center;gap:7px;background:var(--cyan);color:#06202b;border:none;border-radius:9px;padding:9px 14px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;min-height:36px;transition:transform .2s var(--ease),background .2s var(--ease);}
+.copy-btn:hover{transform:scale(1.03);}
+.copy-btn:active{transform:scale(.97);}
+.copy-btn.done{background:var(--green);}
+details.prompt pre{padding:16px;overflow-x:auto;font-family:var(--font-mono);font-size:.85rem;line-height:1.55;color:#CFE3F2;white-space:pre-wrap;word-break:break-word;}
+
+/* ── Recipes ── */
+.recipe-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:760px){.recipe-grid{grid-template-columns:1fr 1fr;}}
+.recipe-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(10px);}
+.recipe-card h3{margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.recipe-card h3 svg{width:19px;height:19px;color:var(--green);}
+ol.mini-rail{list-style:none;position:relative;}
+ol.mini-rail::before{content:'';position:absolute;left:13px;top:6px;bottom:14px;width:2px;background:linear-gradient(180deg,var(--green),rgba(54,217,122,.12));}
+ol.mini-rail li{position:relative;padding:0 0 14px 42px;font-size:.92rem;color:var(--dim);}
+ol.mini-rail li:last-child{padding-bottom:0;}
+ol.mini-rail li strong{color:var(--white);}
+ol.mini-rail li::before{counter-increment:none;}
+.mini-num{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:9px;background:rgba(54,217,122,.14);border:1px solid rgba(54,217,122,.4);color:var(--green);font-family:var(--font-display);font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+
+/* ── Tools ── */
+.tool-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}}
+.tool{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;backdrop-filter:blur(10px);transition:transform .25s var(--ease),border-color .25s var(--ease);}
+.tool:hover{transform:translateY(-2px);border-color:var(--cyan-line);}
+.tool .ic{width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:var(--cyan-dim);border:1px solid var(--cyan-line);display:flex;align-items:center;justify-content:center;color:var(--cyan);}
+.tool .ic svg{width:20px;height:20px;}
+.tool b{display:block;font-family:var(--font-head);font-weight:500;font-size:1.02rem;color:var(--gold-soft);}
+.tool p{font-size:.9rem;color:var(--dim);}
+.note{margin-top:16px;padding:14px 18px;border-radius:14px;background:var(--gold-dim);border:1px solid var(--gold-line);font-size:.9rem;color:var(--dim);}
+
+/* ── Guardrails ── */
+.guard-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:640px){.guard-grid{grid-template-columns:1fr 1fr;}}
+.guard{display:flex;gap:14px;align-items:flex-start;background:rgba(255,115,115,.05);border:1px solid rgba(255,115,115,.26);border-radius:16px;padding:18px;}
+.guard .ic{width:40px;height:40px;flex:0 0 auto;border-radius:12px;background:rgba(255,115,115,.12);display:flex;align-items:center;justify-content:center;color:var(--coral);}
+.guard .ic svg{width:19px;height:19px;}
+.guard b{display:block;font-family:var(--font-head);font-weight:500;font-size:1rem;}
+.guard p{font-size:.9rem;color:var(--dim);}
+
+/* ── Action checklist ── */
+.check-card{background:var(--panel);border:1px solid var(--gold-line);border-radius:18px;padding:10px 8px;backdrop-filter:blur(10px);}
+.check-item{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;cursor:pointer;transition:background .2s var(--ease);}
+.check-item:hover{background:rgba(255,255,255,.035);}
+.check-item input{position:absolute;opacity:0;pointer-events:none;}
+.check-box{width:26px;height:26px;flex:0 0 auto;border-radius:8px;border:2px solid var(--gold-line);background:transparent;display:flex;align-items:center;justify-content:center;color:transparent;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease);margin-top:2px;}
+.check-box svg{width:15px;height:15px;}
+.check-item input:checked ~ .check-box{background:var(--gold);border-color:var(--gold);color:#1a1206;}
+.check-item input:checked ~ .check-text{opacity:.55;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.4);}
+.check-text{font-size:.96rem;color:var(--dim);transition:opacity .2s var(--ease);}
+.check-text strong{color:var(--white);}
+.check-text a{color:var(--cyan);}
+
+footer{text-align:center;padding:44px 20px 56px;margin-top:44px;border-top:1px solid var(--line);color:var(--faint);font-size:.86rem;}
+footer b{color:var(--dim);font-weight:600;}
+
+@media print{
+  .bg-fx,.progress,nav.toc,.copy-btn,.hero-ctas{display:none !important;}
+  body{background:#fff;color:#111;}
+  h1,h2,h3{color:#0F1A2E;}h2 .em{color:#0F1A2E;}
+  a.play,.start-tile,.recipe-card,.tool,.guard,.check-card,details.prompt{background:#fff;border-color:#ccc;box-shadow:none;}
+  .lead,.sub,.play-desc,.tool p,.guard p,.check-text{color:#333;}
+  details.prompt pre{color:#111;background:#f5f5f5;}
+  details.prompt{page-break-inside:avoid;}
+  .reveal{opacity:1;transform:none;}
+}
 </style>
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
 
-<header>
+<!-- Inline SVG icon defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-brain"><path d="M12 4a3 3 0 0 0-3 3v10a3 3 0 0 0 6 0V7a3 3 0 0 0-3-3z M9 8H7a3 3 0 0 0 0 6h2 M15 8h2a3 3 0 0 1 0 6h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-table"><path d="M3 5h18v14H3z M3 10h18 M9 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-radar"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g>
+    <g id="i-home"><path d="M3 11l9-8 9 8 M5 9.5V20h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-clip"><path d="M9 4h6v3H9z M9 4H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2 M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-plug"><path d="M9 7V3 M15 7V3 M6 7h12v4a6 6 0 0 1-12 0z M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18 M8 3v4 M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-layout"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18 M10 10v10" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-chart"><path d="M4 20V6 M4 20h16 M8 16v-5 M12 16V8 M16 16v-3 M20 16V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-pin"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-rocket"><path d="M5 15c-1 3-1 4-1 4s1 0 4-1 M14 4c3 1 5 3 6 6-2 5-6 9-11 10l-5-5C5 10 9 6 14 4z M9 15l-1-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="2"/></g>
+    <g id="i-bolt"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+    <g id="i-shield"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-mic"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0 M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+    <g id="i-send"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-db"><ellipse cx="12" cy="5.5" rx="8" ry="2.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 5.5V18.5c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8V5.5 M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8" fill="none" stroke="currentColor" stroke-width="2"/></g>
+  </defs>
+</svg>
+
+<header class="hero">
   <div class="wrap">
-    <p class="kicker">CNAT Title &middot; Class Resource Hub</p>
-    <h1>Keeping AI on Things</h1>
-    <p class="sub">Practical AI for Real Estate Agents</p>
-    <p class="by">Everything from today's class: prompts, tools, recipes, and your action plan.</p>
+    <div class="hero-badge"><i></i>CNAT Title &middot; Class Resource Hub</div>
+    <h1>Keeping <span class="cy">AI</span> on Things</h1>
+    <p class="sub">Practical AI for real estate agents. Everything from class lives here: the playbooks, the prompts, and the step-by-step guides to build it all.</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#playbooks">See the Playbook Board <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
+      <a class="btn ghost" href="#prompts">Grab the Prompts</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b>11</b><small>Playbooks</small></div>
+      <div class="hstat"><b>3</b><small>Levels</small></div>
+      <div class="hstat"><b>5</b><small>Class Prompts</small></div>
+      <div class="hstat"><b>1<span>hr</span></b><small>To First Win</small></div>
+    </div>
   </div>
 </header>
 
-<nav class="toc">
-  <div class="wrap">
+<nav class="toc" aria-label="Sections">
+  <div class="rail">
     <a href="#playbooks">Playbooks</a>
     <a href="#prompts">Prompts</a>
-    <a href="#recipes">Demo Recipes</a>
+    <a href="#recipes">Recipes</a>
     <a href="#tools">Tools</a>
     <a href="#guardrails">Guardrails</a>
     <a href="#action">This Week</a>
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap">
 
   <!-- PLAYBOOKS -->
   <section id="playbooks">
-    <h2>The Playbook <span class="em">Board</span></h2>
-    <p class="lead">This is what "using AI to run your business" actually looks like. Every play links to a step-by-step setup guide, so you can leave class and build it. Start at Level 1 tonight; work up as each play pays for itself.</p>
+    <p class="kicker reveal">What your AI could be running</p>
+    <h2 class="reveal">The Playbook <span class="em">Board</span></h2>
+    <p class="lead reveal">This is what "using AI to run your business" actually looks like. Every play opens a step-by-step setup guide. Start at Level 1 tonight; work up as each play pays for itself.</p>
 
-    <a class="play start" href="guides/ai-second-brain/">
-      <span class="play-name">Start Here: Your AI Second Brain</span>
-      <span class="play-desc">Teach your assistant your market, voice, and rules one time. Every other play assumes this exists.</span>
-      <span class="play-meta">Foundation &middot; 30 min, once</span>
+    <a class="start-tile reveal" href="guides/ai-second-brain/">
+      <div class="start-flex">
+        <div class="start-icon"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></div>
+        <div>
+          <div class="start-kicker">Start here &middot; The foundation &middot; 30 min, once</div>
+          <h3>Your AI Second Brain</h3>
+          <p>Teach your assistant your market, voice, and rules one time. Every other play on this board assumes it exists.</p>
+          <span class="start-cta">Open the guide <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
+        </div>
+      </div>
     </a>
 
-    <p class="level-label">Level 1 &middot; Copy-Paste Plays (no setup, works today)</p>
+    <div class="level-head reveal"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
     <div class="play-grid">
-      <a class="play" href="guides/csv-to-campaign/">
-        <span class="play-name">CSV to Campaign</span>
-        <span class="play-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</span>
-        <span class="play-meta">15 min</span>
+      <a class="play reveal" href="guides/csv-to-campaign/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><div class="play-name">CSV to Campaign</div></div>
+        <p class="play-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/reverse-prospecting-engine/">
-        <span class="play-name">Reverse Prospecting Engine</span>
-        <span class="play-desc">Your MLS shows which agents have matching buyers. One paste turns it into agent outreach, a seller update, and a demand campaign.</span>
-        <span class="play-meta">20 min per listing</span>
+      <a class="play reveal" href="guides/reverse-prospecting-engine/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><div class="play-name">Reverse Prospecting Engine</div></div>
+        <p class="play-desc">Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / listing<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/cma-assistant/">
-        <span class="play-name">The CMA Assistant</span>
-        <span class="play-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</span>
-        <span class="play-meta">20 min per CMA</span>
+      <a class="play reveal" href="guides/cma-assistant/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg></div><div class="play-name">The CMA Assistant</div></div>
+        <p class="play-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / CMA<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/ai-transaction-coordinator/">
-        <span class="play-name">AI Transaction Coordination</span>
-        <span class="play-desc">Contract dates in, a full contract-to-close timeline, weekly client updates, and an at-risk radar out.</span>
-        <span class="play-meta">20 min per contract</span>
+      <a class="play reveal" href="guides/ai-transaction-coordinator/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><div class="play-name">AI Transaction Coordination</div></div>
+        <p class="play-desc">Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / contract<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
 
-    <p class="level-label">Level 2 &middot; Connected Plays (one-time setup)</p>
+    <div class="level-head reveal"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span><b>Level 2 &middot; Connected</b><span>one-time setup</span></div>
     <div class="play-grid">
-      <a class="play" href="guides/connect-your-crm/">
-        <span class="play-name">Connect Your CRM</span>
-        <span class="play-desc">Ask questions of your own database and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</span>
-        <span class="play-meta">30-60 min, once</span>
+      <a class="play reveal" href="guides/connect-your-crm/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="play-name">Connect Your CRM</div></div>
+        <p class="play-desc">Ask questions of your own database, and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/calendar-connection/">
-        <span class="play-name">Connect Your Calendar</span>
-        <span class="play-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</span>
-        <span class="play-meta">20-30 min, once</span>
+      <a class="play reveal" href="guides/calendar-connection/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><div class="play-name">Connect Your Calendar</div></div>
+        <p class="play-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20-30 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/farming-landing-pages/">
-        <span class="play-name">Neighborhood Landing Pages</span>
-        <span class="play-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</span>
-        <span class="play-meta">45-60 min</span>
+      <a class="play reveal" href="guides/farming-landing-pages/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><div class="play-name">Neighborhood Landing Pages</div></div>
+        <p class="play-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>45-60 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
 
-    <p class="level-label">Level 3 &middot; Autopilot Plays (routines that run without you)</p>
+    <div class="level-head reveal"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
     <div class="play-grid">
-      <a class="play" href="guides/market-research-routines/">
-        <span class="play-name">Market Research Routines</span>
-        <span class="play-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</span>
-        <span class="play-meta">30 min to set up</span>
+      <a class="play reveal" href="guides/market-research-routines/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="play-name">Market Research Routines</div></div>
+        <p class="play-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 min setup<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/farm-watchlist/">
-        <span class="play-name">The Farm Watchlist</span>
-        <span class="play-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</span>
-        <span class="play-meta">15 min a month</span>
+      <a class="play reveal" href="guides/farm-watchlist/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><div class="play-name">The Farm Watchlist</div></div>
+        <p class="play-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min / month<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a class="play" href="guides/campaign-autopilot/">
-        <span class="play-name">The Campaign Autopilot</span>
-        <span class="play-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</span>
-        <span class="play-meta">Build over a week</span>
+      <a class="play reveal" href="guides/campaign-autopilot/">
+        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-rocket"/></svg></div><div class="play-name">The Campaign Autopilot</div></div>
+        <p class="play-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</p>
+        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build in a week<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
   </section>
 
   <!-- PROMPTS -->
   <section id="prompts">
-    <h2>The 5 <span class="em">Prompts</span></h2>
-    <p class="lead">Copy any prompt, paste it into whatever AI assistant you use, and replace the <strong>[bracketed]</strong> parts with your details. That's it.</p>
+    <p class="kicker reveal">Copy, paste, replace the brackets</p>
+    <h2 class="reveal">The 5 <span class="em">Prompts</span></h2>
+    <p class="lead reveal">Tap a prompt to open it, copy it into whatever AI assistant you use, and replace the <strong>[bracketed]</strong> parts with your details. That's it.</p>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3><span class="num">1</span>&nbsp; One Listing &rarr; A Full Campaign</h3><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="tagline">Turn a single listing into a sphere email, three social captions, and an open-house angle, all in one pass.</p>
-      <pre id="p1">You are my real estate marketing assistant. Create a complete launch package for this new listing.
+    <details class="prompt reveal">
+      <summary><span class="pr-num">1</span><span class="pr-text"><b>One Listing to a Full Campaign</b><span>Sphere email, three captions, and an open-house angle in one pass</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">listing-launch.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+        <pre id="p1">You are my real estate marketing assistant. Create a complete launch package for this new listing.
 
 LISTING:
 - Address / area: [neighborhood or street, city]
@@ -207,12 +381,14 @@ Produce, clearly labeled:
 3. An open-house angle: a one-line hook, three talking points, and one question that starts a conversation with every buyer who walks in.
 
 Keep fair-housing safe: describe the home and lifestyle, never the ideal buyer or neighborhood demographics.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3><span class="num">2</span>&nbsp; Conversation &rarr; Client Dossier + Tasks</h3><button class="copy-btn" data-target="p2">Copy</button></div>
-      <p class="tagline">Paste messy consult notes or a voice-note transcript and get a clean, one-page client record plus a next-action task list.</p>
-      <pre id="p2">You are my executive assistant. Below are my raw notes / transcript from a client conversation. Turn them into a clean, one-page dossier I can attach to their record.
+    <details class="prompt reveal">
+      <summary><span class="pr-num">2</span><span class="pr-text"><b>Conversation to Client Dossier + Tasks</b><span>Messy notes in, a clean one-page record and task list out</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">client-dossier.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+        <pre id="p2">You are my executive assistant. Below are my raw notes / transcript from a client conversation. Turn them into a clean, one-page dossier I can attach to their record.
 
 CONVERSATION:
 [paste your messy notes or voice-note transcript here]
@@ -230,12 +406,14 @@ Extract and label clearly:
 Then give me a NEXT-ACTION TASK LIST: each task with an owner (me / lender / client) and a deadline.
 
 Only use what's in the notes. If something wasn't mentioned, mark it "not discussed" - do not guess.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3><span class="num">3</span>&nbsp; Next-Best-Action Queue</h3><button class="copy-btn" data-target="p3">Copy</button></div>
-      <p class="tagline">Decide who to reach out to, when, and how, without staring at your whole database.</p>
-      <pre id="p3">You are my business-development assistant. Below is a list of contacts from my CRM (client database). For each one I've included the last time we talked, their role, and one recent note.
+    <details class="prompt reveal">
+      <summary><span class="pr-num">3</span><span class="pr-text"><b>Next-Best-Action Queue</b><span>Who to reach out to, when, and how</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">next-best-action.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
+        <pre id="p3">You are my business-development assistant. Below is a list of contacts from my CRM (client database). For each one I've included the last time we talked, their role, and one recent note.
 
 CONTACTS:
 [paste 10-20 rows: name | role (past client / referral partner / active lead) | last contact date | one recent note]
@@ -247,12 +425,14 @@ For each contact, recommend:
 
 Then rank the top 5 I should do FIRST and explain the ranking in one line each.
 Do not write the messages - just the action plan. I'll decide what to say.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3><span class="num">4</span>&nbsp; Neighborhood Market-Update Post</h3><button class="copy-btn" data-target="p4">Copy</button></div>
-      <p class="tagline">Turn a few local numbers into a value post + sphere email that positions you as the area expert.</p>
-      <pre id="p4">You are my content assistant. Turn these local market numbers into a value-first update for my audience - not a sales pitch.
+    <details class="prompt reveal">
+      <summary><span class="pr-num">4</span><span class="pr-text"><b>Neighborhood Market-Update Post</b><span>Local numbers into a value post + sphere email</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">market-update.prompt</span><button class="copy-btn" data-target="p4">Copy</button></div>
+        <pre id="p4">You are my content assistant. Turn these local market numbers into a value-first update for my audience - not a sales pitch.
 
 AREA: [neighborhood / zip]
 NUMBERS (most recent I have):
@@ -266,12 +446,14 @@ Produce:
 2. A matching email to my database with a subject line and a soft call to action ("reply if you want the full picture for your street").
 
 Neutral, factual, fair-housing safe. Cite the numbers as "recent local data," and remind me to double-check figures before posting.</pre>
-    </div>
+      </div>
+    </details>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3><span class="num">5</span>&nbsp; Weekly Transaction Status Brief</h3><button class="copy-btn" data-target="p5">Copy</button></div>
-      <p class="tagline">Turn a deal's moving parts into a calm client update and an internal checklist, so nothing slips.</p>
-      <pre id="p5">You are my transaction coordinator. Based on the deal details below, write two things.
+    <details class="prompt reveal">
+      <summary><span class="pr-num">5</span><span class="pr-text"><b>Weekly Transaction Status Brief</b><span>A calm client update and an internal checklist, so nothing slips</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <div class="pr-body">
+        <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-brief.prompt</span><button class="copy-btn" data-target="p5">Copy</button></div>
+        <pre id="p5">You are my transaction coordinator. Based on the deal details below, write two things.
 
 DEAL:
 - Property / client: [ ]
@@ -285,108 +467,140 @@ Produce:
 2. An INTERNAL action checklist for me: every open item with a deadline and who owns it, flagging anything at risk of being late.
 
 Keep the client version free of jargon. Keep the internal version blunt.</pre>
-    </div>
+      </div>
+    </details>
   </section>
 
   <!-- RECIPES -->
   <section id="recipes">
-    <h2>The Two <span class="em">Demo Recipes</span></h2>
-    <p class="lead">The exact steps from today, so you can repeat them cold.</p>
-
-    <div class="card green">
-      <h3>Recipe A: One Listing to a Full Campaign</h3>
-      <ol class="recipe">
-        <li>Open your AI assistant. Copy <strong>Prompt 1</strong> above.</li>
-        <li>Fill the brackets with one real listing (yours or a colleague's).</li>
-        <li>Run it. Read the email, the three captions, and the open-house angle.</li>
-        <li>Edit to sound like <em>you</em>. AI gets you 80% there, your voice does the rest.</li>
-        <li>Send the email to your sphere and post one caption <strong>today</strong>. Done beats perfect.</li>
-      </ol>
-    </div>
-
-    <div class="card green">
-      <h3>Recipe B: A Conversation to a Client Dossier</h3>
-      <ol class="recipe">
-        <li>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
-        <li>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
-        <li>Run it. You'll get a one-page dossier plus a task list.</li>
-        <li>Scan it for accuracy and fix anything the AI misread.</li>
-        <li>Attach the dossier to the client's record and drop the tasks into your CRM. Never lose a detail again.</li>
-      </ol>
+    <p class="kicker reveal">The exact steps from class</p>
+    <h2 class="reveal">The Two <span class="em">Demo Recipes</span></h2>
+    <p class="lead reveal">Repeat today's live demos cold, on your own listing and your own client.</p>
+    <div class="recipe-grid">
+      <div class="recipe-card reveal">
+        <h3><svg viewBox="0 0 24 24"><use href="#i-send"/></svg>Recipe A: Listing to Campaign</h3>
+        <ol class="mini-rail">
+          <li><span class="mini-num">1</span>Open your AI assistant. Copy <strong>Prompt 1</strong> above.</li>
+          <li><span class="mini-num">2</span>Fill the brackets with one real listing (yours or a colleague's).</li>
+          <li><span class="mini-num">3</span>Run it. Read the email, the three captions, and the open-house angle.</li>
+          <li><span class="mini-num">4</span>Edit to sound like <strong>you</strong>. AI gets you 80% there; your voice does the rest.</li>
+          <li><span class="mini-num">5</span>Send the email to your sphere and post one caption <strong>today</strong>. Done beats perfect.</li>
+        </ol>
+      </div>
+      <div class="recipe-card reveal">
+        <h3><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg>Recipe B: Conversation to Dossier</h3>
+        <ol class="mini-rail">
+          <li><span class="mini-num">1</span>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
+          <li><span class="mini-num">2</span>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
+          <li><span class="mini-num">3</span>Run it. You'll get a one-page dossier plus a task list.</li>
+          <li><span class="mini-num">4</span>Scan it for accuracy and fix anything the AI misread.</li>
+          <li><span class="mini-num">5</span>Attach the dossier to the client's record and drop the tasks into your CRM. Never lose a detail again.</li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- TOOLS -->
   <section id="tools">
-    <h2>A <span class="em">Starter</span> Tool List</h2>
-    <p class="lead">Organized by the job, not the brand. Pick one per row and learn it well before adding more.</p>
+    <p class="kicker reveal">By the job, not the brand</p>
+    <h2 class="reveal">A <span class="em">Starter</span> Tool List</h2>
+    <p class="lead reveal">Pick one per row and learn it well before adding more.</p>
     <div class="tool-grid">
-      <div class="card">
-        <div class="tool-job">General AI assistant</div>
-        <p class="muted">Your everyday chat tool for the prompts above. Popular options: ChatGPT, Claude, Gemini, Copilot.</p>
-      </div>
-      <div class="card">
-        <div class="tool-job">Meeting / call notes</div>
-        <p class="muted">Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p>
-      </div>
-      <div class="card">
-        <div class="tool-job">Social scheduling</div>
-        <p class="muted">Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p>
-      </div>
-      <div class="card">
-        <div class="tool-job">Your CRM (client database)</div>
-        <p class="muted">The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p>
-      </div>
+      <div class="tool reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></div><div><b>General AI assistant</b><p>Your everyday chat tool for the prompts above. Popular options: ChatGPT, Claude, Gemini, Copilot.</p></div></div>
+      <div class="tool reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></div><div><b>Meeting / call notes</b><p>Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p></div></div>
+      <div class="tool reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><div><b>Social scheduling</b><p>Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p></div></div>
+      <div class="tool reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div><b>Your CRM (client database)</b><p>The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p></div></div>
     </div>
-    <div class="disclaimer" style="margin-top:14px;">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
+    <div class="note reveal">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
   </section>
 
   <!-- GUARDRAILS -->
   <section id="guardrails">
-    <h2>Four <span class="em">Guardrails</span></h2>
-    <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Fair Housing applies to AI.</strong> HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</li>
-        <li><strong>Never feed it private data.</strong> No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</li>
-        <li><strong>Human review, every time.</strong> AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</li>
-        <li><strong>Keep your claims honest.</strong> Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</li>
-      </ul>
+    <p class="kicker reveal">The rules that keep AI helping, not exposing</p>
+    <h2 class="reveal">Four <span class="em">Guardrails</span></h2>
+    <div class="guard-grid">
+      <div class="guard reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div><b>Fair Housing applies to AI</b><p>HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</p></div></div>
+      <div class="guard reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><div><b>Never feed it private data</b><p>No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</p></div></div>
+      <div class="guard reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></div><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
+      <div class="guard reveal"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
     </div>
   </section>
 
   <!-- ACTION -->
   <section id="action">
-    <h2>Do This <span class="em">Week</span></h2>
-    <div class="card gold">
-      <ul class="plain check">
-        <li><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</li>
-        <li><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</li>
-        <li><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</li>
-        <li><strong>This month:</strong> set up your <a class="inline" href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board above and build it.</li>
-      </ul>
+    <p class="kicker reveal">Momentum beats knowledge</p>
+    <h2 class="reveal">Do This <span class="em">Week</span></h2>
+    <div class="check-card reveal">
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
     </div>
   </section>
 
-</div>
+</main>
 
 <footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-    <p style="margin-top:6px;">Questions about a class? Reach out to your CNAT Title contact.</p>
-  </div>
+  <p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p>
+  <p style="margin-top:6px;">Questions about a class? Reach out to your CNAT Title contact.</p>
 </footer>
 
 <script>
+(function(){
+  /* Copy buttons */
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-target'));
+      if(!el)return;
       var text=el.innerText;
-      function ok(){var t=btn.textContent;btn.textContent='Copied!';btn.classList.add('done');setTimeout(function(){btn.textContent=t;btn.classList.remove('done');},1600);}
-      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fallback);}else{fallback();}
+      function ok(){var t=btn.innerHTML;btn.innerHTML='Copied!';btn.classList.add('done');setTimeout(function(){btn.innerHTML=t;btn.classList.remove('done');},1600);}
       function fallback(){var r=document.createRange();r.selectNode(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fallback);}else{fallback();}
     });
   });
+
+  /* Reveal on scroll (above-the-fold reveals instantly) */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    document.querySelectorAll('.reveal').forEach(function(el){
+      if(el.getBoundingClientRect().top<window.innerHeight*.92){el.classList.add('in');}
+      else{io.observe(el);}
+    });
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+
+  /* Scroll progress */
+  var bar=document.querySelector('.progress i');
+  var ticking=false;
+  function paint(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    if(bar)bar.style.transform='scaleX('+(max>0?(h.scrollTop/max):0)+')';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(paint);ticking=true;}},{passive:true});
+  paint();
+
+  /* Scrollspy for the sticky nav */
+  var links=document.querySelectorAll('nav.toc a');
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);var sec=document.getElementById(id);if(sec)map[id]=a;});
+  if('IntersectionObserver' in window){
+    var spy=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.remove('active');});
+          var a=map[e.target.id];
+          if(a){a.classList.add('active');a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}
+        }
+      });
+    },{rootMargin:'-30% 0px -60% 0px'});
+    Object.keys(map).forEach(function(id){spy.observe(document.getElementById(id));});
+  }
+})();
 </script>
 </body>
 </html>

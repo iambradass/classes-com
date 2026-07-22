@@ -18,52 +18,91 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-pin"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-diff"><path d="M8 3v13a3 3 0 0 0 3 3h2 M8 3L5 6 M8 3l3 3 M16 21V8a3 3 0 0 0-3-3h-2 M16 21l-3-3 M16 21l3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-rank"><path d="M4 20h4V10H4z M10 20h4V4h-4z M16 20h4v-7h-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+<g id="i-chat"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12h.01 M12 12h.01 M15.5 12h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>The Farm Watchlist</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span>Level 3 &middot; Autopilot</div>
+    <h1>The Farm <span class="hl">Watchlist</span></h1>
     <p class="sub">You already have the farm list. This play cross-references it with what actually happened in the neighborhood this month, and tells you who to talk to about it.</p>
-    <p class="meta">Level 3 &middot; Autopilot &middot; 30 minutes to set up, 15 a month to run</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 min setup, 15 a month</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg>Your farm, your data</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Compares your master farm list against this month's activity export (new listings, solds, expireds, withdrawn) and finds the intersections that matter.</li>
-      <li>Produces a ranked touch list: the neighbor of the house that just sold high, the expired two streets from your last closing, the long-time owner on a street where three homes just moved.</li>
-      <li>Gives every touch a reason. "The Hendersons' street just set a record" is a conversation. "Just checking in" is a delete.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-diff"/></svg></div><p><strong>Compares your master farm list</strong> against this month's activity export (new listings, solds, expireds, withdrawn) and finds the intersections that matter.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-rank"/></svg></div><p><strong>Produces a ranked touch list:</strong> the neighbor of the house that just sold high, the expired two streets from your last closing, the long-time owner on a street where three homes just moved.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><p><strong>Gives every touch a reason.</strong> "The Hendersons' street just set a record" is a conversation. "Just checking in" is a delete.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>Your master farm list as a CSV spreadsheet file: address, owner name if you have it, and any history column (past touches, responses). Keep one master file; update it, don't fork it.</li>
-      <li>A monthly activity export for the farm area from your MLS (Multiple Listing Service): actives, pendings, solds, expireds with addresses and prices.</li>
-      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace, with the sanitize-before-upload habit from the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV guide</a>.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Your master farm list as a CSV spreadsheet file:</strong> address, owner name if you have it, and any history column (past touches, responses). Keep one master file; update it, don't fork it.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>A monthly activity export</strong> for the farm area from your MLS (Multiple Listing Service): actives, pendings, solds, expireds with addresses and prices.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace, with the sanitize-before-upload habit from the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV guide</a>.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Make it a monthly ritual:</strong> first Tuesday of the month, 15 minutes, calendar reminder titled "Run the farm watchlist."</li>
-      <li><strong>Export this month's activity</strong> for the farm boundaries from the MLS.</li>
-      <li><strong>Upload both files</strong> (master farm list + activity export) to your workspace and run the Cross-Reference prompt.</li>
-      <li><strong>Work the top ten.</strong> The output ranks touches by strength of reason. Ten real conversations beat a hundred generic postcards.</li>
-      <li><strong>Feed results back.</strong> Add a note to your master list for every touch made ("6/26: talked, thinking of selling next spring"). Next month's run gets smarter because the file remembers.</li>
-      <li><strong>Optional autopilot:</strong> if your assistant supports scheduled tasks, schedule the monthly reminder with the prompt pre-loaded so the run is one upload away.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Make it a monthly ritual</h3><p>First Tuesday of the month, 15 minutes, calendar reminder titled "Run the farm watchlist."</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Export this month's activity</h3><p>For the farm boundaries, from the MLS.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Upload both files and run the Cross-Reference</h3><p>Master farm list plus activity export, into your workspace, prompt below.</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Work the top ten</h3><p>The output ranks touches by strength of reason. Ten real conversations beat a hundred generic postcards.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Feed results back</h3><p>Add a note to your master list for every touch made ("6/26: talked, thinking of selling next spring"). Next month's run gets smarter because the file remembers.</p></div></li>
+      <li><span class="stepnum">6</span><div class="stepcard"><h3>Optional autopilot</h3><p>If your assistant supports scheduled tasks, schedule the monthly reminder with the prompt pre-loaded so the run is one upload away.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">What comes back</p>
+    <h2>The ranked <span class="em">ten</span></h2>
+    <div class="demo-strip split">
+      <div>
+        <p class="lead">Every entry pairs a name with a reason and an opener. You're never cold-knocking; you're following up on something real that happened on their street this month.</p>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"><i></i></div>
+        <div class="phone-screen">
+          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Farm Watchlist</b><span>July run &middot; 10 touches ranked</span></div></div>
+          <div class="chat-body">
+            <div class="msg ai"><b>#1 &middot; 4417 Belmont (Nguyen)</b><br>Reason: two doors from the record-setting sale on 6/28. Channel: door knock.<br>Opener: "Your neighbor's sale just reset the bar for the street; happy to share what it means for your place."<span class="tick">Verify the sale in the MLS before you knock</span></div>
+            <div class="msg ai"><b>#2 &middot; 4508 Belmont (12-yr owner)</b><br>Reason: 3 homes moved on this block in 90 days. Channel: handwritten note.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Cross-Reference</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">farm-cross-reference.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">You are my farm analyst. I've uploaded two files:
 1. MASTER FARM LIST: the homes/owners in my geographic farm, with my touch history.
 2. THIS MONTH'S ACTIVITY: MLS activity in the same area (actives, pendings, solds, expireds).
@@ -78,28 +117,27 @@ Match addresses carefully (abbreviations like St/Street, unit numbers). List any
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Verify the trigger before you knock.</strong> "I saw the home on Maple sold" had better be true. Check the MLS record before you lead with it.</li>
-        <li><strong>Expireds and withdrawns have rules.</strong> Solicitation of expired listings is regulated and brokerage-policy-sensitive. Know your rules before that touch.</li>
-        <li><strong>Owner data comes with obligations.</strong> If your farm list came from a data provider, its license says what you can do with it. Uploading to your training-off business assistant for your own analysis is the conservative pattern; republishing is not.</li>
-        <li><strong>Ripple touches never speculate about people.</strong> The market event is the opener. Who's moving, why they left, what they got: not yours to discuss.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Verify the trigger before you knock.</strong> "I saw the home on Maple sold" had better be true. Check the MLS record before you lead with it.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Expireds and withdrawns have rules.</strong> Solicitation of expired listings is regulated and brokerage-policy-sensitive. Know your rules before that touch.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Owner data comes with obligations.</strong> If your farm list came from a data provider, its license says what you can do with it. Uploading to your training-off business assistant for your own analysis is the conservative pattern; republishing is not.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Ripple touches never speculate about people.</strong> The market event is the opener. Who's moving, why they left, what they got: not yours to discuss.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> give the farm a destination with the <a class="inline" href="/keeping-ai-on-things/guides/farming-landing-pages/">Neighborhood Landing Page</a>, then let <a class="inline" href="/keeping-ai-on-things/guides/market-research-routines/">Market Research Routines</a> watch the bigger picture.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/farming-landing-pages/"><span class="next-kicker">Give the farm a destination</span><span class="next-name">Neighborhood Landing Pages <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Every touch can point somewhere worth landing.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/market-research-routines/"><span class="next-kicker">The bigger picture</span><span class="next-name">Market Research Routines <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Scheduled digests that watch beyond the farm.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

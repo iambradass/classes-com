@@ -18,65 +18,89 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-db"><ellipse cx="12" cy="5.5" rx="8" ry="2.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 5.5V18.5c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8V5.5 M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8" fill="none" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-search"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-clip"><path d="M9 4h6v3H9z M9 4H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2 M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-plug"><path d="M9 7V3 M15 7V3 M6 7h12v4a6 6 0 0 1-12 0z M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>Connect Your CRM to Your AI Assistant</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span>Level 2 &middot; Connected</div>
+    <h1>Connect Your <span class="hl">CRM</span></h1>
     <p class="sub">Get your assistant and your CRM (client database) talking, so follow-up plans, dossiers, and campaigns land where you actually work.</p>
-    <p class="meta">Level 2 &middot; Connected &middot; 30-60 minutes, one time</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 minutes, once</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg>3 paths, pick one</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Lets you ask questions of your own database: "who haven't I talked to in 90 days," "which leads mentioned relocating," "build today's call list."</li>
-      <li>Turns the dossiers and task lists your assistant writes into records and tasks inside the CRM, not text you re-type.</li>
-      <li>Unlocks the connected versions of every other playbook on the hub.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg></div><p><strong>Ask questions of your own database:</strong> "who haven't I talked to in 90 days," "which leads mentioned relocating," "build today's call list."</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><p><strong>Work lands where you work.</strong> The dossiers and task lists your assistant writes become records and tasks inside the CRM, not text you re-type.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><p><strong>Unlocks the connected versions</strong> of every other playbook on the hub.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">Check them in order, stop at the first that works</p>
     <h2>Pick your <span class="em">path</span></h2>
-    <p class="lead">There are three ways in. Check them in this order and stop at the first one that works for you.</p>
 
-    <div class="card cyan">
-      <h3>Path A: Your CRM's built-in AI</h3>
-      <p class="tagline">Most major real estate CRMs shipped AI features in the last two years: smart follow-up suggestions, message drafting, lead summaries.</p>
-      <ol class="recipe">
-        <li>Search your CRM's settings and help center for "AI." You may already be paying for it.</li>
-        <li>Turn it on and test it against one real lead.</li>
-        <li>Keep your general assistant for everything the built-in AI can't do (voice, strategy, content), and let the CRM's AI handle in-app suggestions.</li>
-      </ol>
-      <p class="muted">Fastest path, zero setup risk, but usually the least flexible. Fine to run this alongside Path B or C.</p>
-    </div>
+    <div class="tabs" data-tabs>
+      <div class="tabbar" role="tablist">
+        <button class="tab-btn active" data-panel="path-a" role="tab" aria-selected="true">A &middot; Built-in AI</button>
+        <button class="tab-btn" data-panel="path-b" role="tab" aria-selected="false">B &middot; Direct connection</button>
+        <button class="tab-btn" data-panel="path-c" role="tab" aria-selected="false">C &middot; Export loop</button>
+      </div>
 
-    <div class="card gold">
-      <h3>Path B: A direct connection</h3>
-      <p class="tagline">The big assistants (examples, not endorsements: ChatGPT, Claude, Gemini) all support "connectors" or "integrations" that link outside apps into your chats. Middleware automation tools can bridge assistants to hundreds of CRMs the assistants don't support natively.</p>
-      <ol class="recipe">
-        <li>In your assistant's settings, open the connectors or integrations screen and search for your CRM by name. If it's listed, connect it with your CRM login and you're done.</li>
-        <li>If it's not listed, check whether your CRM connects to a middleware automation platform (the tools that link app A to app B). If so, the common recipe is: assistant drafts, middleware pushes contacts, notes, and tasks into the CRM.</li>
-        <li>Start read-only if the option exists. Let the assistant read your CRM for two weeks before you allow it to create or edit anything.</li>
-        <li>Test with a fake contact first: create "Test Buyer" in the CRM, then ask the assistant to find them, summarize them, and add a note. Verify in the CRM that the note landed where you expected.</li>
-      </ol>
-    </div>
+      <div class="tab-panel active" id="path-a" role="tabpanel">
+        <p class="lead">Most major real estate CRMs shipped AI features in the last two years: smart follow-up suggestions, message drafting, lead summaries. Fastest path, zero setup risk, usually the least flexible.</p>
+        <ol class="rail">
+          <li><span class="stepnum">1</span><div class="stepcard"><h3>Search your CRM's settings for "AI"</h3><p>Check the settings and help center. You may already be paying for it.</p></div></li>
+          <li><span class="stepnum">2</span><div class="stepcard"><h3>Turn it on and test</h3><p>Run it against one real lead and judge the output honestly.</p></div></li>
+          <li><span class="stepnum">3</span><div class="stepcard"><h3>Split the jobs</h3><p>Keep your general assistant for everything the built-in AI can't do (voice, strategy, content), and let the CRM's AI handle in-app suggestions. Fine to run this alongside Path B or C.</p></div></li>
+        </ol>
+      </div>
 
-    <div class="card green">
-      <h3>Path C: The export loop (works with every CRM ever made)</h3>
-      <p class="tagline">No connector? No problem. CSV out, work in the assistant, CSV back in.</p>
-      <p>This is its own playbook with prompts ready to go: <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV Export Into a Campaign</a>. Run it monthly and you get 80% of the value of a live connection with zero setup.</p>
+      <div class="tab-panel" id="path-b" role="tabpanel">
+        <p class="lead">The big assistants (examples, not endorsements: ChatGPT, Claude, Gemini) all support "connectors" or "integrations" that link outside apps into your chats. Middleware automation tools can bridge assistants to hundreds of CRMs the assistants don't support natively.</p>
+        <ol class="rail">
+          <li><span class="stepnum">1</span><div class="stepcard"><h3>Look for your CRM in the connectors list</h3><p>In your assistant's settings, open the connectors or integrations screen and search for your CRM by name. If it's listed, connect it with your CRM login and you're done.</p></div></li>
+          <li><span class="stepnum">2</span><div class="stepcard"><h3>No listing? Bridge it</h3><p>Check whether your CRM connects to a middleware automation platform (the tools that link app A to app B). The common recipe: assistant drafts, middleware pushes contacts, notes, and tasks into the CRM.</p></div></li>
+          <li><span class="stepnum">3</span><div class="stepcard"><h3>Start read-only</h3><p>Let the assistant read your CRM for two weeks before you allow it to create or edit anything.</p></div></li>
+          <li><span class="stepnum">4</span><div class="stepcard"><h3>Test with a fake contact</h3><p>Create "Test Buyer" in the CRM, then ask the assistant to find them, summarize them, and add a note. Verify in the CRM that the note landed where you expected.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="tab-panel" id="path-c" role="tabpanel">
+        <p class="lead">No connector? No problem. CSV out, work in the assistant, CSV back in. This path works with every CRM ever made and gets you 80% of the value of a live connection with zero setup.</p>
+        <div class="needs">
+          <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>It's a full playbook of its own, with prompts ready to go: <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV Export Into a Campaign</a>. Run it monthly.</p></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Database Analyst</h3><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="tagline">Once connected (Path B), save this in your workspace and run it every Monday.</p>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">database-analyst.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+      <p class="prompt-tag">Once connected (Path B), save this in your workspace and run it every Monday.</p>
       <pre id="p1">You are my database analyst with access to my CRM. Every time I run this, do the following:
 
 1. Who needs me today: the 5 contacts with the highest urgency to hear from me, and why. Urgency = active deals first, then time-sensitive notes, then longest silence among past clients.
@@ -87,28 +111,27 @@ Format it as a brief I can read in 2 minutes. Do not draft messages unless I ask
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Brokerage policy first.</strong> Connecting client data to an outside tool is exactly what data policies are written about. Ask before you connect.</li>
-        <li><strong>Training off, business tier on.</strong> Never connect a CRM through a free consumer account. Use a paid tier with model training disabled.</li>
-        <li><strong>Read before write.</strong> An assistant that mis-reads is annoying. An assistant that mis-writes into 3,000 contact records is a weekend. Grant write access only after read access has proven reliable.</li>
-        <li><strong>The assistant summarizes, the CRM is truth.</strong> When numbers matter (deal terms, dates), open the record.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Brokerage policy first.</strong> Connecting client data to an outside tool is exactly what data policies are written about. Ask before you connect.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Training off, business tier on.</strong> Never connect a CRM through a free consumer account. Use a paid tier with model training disabled.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Read before write.</strong> An assistant that mis-reads is annoying. An assistant that mis-writes into 3,000 contact records is a weekend. Grant write access only after read access has proven reliable.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>The assistant summarizes; the CRM is truth.</strong> When numbers matter (deal terms, dates), open the record.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> <a class="inline" href="/keeping-ai-on-things/guides/calendar-connection/">Connect your calendar</a>, or put the connection to work with the <a class="inline" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/">Reverse Prospecting Engine</a>.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/calendar-connection/"><span class="next-kicker">Level 2 &middot; 20-30 min</span><span class="next-name">Connect Your Calendar <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Give the same assistant eyes on your week.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/"><span class="next-kicker">Put the connection to work</span><span class="next-name">Reverse Prospecting Engine <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Turn MLS buyer demand into a full campaign.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

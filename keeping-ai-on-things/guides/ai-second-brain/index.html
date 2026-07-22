@@ -18,53 +18,93 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
+<g id="i-mic"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0 M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-doc"><path d="M6 3h8l4 4v14H6z M14 3v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6 M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide &middot; Start Here</p>
-    <h1>Set Up Your AI Second Brain</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span>Foundation &middot; Start Here</div>
+    <h1>Your AI <span class="hl">Second Brain</span></h1>
     <p class="sub">Teach your assistant who you are once, so every draft sounds like you and every other playbook works better.</p>
-    <p class="meta">Foundation &middot; One-time setup &middot; About 30 minutes</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 minutes, once</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Any AI assistant</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">Why this is play zero</p>
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Ends the "generic AI voice" problem. Your assistant learns your market, your voice, and your rules one time instead of you re-explaining them in every chat.</li>
-      <li>Creates a permanent workspace (a "Project," "Gem," or custom assistant, depending on your tool) where all your business work happens.</li>
-      <li>Every other guide on the hub assumes this exists. Do this one first.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></div><p><strong>Ends the generic AI voice.</strong> Your assistant learns your market, voice, and rules one time instead of you re-explaining them in every chat.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></div><p><strong>Creates a permanent workspace</strong> (a "Project," "Gem," or custom assistant, depending on your tool) where all your business work happens.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Powers every other play.</strong> Each guide on the hub assumes this exists. Do this one first.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>A paid account on the AI assistant you already use. Examples, not endorsements: ChatGPT, Claude, Gemini. The paid tiers add persistent workspaces and better privacy controls.</li>
-      <li>15 minutes of honest answers about your business.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>A <strong>paid account</strong> on the AI assistant you already use. Examples, not endorsements: ChatGPT, Claude, Gemini. The paid tiers add persistent workspaces and better privacy controls.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>15 minutes of honest answers</strong> about your business.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Turn off training.</strong> In your assistant's settings, find the data or privacy controls and turn off "improve the model with my data" (the wording varies by tool). Business accounts usually default to off. Do this before anything else.</li>
-      <li><strong>Run the interview prompt below.</strong> The AI interviews you, then writes your Agent Profile: a one-page document describing your business, voice, and rules.</li>
-      <li><strong>Read the profile and fix what's wrong.</strong> This document is the foundation. If it says you're "high-energy" and you're not, every future draft will be off.</li>
-      <li><strong>Create your workspace.</strong> ChatGPT calls it a Project or custom GPT, Claude calls it a Project, Gemini calls it a Gem. Create one named "My Real Estate Business" and paste the Agent Profile into its instructions or knowledge area.</li>
-      <li><strong>Test it.</strong> Inside the workspace, ask for a short sphere email about staying in touch over the summer. If it sounds like you, you're done. If not, edit the profile and test again.</li>
-      <li><strong>Refresh it quarterly.</strong> Markets and goals change. Put a calendar reminder to re-read the profile every quarter.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Turn off training</h3><p>In your assistant's settings, find the data or privacy controls and turn off "improve the model with my data" (the wording varies by tool). Business accounts usually default to off. Do this before anything else.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Run the interview prompt</h3><p>The AI interviews you, then writes your Agent Profile: a one-page document describing your business, voice, and rules. The prompt is below.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Read the profile and fix what's wrong</h3><p>This document is the foundation. If it says you're "high-energy" and you're not, every future draft will be off.</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Create your workspace</h3><p>ChatGPT calls it a Project or custom GPT, Claude calls it a Project, Gemini calls it a Gem. Create one named "My Real Estate Business" and paste the Agent Profile into its instructions or knowledge area.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Test it</h3><p>Inside the workspace, ask for a short sphere email about staying in touch over the summer. If it sounds like you, you're done. If not, edit the profile and test again.</p></div></li>
+      <li><span class="stepnum">6</span><div class="stepcard"><h3>Refresh it quarterly</h3><p>Markets and goals change. Put a calendar reminder to re-read the profile every quarter.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">What "sounds like you" looks like</p>
+    <h2>The test, on your <span class="em">phone</span></h2>
+    <div class="demo-strip split">
+      <div>
+        <p class="lead">Step 5 is the whole point. Ask for something small you'd actually send, and judge one thing only: would your past clients know it wasn't you? Keep editing the profile until the answer is no.</p>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"><i></i></div>
+        <div class="phone-screen">
+          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>My Real Estate Business</b><span>Workspace active</span></div></div>
+          <div class="chat-body">
+            <div class="msg user">Write a short summer check-in email to my sphere.</div>
+            <div class="msg ai"><b>Subject: The pool's open and so is the market</b><br>Hey [First name], it's been a minute! Quick note before the summer gets away from us... two homes on your street traded above list last month, and I keep hearing "we'd move if we found the right one." If that's ever you, I'll do the digging. Either way, come by the office; the cold brew is stocked.<span class="tick">Drafted in your voice &middot; review before sending</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="demo-caption">A voice-matched draft: casual, local, zero corporate filler. Yours will sound like you instead.</p>
+  </section>
+
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Agent Profile Interview</h3><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="tagline">Run this in a fresh chat. Answer its questions, then it writes your profile.</p>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">agent-profile-interview.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
+      <p class="prompt-tag">Run this in a fresh chat. Answer its questions, then it writes your profile.</p>
       <pre id="p1">You are helping me build my "Agent Profile" - a one-page document that will live in my AI workspace so every future draft matches my business and voice.
 
 Interview me one question at a time. Cover:
@@ -77,9 +117,9 @@ Interview me one question at a time. Cover:
 When the interview is done, write the Agent Profile as a clean one-page document with these headings: Market, Clients, Voice, Rules, Guardrails. Keep it under 400 words so it's easy to maintain.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Voice Check</h3><button class="copy-btn" data-target="p2">Copy</button></div>
-      <p class="tagline">Use this any time a draft doesn't sound like you.</p>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">voice-check.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
+      <p class="prompt-tag">Use this any time a draft doesn't sound like you.</p>
       <pre id="p2">Compare this draft against my Agent Profile. List every line that doesn't sound like me and rewrite just those lines in my voice. Then tell me in one sentence what pattern you keep getting wrong, so I can add a rule to my profile.
 
 DRAFT:
@@ -87,27 +127,26 @@ DRAFT:
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>No client private data in the profile.</strong> The profile describes your business, not your clients. Names, addresses, and deal details stay out.</li>
-        <li><strong>One profile, one home.</strong> Keep the master copy in a document you own (notes app, drive). Paste it into workspaces. Don't let five slightly different versions drift apart.</li>
-        <li><strong>Your brokerage may have an AI policy.</strong> Check it before you connect tools or upload data. Five minutes now saves a hard conversation later.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>No client private data in the profile.</strong> The profile describes your business, not your clients. Names, addresses, and deal details stay out.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>One profile, one home.</strong> Keep the master copy in a document you own (notes app, drive). Paste it into workspaces. Don't let five slightly different versions drift apart.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Your brokerage may have an AI policy.</strong> Check it before you connect tools or upload data. Five minutes now saves a hard conversation later.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV export into a campaign</a> or <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">connect your CRM</a>.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/csv-to-campaign/"><span class="next-kicker">Level 1 &middot; 15 min</span><span class="next-name">CSV to Campaign <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Put the second brain to work on your database tonight.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/connect-your-crm/"><span class="next-kicker">Level 2 &middot; one-time setup</span><span class="next-name">Connect Your CRM <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Give your workspace eyes on the database you already keep.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

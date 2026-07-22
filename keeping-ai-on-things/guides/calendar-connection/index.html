@@ -18,50 +18,94 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18 M8 3v4 M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-route"><circle cx="6" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 19h7a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-sun"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5 M12 19.5V22 M2 12h2.5 M19.5 12H22 M4.9 4.9l1.8 1.8 M17.3 17.3l1.8 1.8 M19.1 4.9l-1.8 1.8 M6.7 17.3l-1.8 1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>Connect Your Calendar to Your AI Assistant</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span>Level 2 &middot; Connected</div>
+    <h1>Connect Your <span class="hl">Calendar</span></h1>
     <p class="sub">An assistant that can see your week can brief it, protect it, and make sure every appointment gets a follow-up.</p>
-    <p class="meta">Level 2 &middot; Connected &middot; 20-30 minutes, one time</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20-30 minutes, once</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg>Works pasted, too</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>A morning brief: today's appointments, what each one needs from you, and the gaps where real work can happen.</li>
-      <li>Showing-day plans: a sensible route and time blocks for a multi-stop day, with buffers you'll actually keep.</li>
-      <li>Follow-up scaffolding: every client appointment automatically gets a "what's the next touch" answer instead of relying on memory.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></div><p><strong>A morning brief:</strong> today's appointments, what each one needs from you, and the gaps where real work can happen.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></div><p><strong>Showing-day plans:</strong> a sensible route and time blocks for a multi-stop day, with buffers you'll actually keep.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Follow-up scaffolding:</strong> every client appointment automatically gets a "what's the next touch" answer instead of relying on memory.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Pick your <span class="em">path</span></h2>
-    <div class="card cyan">
-      <h3>Path A: Direct connection</h3>
-      <ol class="recipe">
-        <li>In your assistant's settings, open connectors or integrations and look for your calendar (the major assistants support the big calendar platforms; examples, not endorsements: ChatGPT, Claude, Gemini with Google and Microsoft calendars).</li>
-        <li>Connect it and grant access. Start with read access only if the tool offers the choice.</li>
-        <li>Test: ask "what's on my calendar Thursday?" and check it against the real thing.</li>
-        <li>Note which assistant tier you're on: calendar connectors are typically paid-tier features, and business tiers keep your data out of model training.</li>
-      </ol>
-    </div>
-    <div class="card green">
-      <h3>Path B: The paste (no setup, works today)</h3>
-      <p class="tagline">Open your calendar's week view, copy it (or screenshot it into the chat), and run the same prompts below. Ninety percent of the value, zero connection.</p>
+    <div class="tabs" data-tabs>
+      <div class="tabbar" role="tablist">
+        <button class="tab-btn active" data-panel="cal-a" role="tab" aria-selected="true">A &middot; Direct connection</button>
+        <button class="tab-btn" data-panel="cal-b" role="tab" aria-selected="false">B &middot; The paste</button>
+      </div>
+
+      <div class="tab-panel active" id="cal-a" role="tabpanel">
+        <ol class="rail">
+          <li><span class="stepnum">1</span><div class="stepcard"><h3>Find the calendar connector</h3><p>In your assistant's settings, open connectors or integrations and look for your calendar. The major assistants support the big calendar platforms (examples, not endorsements: ChatGPT, Claude, Gemini with Google and Microsoft calendars).</p></div></li>
+          <li><span class="stepnum">2</span><div class="stepcard"><h3>Connect and grant access</h3><p>Start with read access only if the tool offers the choice.</p></div></li>
+          <li><span class="stepnum">3</span><div class="stepcard"><h3>Test it</h3><p>Ask "what's on my calendar Thursday?" and check it against the real thing.</p></div></li>
+          <li><span class="stepnum">4</span><div class="stepcard"><h3>Check your tier</h3><p>Calendar connectors are typically paid-tier features, and business tiers keep your data out of model training.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="tab-panel" id="cal-b" role="tabpanel">
+        <p class="lead">No setup, works today: open your calendar's week view, copy it (or screenshot it into the chat), and run the same prompts below. Ninety percent of the value, zero connection.</p>
+      </div>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">Coffee, phone, sixty seconds</p>
+    <h2>The morning <span class="em">brief</span></h2>
+    <div class="demo-strip split">
+      <div>
+        <p class="lead">Save the Morning Brief prompt in your workspace and run it with coffee. It reads the day, flags what isn't prepped, and names the single best use of your biggest gap. Under 200 words, built for a phone screen.</p>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"><i></i></div>
+        <div class="phone-screen">
+          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Morning Brief</b><span>Tuesday, 7:02 AM</span></div></div>
+          <div class="chat-body">
+            <div class="msg user">Run my morning brief.</div>
+            <div class="msg ai"><b>3 appointments.</b> 9:00 listing consult (bring the CMA, not printed yet), 12:30 lunch w/ lender, 4:00 showing at Elmwood (gate code in event).<br><b>Prep flag:</b> CMA packet.<br><b>Biggest gap:</b> 1:30-3:30. Best use: the 5 overdue follow-ups from Friday.<br><b>Tomorrow's one thing:</b> confirm Thursday's photographer.<span class="tick">Read in 40 seconds</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Morning Brief</h3><button class="copy-btn" data-target="p1">Copy</button></div>
-      <p class="tagline">Save in your workspace, run with coffee.</p>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">morning-brief.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">Look at my calendar for today (or use what I paste below). Give me:
 
 1. THE DAY AT A GLANCE: each appointment with one line on what it is and what I need to walk in with (documents, comps, keys, lockbox codes noted in the event).
@@ -72,8 +116,8 @@
 Keep it under 200 words. I'm reading this on my phone.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Showing-Day Planner</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">showing-day-planner.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
       <pre id="p2">I'm building a showing day. Here are the stops and constraints:
 
 SHOWINGS: [address or area + any time restrictions for each]
@@ -83,33 +127,32 @@ MY CONSTRAINTS: [start/end time, lunch, school pickup, etc.]
 Plan the day: a stop order that minimizes backtracking (group by area; I'll gut-check drive times), a time block per stop with a 15-minute buffer every 2-3 stops, and a one-line reminder of what this client should notice at each property. End with the two questions I should ask the client at the end of the day to move toward a decision.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Follow-Up Scaffold</h3><button class="copy-btn" data-target="p3">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">follow-up-scaffold.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
       <pre id="p3">Look at my client-facing appointments from the last 2 business days (or the list I paste). For each one, tell me: the natural next touch, the channel, and when it should happen. Then draft the one follow-up message that's most overdue, in my voice, ready to send after my review.</pre>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Reading is not writing.</strong> Letting the assistant see your calendar is low-risk. Letting it create or move events deserves a two-week trial period first, and you review every invite before it sends.</li>
-        <li><strong>Mind what lives in event titles.</strong> If your calendar events say "Smith divorce sale, 4012 Maple," a connected assistant reads that too. Keep sensitive detail in your CRM, not in event names.</li>
-        <li><strong>Time math deserves a glance.</strong> AI is good at planning and occasionally bad at arithmetic. Sanity-check drive-time assumptions on tight days.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Reading is not writing.</strong> Letting the assistant see your calendar is low-risk. Letting it create or move events deserves a two-week trial period first, and you review every invite before it sends.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Mind what lives in event titles.</strong> If your calendar events say "Smith divorce sale, 4012 Maple," a connected assistant reads that too. Keep sensitive detail in your CRM, not in event names.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Time math deserves a glance.</strong> AI is good at planning and occasionally bad at arithmetic. Sanity-check drive-time assumptions on tight days.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> pair this with the <a class="inline" href="/keeping-ai-on-things/guides/ai-transaction-coordinator/">AI Transaction Coordinator</a> so contract deadlines land on the calendar it now reads.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/ai-transaction-coordinator/"><span class="next-kicker">Pairs perfectly</span><span class="next-name">AI Transaction Coordination <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Contract deadlines land on the calendar it now reads.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/market-research-routines/"><span class="next-kicker">Level 3 &middot; autopilot</span><span class="next-name">Market Research Routines <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Scheduled digests that watch your market while you show houses.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

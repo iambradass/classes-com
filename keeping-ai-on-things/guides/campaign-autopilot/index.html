@@ -18,59 +18,77 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-rocket"><path d="M5 15c-1 3-1 4-1 4s1 0 4-1 M14 4c3 1 5 3 6 6-2 5-6 9-11 10l-5-5C5 10 9 6 14 4z M9 15l-1-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-branch"><circle cx="6" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 7.5v9 M8 6.2l7.8 4.6 M8 17.8l7.8-4.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-gauge"><path d="M12 21a9 9 0 1 1 9-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12l5-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>The Campaign Autopilot</h1>
-    <p class="sub">The graduation play: one input (a listing, an event, a market shift) goes in, and a complete campaign comes out through the channels you already own.</p>
-    <p class="meta">Level 3 &middot; Autopilot &middot; Build it over a week; run it in an hour</p>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span>Level 3 &middot; Autopilot &middot; The graduation play</div>
+    <h1>The Campaign <span class="hl">Autopilot</span></h1>
+    <p class="sub">One input (a listing, an event, a market shift) goes in, and a complete campaign comes out through the channels you already own.</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build over a week, run in an hour</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Two human checkpoints</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Turns campaign execution from a dozen sessions in five tools into one working session: the assistant drafts every asset, your CRM (client database) and scheduler carry them, and you approve at two checkpoints.</li>
-      <li>Works two ways: the all-in-one route (everything loads into one CRM that owns email, text, social, and landing pages) or the multi-tool route (assistant drafts everything, each channel tool carries its own piece).</li>
-      <li>Closes the loop: after the campaign runs, the assistant reads the results you paste back and tells you what to change next time.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-rocket"/></svg></div><p><strong>One working session instead of a dozen.</strong> The assistant drafts every asset, your CRM (client database) and scheduler carry them, and you approve at two checkpoints.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-branch"/></svg></div><p><strong>Works two ways:</strong> the all-in-one route (everything loads into one CRM that owns email, text, social, and landing pages) or the multi-tool route (each channel tool carries its own piece).</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-gauge"/></svg></div><p><strong>Closes the loop.</strong> After the campaign runs, the assistant reads the results you paste back and tells you what to change next time.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>The foundation plays running: your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">Second Brain</a>, and either a <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">connected CRM</a> or the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV loop</a>.</li>
-      <li>An honest list of your channels: which email tool, which social accounts, texting from where, landing pages built how. The autopilot can only fly the plane you actually own.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>The foundation plays running:</strong> your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">Second Brain</a>, and either a <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">connected CRM</a> or the <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">CSV loop</a>.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>An honest list of your channels:</strong> which email tool, which social accounts, texting from where, landing pages built how. The autopilot can only fly the plane you actually own.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Document your channel map once.</strong> Run the Channel Map prompt below. The output is a short document; save it in your workspace next to your Agent Profile. This is what lets the assistant produce assets in the right shape for each tool.</li>
-      <li><strong>Save the Campaign Kickoff prompt</strong> as a template in your workspace.</li>
-      <li><strong>Run your first campaign on a real trigger:</strong> a new listing, a just-sold, a rate move, a seasonal push. Fill the kickoff brackets, run it, and review the full asset package (checkpoint one).</li>
-      <li><strong>Load the channels.</strong> All-in-one route: import the campaign into your CRM's campaign builder (the assistant formats content for copy-paste or CSV import to match). Multi-tool route: work down the load list the assistant produces, one channel at a time.</li>
-      <li><strong>Approve the schedule (checkpoint two), then launch.</strong> Sending always happens from your tools, under your name, with their unsubscribe handling.</li>
-      <li><strong>Two weeks later, close the loop:</strong> paste the numbers your tools show (opens, replies, clicks, form fills) into the Debrief prompt. Apply one improvement to the template. That compounding edit is what makes this an autopilot instead of a one-off.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Document your channel map once</h3><p>Run the Channel Map prompt below. The output is a short document; save it in your workspace next to your Agent Profile. This is what lets the assistant produce assets in the right shape for each tool.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Save the Campaign Kickoff as a template</h3><p>It lives in your workspace, ready for every trigger.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Run your first campaign on a real trigger</h3><p>A new listing, a just-sold, a rate move, a seasonal push. Fill the kickoff brackets, run it, and review the full asset package. <strong>Checkpoint one.</strong></p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Load the channels</h3><p>All-in-one route: import the campaign into your CRM's campaign builder (the assistant formats content for copy-paste or CSV import to match). Multi-tool route: work down the load list the assistant produces, one channel at a time.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Approve the schedule, then launch</h3><p><strong>Checkpoint two.</strong> Sending always happens from your tools, under your name, with their unsubscribe handling.</p></div></li>
+      <li><span class="stepnum">6</span><div class="stepcard"><h3>Two weeks later, close the loop</h3><p>Paste the numbers your tools show (opens, replies, clicks, form fills) into the Debrief prompt. Apply one improvement to the template. That compounding edit is what makes this an autopilot instead of a one-off.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Channel Map (run once)</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">channel-map.prompt &middot; run once</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">Interview me about my marketing channels, one at a time: email (what tool, list size, how often I send), text (from what system, who's opted in), social (which platforms I actually post on), landing pages (how I build them), print/mail (if any).
 
 Then write my CHANNEL MAP: a short reference document listing each channel, its tool, its audience, its format constraints (character limits, image sizes), and its role (nurture, announce, capture). I'll save this in my workspace so every future campaign is drafted to fit my real channels.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Campaign Kickoff</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">campaign-kickoff.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
       <pre id="p2">Using my Agent Profile and my Channel Map, build a complete campaign.
 
 TRIGGER: [what's this campaign about: new listing / just sold / market update / event / seasonal]
@@ -88,36 +106,35 @@ Produce the full package, organized by channel from my Channel Map:
 Fair-housing safe throughout. Flag any claim in my DETAILS that needs a source or a double-check before it ships.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Debrief</h3><button class="copy-btn" data-target="p3">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">debrief.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
       <pre id="p3">The campaign ran. Here are the results from my tools: [paste opens, clicks, replies, form fills, conversations, and anything anecdotal]
 
 Tell me: what worked, what underperformed, the single highest-impact change for next time, and rewrite the one weakest asset to show me the fix. Then give me the updated line to add to my Channel Map or Agent Profile so the improvement sticks.</pre>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Two checkpoints, always.</strong> You review the full package before loading, and the schedule before launch. Automation earns trust; it never inherits it.</li>
-        <li><strong>Consent lives in your tools.</strong> Email and especially text campaigns go only to people with proper opt-in, and your sending tools enforce unsubscribes. The assistant never sends directly.</li>
-        <li><strong>One campaign at a time until the debrief loop works.</strong> The failure mode of automation isn't a bad email; it's ten mediocre campaigns nobody measured.</li>
-        <li><strong>Advertising rules ride along:</strong> broker identification, license disclosures, and your brokerage's ad policies apply to every asset in the package.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Two checkpoints, always.</strong> You review the full package before loading, and the schedule before launch. Automation earns trust; it never inherits it.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Consent lives in your tools.</strong> Email and especially text campaigns go only to people with proper opt-in, and your sending tools enforce unsubscribes. The assistant never sends directly.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>One campaign at a time until the debrief loop works.</strong> The failure mode of automation isn't a bad email; it's ten mediocre campaigns nobody measured.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Advertising rules ride along:</strong> broker identification, license disclosures, and your brokerage's ad policies apply to every asset in the package.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Feeds this play:</strong> the <a class="inline" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/">Reverse Prospecting Engine</a> and <a class="inline" href="/keeping-ai-on-things/guides/farm-watchlist/">Farm Watchlist</a> are both campaign triggers ready to drop into the kickoff.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Feeds this <span class="em">play</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/"><span class="next-kicker">Trigger: buyer demand</span><span class="next-name">Reverse Prospecting Engine <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Drop its demand story straight into the kickoff.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/farm-watchlist/"><span class="next-kicker">Trigger: farm activity</span><span class="next-name">The Farm Watchlist <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">A record sale on the street is a campaign waiting to run.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

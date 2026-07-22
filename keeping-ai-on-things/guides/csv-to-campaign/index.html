@@ -18,53 +18,71 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-table"><path d="M3 5h18v14H3z M3 10h18 M9 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-users"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6 M16 5a3.5 3.5 0 0 1 0 7 M17 14.5c2.4.8 4 2.9 4 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-send"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-repeat"><path d="M17 2l4 4-4 4 M21 6H8a5 5 0 0 0-5 5 M7 22l-4-4 4-4 M3 18h13a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>Turn a CSV Export Into a Campaign</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i></i><i></i></span>Level 1 &middot; Copy-Paste</div>
+    <h1>CSV to <span class="hl">Campaign</span></h1>
     <p class="sub">The universal move: every CRM (client database) and MLS (Multiple Listing Service) can export a CSV spreadsheet file. Your AI assistant can turn that file into a campaign.</p>
-    <p class="meta">Level 1 &middot; Copy-Paste &middot; About 15 minutes</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>About 15 minutes</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg>Works with any CRM</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Segments your database into groups that actually mean something: past clients due for a check-in, cold leads worth one more touch, referral partners, likely movers.</li>
-      <li>Writes a campaign for each segment: the message, the channel, the timing.</li>
-      <li>Gives you back a spreadsheet with tags you can re-import, so the work lands in your CRM instead of dying in a chat window.</li>
-      <li>Works with any CRM. No integration, no settings, no IT help.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></div><p><strong>Segments your database</strong> into groups that mean something: past clients due for a check-in, cold leads worth one more touch, referral partners, likely movers.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><p><strong>Writes a campaign per segment:</strong> the message, the channel, and the timing.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-repeat"/></svg></div><p><strong>Round-trips into your CRM.</strong> You get a spreadsheet back with tags you can re-import, so the work lands in your CRM instead of dying in a chat window.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><p><strong>Zero integration required.</strong> No connectors, no settings, no IT help.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace set up, with training turned off.</li>
-      <li>A CSV export from your CRM: name, type of contact, last contact date, and any notes column. Most CRMs export from the contacts list screen.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace set up, with training turned off.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>A <strong>CSV export from your CRM:</strong> name, type of contact, last contact date, and any notes column. Most CRMs export from the contacts list screen.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Export the CSV from your CRM.</strong> Contacts view, select all (or one smart list), export.</li>
-      <li><strong>Sanitize it.</strong> Open the file and delete columns you'd never want outside your CRM: birthdays paired with full addresses, financial notes, anything sensitive. Keep name, contact type, last contact date, and general notes. When in doubt, delete the column.</li>
-      <li><strong>Upload it to your workspace</strong> and run the Segmenter prompt below.</li>
-      <li><strong>Review the segments.</strong> You know your people. Move anyone the AI mis-bucketed.</li>
-      <li><strong>Run the Campaign Builder prompt</strong> on the segment you care about most this month.</li>
-      <li><strong>Re-import.</strong> Ask for the updated CSV with a "segment" column, download it, and import it back into your CRM as tags. Now your CRM knows what your AI figured out.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Export the CSV from your CRM</h3><p>Contacts view, select all (or one smart list), export.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Sanitize it</h3><p>Open the file and delete columns you'd never want outside your CRM: birthdays paired with full addresses, financial notes, anything sensitive. Keep name, contact type, last contact date, and general notes. <strong>When in doubt, delete the column.</strong></p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Upload and run the Segmenter</h3><p>Drop the file into your workspace and run the Segmenter prompt below.</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Review the segments</h3><p>You know your people. Move anyone the AI mis-bucketed.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Run the Campaign Builder</h3><p>Point it at the segment you care about most this month.</p></div></li>
+      <li><span class="stepnum">6</span><div class="stepcard"><h3>Re-import</h3><p>Ask for the updated CSV with a "segment" column, download it, and import it back into your CRM as tags. Now your CRM knows what your AI figured out.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Segmenter</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">segmenter.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">You are my database strategist. I've uploaded a CSV export from my CRM.
 
 1. Tell me what columns you see and how many contacts, so I can confirm you read it right.
@@ -75,8 +93,8 @@
 Do not invent data. If a contact is missing the info you need, put them in a NEEDS REVIEW segment instead of guessing.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Campaign Builder</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">campaign-builder.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
       <pre id="p2">Using the [SEGMENT NAME] segment from the file above, build me a 3-touch campaign for the next 30 days.
 
 For each touch: the channel (text, email, or call), the day it goes out, and the full message written in my voice from my Agent Profile. Texts under 300 characters. Emails under 150 words with a subject line.
@@ -85,28 +103,27 @@ Rules: value first, no hard pitch until touch 3, every message must read like it
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Sanitize before you upload, every time.</strong> No financial details, no sensitive notes. The delete-a-column habit is the whole privacy game here.</li>
-        <li><strong>Check your brokerage's data policy</strong> before uploading contact lists to any outside tool.</li>
-        <li><strong>Texting rules still apply.</strong> Messages to people who opted out, or cold texts at scale, can violate telemarketing law. Send to people who know you.</li>
-        <li><strong>You send, not the AI.</strong> This play drafts and organizes. Loading and sending happen in your CRM, where unsubscribes and compliance live.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Sanitize before you upload, every time.</strong> No financial details, no sensitive notes. The delete-a-column habit is the whole privacy game here.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Check your brokerage's data policy</strong> before uploading contact lists to any outside tool.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Texting rules still apply.</strong> Messages to people who opted out, or cold texts at scale, can violate telemarketing law. Send to people who know you.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>You send, not the AI.</strong> This play drafts and organizes. Loading and sending happen in your CRM, where unsubscribes and compliance live.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">Connect your CRM directly</a> so you can skip the export step, or point this same skill at your farm with the <a class="inline" href="/keeping-ai-on-things/guides/farm-watchlist/">Farm Watchlist</a>.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/connect-your-crm/"><span class="next-kicker">Level 2 &middot; skip the export step</span><span class="next-name">Connect Your CRM <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">A live connection turns this monthly ritual into a standing conversation.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/farm-watchlist/"><span class="next-kicker">Level 3 &middot; same skill, aimed at your farm</span><span class="next-name">The Farm Watchlist <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Cross-reference your farm list with the month's activity.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

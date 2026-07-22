@@ -18,51 +18,69 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-home"><path d="M3 11l9-8 9 8 M5 9.5V20h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-story"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-shield"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-chat"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12h.01 M12 12h.01 M15.5 12h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>The CMA Assistant</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i></i><i></i></span>Level 1 &middot; Copy-Paste</div>
+    <h1>The CMA <span class="hl">Assistant</span></h1>
     <p class="sub">Your CMA (comparative market analysis) tool picks the comps. Your AI assistant turns them into a story a seller actually understands.</p>
-    <p class="meta">Level 1 &middot; Copy-Paste &middot; About 20 minutes per CMA</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min per CMA</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg>You still pick the price</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Translates a comp grid into plain-English: why each comp matters, what the adjustments mean, and what the data says about a realistic range.</li>
-      <li>Preps you for the listing appointment: the three hardest pricing objections you'll hear for this specific home, with grounded responses.</li>
-      <li>Drafts the narrative pages of a pre-listing packet so your CMA isn't just a table of numbers.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-story"/></svg></div><p><strong>Translates a comp grid into plain English:</strong> why each comp matters, what the adjustments mean, and what the data says about a realistic range.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><p><strong>Preps you for the listing appointment:</strong> the three hardest pricing objections you'll hear for this specific home, with grounded responses.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg></div><p><strong>Drafts the narrative pages</strong> of a pre-listing packet so your CMA isn't just a table of numbers.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>Comps from your MLS (Multiple Listing Service) or CMA tool. Export the summary, or just copy the comp grid: address-level data, sold prices, dates, size, condition notes.</li>
-      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Comps from your MLS or CMA tool.</strong> Export the summary, or just copy the comp grid: address-level data, sold prices, dates, size, condition notes.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Run your comps like you always do.</strong> The AI never picks comps and never picks the price. That judgment is the licensed part.</li>
-      <li><strong>Copy or upload the comp data</strong> into your workspace.</li>
-      <li><strong>Run the Pricing Story prompt.</strong> Read it critically: does the story match what you know about the market?</li>
-      <li><strong>Run the Objection Prep prompt</strong> the night before the appointment.</li>
-      <li><strong>Verify every number</strong> against the MLS before anything reaches the client. AI transcription of tables is good, not perfect.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Run your comps like you always do</h3><p>The AI never picks comps and never picks the price. That judgment is the licensed part.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Copy or upload the comp data</h3><p>Into your workspace, grid and all.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Run the Pricing Story prompt</h3><p>Read it critically: does the story match what you know about the market?</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Run Objection Prep the night before</h3><p>Walk in already knowing the three hardest questions on this specific home.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Verify every number</h3><p>Against the MLS, before anything reaches the client. AI transcription of tables is good, not perfect.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Pricing Story</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">pricing-story.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">You are my listing-presentation assistant. Below are the comps I selected for a CMA (comparative market analysis). I will decide the price; your job is the story.
 
 SUBJECT PROPERTY: [address/area, size, condition, standout features]
@@ -77,35 +95,34 @@ Produce:
 Use only the data I pasted. If something looks inconsistent, flag it instead of smoothing it over.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>Objection Prep</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">objection-prep.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
       <pre id="p2">Based on the subject property and comps above, play the seller. Give me the 3 hardest pricing objections this specific seller is likely to raise (for example: the online estimate is higher, the neighbor got more last year, we did upgrades).
 
 For each objection: how it will actually be phrased across the kitchen table, and a response that is honest, grounded in the comp data, and keeps the relationship warm. No scripts that sound like scripts.</pre>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>You price the home.</strong> "AI-powered pricing" is a claim you can't stand behind and shouldn't make. AI explains; you and the data decide.</li>
-        <li><strong>MLS data has rules.</strong> Using comps with your client is normal course of business; republishing raw MLS data publicly is not. Keep the comp detail in the appointment.</li>
-        <li><strong>Verify before the client sees it.</strong> One transposed sold price in a seller packet costs more credibility than the whole CMA earned.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>You price the home.</strong> "AI-powered pricing" is a claim you can't stand behind and shouldn't make. AI explains; you and the data decide.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>MLS data has rules.</strong> Using comps with your client is normal course of business; republishing raw MLS data publicly is not. Keep the comp detail in the appointment.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Verify before the client sees it.</strong> One transposed sold price in a seller packet costs more credibility than the whole CMA earned.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> won the listing? Run the <a class="inline" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/">Reverse Prospecting Engine</a> in week one.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/"><span class="next-kicker">Won the listing? Week one:</span><span class="next-name">Reverse Prospecting Engine <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Turn matching buyer searches into outreach and proof of demand.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/ai-transaction-coordinator/"><span class="next-kicker">Under contract? Next:</span><span class="next-name">AI Transaction Coordination <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Dates in, timeline and weekly updates out.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

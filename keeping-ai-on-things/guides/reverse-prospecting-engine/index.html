@@ -18,52 +18,91 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-radar"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g>
+<g id="i-users"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6 M16 5a3.5 3.5 0 0 1 0 7 M17 14.5c2.4.8 4 2.9 4 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-home"><path d="M3 11l9-8 9 8 M5 9.5V20h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-send"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>The Reverse Prospecting Engine</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i></i><i></i></span>Level 1 &middot; Copy-Paste</div>
+    <h1>The Reverse Prospecting <span class="hl">Engine</span></h1>
     <p class="sub">Your MLS (Multiple Listing Service) already tells you which agents have buyers matching your listing. One copy-paste turns that into a full campaign.</p>
-    <p class="meta">Level 1 &middot; Copy-Paste &middot; About 20 minutes per listing</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min per listing</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg>Real demand data</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Turns reverse prospecting results (the MLS report showing agents whose buyer searches match your listing) into an outreach plan to those agents, one by one, in your voice.</li>
-      <li>Writes the seller update that proves you're marketing: "X agents have active buyers matching our home, here's what I'm doing about it."</li>
-      <li>Builds a proof-of-demand campaign for your channels: sphere email, social posts, open-house angle, all keyed to real buyer demand instead of generic "just listed" noise.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></div><p><strong>Agent outreach, one by one, in your voice.</strong> The MLS report shows whose buyer searches match your listing; the engine writes the message to each of them.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg></div><p><strong>The seller update that proves you're marketing:</strong> "X agents have active buyers matching our home, here's what I'm doing about it."</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><p><strong>A proof-of-demand campaign</strong> for your channels: sphere email, social posts, and an open-house angle, all keyed to real buyer demand instead of generic "just listed" noise.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>An active listing and your MLS's reverse prospecting report for it (in most MLS systems it's on the listing management screen; your MLS help desk can point to it in 2 minutes).</li>
-      <li>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>An <strong>active listing</strong> and your MLS's reverse prospecting report for it. In most MLS systems it's on the listing management screen; your MLS help desk can point to it in 2 minutes.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>Your <a class="inline" href="/keeping-ai-on-things/guides/ai-second-brain/">AI Second Brain</a> workspace.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Run reverse prospecting on your listing</strong> in the MLS and copy the results: the count of matching buyer searches and, where shown, the agent names and search criteria.</li>
-      <li><strong>Strip anything your MLS marks confidential.</strong> Counts and criteria are what the engine needs. When in doubt, paste the counts only.</li>
-      <li><strong>Run the Engine prompt below</strong> with your listing details and the pasted results.</li>
-      <li><strong>Send the agent-outreach messages first.</strong> Those are the warmest possible calls in real estate: their buyer is already looking for your listing.</li>
-      <li><strong>Send the seller update.</strong> Nothing builds seller confidence like evidence of demand.</li>
-      <li><strong>Queue the public campaign</strong> through your CRM or scheduler.</li>
-      <li><strong>Repeat weekly</strong> while the listing is active. New matches appear as new buyers enter the market.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Run reverse prospecting in the MLS</h3><p>Copy the results: the count of matching buyer searches and, where shown, the agent names and search criteria.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Strip anything marked confidential</h3><p>Counts and criteria are what the engine needs. When in doubt, paste the counts only.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Run the Engine prompt</h3><p>Feed it your listing details and the pasted results.</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Send the agent outreach first</h3><p>Those are the warmest possible calls in real estate: their buyer is already looking for your listing.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Send the seller update</h3><p>Nothing builds seller confidence like evidence of demand.</p></div></li>
+      <li><span class="stepnum">6</span><div class="stepcard"><h3>Queue the public campaign</h3><p>Load it through your CRM or scheduler.</p></div></li>
+      <li><span class="stepnum">7</span><div class="stepcard"><h3>Repeat weekly while active</h3><p>New matches appear as new buyers enter the market.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
+    <p class="kicker">The warmest message in real estate</p>
+    <h2>What the outreach <span class="em">looks like</span></h2>
+    <div class="demo-strip split">
+      <div>
+        <p class="lead">Peer to peer, zero pressure, specific. The engine drafts a text and email version for every matching agent; you review and hit send. Most agents answer this message the same day, because it's about their buyer, not your listing.</p>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"><i></i></div>
+        <div class="phone-screen">
+          <div class="chat-head"><span class="chat-avatar"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div><b>Draft: text to matching agent</b><span>Ready for your review</span></div></div>
+          <div class="chat-body">
+            <div class="msg user">Draft the text for agent #3 (buyer search: 4+ bed, pool, under $1.2M).</div>
+            <div class="msg ai">Hi Dana, Bradley with [brokerage]. The MLS matched your buyer search (4+ bed, pool, under $1.2M) to my new listing on Warnock Ct. Happy to get you in ahead of the weekend if it fits their list. Want the details?<span class="tick">Text version &middot; 288 characters &middot; email version below</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Engine</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">reverse-prospecting-engine.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">You are my listing marketing strategist. My MLS's reverse prospecting report shows real buyer demand for my listing. Build the full campaign.
 
 LISTING:
@@ -84,37 +123,34 @@ Use only the numbers I pasted. Do not inflate or invent demand.</pre>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Level it <span class="em">up</span></h2>
-    <div class="card green">
-      <ul class="plain">
-        <li><strong>Save it as a template.</strong> Store the Engine prompt in your workspace so each new listing is fill-in-the-brackets, 5 minutes flat.</li>
-        <li><strong>Connected version:</strong> with your <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">CRM connected</a>, have the assistant drop the follow-up cadence in as dated tasks so nothing depends on your memory.</li>
-      </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Save it as a template.</strong> Store the Engine prompt in your workspace so each new listing is fill-in-the-brackets, 5 minutes flat.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>Connected version:</strong> with your <a class="inline" href="/keeping-ai-on-things/guides/connect-your-crm/">CRM connected</a>, have the assistant drop the follow-up cadence in as dated tasks so nothing depends on your memory.</p></div>
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Contact the agent, never their buyer.</strong> Reverse prospecting data is for agent-to-agent outreach. Going around a buyer's agent is a fast way to a board complaint.</li>
-        <li><strong>Know your MLS's rules</strong> for how reverse prospecting data can be used and shared. Quoting aggregate counts publicly ("14 matching buyer searches") is generally the safe zone; naming agents or criteria publicly is not.</li>
-        <li><strong>Real numbers only.</strong> If demand is thin, the play still works: tell the seller the truth and let the AI help you build the plan to change it.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Contact the agent, never their buyer.</strong> Reverse prospecting data is for agent-to-agent outreach. Going around a buyer's agent is a fast way to a board complaint.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Know your MLS's rules</strong> for how reverse prospecting data can be used and shared. Quoting aggregate counts publicly ("14 matching buyer searches") is generally the safe zone; naming agents or criteria publicly is not.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Real numbers only.</strong> If demand is thin, the play still works: tell the seller the truth and let the AI help you build the plan to change it.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> <a class="inline" href="/keeping-ai-on-things/guides/cma-assistant/">The CMA Assistant</a> for the pricing side of the same listing.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/cma-assistant/"><span class="next-kicker">Level 1 &middot; the pricing side</span><span class="next-name">The CMA Assistant <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Same listing, client-ready pricing story.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/campaign-autopilot/"><span class="next-kicker">Level 3 &middot; the graduation play</span><span class="next-name">The Campaign Autopilot <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">This engine becomes one trigger in a bigger machine.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>

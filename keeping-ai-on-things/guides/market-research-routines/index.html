@@ -18,52 +18,70 @@
 <link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-back"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-check"><path d="M4 12l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g id="i-alert"><path d="M12 3L2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4 M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-chart"><path d="M4 20V6 M4 20h16 M8 16v-5 M12 16V8 M16 16v-3 M20 16V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-eye"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></g>
+<g id="i-news"><path d="M4 5h13v14a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z M17 8h3v11a2 2 0 0 1-2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 9h7 M7 13h7 M7 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+<g id="i-bolt"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+</defs></svg>
 
 <header class="guide">
   <div class="wrap">
-    <p class="kicker"><a href="/keeping-ai-on-things/">Keeping AI on Things</a> &middot; Setup Guide</p>
-    <h1>Market Research Routines</h1>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span>Level 3 &middot; Autopilot</div>
+    <h1>Market Research <span class="hl">Routines</span></h1>
     <p class="sub">Recurring AI tasks that watch your market areas while you sell, and hand you a digest worth reading.</p>
-    <p class="meta">Level 3 &middot; Autopilot &middot; 30 minutes to set up</p>
+    <div class="meta-chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 minutes to set up</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-eye"/></svg>Runs while you sleep</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section>
+  <section class="reveal">
     <h2>What this <span class="em">does</span></h2>
-    <ul class="plain">
-      <li>Runs on a schedule you set. Several major assistants now support scheduled or recurring tasks that execute without you opening the app (check your assistant's features for "tasks," "scheduled actions," or similar).</li>
-      <li>Weekly: a digest of what's moving in your areas: notable new listings, price reductions, momentum shifts, and local news that touches real estate (development, schools, employers).</li>
-      <li>Monthly: competitor awareness. Who's listing in your farm, what marketing is showing up, where the market share is moving.</li>
-      <li>Quarterly: an opportunity scan. Where the data suggests your next farm, niche, or content angle.</li>
-    </ul>
+    <div class="win-grid">
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg></div><p><strong>Runs on a schedule you set.</strong> Several major assistants now support scheduled or recurring tasks that execute without you opening the app (check your assistant's features for "tasks," "scheduled actions," or similar).</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><p><strong>Weekly:</strong> a digest of what's moving in your areas: notable new listings, price reductions, momentum shifts, and local news that touches real estate (development, schools, employers).</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-eye"/></svg></div><p><strong>Monthly:</strong> competitor awareness. Who's listing in your farm, what marketing is showing up, where the market share is moving.</p></div>
+      <div class="win"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><p><strong>Quarterly:</strong> an opportunity scan. Where the data suggests your next farm, niche, or content angle.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>What you'll <span class="em">need</span></h2>
-    <ul class="plain">
-      <li>An assistant tier with scheduled tasks and web browsing. If yours has browsing but not scheduling, run the same prompts manually with a recurring calendar reminder; same value, one extra tap.</li>
-      <li>A clear definition of "your market": 2-4 named neighborhoods or zip codes. Vague areas make vague research.</li>
-    </ul>
+    <div class="needs">
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>An assistant tier with scheduled tasks and web browsing.</strong> If yours has browsing but not scheduling, run the same prompts manually with a recurring calendar reminder; same value, one extra tap.</p></div>
+      <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p><strong>A clear definition of "your market":</strong> 2-4 named neighborhoods or zip codes. Vague areas make vague research.</p></div>
+    </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">setup</span></h2>
-    <ol class="recipe">
-      <li><strong>Find the scheduling feature</strong> in your assistant (search its help for "scheduled tasks" or "recurring"). Create a new task, set it to weekly, and pick the morning you do your business planning.</li>
-      <li><strong>Paste the Weekly Watch prompt</strong> below as the task's instruction, filled in with your areas.</li>
-      <li><strong>Let it run twice, then tighten it.</strong> The first reports will be too broad. Reply with "less of X, more of Y" and edit the task. By week three it's yours.</li>
-      <li><strong>Add the Monthly Competitor Scan</strong> as a second task on the first of the month.</li>
-      <li><strong>Turn digests into action:</strong> the point isn't reading, it's the one call, post, or postcard each digest suggests. If a digest doesn't change what you do that week, tighten the prompt again.</li>
+    <ol class="rail">
+      <li><span class="stepnum">1</span><div class="stepcard"><h3>Find the scheduling feature</h3><p>Search your assistant's help for "scheduled tasks" or "recurring." Create a new task, set it to weekly, and pick the morning you do your business planning.</p></div></li>
+      <li><span class="stepnum">2</span><div class="stepcard"><h3>Paste the Weekly Watch prompt</h3><p>Use it as the task's instruction, filled in with your areas.</p></div></li>
+      <li><span class="stepnum">3</span><div class="stepcard"><h3>Let it run twice, then tighten it</h3><p>The first reports will be too broad. Reply with "less of X, more of Y" and edit the task. By week three it's yours.</p></div></li>
+      <li><span class="stepnum">4</span><div class="stepcard"><h3>Add the Monthly Competitor Scan</h3><p>A second task on the first of the month.</p></div></li>
+      <li><span class="stepnum">5</span><div class="stepcard"><h3>Turn digests into action</h3><p>The point isn't reading; it's the one call, post, or postcard each digest suggests. If a digest doesn't change what you do that week, tighten the prompt again.</p></div></li>
     </ol>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>The <span class="em">prompts</span></h2>
 
-    <div class="card cyan">
-      <div class="prompt-head"><h3>The Weekly Watch</h3><button class="copy-btn" data-target="p1">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-watch.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
       <pre id="p1">You are my market analyst. Every week, research what changed in my market areas and send me a digest.
 
 MY AREAS: [2-4 neighborhoods or zips, city]
@@ -77,8 +95,8 @@ Research publicly available sources (portals, local news, city/county announceme
 Rules: link every claim to its source. If you can't verify something, label it "unverified." Never present an estimate as MLS data. Keep the whole digest under 400 words.</pre>
     </div>
 
-    <div class="card gold">
-      <div class="prompt-head"><h3>The Monthly Competitor Scan</h3><button class="copy-btn" data-target="p2">Copy</button></div>
+    <div class="prompt-card">
+      <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">monthly-competitor-scan.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
       <pre id="p2">Once a month, scan publicly visible activity in my market areas: [areas].
 
 Report: which agents/teams listed or sold there this month (from public portal data), what marketing of theirs is visible (content, mailers people mention, events), and any new player showing up repeatedly.
@@ -87,27 +105,26 @@ Then the part that matters: 2-3 specific gaps. What is nobody serving in these a
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
-    <div class="card red">
-      <ul class="plain">
-        <li><strong>Web data is not MLS data.</strong> Portal numbers lag and estimate. Before any stat from a digest reaches a client or a post, verify it in the MLS. The digest tells you where to look, not what to say.</li>
-        <li><strong>Scheduled tasks drift.</strong> Skim critically for the first month. An unwatched routine slowly becomes a confident newsletter of stale information.</li>
-        <li><strong>Competitor research stays professional.</strong> Public activity only. You're mapping the market, not surveilling colleagues.</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Web data is not MLS data.</strong> Portal numbers lag and estimate. Before any stat from a digest reaches a client or a post, verify it in the MLS. The digest tells you where to look, not what to say.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Scheduled tasks drift.</strong> Skim critically for the first month. An unwatched routine slowly becomes a confident newsletter of stale information.</p></div>
+      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Competitor research stays professional.</strong> Public activity only. You're mapping the market, not surveilling colleagues.</p></div>
     </div>
   </section>
 
-  <p class="next-links"><strong>Next up:</strong> point the same idea at your own list with the <a class="inline" href="/keeping-ai-on-things/guides/farm-watchlist/">Farm Watchlist</a>.</p>
-  <a class="back" href="/keeping-ai-on-things/">Back to the hub</a>
-</div>
+  <nav class="reveal">
+    <h2>Next <span class="em">plays</span></h2>
+    <div class="next-grid">
+      <a class="next-card" href="/keeping-ai-on-things/guides/farm-watchlist/"><span class="next-kicker">Same idea, your own list</span><span class="next-name">The Farm Watchlist <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Cross-reference your farm with the month's activity.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/campaign-autopilot/"><span class="next-kicker">Digests become triggers</span><span class="next-name">The Campaign Autopilot <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">A market shift in the digest is a campaign waiting to run.</span></a>
+    </div>
+  </nav>
 
-<footer>
-  <div class="wrap">
-    <p>CNAT Title &middot; Bradley Patterson, Technology Director</p>
-  </div>
-</footer>
+</main>
 
+<footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
 <script src="/keeping-ai-on-things/assets/guide.js"></script>
 </body>
 </html>
