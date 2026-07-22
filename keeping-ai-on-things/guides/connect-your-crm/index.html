@@ -14,8 +14,8 @@
 <meta property="og:title" content="Connect Your CRM to Your AI Assistant | CNAT Title">
 <meta property="og:description" content="Three ways to get your AI assistant working with your CRM.">
 <meta property="og:site_name" content="CNAT Education">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/keeping-ai-on-things/assets/guide.css?v=3">
 </head>
 <body>
 <div class="bg-fx" aria-hidden="true"></div>
@@ -36,15 +36,22 @@
 <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></g>
 </defs></svg>
 
+<header class="site">
+  <div class="wrap site-row">
+    <a class="brand" href="/keeping-ai-on-things/"><b>CNAT</b> Education</a>
+    <span class="brand-right">Keeping AI on Things</span>
+  </div>
+</header>
+
 <header class="guide">
   <div class="wrap">
-    <a class="crumb" href="/keeping-ai-on-things/"><svg viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
+    <a class="crumb" href="/keeping-ai-on-things/"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-back"/></svg>Playbook Board</a>
     <div class="guide-level"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span>Level 2 &middot; Connected</div>
     <h1>Connect Your <span class="hl">CRM</span></h1>
     <p class="sub">Get your assistant and your CRM (client database) talking, so follow-up plans, dossiers, and campaigns land where you actually work.</p>
     <div class="meta-chips">
-      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 minutes, once</span>
-      <span class="chip"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg>3 paths, pick one</span>
+      <span class="chip"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 minutes, once</span>
+      <span class="chip"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-plug"/></svg>3 paths, pick one</span>
     </div>
   </div>
 </header>
@@ -55,13 +62,13 @@
     <h2>The whole play, at a <span class="em">glance</span></h2>
     <div class="flow-wrap">
       <div class="flow">
-        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg></div><b>Pick a path</b><span>built-in, direct, or export</span></div>
-        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
-        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><b>Connect</b><span>read-only first</span></div>
-        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
-        <div class="fnode"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-flask"/></svg></div><b>Test safely</b><span>fake contact first</span></div>
-        <div class="farrow"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
-        <div class="fnode result"><div class="fic"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></div><b>The result</b><span>a Monday brief from your own data</span></div>
+        <div class="fnode"><div class="fic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-search"/></svg></div><b>Pick a path</b><span>built-in, direct, or export</span></div>
+        <div class="farrow"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-plug"/></svg></div><b>Connect</b><span>read-only first</span></div>
+        <div class="farrow"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode"><div class="fic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-flask"/></svg></div><b>Test safely</b><span>fake contact first</span></div>
+        <div class="farrow"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></div>
+        <div class="fnode result"><div class="fic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brief"/></svg></div><b>The result</b><span>a Monday brief from your own data</span></div>
       </div>
       <p class="flow-note"><strong>You walk away with:</strong> an assistant that can answer "who haven't I talked to in 90 days," build today's call list, and file dossiers and tasks straight into the CRM. It also unlocks the connected versions of every other play.</p>
     </div>
@@ -91,8 +98,8 @@
         <div class="window">
           <div class="window-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="window-title">Settings &rsaquo; Connectors</span></div>
           <div class="window-body">
-            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></span><span><b>Your CRM</b><small>Read contacts, notes, and tasks</small></span></span><span class="ui-btn">Connect</span></div>
-            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span><b>Your calendar</b><small>Connected last week</small></span></span><span class="ui-state on">Connected</span></div>
+            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></span><span><b>Your CRM</b><small>Read contacts, notes, and tasks</small></span></span><span class="ui-btn">Connect</span></div>
+            <div class="ui-row"><span class="ui-l"><span class="ui-app"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span><b>Your calendar</b><small>Connected last week</small></span></span><span class="ui-state on">Connected</span></div>
           </div>
         </div>
         <p class="mock-note">What the connectors screen looks like in most assistants: search for your CRM by name, sign in with your CRM login, done.</p>
@@ -107,7 +114,7 @@
       <div class="tab-panel" id="path-c" role="tabpanel">
         <p class="lead">No connector? No problem. CSV out, work in the assistant, CSV back in. Works with every CRM ever made and gets you 80% of the value of a live connection with zero setup.</p>
         <div class="needs">
-          <div class="need"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><p>It's a full playbook of its own, with prompts ready to go: <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV Export Into a Campaign</a>. Run it monthly.</p></div>
+          <div class="need"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg><p>It's a full playbook of its own, with prompts ready to go: <a class="inline" href="/keeping-ai-on-things/guides/csv-to-campaign/">Turn a CSV Export Into a Campaign</a>. Run it monthly.</p></div>
         </div>
       </div>
     </div>
@@ -116,7 +123,7 @@
   <section class="reveal">
     <h2>The <span class="em">prompt</span></h2>
     <details class="prompt">
-      <summary><span class="pr-ic"><svg viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span class="pr-text"><b>The Database Analyst</b><span>Save it in your workspace; run it every Monday</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brief"/></svg></span><span class="pr-text"><b>The Database Analyst</b><span>Save it in your workspace; run it every Monday</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">database-analyst.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
         <pre id="p1">You are my database analyst with access to my CRM. Every time I run this, do the following:
@@ -133,24 +140,24 @@ Format it as a brief I can read in 2 minutes. Do not draft messages unless I ask
   <section class="reveal">
     <h2>Watch-<span class="em">outs</span></h2>
     <div class="alerts">
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Brokerage policy first.</strong> Connecting client data to an outside tool is exactly what data policies are written about. Ask before you connect.</p></div>
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Training off, business tier on.</strong> Never connect a CRM through a free consumer account. Use a paid tier with model training disabled.</p></div>
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Read before write.</strong> An assistant that mis-reads is annoying. An assistant that mis-writes into 3,000 contact records is a weekend. Grant write access only after read access has proven reliable.</p></div>
-      <div class="alert"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>The assistant summarizes; the CRM is truth.</strong> When numbers matter (deal terms, dates), open the record.</p></div>
+      <div class="alert"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Brokerage policy first.</strong> Connecting client data to an outside tool is exactly what data policies are written about. Ask before you connect.</p></div>
+      <div class="alert"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Training off, business tier on.</strong> Never connect a CRM through a free consumer account. Use a paid tier with model training disabled.</p></div>
+      <div class="alert"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>Read before write.</strong> An assistant that mis-reads is annoying. An assistant that mis-writes into 3,000 contact records is a weekend. Grant write access only after read access has proven reliable.</p></div>
+      <div class="alert"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><p><strong>The assistant summarizes; the CRM is truth.</strong> When numbers matter (deal terms, dates), open the record.</p></div>
     </div>
   </section>
 
   <nav class="reveal">
     <h2>Next <span class="em">plays</span></h2>
     <div class="next-grid">
-      <a class="next-card" href="/keeping-ai-on-things/guides/calendar-connection/"><span class="next-kicker">Level 2 &middot; 20-30 min</span><span class="next-name">Connect Your Calendar <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Give the same assistant eyes on your week.</span></a>
-      <a class="next-card" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/"><span class="next-kicker">Put the connection to work</span><span class="next-name">Reverse Prospecting Engine <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Turn MLS buyer demand into a full campaign.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/calendar-connection/"><span class="next-kicker">Level 2 &middot; 20-30 min</span><span class="next-name">Connect Your Calendar <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Give the same assistant eyes on your week.</span></a>
+      <a class="next-card" href="/keeping-ai-on-things/guides/reverse-prospecting-engine/"><span class="next-kicker">Put the connection to work</span><span class="next-name">Reverse Prospecting Engine <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span><span class="next-desc">Turn MLS buyer demand into a full campaign.</span></a>
     </div>
   </nav>
 
 </main>
 
 <footer><p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p></footer>
-<script src="/keeping-ai-on-things/assets/guide.js"></script>
+<script src="/keeping-ai-on-things/assets/guide.js?v=3"></script>
 </body>
 </html>

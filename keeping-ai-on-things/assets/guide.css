@@ -293,3 +293,15 @@ details.prompt[open] .pr-chev{transform:rotate(180deg);color:var(--cyan);}
   .window,.sheet{border-color:#ccc;background:#fff;}
   .step-next{display:none;}
 }
+
+/* Focus visibility */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px;}
+
+/* Site header band (matches hub) */
+header.site{border-bottom:1px solid var(--line);}
+.site-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:14px;padding-bottom:14px;}
+a.brand{font-family:var(--font-head);font-weight:500;font-size:.86rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);text-decoration:none;}
+a.brand b{color:var(--gold);font-weight:600;}
+a.brand:hover{color:var(--white);}
+.brand-right{font-family:var(--font-head);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
+@media(max-width:520px){.brand-right{display:none;}}

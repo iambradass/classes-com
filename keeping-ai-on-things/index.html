@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keeping AI on Things Resource Hub | CNAT Title">
 <meta name="twitter:description" content="Prompts, playbooks, and setup guides from the Keeping AI on Things class with CNAT Title.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0A1322; --bg2:#0F1A2E;
@@ -68,6 +68,8 @@ nav.tabsbar a{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:5
 nav.tabsbar a svg{width:15px;height:15px;opacity:.8;}
 nav.tabsbar a:hover{color:var(--white);}
 nav.tabsbar a.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+@media(min-width:800px){nav.tabsbar .wrap{justify-content:center;}}
+a:focus-visible,button:focus-visible,summary:focus-visible,.check-item:focus-within .check-box{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px;}
 
 /* Views */
 main{min-height:60vh;}
@@ -94,6 +96,12 @@ a.inline{color:var(--cyan);text-decoration-color:rgba(0,200,240,.4);text-underli
 .start-cta{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--font-head);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
 .start-cta svg{width:15px;height:15px;transition:transform .25s var(--ease);}
 .start-tile:hover .start-cta svg{transform:translateX(5px);}
+.start-right{display:none;}
+@media(min-width:760px){
+  .start-right{display:flex;flex-direction:column;gap:14px;margin-left:auto;padding-left:28px;border-left:1px solid var(--gold-line);flex:0 0 auto;}
+  .start-stat b{display:block;font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--gold-soft);}
+  .start-stat small{font-family:var(--font-head);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
+}
 @media(max-width:560px){.start-flex{flex-direction:column;align-items:flex-start;}}
 
 .level-head{display:flex;align-items:center;gap:12px;margin:30px 0 14px;}
@@ -253,12 +261,12 @@ footer b{color:var(--dim);font-weight:600;}
 
 <nav class="tabsbar" aria-label="Hub sections">
   <div class="wrap">
-    <a href="#playbooks" data-view="playbooks" class="active"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg>Playbooks</a>
-    <a href="#prompts" data-view="prompts"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg>Prompts</a>
-    <a href="#recipes" data-view="recipes"><svg viewBox="0 0 24 24"><use href="#i-book"/></svg>Recipes</a>
-    <a href="#tools" data-view="tools"><svg viewBox="0 0 24 24"><use href="#i-wrench"/></svg>Tools</a>
-    <a href="#guardrails" data-view="guardrails"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg>Guardrails</a>
-    <a href="#action" data-view="action"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>This Week</a>
+    <a href="#playbooks" data-view="playbooks" class="active"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Playbooks</a>
+    <a href="#prompts" data-view="prompts"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chat"/></svg>Prompts</a>
+    <a href="#recipes" data-view="recipes"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-book"/></svg>Recipes</a>
+    <a href="#tools" data-view="tools"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-wrench"/></svg>Tools</a>
+    <a href="#guardrails" data-view="guardrails"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-shield"/></svg>Guardrails</a>
+    <a href="#action" data-view="action"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg>This Week</a>
   </div>
 </nav>
 
@@ -273,12 +281,16 @@ footer b{color:var(--dim);font-weight:600;}
 
     <a class="start-tile" href="guides/ai-second-brain/">
       <div class="start-flex">
-        <div class="start-icon"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></div>
+        <div class="start-icon"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brain"/></svg></div>
         <div>
           <div class="start-meta">Start here &middot; The foundation &middot; 30 min, once</div>
           <h3>Your AI Second Brain</h3>
           <p>Teach your assistant your market, voice, and rules one time. Every other play on this board assumes it exists.</p>
-          <span class="start-cta">Open the guide <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
+          <span class="start-cta">Open the guide <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
+        </div>
+        <div class="start-right" aria-hidden="true">
+          <div class="start-stat"><b>30<span style="font-size:1rem;">min</span></b><small>One-time setup</small></div>
+          <div class="start-stat"><b>10</b><small>Plays it powers</small></div>
         </div>
       </div>
     </a>
@@ -286,62 +298,62 @@ footer b{color:var(--dim);font-weight:600;}
     <div class="level-head"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
     <div class="play-grid">
       <a class="play" href="guides/csv-to-campaign/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><div class="play-name">CSV to Campaign</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-table"/></svg></div><div class="play-name">CSV to Campaign</div></div>
         <p class="play-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/reverse-prospecting-engine/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><div class="play-name">Reverse Prospecting Engine</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><div class="play-name">Reverse Prospecting Engine</div></div>
         <p class="play-desc">Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / listing<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / listing<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/cma-assistant/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg></div><div class="play-name">The CMA Assistant</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-home"/></svg></div><div class="play-name">The CMA Assistant</div></div>
         <p class="play-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / CMA<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / CMA<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/ai-transaction-coordinator/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><div class="play-name">AI Transaction Coordination</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><div class="play-name">AI Transaction Coordination</div></div>
         <p class="play-desc">Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / contract<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / contract<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
 
     <div class="level-head"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span><b>Level 2 &middot; Connected</b><span>one-time setup</span></div>
     <div class="play-grid">
       <a class="play" href="guides/connect-your-crm/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="play-name">Connect Your CRM</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="play-name">Connect Your CRM</div></div>
         <p class="play-desc">Ask questions of your own database, and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/calendar-connection/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><div class="play-name">Connect Your Calendar</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><div class="play-name">Connect Your Calendar</div></div>
         <p class="play-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>20-30 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20-30 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/farming-landing-pages/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><div class="play-name">Neighborhood Landing Pages</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><div class="play-name">Neighborhood Landing Pages</div></div>
         <p class="play-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>45-60 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>45-60 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
 
     <div class="level-head"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
     <div class="play-grid">
       <a class="play" href="guides/market-research-routines/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="play-name">Market Research Routines</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="play-name">Market Research Routines</div></div>
         <p class="play-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 min setup<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 min setup<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/farm-watchlist/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><div class="play-name">The Farm Watchlist</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><div class="play-name">The Farm Watchlist</div></div>
         <p class="play-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min / month<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min / month<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
       <a class="play" href="guides/campaign-autopilot/">
-        <div class="play-top"><div class="play-ic"><svg viewBox="0 0 24 24"><use href="#i-rocket"/></svg></div><div class="play-name">The Campaign Autopilot</div></div>
+        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-rocket"/></svg></div><div class="play-name">The Campaign Autopilot</div></div>
         <p class="play-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</p>
-        <div class="play-meta"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build in a week<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build in a week<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
       </a>
     </div>
   </section>
@@ -354,7 +366,7 @@ footer b{color:var(--dim);font-weight:600;}
     </div>
 
     <details class="prompt">
-      <summary><span class="pr-num">1</span><span class="pr-text"><b>One Listing to a Full Campaign</b><span>Sphere email, three captions, and an open-house angle in one pass</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-num">1</span><span class="pr-text"><b>One Listing to a Full Campaign</b><span>Sphere email, three captions, and an open-house angle in one pass</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">listing-launch.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
         <pre id="p1">You are my real estate marketing assistant. Create a complete launch package for this new listing.
@@ -377,7 +389,7 @@ Keep fair-housing safe: describe the home and lifestyle, never the ideal buyer o
     </details>
 
     <details class="prompt">
-      <summary><span class="pr-num">2</span><span class="pr-text"><b>Conversation to Client Dossier + Tasks</b><span>Messy notes in, a clean one-page record and task list out</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-num">2</span><span class="pr-text"><b>Conversation to Client Dossier + Tasks</b><span>Messy notes in, a clean one-page record and task list out</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">client-dossier.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
         <pre id="p2">You are my executive assistant. Below are my raw notes / transcript from a client conversation. Turn them into a clean, one-page dossier I can attach to their record.
@@ -402,7 +414,7 @@ Only use what's in the notes. If something wasn't mentioned, mark it "not discus
     </details>
 
     <details class="prompt">
-      <summary><span class="pr-num">3</span><span class="pr-text"><b>Next-Best-Action Queue</b><span>Who to reach out to, when, and how</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-num">3</span><span class="pr-text"><b>Next-Best-Action Queue</b><span>Who to reach out to, when, and how</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">next-best-action.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
         <pre id="p3">You are my business-development assistant. Below is a list of contacts from my CRM (client database). For each one I've included the last time we talked, their role, and one recent note.
@@ -421,7 +433,7 @@ Do not write the messages - just the action plan. I'll decide what to say.</pre>
     </details>
 
     <details class="prompt">
-      <summary><span class="pr-num">4</span><span class="pr-text"><b>Neighborhood Market-Update Post</b><span>Local numbers into a value post + sphere email</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-num">4</span><span class="pr-text"><b>Neighborhood Market-Update Post</b><span>Local numbers into a value post + sphere email</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">market-update.prompt</span><button class="copy-btn" data-target="p4">Copy</button></div>
         <pre id="p4">You are my content assistant. Turn these local market numbers into a value-first update for my audience - not a sales pitch.
@@ -442,7 +454,7 @@ Neutral, factual, fair-housing safe. Cite the numbers as "recent local data," an
     </details>
 
     <details class="prompt">
-      <summary><span class="pr-num">5</span><span class="pr-text"><b>Weekly Transaction Status Brief</b><span>A calm client update and an internal checklist, so nothing slips</span></span><span class="pr-chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+      <summary><span class="pr-num">5</span><span class="pr-text"><b>Weekly Transaction Status Brief</b><span>A calm client update and an internal checklist, so nothing slips</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-brief.prompt</span><button class="copy-btn" data-target="p5">Copy</button></div>
         <pre id="p5">You are my transaction coordinator. Based on the deal details below, write two things.
@@ -471,7 +483,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
     </div>
     <div class="recipe-grid">
       <div class="recipe-card">
-        <h3><svg viewBox="0 0 24 24"><use href="#i-send"/></svg>Recipe A: Listing to Campaign</h3>
+        <h3><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-send"/></svg>Recipe A: Listing to Campaign</h3>
         <ol class="mini-rail">
           <li><span class="mini-num">1</span>Open your AI assistant. Copy <strong>Prompt 1</strong> from the Prompts tab.</li>
           <li><span class="mini-num">2</span>Fill the brackets with one real listing (yours or a colleague's).</li>
@@ -481,7 +493,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
         </ol>
       </div>
       <div class="recipe-card">
-        <h3><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg>Recipe B: Conversation to Dossier</h3>
+        <h3><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-mic"/></svg>Recipe B: Conversation to Dossier</h3>
         <ol class="mini-rail">
           <li><span class="mini-num">1</span>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
           <li><span class="mini-num">2</span>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
@@ -500,10 +512,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <p class="lead">Organized by the job, not the brand. Pick one per row and learn it well before adding more.</p>
     </div>
     <div class="tool-grid">
-      <div class="tool"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></div><div><b>General AI assistant</b><p>Your everyday chat tool for the prompts. Popular options: ChatGPT, Claude, Gemini, Copilot.</p></div></div>
-      <div class="tool"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></div><div><b>Meeting / call notes</b><p>Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p></div></div>
-      <div class="tool"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-send"/></svg></div><div><b>Social scheduling</b><p>Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p></div></div>
-      <div class="tool"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div><b>Your CRM (client database)</b><p>The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p></div></div>
+      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brain"/></svg></div><div><b>General AI assistant</b><p>Your everyday chat tool for the prompts. Popular options: ChatGPT, Claude, Gemini, Copilot.</p></div></div>
+      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-mic"/></svg></div><div><b>Meeting / call notes</b><p>Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p></div></div>
+      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-send"/></svg></div><div><b>Social scheduling</b><p>Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p></div></div>
+      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div><b>Your CRM (client database)</b><p>The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p></div></div>
     </div>
     <div class="note">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
   </section>
@@ -515,10 +527,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
     </div>
     <div class="guard-grid">
-      <div class="guard"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div><b>Fair Housing applies to AI</b><p>HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</p></div></div>
-      <div class="guard"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><div><b>Never feed it private data</b><p>No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</p></div></div>
-      <div class="guard"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></div><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
-      <div class="guard"><div class="ic"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
+      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div><b>Fair Housing applies to AI</b><p>HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</p></div></div>
+      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><div><b>Never feed it private data</b><p>No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</p></div></div>
+      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></div><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
+      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
     </div>
   </section>
 
@@ -529,10 +541,10 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
       <p class="lead">Momentum beats knowledge. Four moves, in order.</p>
     </div>
     <div class="check-card">
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
     </div>
   </section>
 
