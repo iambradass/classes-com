@@ -47,8 +47,11 @@ body{background:var(--bg);color:var(--white);font-family:var(--font-body);line-h
 /* Site header */
 header.site{border-bottom:1px solid var(--line);}
 .site-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:16px;padding-bottom:16px;}
-.brand{font-family:var(--font-head);font-weight:500;font-size:.86rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);}
-.brand b{color:var(--gold);font-weight:600;}
+a.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;}
+a.brand img{height:26px;width:auto;display:block;}
+a.brand span{font-family:var(--font-head);font-weight:500;font-size:.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);padding-left:12px;border-left:1px solid var(--line-2);transition:color .2s var(--ease);}
+a.brand:hover span{color:var(--white);}
+.foot-logo{height:22px;width:auto;opacity:.65;margin-bottom:10px;}
 .brand-right{font-family:var(--font-head);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
 @media(max-width:520px){.brand-right{display:none;}}
 
@@ -246,7 +249,7 @@ footer b{color:var(--dim);font-weight:600;}
 
 <header class="site">
   <div class="wrap site-row">
-    <div class="brand"><b>CNAT</b> Education</div>
+    <a class="brand" href="/keeping-ai-on-things/"><img src="/img/cnat-logo-white.png" alt="CNAT Title" height="26"><span>Education</span></a>
     <div class="brand-right">Class Resource Hub</div>
   </div>
 </header>
@@ -551,6 +554,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
 </main>
 
 <footer>
+  <img class="foot-logo" src="/img/cnat-logo-white.png" alt="CNAT Title" height="22">
   <p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p>
   <p style="margin-top:6px;">Questions about a class? Reach out to your CNAT Title contact.</p>
 </footer>

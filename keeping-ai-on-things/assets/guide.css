@@ -305,3 +305,10 @@ a.brand b{color:var(--gold);font-weight:600;}
 a.brand:hover{color:var(--white);}
 .brand-right{font-family:var(--font-head);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
 @media(max-width:520px){.brand-right{display:none;}}
+
+/* Brand logo */
+a.brand{display:inline-flex;align-items:center;gap:12px;}
+a.brand img{height:26px;width:auto;display:block;}
+a.brand span{font-family:var(--font-head);font-weight:500;font-size:.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);padding-left:12px;border-left:1px solid var(--line-2);transition:color .2s var(--ease);}
+a.brand:hover span{color:var(--white);}
+.foot-logo{height:22px;width:auto;opacity:.65;margin-bottom:10px;}
