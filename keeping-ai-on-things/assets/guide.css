@@ -380,3 +380,30 @@ main>section.band{padding:clamp(38px,6vw,60px) 0 clamp(30px,5vw,46px);}
 /* Dark components keep light text even inside paper bands */
 details.prompt,.prompt-card,.window,.phone{color:var(--white);}
 details.prompt .pr-text span{color:var(--faint);}
+
+/* ══════════ v7: light-first ══════════ */
+.band-paper .flow-wrap{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 12px 36px rgba(33,43,58,.07);backdrop-filter:none;}
+.band-paper .fnode .fic{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.35);color:#3E6C93;}
+.band-paper .fnode b{color:#212B3A;}
+.band-paper .fnode span{color:#8A93A5;}
+.band-paper .farrow{color:#B9C0CC;}
+.band-paper .fnode.result .fic{background:var(--accent-dim);border-color:var(--accent-line);color:var(--accent-deep);}
+.band-paper .fnode.result b{color:var(--accent-deep);}
+.band-paper .flow-note{color:#5C6678;}
+.band-paper .flow-note strong{color:#212B3A;}
+.band-paper .alert{background:#fff;border-color:rgba(169,80,80,.35);box-shadow:0 2px 12px rgba(33,43,58,.05);}
+.band-paper .alert .ic{background:rgba(201,127,127,.16);color:#A85050;}
+.band-paper .alert p{color:#4A5568;}
+.band-paper .alert p strong{color:#212B3A;}
+.band-paper a.next-card{background:#fff;border-color:rgba(33,43,58,.1);color:#212B3A;box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
+.band-paper a.next-card::after{display:none;}
+.band-paper a.next-card:hover{border-color:rgba(62,108,147,.45);box-shadow:0 14px 34px rgba(33,43,58,.12);}
+.band-paper .next-kicker{color:#3E6C93;}
+.band-paper .next-name{color:#212B3A;}
+.band-paper .next-name svg{color:var(--accent-deep);}
+.band-paper .next-desc{color:#5C6678;}
+.band-paper .win{background:#fff;border-color:rgba(33,43,58,.1);}
+.band-paper .win p{color:#4A5568;}
+.band-paper .win p strong{color:#212B3A;}
+/* Mock screens are examples, not functional UI */
+.window-bar::after{content:'SAMPLE';margin-left:8px;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;color:var(--faint);border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;}

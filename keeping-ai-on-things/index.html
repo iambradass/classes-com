@@ -204,6 +204,53 @@ ol.mini-rail li strong{color:var(--white);}
 footer{text-align:center;padding:36px 20px 48px;border-top:1px solid var(--line);color:var(--faint);font-size:.86rem;}
 footer b{color:var(--dim);font-weight:600;}
 
+/* ── v7 light-first: board, recipes, guardrails on paper ── */
+.view.paper .start-tile{background:#fff;border-color:rgba(169,133,74,.5);box-shadow:0 14px 40px rgba(33,43,58,.09);}
+.view.paper .start-tile::before{background:radial-gradient(circle,rgba(201,164,92,.18),transparent 65%);}
+.view.paper .start-tile h3{color:#212B3A;}
+.view.paper .start-tile p{color:#5C6678;}
+.view.paper .start-meta{color:#A9854A;}
+.view.paper .start-icon{background:rgba(169,133,74,.12);border-color:rgba(169,133,74,.45);color:#A9854A;}
+.start-cta{background:#212B3A;color:#F3EDE2;padding:12px 22px;border-radius:100px;margin-top:16px;}
+.start-cta svg{color:#D9BC85;}
+.view.paper .start-right{border-left-color:rgba(169,133,74,.4);}
+.view.paper .start-stat b{color:#A9854A;}
+.view.paper .start-stat small{color:#8A93A5;}
+.view.paper .level-head b{color:#3E6C93;}
+.view.paper .level-head span{color:#8A93A5;}
+.view.paper .level-head::after{background:rgba(33,43,58,.12);}
+.view.paper .level-head .lv i{background:rgba(33,43,58,.15);}
+.view.paper .level-head.l1 b{color:#A9854A;}
+.view.paper .level-head.l1 .lv i.on{background:#A9854A;}
+.view.paper .level-head.l2 b{color:#3E6C93;}
+.view.paper .level-head.l2 .lv i.on{background:#3E6C93;}
+.view.paper .level-head.l3 b{color:#A85B3D;}
+.view.paper .level-head.l3 .lv i.on{background:#A85B3D;}
+.view.paper a.play{background:#fff;border-color:rgba(33,43,58,.1);color:#212B3A;box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
+.view.paper a.play::after{display:none;}
+.view.paper a.play:hover{border-color:rgba(62,108,147,.45);box-shadow:0 16px 38px rgba(33,43,58,.13);}
+.view.paper .play-desc{color:#5C6678;}
+.view.paper .play-meta{color:#8A93A5;}
+.view.paper .play-ic{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.35);color:#3E6C93;}
+.view.paper .play-meta svg,.view.paper .play-meta .arrow{color:#3E6C93;}
+.view.paper .level-head.l1 + .play-grid .play-ic{background:rgba(169,133,74,.12);border-color:rgba(169,133,74,.45);color:#A9854A;}
+.view.paper .level-head.l1 + .play-grid .play-meta svg,.view.paper .level-head.l1 + .play-grid .play-meta .arrow{color:#A9854A;}
+.view.paper .level-head.l1 + .play-grid a.play:hover{border-color:rgba(169,133,74,.55);}
+.view.paper .level-head.l3 + .play-grid .play-ic{background:rgba(168,91,61,.12);border-color:rgba(168,91,61,.45);color:#A85B3D;}
+.view.paper .level-head.l3 + .play-grid .play-meta svg,.view.paper .level-head.l3 + .play-grid .play-meta .arrow{color:#A85B3D;}
+.view.paper .level-head.l3 + .play-grid a.play:hover{border-color:rgba(168,91,61,.55);}
+.view.paper .recipe-card{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
+.view.paper .recipe-card h3{color:#212B3A;}
+.view.paper .recipe-card h3 svg{color:#3F8862;}
+.view.paper ol.mini-rail::before{background:linear-gradient(180deg,#3F8862,rgba(63,136,98,.15));}
+.view.paper ol.mini-rail li{color:#4A5568;}
+.view.paper ol.mini-rail li strong{color:#212B3A;}
+.view.paper .mini-num{background:#3F8862;border-color:#3F8862;color:#fff;}
+.view.paper .guard{background:#fff;border-color:rgba(169,80,80,.35);box-shadow:0 2px 12px rgba(33,43,58,.05);}
+.view.paper .guard .ic{background:rgba(201,127,127,.16);color:#A85050;}
+.view.paper .guard b{color:#212B3A;}
+.view.paper .guard p{color:#5C6678;}
+
 /* ── v6 energy: per-level accents + paper/tint views ── */
 :root{--ter:#CE7A56;--ter-soft:#E09B7C;--ter-dim:rgba(206,122,86,.12);--ter-line:rgba(206,122,86,.4);}
 h2{font-size:clamp(1.75rem,6vw,2.55rem);}
@@ -315,7 +362,7 @@ details.prompt .pr-text span{color:var(--faint);}
 <main>
 
   <!-- PLAYBOOKS VIEW -->
-  <section class="view on" id="view-playbooks"><div class="wrap">
+  <section class="view on paper" id="view-playbooks"><div class="wrap">
     <div class="view-head">
       <h2>The Playbook <span class="em">Board</span></h2>
       <p class="lead">What "using AI to run your business" actually looks like. Every play opens a step-by-step guide with the whole process and the result up front. Start at Level 1 tonight.</p>
@@ -518,7 +565,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
   </div></section>
 
   <!-- RECIPES VIEW -->
-  <section class="view" id="view-recipes"><div class="wrap">
+  <section class="view paper" id="view-recipes"><div class="wrap">
     <div class="view-head">
       <h2>The Two <span class="em">Demo Recipes</span></h2>
       <p class="lead">Repeat today's live demos cold, on your own listing and your own client. Both use prompts from the <a class="inline" href="#prompts">Prompts tab</a>.</p>
@@ -563,7 +610,7 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
   </div></section>
 
   <!-- GUARDRAILS VIEW -->
-  <section class="view tint" id="view-guardrails"><div class="wrap">
+  <section class="view paper" id="view-guardrails"><div class="wrap">
     <div class="view-head">
       <h2>Four <span class="em">Guardrails</span></h2>
       <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
