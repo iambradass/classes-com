@@ -290,6 +290,62 @@ h2{font-size:clamp(1.75rem,6vw,2.55rem);}
 details.prompt{color:var(--white);}
 details.prompt .pr-text span{color:var(--faint);}
 
+/* ── v9 variety: distinct element grammar per section ── */
+.hero .cy{position:relative;display:inline-block;}
+.hero .cy::after{content:'';position:absolute;left:-6%;right:-6%;bottom:2px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9 Q 30 3 55 6 T 97 5' fill='none' stroke='%23C9A45C' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0;background:rgba(255,255,255,.02);}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:tickmove 40s linear infinite;}
+.ticker-track span{font-family:var(--font-head);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);padding:0 18px;position:relative;}
+.ticker-track span::after{content:'\2022';position:absolute;right:-4px;color:rgba(201,164,92,.55);}
+@keyframes tickmove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;}}
+
+/* Level 1: editorial numbered list */
+.play-list{display:flex;flex-direction:column;}
+a.playrow{display:flex;align-items:center;gap:22px;padding:20px 8px;text-decoration:none;color:#212B3A;border-top:1px solid rgba(33,43,58,.16);transition:background .2s var(--ease);}
+.play-list a.playrow:last-child{border-bottom:1px solid rgba(33,43,58,.16);}
+a.playrow:hover{background:rgba(169,133,74,.07);}
+.prow-num{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3rem);line-height:1;color:rgba(169,133,74,.55);flex:0 0 auto;min-width:64px;}
+.prow-main{flex:1;min-width:0;}
+.prow-main b{display:block;font-family:var(--font-head);font-weight:500;font-size:clamp(1.1rem,3vw,1.35rem);}
+.prow-main span{display:block;font-size:.92rem;color:#5C6678;margin-top:2px;max-width:62ch;}
+.prow-meta{flex:0 0 auto;display:flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1.2px;text-transform:uppercase;color:#8A93A5;}
+.prow-meta svg{color:#A9854A;transition:transform .25s var(--ease);}
+a.playrow:hover .prow-meta svg{transform:translateX(5px);}
+@media(max-width:640px){.prow-meta{display:none;}.prow-num{min-width:44px;}}
+
+/* Level 3: mission rows */
+.mission-list{display:flex;flex-direction:column;gap:14px;}
+a.mission{display:flex;align-items:center;gap:18px;padding:18px 20px;text-decoration:none;color:#212B3A;background:rgba(206,122,86,.07);border-left:4px solid #A85B3D;transition:background .2s var(--ease),transform .2s var(--ease);}
+a.mission:hover{background:rgba(206,122,86,.13);transform:translateX(4px);}
+.mission-main{flex:1;min-width:0;}
+.mission-main b{display:block;font-family:var(--font-head);font-weight:500;font-size:clamp(1.05rem,3vw,1.25rem);}
+.mission-main span{display:block;font-size:.9rem;color:#5C6678;margin-top:2px;max-width:66ch;}
+.mission-meta{flex:0 0 auto;display:flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1.2px;text-transform:uppercase;color:#A85B3D;}
+.mission-meta svg{transition:transform .25s var(--ease);}
+a.mission:hover .mission-meta svg{transform:translateX(5px);}
+@media(max-width:640px){.mission-meta svg{display:none;}}
+
+/* Recipes: index cards with tape + ruled lines */
+.view.paper .recipe-card{background:repeating-linear-gradient(180deg,#fff 0 32px,rgba(62,108,147,.08) 32px 33px);position:relative;overflow:visible;padding-top:30px;border-radius:4px;}
+.view.paper .recipe-card::before{content:'';position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(-2.5deg);width:118px;height:26px;background:rgba(201,164,92,.4);border:1px solid rgba(169,133,74,.3);}
+/* Tools: ruled catalog rows */
+.view.paper .tool-grid{display:block;}
+.view.paper .tool{background:transparent;border:0;border-top:1px solid rgba(33,43,58,.16);border-radius:0;box-shadow:none;padding:20px 6px;transform:none;}
+.view.paper .tool:last-of-type{border-bottom:1px solid rgba(33,43,58,.16);}
+.view.paper .tool:hover{background:rgba(62,108,147,.05);transform:none;}
+.view.paper .tool b{font-size:1.3rem;font-weight:500;}
+/* Guardrails: numbered placards */
+.view.paper .guard-grid{display:block;}
+.view.paper .guard{background:transparent;border:0;border-left:4px solid #A85050;border-radius:0;box-shadow:none;padding:6px 0 6px 22px;margin-bottom:26px;align-items:flex-start;}
+.view.paper .guard .ic{display:none;}
+.view.paper .guard-grid{counter-reset:gr;}
+.view.paper .guard::before{counter-increment:gr;content:counter(gr,decimal-leading-zero);font-family:var(--font-display);font-size:2.6rem;line-height:.9;color:rgba(168,80,80,.5);flex:0 0 auto;min-width:56px;}
+.view.paper .guard b{font-size:1.15rem;}
+/* This Week: notepad */
+.view.paper .check-card{background:repeating-linear-gradient(180deg,#fff 0 40px,rgba(62,108,147,.08) 40px 41px);border-radius:4px;}
+
+
 @media print{
   .bg-fx,nav.tabsbar,.copy-btn{display:none !important;}
   body{background:#fff;color:#111;}
@@ -348,6 +404,11 @@ details.prompt .pr-text span{color:var(--faint);}
   </div>
 </div>
 
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+<span>Your AI Second Brain</span><span>CSV to Campaign</span><span>Reverse Prospecting Engine</span><span>The CMA Assistant</span><span>AI Transaction Coordination</span><span>Connect Your CRM</span><span>Connect Your Calendar</span><span>Neighborhood Landing Pages</span><span>Market Research Routines</span><span>The Farm Watchlist</span><span>The Campaign Autopilot</span>
+<span>Your AI Second Brain</span><span>CSV to Campaign</span><span>Reverse Prospecting Engine</span><span>The CMA Assistant</span><span>AI Transaction Coordination</span><span>Connect Your CRM</span><span>Connect Your Calendar</span><span>Neighborhood Landing Pages</span><span>Market Research Routines</span><span>The Farm Watchlist</span><span>The Campaign Autopilot</span>
+</div></div>
+
 <nav class="tabsbar" aria-label="Hub sections">
   <div class="wrap">
     <a href="#playbooks" data-view="playbooks" class="active"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Playbooks</a>
@@ -385,26 +446,26 @@ details.prompt .pr-text span{color:var(--faint);}
     </a>
 
     <div class="level-head l1"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
-    <div class="play-grid">
-      <a class="play" href="guides/csv-to-campaign/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-table"/></svg></div><div class="play-name">CSV to Campaign</div></div>
-        <p class="play-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+    <div class="play-list">
+      <a class="playrow" href="guides/csv-to-campaign/">
+        <span class="prow-num">01</span>
+        <span class="prow-main"><b>CSV to Campaign</b><span>Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</span></span>
+        <span class="prow-meta">15 min <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="play" href="guides/reverse-prospecting-engine/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-radar"/></svg></div><div class="play-name">Reverse Prospecting Engine</div></div>
-        <p class="play-desc">Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / listing<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+      <a class="playrow" href="guides/reverse-prospecting-engine/">
+        <span class="prow-num">02</span>
+        <span class="prow-main"><b>Reverse Prospecting Engine</b><span>Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</span></span>
+        <span class="prow-meta">20 min / listing <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="play" href="guides/cma-assistant/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-home"/></svg></div><div class="play-name">The CMA Assistant</div></div>
-        <p class="play-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / CMA<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+      <a class="playrow" href="guides/cma-assistant/">
+        <span class="prow-num">03</span>
+        <span class="prow-main"><b>The CMA Assistant</b><span>Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</span></span>
+        <span class="prow-meta">20 min / CMA <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="play" href="guides/ai-transaction-coordinator/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clip"/></svg></div><div class="play-name">AI Transaction Coordination</div></div>
-        <p class="play-desc">Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20 min / contract<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+      <a class="playrow" href="guides/ai-transaction-coordinator/">
+        <span class="prow-num">04</span>
+        <span class="prow-main"><b>AI Transaction Coordination</b><span>Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</span></span>
+        <span class="prow-meta">20 min / contract <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
     </div>
 
@@ -428,24 +489,20 @@ details.prompt .pr-text span{color:var(--faint);}
     </div>
 
     <div class="level-head l3"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
-    <div class="play-grid">
-      <a class="play" href="guides/market-research-routines/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="play-name">Market Research Routines</div></div>
-        <p class="play-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>30 min setup<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+    <div class="mission-list">
+      <a class="mission" href="guides/market-research-routines/">
+        <span class="mission-main"><b>Market Research Routines</b><span>Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</span></span>
+        <span class="mission-meta">30 min setup <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="play" href="guides/farm-watchlist/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-pin"/></svg></div><div class="play-name">The Farm Watchlist</div></div>
-        <p class="play-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>15 min / month<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+      <a class="mission" href="guides/farm-watchlist/">
+        <span class="mission-main"><b>The Farm Watchlist</b><span>Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</span></span>
+        <span class="mission-meta">15 min / month <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="play" href="guides/campaign-autopilot/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-rocket"/></svg></div><div class="play-name">The Campaign Autopilot</div></div>
-        <p class="play-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>Build in a week<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
+      <a class="mission" href="guides/campaign-autopilot/">
+        <span class="mission-main"><b>The Campaign Autopilot</b><span>One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</span></span>
+        <span class="mission-meta">Build in a week <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </a>
-    </div>
-  </div></section>
+    </div></section>
 
   <!-- PROMPTS VIEW -->
   <section class="view paper" id="view-prompts"><div class="wrap">

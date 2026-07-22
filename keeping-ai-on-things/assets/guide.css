@@ -416,3 +416,28 @@ details.prompt .pr-text span{color:var(--faint);}
 .pmodal-panel pre{flex:1;overflow:auto;padding:18px;font-family:var(--font-mono);font-size:.86rem;line-height:1.55;color:#CFE3F2;white-space:pre-wrap;word-break:break-word;}
 .pmodal-x{appearance:none;background:transparent;border:none;color:var(--dim);font-size:1rem;cursor:pointer;padding:8px 10px;min-height:36px;border-radius:8px;}
 .pmodal-x:hover{color:var(--white);background:rgba(255,255,255,.07);}
+
+/* ══════════ v9 variety: distinct element grammar ══════════ */
+/* Flow: open diagram with dashed connectors, no card */
+.band-paper .flow-wrap{background:transparent;border:none;box-shadow:none;padding:0;}
+.band-paper .flow{gap:0;padding-bottom:2px;}
+.band-paper .farrow{flex:1;min-width:26px;align-self:flex-start;margin-top:23px;color:transparent;}
+.band-paper .farrow svg{display:none;}
+.band-paper .farrow::before{content:'';display:block;width:100%;border-top:2px dashed rgba(62,108,147,.45);}
+.band-paper .fnode .fic{width:52px;height:52px;background:#fff;box-shadow:0 4px 14px rgba(33,43,58,.1);}
+.band-paper .flow-note{margin-top:18px;text-align:left;border-left:4px solid var(--accent-deep);padding-left:16px;}
+/* Needs: ruled checklist, no cards */
+.band-paper .needs{gap:0;}
+.band-paper .needs .need{background:transparent;border:0;border-top:1px solid rgba(33,43,58,.16);border-radius:0;box-shadow:none;padding:15px 4px;}
+.band-paper .needs .need:last-child{border-bottom:1px solid rgba(33,43,58,.16);}
+/* Watch-outs: numbered placards */
+.band-paper .alerts{counter-reset:wo;gap:0;}
+.band-paper .alerts .alert{background:transparent;border:0;border-left:4px solid #A85050;border-radius:0;box-shadow:none;padding:8px 0 8px 20px;margin-bottom:24px;align-items:flex-start;}
+.band-paper .alerts .alert .ic{display:none;}
+.band-paper .alerts .alert::before{counter-increment:wo;content:counter(wo,decimal-leading-zero);font-family:var(--font-display);font-size:2.4rem;line-height:.9;color:rgba(168,80,80,.5);flex:0 0 auto;min-width:52px;}
+/* Next plays: punched tickets */
+.band-paper a.next-card{border-radius:6px;overflow:visible;}
+.band-paper a.next-card::before,.band-paper a.next-card::after{content:'';display:block;position:absolute;width:20px;height:20px;border-radius:50%;background:#F3EDE2;border:1px solid rgba(33,43,58,.1);top:50%;transform:translateY(-50%);}
+.band-paper a.next-card::before{left:-11px;border-left-color:transparent;}
+.band-paper a.next-card::after{right:-11px;border-right-color:transparent;}
+.band-paper .next-kicker{border-bottom:1px dashed rgba(33,43,58,.2);padding-bottom:8px;margin-bottom:6px;}
