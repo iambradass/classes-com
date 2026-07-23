@@ -164,9 +164,9 @@
 .cn-tile{
   display:flex; align-items:center; gap:16px; width:100%; text-align:left;
   background:var(--cn-ink); color:var(--cn-paper); text-decoration:none;
-  padding:22px 20px; border:0; cursor:pointer;
+  padding:22px 20px; border:1px solid var(--cn-accent); cursor:pointer;
 }
-.cn-tile:hover{background:var(--cn-ink2)}
+.cn-tile:hover{background:var(--cn-ink2); box-shadow:inset 0 0 0 1px var(--cn-accent)}
 .cn-tile .cn-num{font-size:30px; flex:0 0 44px}
 .cn-tile-title{font-family:var(--cn-ui); font-size:18px; font-weight:800; letter-spacing:-.01em}
 .cn-tile-desc{font-size:13.5px; opacity:.75; line-height:1.45}
