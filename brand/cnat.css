@@ -1,5 +1,5 @@
 /* ============================================================
-   CNAT DESIGN SYSTEM  ·  v1.0  ·  July 2026
+   CNAT DESIGN SYSTEM  ·  v1.1  ·  July 2026
    The house style distilled from the AI Builds Field Manual
    and the /go class landing page.
    Canonical copy: https://classes.cnattitle.com/brand/cnat.css
@@ -16,14 +16,23 @@
    HOUSE RULES (non-negotiable):
    - Type: Fraunces (display), Libre Franklin (UI/labels),
      Charter/Georgia (long-form body), ui-monospace (money/data)
-   - Square corners everywhere. No border-radius, no pills.
-   - Hairline rules and double rules structure the page,
-     not boxes and shadows. One brass/gold accent, spent
-     sparingly. Rust reserved for warnings/human-gates.
+   - Square corners on surfaces (cards, tiles, inputs, rules).
+     EXCEPTION: buttons are gently rounded (6px), solid by
+     default, and INVERT colors on hover/click.
+   - LOGOS: never typeset "CNAT" as a text wordmark. Always the
+     real logo images (navy on light grounds, white on dark):
+     /img/cnat-logo-navy.png and /img/cnat-logo-white.png.
+   - Bright theme color roles: navy + white do the work
+     (element backgrounds, text, highlight washes in CNAT blue);
+     CNAT yellow #faed36 is a MICRO-accent, mostly on navy
+     surfaces, never body text. Gold belongs to the manual
+     themes only. Rust reserved for warnings/human-gates.
+   - Hairline rules and double rules structure the page.
    - Uppercase Franklin letterspaced labels; italic Fraunces
      numerals as structural markers.
    - No em dashes in any copy. No emojis. No decorative pills.
-   - 44px minimum touch targets. Mobile-first.
+   - 44px minimum touch targets. Mobile-first. Watch wrapping:
+     no orphaned single words; use text-wrap pretty/balance.
    ============================================================ */
 
 /* ---------- fonts (hosted beside this file) ---------- */
@@ -42,9 +51,14 @@
   --cn-paper:#F4F1E9;      /* page ground */
   --cn-card:#FFFFFF;       /* raised surface */
   --cn-panel:#EDE9DD;      /* recessed surface */
-  --cn-ink:#0B1522;        /* CNAT navy = text + solid buttons */
-  --cn-ink2:#152238;       /* hover navy */
-  --cn-accent:#B9974E;     /* matte brass */
+  --cn-ink:#0d1623;        /* CNAT navy = text + solid buttons */
+  --cn-ink2:#182640;       /* hover navy */
+  --cn-blue:#2d7dd2;       /* CNAT blue: highlight washes, links */
+  --cn-yellow:#faed36;     /* CNAT yellow: micro-accents, mostly on navy */
+  --cn-accent:#faed36;     /* bright accent = CNAT yellow (sparing) */
+  --cn-edge:#0d1623;       /* structural edges (card top rules, tile borders) */
+  --cn-hl-bg-a:rgba(45,125,210,.92); --cn-hl-bg-b:rgba(45,125,210,.55);
+  --cn-hl-fg:#ffffff;
   --cn-muted:#5C6470;
   --cn-hair:#DDD6C6;       /* hairline rules */
   --cn-hair2:#C9BFA8;      /* stronger rules */
@@ -59,6 +73,8 @@
 }
 [data-cnat-theme="manual-light"]{
   color-scheme:light;
+  --cn-edge:#A97F1F; --cn-blue:#2A4F3B; --cn-yellow:#A97F1F;
+  --cn-hl-bg-a:rgba(169,127,31,.25); --cn-hl-bg-b:rgba(169,127,31,.08); --cn-hl-fg:#1B1712;
   --cn-paper:#F5F0E3; --cn-card:#F5F0E3; --cn-panel:#EDE6D2;
   --cn-ink:#1B1712; --cn-ink2:#000000;
   --cn-accent:#A97F1F;               /* gold */
@@ -72,6 +88,8 @@
 }
 [data-cnat-theme="manual-dark"]{
   color-scheme:dark;
+  --cn-edge:#C9A44E; --cn-blue:#8FB89E; --cn-yellow:#C9A44E;
+  --cn-hl-bg-a:rgba(201,164,78,.30); --cn-hl-bg-b:rgba(201,164,78,.10); --cn-hl-fg:#E9E1CB;
   --cn-paper:#141811; --cn-card:#141811; --cn-panel:#1B211A;
   --cn-ink:#E9E1CB; --cn-ink2:#FFFFFF;
   --cn-accent:#C9A44E;
@@ -94,23 +112,31 @@
 
 /* ---------- type ---------- */
 .cn-display{font-family:var(--cn-display); font-weight:600; line-height:1.05; letter-spacing:-.01em; text-wrap:balance}
-.cn-display em{font-style:italic; color:var(--cn-accent)}
+.cn-display em{font-style:italic; color:var(--cn-edge)}
 .cn-h1{font-size:clamp(32px,5vw,56px)}
 .cn-h2{font-size:clamp(24px,3.5vw,36px)}
 .cn-lede{font-family:var(--cn-display); font-style:italic; font-weight:430; font-size:20px; line-height:1.5; color:var(--cn-muted); text-wrap:pretty}
 .cn-kicker{
   font-family:var(--cn-ui); font-size:11px; font-weight:800;
-  letter-spacing:.26em; text-transform:uppercase; color:var(--cn-accent); margin:0 0 10px;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--cn-ink); opacity:.75; margin:0 0 10px;
 }
 .cn-label{
   font-family:var(--cn-ui); font-size:11px; font-weight:800;
   letter-spacing:.14em; text-transform:uppercase; color:var(--cn-muted);
 }
-.cn-num{font-family:var(--cn-display); font-style:italic; font-weight:600; color:var(--cn-accent); font-variant-numeric:tabular-nums}
+.cn-num{font-family:var(--cn-display); font-style:italic; font-weight:600; color:var(--cn-ink); font-variant-numeric:tabular-nums}
+[data-cnat-theme="manual-light"] .cn-num, [data-cnat-theme="manual-dark"] .cn-num{color:var(--cn-edge)}
+/* highlight wash: white text on CNAT-blue gradient fading right */
+.cn-hl{
+  color:var(--cn-hl-fg);
+  background:linear-gradient(90deg, var(--cn-hl-bg-a) 0%, var(--cn-hl-bg-b) 78%, transparent 100%);
+  padding:.02em .55em .06em .18em;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+}
 .cn-mono{font-family:var(--cn-mono); font-variant-numeric:tabular-nums}
 
 /* ---------- rules & dividers ---------- */
-.cn-rule{width:44px; height:3px; background:var(--cn-accent); border:0; margin:18px 0}
+.cn-rule{width:44px; height:4px; background:var(--cn-accent); border:0; margin:18px 0}
 .cn-rule--center{margin-left:auto; margin-right:auto}
 .cn-hairline{border:0; border-top:1px solid var(--cn-hair)}
 .cn-doubleline{border:0; border-top:3px double var(--cn-hair2)}
@@ -124,19 +150,19 @@
 /* ---------- buttons ---------- */
 .cn-btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  min-height:44px; padding:12px 22px; border:0; cursor:pointer; text-decoration:none;
-  background:var(--cn-ink); color:var(--cn-paper);
+  min-height:44px; padding:11px 26px; cursor:pointer; text-decoration:none;
+  background:var(--cn-ink); color:#fff;
+  border:1.5px solid var(--cn-ink); border-radius:6px;
   font-family:var(--cn-ui); font-size:13px; font-weight:800;
-  letter-spacing:.12em; text-transform:uppercase; border-radius:0;
+  letter-spacing:.1em; text-transform:uppercase;
 }
-.cn-btn:hover{background:var(--cn-ink2)}
-.cn-btn--outline{
-  background:transparent; color:var(--cn-ink);
-  border:1px solid var(--cn-accent); font-size:11px; padding:9px 14px; min-height:40px;
-}
-.cn-btn--outline:hover{background:var(--cn-accent); color:var(--cn-paper)}
+.cn-btn:hover, .cn-btn:active{background:transparent; color:var(--cn-ink)}
+.cn-btn--outline{background:transparent; color:var(--cn-ink); font-size:12px; padding:9px 18px; min-height:40px}
+.cn-btn--outline:hover, .cn-btn--outline:active{background:var(--cn-ink); color:#fff}
 .cn-btn--block{display:flex; width:100%}
-.cn-btn:focus-visible, .cn-chip:focus-visible{outline:2px solid var(--cn-accent); outline-offset:2px}
+[data-cnat-theme="manual-dark"] .cn-btn{background:var(--cn-ink); color:var(--cn-paper); border-color:var(--cn-ink)}
+[data-cnat-theme="manual-dark"] .cn-btn:hover{background:transparent; color:var(--cn-ink)}
+.cn-btn:focus-visible, .cn-chip:focus-visible{outline:2px solid var(--cn-blue); outline-offset:2px}
 
 /* ---------- chip nav (wrapping selector, never overflow-scroll) ---------- */
 .cn-chipnav{display:flex; flex-wrap:wrap; gap:7px}
@@ -146,7 +172,7 @@
   font-family:var(--cn-ui); font-size:11px; font-weight:700; letter-spacing:.05em;
   text-transform:uppercase; padding:9px 13px; min-height:38px; white-space:nowrap; border-radius:0;
 }
-.cn-chip:hover{color:var(--cn-ink); border-color:var(--cn-accent)}
+.cn-chip:hover{color:var(--cn-ink); border-color:var(--cn-edge)}
 .cn-chip.on{background:var(--cn-good); border-color:var(--cn-good); color:var(--cn-paper)}
 .cn-chip .cn-num{font-size:12px}
 .cn-chip.on .cn-num{color:inherit; opacity:.75}
@@ -154,11 +180,11 @@
 /* ---------- cards ---------- */
 .cn-card{
   background:var(--cn-card); border:1px solid var(--cn-hair);
-  border-top:3px solid var(--cn-accent); padding:24px 22px;
+  border-top:3px solid var(--cn-edge); padding:24px 22px;
   box-shadow:0 10px 30px var(--cn-shadow);
 }
 .cn-card--flat{box-shadow:none; border-top-width:1px}
-.cn-card--accent-side{border-top:1px solid var(--cn-hair); border-left:3px solid var(--cn-accent)}
+.cn-card--accent-side{border-top:1px solid var(--cn-hair); border-left:3px solid var(--cn-edge)}
 
 /* ---------- navy tile (big tappable link) ---------- */
 .cn-tile{
@@ -167,6 +193,7 @@
   padding:22px 20px; border:1px solid var(--cn-accent); cursor:pointer;
 }
 .cn-tile:hover{background:var(--cn-ink2); box-shadow:inset 0 0 0 1px var(--cn-accent)}
+.cn-tile .cn-num{color:var(--cn-accent)}
 .cn-tile .cn-num{font-size:30px; flex:0 0 44px}
 .cn-tile-title{font-family:var(--cn-ui); font-size:18px; font-weight:800; letter-spacing:-.01em}
 .cn-tile-desc{font-size:13.5px; opacity:.75; line-height:1.45}
@@ -264,8 +291,9 @@
   display:flex; align-items:center; gap:14px; padding:0 20px;
   font-family:var(--cn-ui);
 }
-.cn-masthead .wordmark{font-weight:800; font-size:14px; letter-spacing:.22em; text-transform:uppercase}
-.cn-masthead .wordmark b{color:var(--cn-accent)}
+.cn-masthead .logo{height:26px; width:auto; display:block}
+/* .wordmark is for a SUFFIX next to the real logo image (e.g. "Education"), never a text-only CNAT mark */
+.cn-masthead .wordmark{font-weight:800; font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:var(--cn-muted)}
 .cn-masthead .right{margin-left:auto; display:flex; align-items:center; gap:14px}
 
 /* ---------- warnings (rust rule, no boxes) ---------- */
