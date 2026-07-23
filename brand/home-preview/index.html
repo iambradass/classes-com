@@ -9,68 +9,72 @@
 <link rel="stylesheet" href="/brand/cnat.css">
 <style>
 body{margin:0}
-.wrap{max-width:960px; margin:0 auto; padding:0 22px}
+.wrap{max-width:1020px; margin:0 auto; padding:0 22px}
 .previewbar{background:var(--cn-warn); color:#fff; text-align:center; font-family:var(--cn-ui); font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; padding:8px 12px}
-.mastlogo{height:26px; width:auto; display:block}
-.mastnav{display:flex; gap:4px; margin-left:22px}
-.mastnav a{font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cn-muted); text-decoration:none; padding:10px 10px}
+.mastnav{display:flex; gap:4px; margin-left:auto}
+.mastnav a{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cn-muted); text-decoration:none; padding:12px 12px; min-height:44px; display:inline-flex; align-items:center}
 .mastnav a:hover{color:var(--cn-ink)}
-.hero{padding:64px 0 46px; text-align:center}
-.hero .cn-lede{max-width:56ch; margin:16px auto 0}
-.hero .cn-rule{margin:26px auto 0}
-section{padding:56px 0 8px}
-.sechead{display:flex; align-items:baseline; gap:14px; margin-bottom:6px}
-.sechead .count{font-family:var(--cn-mono); font-size:12px; color:var(--cn-muted); margin-left:auto}
-.classgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:20px}
-.classcard{display:flex; flex-direction:column}
-.classcard .meta{font-family:var(--cn-mono); font-size:12.5px; line-height:2; color:var(--cn-ink); margin:12px 0 4px}
-.classcard .meta b{display:inline-block; width:52px; color:var(--cn-muted); font-weight:500}
-.classcard .cn-btn{margin-top:auto}
-.classcard .price{font-family:var(--cn-display); font-size:24px; font-weight:600; margin:8px 0 14px}
-.classcard .price small{font-family:var(--cn-ui); font-size:11px; color:var(--cn-muted); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-left:8px}
-.sampletag{align-self:flex-start; font-family:var(--cn-mono); font-size:9.5px; letter-spacing:.14em; color:var(--cn-warn); border:1px solid var(--cn-warn); padding:2px 8px; margin-bottom:12px}
-.empty{border:1px solid var(--cn-hair); padding:26px; color:var(--cn-muted); font-size:14.5px}
-/* catalog ledger rows */
-.cat{border-top:2px solid var(--cn-ink); margin-top:20px}
-.catrow{display:flex; gap:18px; align-items:baseline; padding:16px 6px 16px 0; border-bottom:1px solid var(--cn-hair); text-decoration:none; color:var(--cn-ink)}
-.catrow:hover{background:var(--cn-panel)}
-.catrow .cn-num{width:44px; flex:0 0 44px; font-size:26px}
-.catrow .body{flex:1; min-width:0}
-.catrow .name{font-family:var(--cn-ui); font-weight:800; font-size:16px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
-.catrow .name .tg{font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--cn-accent)}
-.catrow .desc{font-size:14px; color:var(--cn-muted); margin-top:3px; max-width:62ch; line-height:1.5}
-.catrow .right{flex:0 0 auto; text-align:right; font-family:var(--cn-mono); font-size:11px; color:var(--cn-muted); line-height:1.8; white-space:nowrap}
-.catrow .right b{color:var(--cn-ink); font-weight:500}
+.hero{padding:64px 0 44px; text-align:left; max-width:760px}
+.hero .cn-lede{font-size:21px; margin:18px 0 0; max-width:52ch}
+section{padding:52px 0 8px}
+.sechead{display:flex; align-items:baseline; gap:14px; margin-bottom:4px; flex-wrap:wrap}
+.sechead .count{font-family:var(--cn-ui); font-size:12px; font-weight:600; color:var(--cn-muted); margin-left:auto}
+
+/* upcoming session cards */
+.upnote{font-size:15px; color:var(--cn-muted); margin:8px 0 18px; max-width:66ch}
+.classgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; justify-items:stretch}
+.classcard{display:flex; flex-direction:column; text-align:left}
+.classcard .tg{font-family:var(--cn-ui); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--cn-blue); margin:0 0 6px}
+.classcard h3{font-family:var(--cn-display); font-weight:600; font-size:26px; margin:0 0 14px; letter-spacing:-.01em; text-wrap:balance}
+.meta{display:grid; grid-template-columns:78px 1fr; row-gap:8px; column-gap:12px; margin:0 0 16px; border-top:1px solid var(--cn-hair); padding-top:14px}
+.meta dt{font-family:var(--cn-ui); font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--cn-ink); padding-top:2px}
+.meta dd{margin:0; font-family:var(--cn-ui); font-size:15.5px; font-weight:500; color:var(--cn-ink); line-height:1.45; text-wrap:pretty}
+.meta dd small{display:block; font-family:var(--cn-mono); font-size:11.5px; color:var(--cn-muted); margin-top:2px}
+.classcard .price{font-family:var(--cn-display); font-size:26px; font-weight:600; margin:0 0 16px}
+.classcard .price small{font-family:var(--cn-ui); font-size:12px; color:var(--cn-muted); font-weight:600; letter-spacing:.04em; text-transform:uppercase; margin-left:10px}
+.classcard .cn-btn{align-self:flex-start; margin-top:auto}
+.sampletag{align-self:flex-start; font-family:var(--cn-mono); font-size:9.5px; letter-spacing:.14em; color:var(--cn-warn); border:1px solid var(--cn-warn); padding:2px 8px; margin-bottom:14px}
+
+/* course catalog: navy card grid */
+.coursegrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:22px}
+.course{
+  background:var(--cn-ink); color:#fff; padding:24px 22px 18px;
+  border:1px solid var(--cn-ink); display:flex; flex-direction:column;
+}
+.course:hover{border-color:var(--cn-yellow)}
+.course .tg{font-family:var(--cn-ui); font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--cn-yellow); margin:0 0 8px}
+.course h3{font-family:var(--cn-ui); font-weight:800; font-size:18px; margin:0 0 8px; letter-spacing:-.01em; text-wrap:balance}
+.course p{font-size:14px; line-height:1.55; color:#C3C9D3; margin:0 0 18px; text-wrap:pretty}
+.course .foot{margin-top:auto; border-top:1px solid rgba(255,255,255,.16); padding-top:12px; display:flex; align-items:baseline; gap:10px}
+.course .hrs{font-family:var(--cn-ui); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--cn-yellow)}
+.course .num{margin-left:auto; font-family:var(--cn-mono); font-size:11px; color:#8b93a3}
+
 .ctagrid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:26px 0}
-@media(max-width:700px){.ctagrid{grid-template-columns:1fr}.catrow .right{display:none}}
-.foot{margin-top:70px; border-top:3px double var(--cn-hair2); padding:28px 0 44px; text-align:center}
-.foot img{height:22px; opacity:.9}
-.foot p{font-family:var(--cn-ui); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--cn-muted); margin:10px 0 0}
-.foot p span{color:var(--cn-accent)}
+@media(max-width:700px){.ctagrid{grid-template-columns:1fr}}
+.foot-site{margin-top:70px; border-top:3px double var(--cn-hair2); padding:30px 0 46px; text-align:center}
+.foot-site img{height:26px; width:auto}
+.foot-site p{font-family:var(--cn-ui); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--cn-muted); margin:12px 0 0}
 </style>
 </head>
 <body class="cn">
 <div class="previewbar">Design preview only. The live page is unchanged.</div>
 
 <header class="cn-masthead">
-  <img class="mastlogo" src="/img/cnat-logo-white.png" alt="CNAT Title" style="display:none">
-  <span class="wordmark">CNAT <b>Education</b></span>
+  <a href="#"><img class="logo" src="/img/cnat-logo-navy.png" alt="CNAT Title"></a>
+  <span class="wordmark">Education</span>
   <nav class="mastnav">
     <a href="#upcoming">Upcoming</a>
     <a href="#courses">Courses</a>
   </nav>
-  <div class="right">
-    <a class="cn-btn cn-btn--outline" href="https://calendly.com/cnattitle" target="_blank" rel="noopener">Book Time</a>
-  </div>
 </header>
 
 <div class="wrap">
 
 <div class="hero">
   <p class="cn-kicker">Texas Real Estate Continuing Education</p>
-  <h1 class="cn-display cn-h1">Learn. Close. <em>Earn CE.</em></h1>
+  <h1 class="cn-display cn-h1">Learn. Close. <span class="cn-hl">Earn CE.</span></h1>
   <p class="cn-lede">Hands-on continuing education for Texas real estate professionals, in person in Fort Worth and via Zoom. Expert instructors. Practical content. No fluff.</p>
-  <hr class="cn-rule cn-rule--center">
+  <hr class="cn-rule">
 </div>
 
 <div class="cn-statrow">
@@ -82,18 +86,19 @@ section{padding:56px 0 8px}
 
 <section id="upcoming">
   <div class="sechead">
-    <h2 class="cn-display cn-h2">Upcoming <em>Sessions</em></h2>
+    <h2 class="cn-display cn-h2">Upcoming Sessions</h2>
     <span class="count" id="upCount"></span>
   </div>
+  <p class="upnote" id="upNote"></p>
   <div class="classgrid" id="upGrid"></div>
 </section>
 
 <section id="courses">
   <div class="sechead">
-    <h2 class="cn-display cn-h2">All CNAT <em>Courses</em></h2>
+    <h2 class="cn-display cn-h2">All CNAT Courses</h2>
     <span class="count">12 courses &middot; 19 CE hours</span>
   </div>
-  <div class="cat" id="catList"></div>
+  <div class="coursegrid" id="catList"></div>
 </section>
 
 <section>
@@ -113,10 +118,10 @@ section{padding:56px 0 8px}
   </div>
 </section>
 
-<div class="foot">
-  <span class="cn-display" style="font-size:20px">CNAT <span style="color:var(--cn-accent)">Education</span></span>
+<div class="foot-site">
+  <img src="/img/cnat-logo-navy.png" alt="CNAT Title">
   <p>TREC Provider #10034 &middot; Community National Title</p>
-  <p>#AlwaysBeClosing &middot; <span>Texas Style</span></p>
+  <p>#AlwaysBeClosing &middot; Texas Style</p>
 </div>
 
 </div>
@@ -127,20 +132,20 @@ var ANON='sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
 
 function card(c, sample){
   return '<div class="cn-card classcard">'+
-    (sample?'<span class="sampletag">SAMPLE CARD</span>':'')+
-    '<p class="cn-kicker" style="margin-bottom:4px">'+(c.tagline||'CE Session')+'</p>'+
-    '<h3 class="cn-display" style="font-size:24px; margin:0">'+c.title+'</h3>'+
-    '<div class="meta">'+
-      '<div><b>Date</b>'+(c.date_display||'TBA')+'</div>'+
-      '<div><b>Time</b>'+(c.time_display||'')+'</div>'+
-      '<div><b>Where</b>'+(c.location||'')+'</div>'+
-      '<div><b>CE</b>'+(c.ce_hours||0)+' hours &middot; '+((c.course_numbers||[]).join(' / ')||'no credit')+'</div>'+
-    '</div>'+
+    (sample?'<span class="sampletag">Sample card</span>':'')+
+    '<p class="tg">'+(c.tagline||'CE Session')+'</p>'+
+    '<h3>'+c.title+'</h3>'+
+    '<dl class="meta">'+
+      '<dt>Date</dt><dd>'+(c.date_display||'TBA')+'</dd>'+
+      '<dt>Time</dt><dd>'+(c.time_display||'')+'</dd>'+
+      '<dt>Where</dt><dd>'+(c.location||'')+'</dd>'+
+      '<dt>CE</dt><dd>'+(c.ce_hours||0)+' hours'+((c.course_numbers&&c.course_numbers.length)?'<small>'+c.course_numbers.join(' / ')+'</small>':'')+'</dd>'+
+    '</dl>'+
     '<div class="price">'+(c.price_label||'Free')+(c.price_sub?'<small>'+c.price_sub+'</small>':'')+'</div>'+
     '<a class="cn-btn" href="'+(c.register_url||'#')+'">Register</a>'+
   '</div>';
 }
-var SAMPLE = {tagline:'Necessary Knowledge', title:'Legal Update I & II', date_display:'Tue, July 21st + Thu, July 23rd', time_display:'9:00 AM to 1:00 PM CT', location:'Fort Worth + Zoom', ce_hours:8, course_numbers:['10279-RENE','10280-RENE'], price_label:'$50', price_sub:'both classes, or $25 each', register_url:'#'};
+var SAMPLE = {tagline:'Necessary Knowledge', title:'Legal Update I & II', date_display:'Tue, July 21 + Thu, July 23', time_display:'9:00 AM to 1:00 PM CT', location:'Fort Worth + Zoom', ce_hours:8, course_numbers:['10279-RENE','10280-RENE'], price_label:'$50', price_sub:'both classes, or $25 each', register_url:'#'};
 
 fetch(SB+'/rest/v1/classes?published=eq.true&order=start_at.asc&select=slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_label,price_sub,is_private',
   {headers:{apikey:ANON, Authorization:'Bearer '+ANON}})
@@ -151,7 +156,8 @@ fetch(SB+'/rest/v1/classes?published=eq.true&order=start_at.asc&select=slug,titl
   document.getElementById('upCount').textContent = rows.length + (rows.length===1?' session open':' sessions open');
   var g = document.getElementById('upGrid');
   if(!rows.length){
-    g.innerHTML = '<div class="empty">No public sessions are on the calendar right now. New dates land here the moment they are scheduled.</div>' + card(SAMPLE, true);
+    document.getElementById('upNote').textContent = 'No public sessions are on the calendar right now. New dates land here the moment they are scheduled.';
+    g.innerHTML = card(SAMPLE, true);
   } else {
     g.innerHTML = rows.map(function(c){return card(c,false)}).join('');
   }
@@ -172,14 +178,14 @@ var CATALOG = [
  {name:"Social Media Bootcamp", tg:"Like and Follow...", desc:"Social media connects agents to clients. Expand your reach and improve your online presence to find new prospects.", hours:2, num:"30674-RECE"},
  {name:"TREC Advertising & Compliance", tg:"Mind Your Marketing", desc:"Stay current on the rules and regulations of real estate advertising according to the Texas Real Estate Commission.", hours:1, num:"30673-RECE"}
 ];
-document.getElementById('catList').innerHTML = CATALOG.map(function(c,i){
-  var n = (i+1<10?'0':'')+(i+1);
-  return '<a class="catrow" href="#">'+
-    '<span class="cn-num">'+n+'</span>'+
-    '<span class="body"><span class="name">'+c.name+' <span class="tg">'+c.tg+'</span></span>'+
-    '<span class="desc">'+c.desc+'</span></span>'+
-    '<span class="right"><b>'+c.hours+' CE hr'+(c.hours>1?'s':'')+'</b><br>'+(c.num||'no credit')+'</span>'+
-  '</a>';
+document.getElementById('catList').innerHTML = CATALOG.map(function(c){
+  return '<div class="course">'+
+    '<p class="tg">'+c.tg+'</p>'+
+    '<h3>'+c.name+'</h3>'+
+    '<p>'+c.desc+'</p>'+
+    '<div class="foot"><span class="hrs">'+c.hours+' CE hr'+(c.hours>1?'s':'')+'</span>'+
+    (c.num?'<span class="num">'+c.num+'</span>':'')+'</div>'+
+  '</div>';
 }).join('');
 </script>
 </body>
