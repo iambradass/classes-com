@@ -711,7 +711,7 @@ body.stack-open .stackpanel{transform:none}
 @media (hover:none){ .tile::after{display:none} }
 
 /* ---- cover bento board (bento-grid, squared off for CNAT) ---- */
-.bento{display:grid; grid-template-columns:1fr; gap:1px; grid-auto-flow:row dense}
+.bento{display:grid; grid-template-columns:1fr; gap:1px}
 @media (min-width:640px){ .bento{grid-template-columns:repeat(2,1fr)} }
 @media (min-width:1000px){ .bento{grid-template-columns:repeat(4,1fr)} }
 .bcell{
@@ -728,7 +728,7 @@ body.stack-open .stackpanel{transform:none}
 .bcell::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:transparent}
 .bcell[data-arm="starter"]::before{background:var(--blue)}
 .bcell[data-arm="full"]::before{background:var(--med)}
-@media (min-width:640px){ .bcell--wide{grid-column:span 2} }
+@media (min-width:1000px){ .bcell--wide{grid-column:span 2} }
 .bcell--wide{min-height:210px; padding:20px 22px 20px 24px}
 .b1{display:flex; align-items:baseline; gap:10px}
 .bnum{font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:20px; color:var(--blue-deep)}
@@ -1834,9 +1834,9 @@ function renderDoc(d){
 
 /* ---------------- cover: the board ---------------- */
 const MOVES = {
-  b05:['Start here','Every lead you answer late is money you already spent, evaporating. Start here, and it also gets your phone number registered for business texting, which several of the others need anyway.'],
-  b03:['Then this','Your database is deferred income with a bad memory. Five warm names a day beats any purchased lead.'],
-  b07:['Then this','Most sellers hire the agent who answered "what is it worth" first and best. Be that agent in fifteen minutes.']
+  b05:['Do this first','Every lead you answer late is money you already spent, evaporating. Start here, and it also gets your phone number registered for business texting, which several of the others need anyway.'],
+  b03:['Do this second','Your database is deferred income with a bad memory. Five warm names a day beats any purchased lead.'],
+  b07:['Do this third','Most sellers hire the agent who answered "what is it worth" first and best. Be that agent in fifteen minutes.']
 };
 const MOVE_ORDER = ['b05','b03','b07'];
 
@@ -1857,7 +1857,7 @@ function boardCell(d, wide){
 
 function renderCover(){
   const r = stackNumbers();
-  const rest = BUILDS.filter(function(d){ return MOVE_ORDER.indexOf(d.id)<0; });
+  const ordered = BUILDS.slice();
 
   app.innerHTML =
   '<section class="hero"><canvas id="field" aria-hidden="true"></canvas><div class="wrap">'+
@@ -1885,10 +1885,9 @@ function renderCover(){
       '<p>Ninety-seven percent of agents now use AI. Seventeen percent say it has actually changed their business. The difference is not which AI you picked, and it is not clever wording. It is <span class="sweep">whether the AI can reach your own information, and whether it is allowed to do anything with it</span>. Each guide here covers one job from beginning to end: what it does, why it pays for itself, what you need, a simple version you can set up tonight by hand, a full version that runs on its own, the exact words to paste in, what it really costs, and the mistakes that get people in trouble'+(CLIENT?'':', plus a ready-to-run teaching outline')+'.</p>'+
       '<p>One rule runs through all '+NWORD.toLowerCase()+' of them: the AI does the reading, the counting, the first draft, and the remembering, and a licensed person stays on every button that matters. Nothing here sends a price, posts to social media, or texts a client without you saying yes first. That is not a limitation. It is the reason your broker can say yes.</p>'+
     '</div>'+
-    '<p class="covlab">All ten &middot; the three marked below are where to start</p>'+
+    '<p class="covlab">All ten, in order &middot; the three marked below are the ones to do first</p>'+
     '<div class="bento" id="board">'+
-      MOVE_ORDER.map(function(id){ return boardCell(byId[id], true); }).join('')+
-      rest.map(function(d){ return boardCell(d, false); }).join('')+
+      ordered.map(function(d){ return boardCell(d, MOVE_ORDER.indexOf(d.id) >= 0); }).join('')+
       '<button class="bcell bcell--navy bcell--wide stag" type="button" data-act="stack">'+
         '<span class="b1"><span class="bnum">&sect;</span><span class="bcat">Your monthly cost</span></span>'+
         '<span class="bigmoney" id="boardMoney">'+(r.empty?'$0':money(r.lo,r.hi))+'</span>'+
