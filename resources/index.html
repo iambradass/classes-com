@@ -119,13 +119,11 @@ button{font-family:inherit}
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue)}
 .card[data-type="Build"]::before{background:var(--brass)}
 .card[data-type="Hub"]::before{background:var(--yellow)}
-.card[data-type="Presenter"]::before{background:var(--grey)}
 .card.hide{display:none}
 .c-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .c-type{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--white);background:var(--blue);padding:4px 8px}
 .card[data-type="Build"] .c-type{background:var(--brass);color:#12100b}
 .card[data-type="Hub"] .c-type{background:var(--yellow);color:var(--dark)}
-.card[data-type="Presenter"] .c-type{background:var(--panel2);color:var(--grey)}
 .c-class{margin-left:auto;font-size:12px;font-weight:600;color:var(--grey);text-align:right}
 .c-title{font-size:18px;font-weight:700;line-height:1.3;letter-spacing:-.01em}
 .c-blurb{font-size:14.5px;line-height:1.55;color:var(--grey);margin:0}
@@ -255,7 +253,7 @@ body.gate-open .gate{opacity:1;visibility:visible;transform:translate(-50%,-50%)
     <p class="msg" id="gateMsg"></p>
     <div class="bypass" id="bypass"><button type="button" id="skip">Continue without signing in</button></div>
     <button class="cancel" type="button" id="gateCancel">Never mind</button>
-    <p class="fine">We use this to keep your CE records straight and to send you the materials from classes you attend. No selling your information, ever.</p>
+    <p class="fine">We use this to keep your CE records straight, to send you the materials from classes you attend, and to see which resources are worth building more of. No selling your information, ever.</p>
   </form>
 </div>
 
@@ -396,22 +394,13 @@ var R = [
 
   {t:"Killing Your Reach: 15 Social Media Myths", u:"/bk-social/myths", k:"Handout", c:"Social That Closes",
    d:"Fifteen things agents believe about the algorithm that are quietly costing them reach.",
-   g:["social media","marketing"], s:"algorithm reach myths handout engagement"},
-
-  {t:"Cross-Platform Talking Points", u:"/bk-social/BK-Speaker-Cross-Platform-Talking-Points", k:"Presenter", c:"Social That Closes",
-   d:"Speaker card for whoever is teaching the session.",
-   g:["social media"], s:"speaker card talking points presenter teaching notes"},
-
-  {t:"Social That Closes: ambient slideshow", u:"/bk-social/BK-Social-Ambient-Slideshow", k:"Presenter", c:"Social That Closes",
-   d:"The looping slideshow to run on the screen before the session starts.",
-   g:["social media"], s:"ambient slideshow loop screen presenter room"}
+   g:["social media","marketing"], s:"algorithm reach myths handout engagement"}
 ];
 
 /* ============================================================ */
 var SB   = 'https://etopfohypgfmedxqigcg.supabase.co';
 var ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
-var CLASS_ID = '4fdc7f04-af57-4e52-80a9-13bbfbc79483';  /* capture_only row: resource-library */
-var KEY  = 'cnat-go-signedin';   /* shared with /go, so one sign-in covers both */
+var KEY  = 'cnat-lib-who';   /* who is signed in, so every open can be attributed */
 
 var qEl = document.getElementById('q');
 var results = document.getElementById('results');
@@ -424,7 +413,33 @@ var pending = null;   /* the resource someone clicked before signing in */
 var fails = 0;
 var t0 = Date.now();
 
-function signedIn(){ try{ return localStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+function who(){
+  try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; }
+}
+function signedIn(){ var w = who(); return !!(w && w.email); }
+
+/* every open is written to resource_events through a security-definer function.
+   The public key can call it and can read nothing. */
+function logEvent(kind, r, ctx){
+  var w = who(); if(!w) return Promise.resolve();
+  return fetch(SB+'/rest/v1/rpc/log_resource_event', {
+    method:'POST', keepalive:true,
+    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json'},
+    body:JSON.stringify({
+      p_email:w.email, p_name:w.name, p_phone:w.phone||'', p_license:w.license||null,
+      p_key:(r&&r.u)||'', p_title:(r&&r.t)||'', p_url:(r&&r.u)||'',
+      p_class:(r&&r.c)||'', p_kind:(r&&r.k)||'', p_event:kind, p_context:ctx||null
+    })
+  }).catch(function(){});
+}
+function searchContext(){
+  var c = {};
+  if(state.q) c.q = state.q;
+  if(state.cls.size)   c.classes = [...state.cls];
+  if(state.topic.size) c.topics  = [...state.topic];
+  if(state.type.size)  c.kinds   = [...state.type];
+  return Object.keys(c).length ? c : null;
+}
 
 /* ---------- facets built from the catalogue itself ---------- */
 function uniq(pick){
@@ -504,7 +519,7 @@ function apply(){
   qClear.classList.toggle('on', !!state.q);
 
   results.querySelectorAll('.card').forEach(function(c){
-    c.addEventListener('click', function(){ openResource(c.dataset.u, c.dataset.t); });
+    c.addEventListener('click', function(){ openResource(c.dataset.u); });
   });
   var rs = document.getElementById('reset');
   if(rs) rs.addEventListener('click', clearAll);
@@ -527,16 +542,22 @@ function clearAll(){
 }
 
 /* ---------- the gate ---------- */
-function openResource(url, title){
-  if(signedIn()){ window.open(url,'_blank','noopener'); return; }
+function byUrl(u){ return R.filter(function(r){ return r.u === u; })[0] || null; }
+function openResource(url){
+  var rec = byUrl(url);
+  if(signedIn()){
+    logEvent('open', rec, searchContext());
+    window.open(url,'_blank','noopener');
+    return;
+  }
   pending = url;
-  document.getElementById('gateWant').textContent = title;
+  document.getElementById('gateWant').textContent = rec ? rec.t : 'a resource';
   document.body.classList.add('gate-open','locked');
   setTimeout(function(){ document.getElementById('f-name').focus(); }, 180);
 }
 function closeGate(){ document.body.classList.remove('gate-open','locked'); pending = null; }
-function unlock(remember){
-  try{ if(remember) localStorage.setItem(KEY,'1'); }catch(e){}
+function unlock(person){
+  try{ if(person) localStorage.setItem(KEY, JSON.stringify(person)); }catch(e){}
   var go = pendingUrl;
   closeGate();
   apply();
@@ -556,19 +577,29 @@ document.getElementById('gateForm').addEventListener('submit', function(ev){
   var lic   = document.getElementById('f-license').value.trim();
   pendingUrl = pending;
 
-  if(Date.now()-t0 < 1500){ unlock(true); return; }
+  if(Date.now()-t0 < 1500){ unlock({name:name||'unknown', email:email||'', phone:phone, license:lic}); return; }
   if(name.length < 2){ msg.textContent='Please enter your name.'; msg.className='msg err'; return; }
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent='That email does not look right.'; msg.className='msg err'; return; }
   if(phone.replace(/\D/g,'').length < 10){ msg.textContent='Please enter a 10-digit cell number.'; msg.className='msg err'; return; }
 
   btn.disabled = true; btn.textContent = 'One moment...';
-  fetch(SB+'/rest/v1/class_registrations', {
+  var person = {name:name, email:email.toLowerCase(), phone:phone, license:lic||null};
+  var rec = byUrl(pendingUrl);
+  fetch(SB+'/rest/v1/rpc/log_resource_event', {
     method:'POST',
-    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json', Prefer:'return=minimal'},
-    body:JSON.stringify({class_id:CLASS_ID, name:name, email:email, phone:phone,
-      license_number:lic||null, attendance_type:'in_person', wants_credit:false, source:'site'})
+    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json'},
+    body:JSON.stringify({
+      p_email:person.email, p_name:person.name, p_phone:person.phone, p_license:person.license,
+      p_key:(rec&&rec.u)||'', p_title:(rec&&rec.t)||'', p_url:pendingUrl||'',
+      p_class:(rec&&rec.c)||'', p_kind:(rec&&rec.k)||'', p_event:'signin', p_context:searchContext()
+    })
   }).then(function(r){
-    if(r.ok) unlock(true); else throw new Error('HTTP '+r.status);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    /* store the identity FIRST: logEvent reads it back out of storage,
+       and wait for the open to land before navigating away */
+    try{ localStorage.setItem(KEY, JSON.stringify(person)); }catch(e){}
+    var logged = rec ? logEvent('open', rec, searchContext()) : Promise.resolve();
+    logged.then(function(){ unlock(person); }, function(){ unlock(person); });
   }).catch(function(){
     fails++;
     btn.disabled=false; btn.textContent='Open the library';
@@ -577,7 +608,7 @@ document.getElementById('gateForm').addEventListener('submit', function(ev){
     if(fails>=2) document.getElementById('bypass').style.display='block';
   });
 });
-document.getElementById('skip').addEventListener('click', function(){ pendingUrl = pending; unlock(false); });
+document.getElementById('skip').addEventListener('click', function(){ pendingUrl = pending; unlock(null); });
 document.getElementById('gateCancel').addEventListener('click', closeGate);
 document.getElementById('scrim').addEventListener('click', closeGate);
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeGate(); });
