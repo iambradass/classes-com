@@ -31,17 +31,21 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px}
-.nav-inner{max-width:1200px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-inner{max-width:1200px;margin:0 auto;min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding:8px 0}
 .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-logo{height:32px;width:auto;flex-shrink:0;display:block}
 .nav-text{display:flex;flex-direction:column}
 .nav-title{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--white)}
 .nav-sub{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
 .nav-links{display:flex;align-items:center;gap:4px}
-.nav-link{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--grey);text-decoration:none;padding:8px 14px;border-radius:6px;transition:color .2s,background .2s}
+.nav-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;color:var(--grey);text-decoration:none;padding:0 12px;border-radius:6px;transition:color .2s,background .2s}
 .nav-link:hover{color:var(--white);background:rgba(255,255,255,.06)}
-.nav-badge{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);font-weight:600;border:1px solid rgba(45,125,210,.3);border-radius:4px;padding:3px 8px;flex-shrink:0}
-@media(max-width:640px){.nav-links{display:none}}
+.nav-badge{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);font-weight:600;border:1px solid rgba(45,125,210,.3);border-radius:4px;padding:3px 8px;flex-shrink:0}
+@media(max-width:640px){
+  .nav-links{display:flex;order:3;width:100%;flex-wrap:wrap;gap:2px;justify-content:flex-start}
+  .nav-link{padding:0 10px;font-size:12.5px;letter-spacing:1px}
+  .nav-badge{display:none}
+}
 
 /* HERO */
 .hero{max-width:1200px;margin:0 auto;padding:64px 24px 48px}
