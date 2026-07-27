@@ -23,6 +23,9 @@
 
 # HTML must always revalidate: class prices, dates, and registration options
 # change and a stale cached page can send someone to the wrong checkout.
+# Branded not-found page instead of the host's default error screen.
+ErrorDocument 404 /404.html
+
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache, must-revalidate"

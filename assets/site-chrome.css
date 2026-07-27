@@ -1,0 +1,126 @@
+/* ============================================================
+   CNAT Education shared site chrome.
+   Every rule is namespaced .cn-ch-* and sets its own font and colour,
+   because this lands on pages with very different stylesheets (cream
+   editorial guides, a navy console, BK Realty decks) and must not
+   inherit from, or leak into, any of them.
+   ============================================================ */
+
+.cn-ch-skip {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: #faed36; color: #080c14; padding: 12px 18px;
+  font: 700 15px/1 'Montserrat', system-ui, sans-serif; text-decoration: none;
+}
+.cn-ch-skip:focus { left: 0; }
+
+.cn-ch-bar {
+  background: #080c14;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+}
+.cn-ch-in {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.cn-ch-bar .cn-ch-in {
+  min-height: 56px; display: flex; align-items: center;
+  justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px;
+}
+.cn-ch-brand {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px;
+  text-decoration: none; color: #fff;
+}
+.cn-ch-brand img { height: 26px; width: auto; display: block; }
+.cn-ch-brand span {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: #fff;
+}
+/* utility variant: page already has its own brand header below this strip */
+.cn-ch-bar--utility { background: #05080f; }
+.cn-ch-bar--utility .cn-ch-in { min-height: 44px; }
+.cn-ch-brand--text {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: #8892a4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px;
+}
+.cn-ch-brand--text:hover { color: #fff; }
+.cn-ch-bar--utility .cn-ch-link { font-size: 12px; letter-spacing: 1.2px; }
+
+.cn-ch-nav { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+.cn-ch-link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+  color: #8892a4; text-decoration: none; border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.cn-ch-link:hover { color: #fff; background: rgba(255, 255, 255, .06); }
+.cn-ch-link.on { color: #faed36; }
+.cn-ch-bar a:focus-visible, .cn-ch-foot a:focus-visible, .cn-ch-crumbs a:focus-visible {
+  outline: 2px solid #4a9ae8; outline-offset: 2px;
+}
+
+/* ---------- breadcrumb ---------- */
+.cn-ch-crumbs {
+  background: #0d1623; border-bottom: 1px solid rgba(255, 255, 255, .07);
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+.cn-ch-crumbs .cn-ch-in {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 2px;
+  padding-top: 4px; padding-bottom: 4px;
+}
+.cn-ch-crumbs a, .cn-ch-crumbs span {
+  font-size: 13px; line-height: 1.4; color: #8892a4; text-decoration: none;
+}
+.cn-ch-crumbs a {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 6px;
+}
+.cn-ch-crumbs a:hover { color: #fff; text-decoration: underline; }
+.cn-ch-sep { padding: 0 2px; color: #4d5769; }
+.cn-ch-here { color: #fff; font-weight: 600; padding: 0 6px; }
+
+/* ---------- foot ---------- */
+.cn-ch-foot {
+  background: #080c14; border-top: 1px solid rgba(255, 255, 255, .1);
+  padding: 36px 0 44px; margin-top: 48px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+.cn-ch-lab {
+  margin: 0 0 14px; font-size: 12px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: #faed36;
+}
+.cn-ch-more { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,.1); margin-bottom: 28px; }
+@media (min-width: 720px) { .cn-ch-more { grid-template-columns: repeat(3, 1fr); } }
+.cn-ch-card {
+  background: #0d1623; padding: 16px 18px; text-decoration: none;
+  display: flex; flex-direction: column; gap: 7px; min-height: 116px;
+  transition: background .18s;
+}
+.cn-ch-card:hover { background: #111827; }
+.cn-ch-kind {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: #2d7dd2;
+}
+.cn-ch-t { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; }
+.cn-ch-d { font-size: 13.5px; line-height: 1.5; color: #8892a4; }
+.cn-ch-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cn-ch-btn, .cn-ch-ghost {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  text-decoration: none; border-radius: 6px; border: 1.5px solid #faed36;
+}
+.cn-ch-btn { background: #faed36; color: #080c14; }
+.cn-ch-btn:hover { background: transparent; color: #faed36; }
+.cn-ch-ghost { background: transparent; color: #8892a4; border-color: rgba(255, 255, 255, .18); }
+.cn-ch-ghost:hover { color: #fff; border-color: #fff; }
+.cn-ch-fine { margin: 22px 0 0; font-size: 13px; line-height: 1.6; color: #8892a4; }
+.cn-ch-fine a { color: #4a9ae8; }
+
+@media (max-width: 640px) {
+  .cn-ch-in { padding-left: 16px; padding-right: 16px; }
+  .cn-ch-bar .cn-ch-in { padding-top: 4px; padding-bottom: 4px; }
+  .cn-ch-nav { order: 3; width: 100%; justify-content: space-between; gap: 0; }
+  .cn-ch-link { padding: 0 6px; font-size: 12px; letter-spacing: .5px; }
+  .cn-ch-brand img { height: 24px; }
+  .cn-ch-btn, .cn-ch-ghost { width: 100%; justify-content: center; }
+}
+
+@media print {
+  .cn-ch-bar, .cn-ch-crumbs, .cn-ch-foot, .cn-ch-skip { display: none !important; }
+}
