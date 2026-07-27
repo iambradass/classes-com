@@ -12,6 +12,13 @@
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^c/[^/]+/?$ /c/index.html [L]
+
+  # Extensionless URLs: /bk-social/workbook serves bk-social/workbook.html.
+  # Only fires when the literal path does not exist and the .html twin does.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L]
 </IfModule>
 
 # HTML must always revalidate: class prices, dates, and registration options
