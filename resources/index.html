@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Resource Library | CNAT Education</title>
+<meta name="description" content="Every handout, guide, and build from CNAT classes, in one searchable place.">
+<link rel="icon" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d1623; --dark:#080c14; --panel:#111827; --panel2:#16202f;
+  --blue:#2d7dd2; --blue-light:#4a9ae8; --yellow:#faed36;
+  --white:#fff; --grey:#8892a4; --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.16);
+  --success:#34d399; --brass:#A8843C;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; font-family:'Montserrat',system-ui,sans-serif; background:var(--navy); color:var(--white);
+  min-height:100vh; -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.6;
+  overflow-wrap:break-word;
+}
+body.locked{overflow:hidden}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--blue-light); outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- site chrome, matched to the homepage ---------- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:8px 0}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px}
+.nav-logo{height:30px;width:auto;display:block}
+.nav-text{display:flex;flex-direction:column;line-height:1.15}
+.nav-title{font-size:15px;font-weight:700;letter-spacing:.02em}
+.nav-sub{font-size:11px;color:var(--grey)}
+.nav-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nav-link{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:var(--grey);
+  text-decoration:none;font-size:14px;font-weight:600;border-bottom:2px solid transparent;
+}
+.nav-link:hover{color:var(--white)}
+.nav-link.on{color:var(--yellow);border-bottom-color:var(--yellow)}
+.nav-badge{font-size:11px;color:var(--grey);border:1px solid var(--border2);padding:5px 10px;white-space:nowrap}
+@media (max-width:640px){ .nav-sub,.nav-badge{display:none} }
+
+/* ---------- hero ---------- */
+.hero{max-width:1200px;margin:0 auto;padding:44px 24px 10px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin:0 0 12px}
+.hero h1{font-size:clamp(30px,6vw,46px);line-height:1.1;letter-spacing:-.02em;margin:0;font-weight:800;max-width:18ch}
+.hero p{color:var(--grey);font-size:clamp(16px,2.4vw,18px);margin:14px 0 0;max-width:62ch}
+
+/* ---------- search + filters ---------- */
+.finder{max-width:1200px;margin:0 auto;padding:22px 24px 0}
+.searchwrap{position:relative}
+.search{
+  width:100%;min-height:60px;padding:16px 18px;font:inherit;font-size:17px;font-weight:500;
+  background:var(--panel);border:1.5px solid var(--border2);color:var(--white);border-radius:0;
+}
+.search::placeholder{color:var(--grey);font-weight:400}
+.search:focus{border-color:var(--blue-light);outline:none}
+.searchclear{
+  position:absolute;right:8px;top:8px;min-width:44px;min-height:44px;background:none;border:0;
+  color:var(--grey);font-size:22px;cursor:pointer;line-height:1;display:none;
+}
+.searchclear.on{display:block}
+.searchclear:hover{color:var(--white)}
+
+.facets{margin:22px 0 0}
+.facet{display:flex;gap:10px;align-items:flex-start;padding:0 0 14px;flex-wrap:wrap}
+.facet-label{
+  flex:0 0 84px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--grey);padding-top:13px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;flex:1;min-width:0}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;cursor:pointer;
+  background:transparent;border:1px solid var(--border2);color:var(--grey);
+  font-size:14px;font-weight:600;border-radius:0;transition:all .16s;
+}
+.chip:hover{color:var(--white);border-color:var(--white)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.chip .n{font-size:12px;opacity:.75;font-variant-numeric:tabular-nums}
+.chip.on .n{opacity:.9}
+@media (max-width:700px){
+  .facet{flex-direction:column;gap:6px}
+  .facet-label{flex:none;padding-top:0}
+}
+
+.resultbar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:16px 0;border-top:1px solid var(--border);margin-top:6px;
+}
+.resultcount{font-size:15px;color:var(--grey)}
+.resultcount b{color:var(--white);font-weight:700}
+.needsignin{color:var(--yellow)}
+.clearall{
+  margin-left:auto;background:none;border:1px solid var(--border2);color:var(--grey);
+  min-height:44px;padding:0 14px;font-size:13px;font-weight:600;cursor:pointer;display:none;
+}
+.clearall.on{display:inline-flex;align-items:center}
+.clearall:hover{color:var(--white);border-color:var(--white)}
+
+/* ---------- results ---------- */
+.results{max-width:1200px;margin:0 auto;padding:0 24px 70px;display:grid;gap:1px;background:var(--border)}
+@media (min-width:860px){ .results{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1300px){ .results{grid-template-columns:repeat(3,1fr)} }
+.card{
+  position:relative;background:var(--navy);border:0;text-align:left;font:inherit;color:inherit;
+  cursor:pointer;padding:20px 20px 18px 22px;display:flex;flex-direction:column;gap:9px;
+  min-height:172px;transition:background .16s;
+}
+.card:hover{background:var(--panel)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue)}
+.card[data-type="Build"]::before{background:var(--brass)}
+.card[data-type="Hub"]::before{background:var(--yellow)}
+.card[data-type="Presenter"]::before{background:var(--grey)}
+.card.hide{display:none}
+.c-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.c-type{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--white);background:var(--blue);padding:4px 8px}
+.card[data-type="Build"] .c-type{background:var(--brass);color:#12100b}
+.card[data-type="Hub"] .c-type{background:var(--yellow);color:var(--dark)}
+.card[data-type="Presenter"] .c-type{background:var(--panel2);color:var(--grey)}
+.c-class{margin-left:auto;font-size:12px;font-weight:600;color:var(--grey);text-align:right}
+.c-title{font-size:18px;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.c-blurb{font-size:14.5px;line-height:1.55;color:var(--grey);margin:0}
+.c-topics{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px}
+.c-topic{font-size:12px;color:var(--grey);border:1px solid var(--border);padding:3px 8px}
+.c-topic mark,.c-title mark,.c-blurb mark{background:rgba(250,237,54,.28);color:inherit;padding:0 1px}
+
+.empty{
+  grid-column:1/-1;background:var(--navy);padding:52px 20px;text-align:center;color:var(--grey);font-size:17px;
+}
+.empty b{color:var(--white);display:block;font-size:20px;margin-bottom:8px}
+.empty button{margin-top:18px;background:var(--blue);border:1.5px solid var(--blue);color:#fff;min-height:44px;padding:0 20px;font-size:14px;font-weight:700;cursor:pointer}
+.empty button:hover{background:transparent;color:var(--blue-light)}
+
+/* ---------- gate ---------- */
+.scrim{position:fixed;inset:0;z-index:180;background:rgba(3,6,12,.78);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+body.gate-open .scrim{opacity:1;visibility:visible}
+.gate{
+  position:fixed;z-index:190;left:50%;top:50%;transform:translate(-50%,-46%) scale(.98);
+  width:min(520px,calc(100vw - 28px));max-height:calc(100vh - 40px);overflow-y:auto;
+  background:var(--panel);border:1px solid var(--border2);padding:26px 24px 24px;
+  opacity:0;visibility:hidden;transition:opacity .22s,transform .22s,visibility .22s;
+}
+body.gate-open .gate{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.gate h2{margin:0 0 8px;font-size:23px;font-weight:800;letter-spacing:-.01em}
+.gate .lede{color:var(--grey);font-size:15.5px;line-height:1.55;margin:0 0 4px}
+.gate .want{
+  display:flex;gap:10px;align-items:center;margin:16px 0 4px;padding:12px 14px;
+  background:var(--navy);border-left:3px solid var(--yellow);font-size:15px;
+}
+.gate .want b{font-weight:700}
+.field{margin:14px 0 0}
+.field label{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--grey);margin:0 0 6px}
+.field input{
+  width:100%;min-height:52px;padding:13px 14px;font:inherit;font-size:16px;
+  background:var(--navy);border:1.5px solid var(--border2);color:var(--white);border-radius:0;
+}
+.field input:focus{border-color:var(--blue-light);outline:none}
+.gate .go{
+  width:100%;min-height:54px;margin-top:20px;background:var(--yellow);border:1.5px solid var(--yellow);
+  color:var(--dark);font-size:15px;font-weight:800;letter-spacing:.04em;cursor:pointer;
+}
+.gate .go:hover{background:transparent;color:var(--yellow)}
+.gate .go:disabled{opacity:.6;cursor:default}
+.gate .fine{font-size:13px;line-height:1.5;color:var(--grey);margin:14px 0 0}
+.gate .cancel{display:block;width:100%;margin-top:10px;padding:12px 0;background:none;border:0;color:var(--grey);min-height:46px;font-size:15px;cursor:pointer}
+.gate .cancel:hover{color:var(--white)}
+.msg{margin:12px 0 0;font-size:14.5px;display:none}
+.msg.err{display:block;color:#ff9b8a}
+.bypass{display:none;margin-top:12px}
+.bypass button{width:100%;background:none;border:1px solid var(--border2);color:var(--grey);min-height:44px;font-size:14px;cursor:pointer}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--dark);border-top:1px solid var(--border);padding:40px 24px;margin-top:24px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;gap:26px}
+@media (min-width:760px){ .footer-inner{grid-template-columns:repeat(3,1fr)} }
+.footer-block-label{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin:0 0 8px}
+.footer-block-name{font-weight:700;margin:0 0 4px}
+.footer-block-detail{color:var(--grey);font-size:14.5px;line-height:1.6;margin:0}
+.footer-block-detail a{color:var(--blue-light)}
+.footer-bottom{
+  max-width:1200px;margin:26px auto 0;padding-top:20px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;color:var(--grey);font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <img class="nav-logo" src="/img/cnat-logo-white.png" alt="CNAT Title">
+      <span class="nav-text">
+        <span class="nav-title">Education</span>
+        <span class="nav-sub">Continuing Education for TX Real Estate Pros</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="/#upcoming">Upcoming</a>
+      <a class="nav-link" href="/#catalog">Courses</a>
+      <a class="nav-link on" href="/resources/" aria-current="page">Resources</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+    </div>
+    <span class="nav-badge">Provider #10034</span>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="kicker">Resource Library</p>
+  <h1>Everything from every class, in one place.</h1>
+  <p>Guides, handouts, build manuals, and the exact prompts from the classes you have taken. Search by what you are trying to do, or narrow it down by the class it came from.</p>
+</header>
+
+<section class="finder">
+  <div class="searchwrap">
+    <label class="sr" for="q">Search the resource library</label>
+    <input class="search" id="q" type="search" autocomplete="off"
+           placeholder="Try automation, farming, Claude, listings, past clients">
+    <button class="searchclear" id="qclear" type="button" aria-label="Clear search">&times;</button>
+  </div>
+
+  <div class="facets">
+    <div class="facet"><span class="facet-label">Class</span><div class="chips" id="fClass"></div></div>
+    <div class="facet"><span class="facet-label">Topic</span><div class="chips" id="fTopic"></div></div>
+    <div class="facet"><span class="facet-label">Kind</span><div class="chips" id="fType"></div></div>
+  </div>
+
+  <div class="resultbar">
+    <span class="resultcount" id="count"></span>
+    <button class="clearall" id="clearall" type="button">Clear all filters</button>
+  </div>
+</section>
+
+<main class="results" id="results"></main>
+
+<div class="scrim" id="scrim"></div>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <h2 id="gateTitle">One quick sign-in</h2>
+  <p class="lede">These are the materials from CNAT classes. Tell us who you are and everything on this page opens, on this device, from now on.</p>
+  <div class="want">You picked: <b id="gateWant">a resource</b></div>
+  <form id="gateForm" novalidate>
+    <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" required></div>
+    <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="f-phone">Cell number</label><input id="f-phone" type="tel" autocomplete="tel" required></div>
+    <div class="field"><label for="f-license">License number <span style="font-weight:500">(optional)</span></label><input id="f-license" type="text"></div>
+    <button class="go" id="gateBtn" type="submit">Open the library</button>
+    <p class="msg" id="gateMsg"></p>
+    <div class="bypass" id="bypass"><button type="button" id="skip">Continue without signing in</button></div>
+    <button class="cancel" type="button" id="gateCancel">Never mind</button>
+    <p class="fine">We use this to keep your CE records straight and to send you the materials from classes you attend. No selling your information, ever.</p>
+  </form>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-block-label">Location</p>
+      <p class="footer-block-name">CNAT Title, Corporate</p>
+      <p class="footer-block-detail">14800 Quorum Dr., STE 150<br>Dallas, TX 75254</p>
+    </div>
+    <div>
+      <p class="footer-block-label">Contact</p>
+      <p class="footer-block-detail">Cannot find something?<br><a href="mailto:info@cnattitle.com">info@cnattitle.com</a></p>
+    </div>
+    <div>
+      <p class="footer-block-label">Provider Details</p>
+      <p class="footer-block-detail">TREC Provider #10034<br>Approved for Texas Salesperson and Broker CE</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>TREC Provider #10034 &middot; Community National Title</span>
+    <span>#AlwaysBeClosing</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================
+   THE CATALOGUE
+   Add an entry and it is instantly searchable and filterable.
+   kind: Hub | Guide | Manual | Build | Deck | Workbook | Handout | Presenter
+   ============================================================ */
+var R = [
+  {t:"Keeping AI on Things: the resource hub", u:"/keeping-ai-on-things/", k:"Hub", c:"Keeping AI on Things",
+   d:"The tabbed hub for the class, with all eleven walkthrough guides in one place.",
+   g:["ai","claude","getting started","automation"], s:"hub index overview start"},
+
+  {t:"Set Up Your AI Second Brain", u:"/keeping-ai-on-things/guides/ai-second-brain/", k:"Guide", c:"Keeping AI on Things",
+   d:"Give your assistant a memory so it stops asking you the same questions every time.",
+   g:["ai","claude","getting started"], s:"memory project custom instructions setup configure second brain"},
+
+  {t:"AI Transaction Coordination", u:"/keeping-ai-on-things/guides/ai-transaction-coordinator/", k:"Guide", c:"Keeping AI on Things",
+   d:"Hand a contract to the AI and get every deadline back on a timeline.",
+   g:["transactions","automation","ai"], s:"contract deadlines timeline tc coordinator option period"},
+
+  {t:"Connect Your Calendar to Your AI Assistant", u:"/keeping-ai-on-things/guides/calendar-connection/", k:"Guide", c:"Keeping AI on Things",
+   d:"Let the assistant see your week so it can schedule and remind without you retyping anything.",
+   g:["ai","claude","automation"], s:"calendar google schedule appointments connect config"},
+
+  {t:"The Campaign Autopilot", u:"/keeping-ai-on-things/guides/campaign-autopilot/", k:"Guide", c:"Keeping AI on Things",
+   d:"Turn one idea into a full email and social campaign that goes out on a schedule.",
+   g:["marketing","automation","ai"], s:"email campaign drip newsletter posts schedule"},
+
+  {t:"The CMA Assistant", u:"/keeping-ai-on-things/guides/cma-assistant/", k:"Guide", c:"Keeping AI on Things",
+   d:"Build a comparative market analysis with the reasoning written out, not just numbers.",
+   g:["listings","sellers","ai"], s:"cma pricing comps valuation market analysis price opinion"},
+
+  {t:"Connect Your CRM to Your AI Assistant", u:"/keeping-ai-on-things/guides/connect-your-crm/", k:"Guide", c:"Keeping AI on Things",
+   d:"Wire your contact database to the assistant so it can actually work with your people.",
+   g:["crm","ai","automation"], s:"database contacts connect integration gohighlevel follow up boss config"},
+
+  {t:"Turn a CSV Export Into a Campaign", u:"/keeping-ai-on-things/guides/csv-to-campaign/", k:"Guide", c:"Keeping AI on Things",
+   d:"Take the spreadsheet your database spits out and turn it into something that earns.",
+   g:["crm","marketing","automation"], s:"csv export spreadsheet list database campaign import"},
+
+  {t:"The Farm Watchlist", u:"/keeping-ai-on-things/guides/farm-watchlist/", k:"Guide", c:"Keeping AI on Things",
+   d:"Watch a neighborhood automatically and know the moment something moves.",
+   g:["farming","prospecting","automation"], s:"neighborhood geographic farm watch alerts sold listed"},
+
+  {t:"Build a Neighborhood Landing Page With AI", u:"/keeping-ai-on-things/guides/farming-landing-pages/", k:"Guide", c:"Keeping AI on Things",
+   d:"A page for the neighborhood you work, written and built without a web designer.",
+   g:["farming","marketing"], s:"neighborhood landing page website seller leads farm"},
+
+  {t:"Market Research Routines", u:"/keeping-ai-on-things/guides/market-research-routines/", k:"Guide", c:"Keeping AI on Things",
+   d:"Standing questions that keep you the best informed person in every listing appointment.",
+   g:["market data","ai","listings"], s:"research stats trends reports prompts routines"},
+
+  {t:"The Reverse Prospecting Engine", u:"/keeping-ai-on-things/guides/reverse-prospecting-engine/", k:"Guide", c:"Keeping AI on Things",
+   d:"Find the agents whose buyers already match your listing, and reach out first.",
+   g:["prospecting","listings","automation"], s:"reverse prospecting buyer agents matches showings"},
+
+  {t:"AI Agent Builds: the field manual", u:"/ai-builds/", k:"Manual", c:"Keeping AI on Things",
+   d:"Ten complete systems you can build, each with a by-hand version for tonight and a version that runs on its own. Includes every prompt and what it really costs.",
+   g:["ai","automation","claude","getting started"], s:"prompts builds playbook costs field manual custom instructions configs"},
+
+  {t:"01 Farm Intelligence Engine", u:"/ai-builds/#b01", k:"Build", c:"Keeping AI on Things",
+   d:"A live list of every home in your neighborhood, watched weekly, plus your monthly neighborhood report.",
+   g:["farming","prospecting","market data"], s:"farm neighborhood title data postcard door knock report"},
+
+  {t:"02 Contract-to-Close Copilot", u:"/ai-builds/#b02", k:"Build", c:"Keeping AI on Things",
+   d:"Reads a signed contract and puts every deadline on your calendar and to-do list.",
+   g:["transactions","automation"], s:"contract deadlines calendar tasks intro emails closing"},
+
+  {t:"03 Daily Call List Miner", u:"/ai-builds/#b03", k:"Build", c:"Keeping AI on Things",
+   d:"Five people to call every morning, with the reason and the opening message written.",
+   g:["crm","prospecting","past clients"], s:"database miner call list five names morning openers"},
+
+  {t:"04 Home Anniversary Equity Report", u:"/ai-builds/#b04", k:"Build", c:"Keeping AI on Things",
+   d:"A what-is-my-home-worth update to every past client on their closing anniversary.",
+   g:["past clients","marketing","automation"], s:"equity anniversary home value past client touch"},
+
+  {t:"05 Speed-to-Lead SMS AI", u:"/ai-builds/#b05", k:"Build", c:"Keeping AI on Things",
+   d:"Texts a new lead back in under a minute, qualifies them, and books the appointment.",
+   g:["prospecting","automation"], s:"leads sms text speed to lead response isa follow up"},
+
+  {t:"06 Showing Debrief Loop", u:"/ai-builds/#b06", k:"Build", c:"Keeping AI on Things",
+   d:"A two-minute voice note after a showing becomes a recap email and better notes on file.",
+   g:["buyers","crm","ai"], s:"showing voice note recap buyer preferences debrief"},
+
+  {t:"07 Instant CMA and Net Sheet", u:"/ai-builds/#b07", k:"Build", c:"Keeping AI on Things",
+   d:"Type an address, get a branded listing-appointment package with the seller's bottom line.",
+   g:["listings","sellers","ai"], s:"cma net sheet pricing comps listing appointment proceeds"},
+
+  {t:"08 Single-Property Websites", u:"/ai-builds/#b08", k:"Build", c:"Keeping AI on Things",
+   d:"Every listing gets its own page and a scannable code for the yard sign.",
+   g:["listings","marketing"], s:"property website yard sign qr code single property"},
+
+  {t:"09 Post-Closing Engine", u:"/ai-builds/#b09", k:"Build", c:"Keeping AI on Things",
+   d:"A Just Closed post, a review request, and next year's anniversary note, all set up at funding.",
+   g:["past clients","marketing","social media"], s:"closing reviews just closed google review referrals"},
+
+  {t:"10 Compliance Linter", u:"/ai-builds/#b10", k:"Build", c:"Keeping AI on Things",
+   d:"Checks every description, post, ad, and mailer for fair housing and advertising problems before it goes out.",
+   g:["compliance","marketing"], s:"fair housing trec advertising mls rules review legal"},
+
+  {t:"Social That Closes: the hub", u:"/bk-social/", k:"Hub", c:"Social That Closes",
+   d:"Everything handed out at the Social That Closes session in one place.",
+   g:["social media","marketing","getting started"], s:"bk realty social that closes hub index"},
+
+  {t:"Social That Closes: the deck", u:"/bk-social/BK-Social-That-Closes-Deck", k:"Deck", c:"Social That Closes",
+   d:"The full slide deck from the session, to page back through at your own speed.",
+   g:["social media","marketing"], s:"slides deck presentation bk realty"},
+
+  {t:"Social That Closes: agent workbook", u:"/bk-social/workbook", k:"Workbook", c:"Social That Closes",
+   d:"The fill-in workbook: your posting plan, your pillars, and what to do each week.",
+   g:["social media","marketing"], s:"workbook worksheet planner pillars posting plan handout"},
+
+  {t:"Killing Your Reach: 15 Social Media Myths", u:"/bk-social/myths", k:"Handout", c:"Social That Closes",
+   d:"Fifteen things agents believe about the algorithm that are quietly costing them reach.",
+   g:["social media","marketing"], s:"algorithm reach myths handout engagement"},
+
+  {t:"Cross-Platform Talking Points", u:"/bk-social/BK-Speaker-Cross-Platform-Talking-Points", k:"Presenter", c:"Social That Closes",
+   d:"Speaker card for whoever is teaching the session.",
+   g:["social media"], s:"speaker card talking points presenter teaching notes"},
+
+  {t:"Social That Closes: ambient slideshow", u:"/bk-social/BK-Social-Ambient-Slideshow", k:"Presenter", c:"Social That Closes",
+   d:"The looping slideshow to run on the screen before the session starts.",
+   g:["social media"], s:"ambient slideshow loop screen presenter room"}
+];
+
+/* ============================================================ */
+var SB   = 'https://etopfohypgfmedxqigcg.supabase.co';
+var ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
+var CLASS_ID = '4fdc7f04-af57-4e52-80a9-13bbfbc79483';  /* capture_only row: resource-library */
+var KEY  = 'cnat-go-signedin';   /* shared with /go, so one sign-in covers both */
+
+var qEl = document.getElementById('q');
+var results = document.getElementById('results');
+var countEl = document.getElementById('count');
+var clearAllEl = document.getElementById('clearall');
+var qClear = document.getElementById('qclear');
+
+var state = { q:'', cls:new Set(), topic:new Set(), type:new Set() };
+var pending = null;   /* the resource someone clicked before signing in */
+var fails = 0;
+var t0 = Date.now();
+
+function signedIn(){ try{ return localStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+
+/* ---------- facets built from the catalogue itself ---------- */
+function uniq(pick){
+  var m = new Map();
+  R.forEach(function(r){
+    var vals = pick(r);
+    (Array.isArray(vals)?vals:[vals]).forEach(function(v){ m.set(v, (m.get(v)||0)+1); });
+  });
+  return [...m.entries()].sort(function(a,b){
+    if(b[1]!==a[1]) return b[1]-a[1];
+    return a[0].toLowerCase() < b[0].toLowerCase() ? -1 : 1;
+  });
+}
+function buildChips(host, entries, bucket){
+  host.innerHTML = entries.map(function(e){
+    return '<button class="chip" type="button" data-v="'+esc(e[0])+'">'+esc(e[0])+
+           ' <span class="n">'+e[1]+'</span></button>';
+  }).join('');
+  host.querySelectorAll('.chip').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = b.dataset.v;
+      if(state[bucket].has(v)) state[bucket].delete(v); else state[bucket].add(v);
+      b.classList.toggle('on', state[bucket].has(v));
+      apply();
+    });
+  });
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+function rx(tok){ return new RegExp('\\b'+tok.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'); }
+/* tokens match at a word start, so "ai" finds AI and not e-m-ai-l */
+function tokens(q){ return q.split(/\s+/).filter(Boolean); }
+function mark(text, q){
+  var safe = esc(text);
+  if(!q) return safe;
+  tokens(q).forEach(function(tok){
+    try{
+      var re = new RegExp('\\b('+tok.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+      safe = safe.replace(re,'<mark>$1</mark>');
+    }catch(e){}
+  });
+  return safe;
+}
+
+/* ---------- render ---------- */
+function cardHTML(r, q){
+  return '<button class="card" type="button" data-u="'+esc(r.u)+'" data-type="'+esc(r.k)+'" data-t="'+esc(r.t)+'">'+
+    '<span class="c-top"><span class="c-type">'+esc(r.k)+'</span>'+
+      '<span class="c-class">'+esc(r.c)+'</span></span>'+
+    '<span class="c-title">'+mark(r.t,q)+'</span>'+
+    '<span class="c-blurb">'+mark(r.d,q)+'</span>'+
+    '<span class="c-topics">'+r.g.map(function(t){ return '<span class="c-topic">'+mark(t,q)+'</span>'; }).join('')+'</span>'+
+  '</button>';
+}
+function matches(r){
+  if(state.cls.size   && !state.cls.has(r.c)) return false;
+  if(state.type.size  && !state.type.has(r.k)) return false;
+  if(state.topic.size && !r.g.some(function(t){ return state.topic.has(t); })) return false;
+  if(state.q){
+    var hay = (r.t+' '+r.d+' '+r.c+' '+r.k+' '+r.g.join(' ')+' '+(r.s||'')).toLowerCase();
+    /* every word typed has to appear, each at the start of a word */
+    if(!tokens(state.q).every(function(tok){ return rx(tok).test(hay); })) return false;
+  }
+  return true;
+}
+function apply(){
+  var q = state.q;
+  var hits = R.filter(matches);
+  results.innerHTML = hits.length
+    ? hits.map(function(r){ return cardHTML(r,q); }).join('')
+    : '<div class="empty"><b>Nothing matched that.</b>Try a broader word like automation, farming, listings, or social media.'+
+      '<br><button type="button" id="reset">Clear everything</button></div>';
+
+  countEl.innerHTML = '<b>'+hits.length+'</b> of '+R.length+' resources' +
+    (signedIn() ? '' : ' &middot; <span class="needsignin">sign in once to open any of them</span>');
+  var filtering = !!(state.q || state.cls.size || state.topic.size || state.type.size);
+  clearAllEl.classList.toggle('on', filtering);
+  qClear.classList.toggle('on', !!state.q);
+
+  results.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('click', function(){ openResource(c.dataset.u, c.dataset.t); });
+  });
+  var rs = document.getElementById('reset');
+  if(rs) rs.addEventListener('click', clearAll);
+
+  syncUrl();
+}
+function syncUrl(){
+  var p = new URLSearchParams();
+  if(state.q) p.set('q', state.q);
+  state.cls.forEach(function(v){ p.append('class', v); });
+  state.topic.forEach(function(v){ p.append('topic', v); });
+  var s = p.toString();
+  try{ history.replaceState(null,'', s ? '?'+s : location.pathname); }catch(e){}
+}
+function clearAll(){
+  state.q=''; state.cls.clear(); state.topic.clear(); state.type.clear();
+  qEl.value='';
+  document.querySelectorAll('.chip.on').forEach(function(c){ c.classList.remove('on'); });
+  apply();
+}
+
+/* ---------- the gate ---------- */
+function openResource(url, title){
+  if(signedIn()){ window.open(url,'_blank','noopener'); return; }
+  pending = url;
+  document.getElementById('gateWant').textContent = title;
+  document.body.classList.add('gate-open','locked');
+  setTimeout(function(){ document.getElementById('f-name').focus(); }, 180);
+}
+function closeGate(){ document.body.classList.remove('gate-open','locked'); pending = null; }
+function unlock(remember){
+  try{ if(remember) localStorage.setItem(KEY,'1'); }catch(e){}
+  var go = pendingUrl;
+  closeGate();
+  apply();
+  /* same tab on purpose: window.open here is outside the click and gets blocked */
+  if(go){ location.href = go; }
+}
+var pendingUrl = null;
+
+document.getElementById('gateForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var msg = document.getElementById('gateMsg');
+  var btn = document.getElementById('gateBtn');
+  msg.className='msg';
+  var name  = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var lic   = document.getElementById('f-license').value.trim();
+  pendingUrl = pending;
+
+  if(Date.now()-t0 < 1500){ unlock(true); return; }
+  if(name.length < 2){ msg.textContent='Please enter your name.'; msg.className='msg err'; return; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent='That email does not look right.'; msg.className='msg err'; return; }
+  if(phone.replace(/\D/g,'').length < 10){ msg.textContent='Please enter a 10-digit cell number.'; msg.className='msg err'; return; }
+
+  btn.disabled = true; btn.textContent = 'One moment...';
+  fetch(SB+'/rest/v1/class_registrations', {
+    method:'POST',
+    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json', Prefer:'return=minimal'},
+    body:JSON.stringify({class_id:CLASS_ID, name:name, email:email, phone:phone,
+      license_number:lic||null, attendance_type:'in_person', wants_credit:false, source:'site'})
+  }).then(function(r){
+    if(r.ok) unlock(true); else throw new Error('HTTP '+r.status);
+  }).catch(function(){
+    fails++;
+    btn.disabled=false; btn.textContent='Open the library';
+    msg.textContent='Something hiccuped saving your info. Please try again.';
+    msg.className='msg err';
+    if(fails>=2) document.getElementById('bypass').style.display='block';
+  });
+});
+document.getElementById('skip').addEventListener('click', function(){ pendingUrl = pending; unlock(false); });
+document.getElementById('gateCancel').addEventListener('click', closeGate);
+document.getElementById('scrim').addEventListener('click', closeGate);
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeGate(); });
+
+/* ---------- start ---------- */
+buildChips(document.getElementById('fClass'), uniq(function(r){ return r.c; }), 'cls');
+buildChips(document.getElementById('fTopic'), uniq(function(r){ return r.g; }), 'topic');
+buildChips(document.getElementById('fType'),  uniq(function(r){ return r.k; }), 'type');
+
+qEl.addEventListener('input', function(){ state.q = qEl.value.trim().toLowerCase(); apply(); });
+qClear.addEventListener('click', function(){ qEl.value=''; state.q=''; qEl.focus(); apply(); });
+clearAllEl.addEventListener('click', clearAll);
+
+/* shareable links: /resources/?q=farming or ?topic=farming or #farming */
+(function(){
+  var p = new URLSearchParams(location.search);
+  if(p.get('q')){ state.q = p.get('q').toLowerCase(); qEl.value = p.get('q'); }
+  p.getAll('class').forEach(function(v){ state.cls.add(v); });
+  p.getAll('topic').forEach(function(v){ state.topic.add(v); });
+  var hash = decodeURIComponent(location.hash.replace('#','')).toLowerCase();
+  if(hash && !state.q && !state.topic.size){ state.q = hash; qEl.value = hash; }
+  document.querySelectorAll('#fClass .chip').forEach(function(c){ if(state.cls.has(c.dataset.v)) c.classList.add('on'); });
+  document.querySelectorAll('#fTopic .chip').forEach(function(c){ if(state.topic.has(c.dataset.v)) c.classList.add('on'); });
+})();
+apply();
+</script>
+</body>
+</html>
