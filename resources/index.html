@@ -188,6 +188,9 @@ body.gate-open .gate{opacity:1;visibility:visible;transform:translate(-50%,-50%)
 .msg.err{display:block;color:#ff9b8a}
 .bypass{display:none;margin-top:12px}
 .bypass button{width:100%;background:none;border:1px solid var(--border2);color:var(--grey);min-height:44px;font-size:14px;cursor:pointer}
+/* 30-day access model: expired overlay reuses the gate styling */
+body.expired-open .scrim{opacity:1;visibility:visible}
+body.expired-open #expired{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
 
 /* ---------- footer ---------- */
 .site-footer{background:var(--dark);border-top:1px solid var(--border);padding:40px 24px;margin-top:24px}
@@ -325,6 +328,47 @@ function who(){
 }
 function signedIn(){ var w = who(); return !!(w && w.email); }
 
+/* 30-day access model (2026-08-07): library access runs 30 days from an
+   agent's first visit and lapses unless their CNAT rep renews it (renew
+   button on the internal Resource Usage screen). Server truth lives in
+   resource_visitors.access_expires_at; this check fails OPEN on network
+   trouble so an outage never locks the library. */
+var accessState = { active:true, checked:false, expires:null };
+function checkAccess(){
+  var w = who(); if(!w || !w.email) return;
+  fetch(SB+'/rest/v1/rpc/check_resource_access', {
+    method:'POST',
+    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json'},
+    body:JSON.stringify({p_email:w.email})
+  }).then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      accessState.checked = true;
+      if(j && j.active === false){
+        accessState.active = false;
+        accessState.expires = j.expires_at || null;
+        apply();
+      }
+    }).catch(function(){});
+}
+function showExpiredGate(){
+  var el = document.getElementById('expired');
+  if(!el){
+    el = document.createElement('div');
+    el.className = 'gate'; el.id = 'expired';
+    el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true'); el.setAttribute('aria-labelledby','expiredTitle');
+    el.innerHTML = '<h2 id="expiredTitle">Time for a renewal</h2>'+
+      '<p class="lede">Library access runs 30 days at a time, and yours has lapsed. '+
+      'Ask your CNAT rep to renew it, or email '+
+      '<a href="mailto:info@cnattitle.com?subject=Resource%20library%20renewal" style="color:var(--blue-light)">info@cnattitle.com</a>, '+
+      'and everything opens right back up. Nothing you had goes away.</p>'+
+      '<button class="cancel" type="button" id="expiredClose">Close</button>';
+    document.body.appendChild(el);
+    el.querySelector('#expiredClose').addEventListener('click', closeExpired);
+  }
+  document.body.classList.add('expired-open','locked');
+}
+function closeExpired(){ document.body.classList.remove('expired-open','locked'); }
+
 /* every open is written to resource_events through a security-definer function.
    The public key can call it and can read nothing. */
 function logEvent(kind, r, ctx){
@@ -421,7 +465,9 @@ function apply(){
       '<br><button type="button" id="reset">Clear everything</button></div>';
 
   countEl.innerHTML = '<b>'+hits.length+'</b> of '+R.length+' resources' +
-    (signedIn() ? '' : ' &middot; <span class="needsignin">sign in once to open any of them</span>');
+    (signedIn()
+      ? (accessState.checked && !accessState.active ? ' &middot; <span class="needsignin">access lapsed, ask your CNAT rep to renew</span>' : '')
+      : ' &middot; <span class="needsignin">sign in once to open any of them</span>');
   var filtering = !!(state.q || state.cls.size || state.topic.size || state.type.size);
   clearAllEl.classList.toggle('on', filtering);
   qClear.classList.toggle('on', !!state.q);
@@ -454,6 +500,7 @@ function byUrl(u){ return R.filter(function(r){ return r.u === u; })[0] || null;
 function openResource(url){
   var rec = byUrl(url);
   if(signedIn()){
+    if(!accessState.active){ showExpiredGate(); return; }
     logEvent('open', rec, searchContext());
     window.open(url,'_blank','noopener');
     return;
@@ -506,8 +553,23 @@ document.getElementById('gateForm').addEventListener('submit', function(ev){
     /* store the identity FIRST: logEvent reads it back out of storage,
        and wait for the open to land before navigating away */
     try{ localStorage.setItem(KEY, JSON.stringify(person)); }catch(e){}
-    var logged = rec ? logEvent('open', rec, searchContext()) : Promise.resolve();
-    logged.then(function(){ unlock(person); }, function(){ unlock(person); });
+    /* returning visitor whose 30-day window already lapsed: no unlock,
+       show the renewal notice instead (fails open on network trouble) */
+    return fetch(SB+'/rest/v1/rpc/check_resource_access', {
+      method:'POST',
+      headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json'},
+      body:JSON.stringify({p_email:person.email})
+    }).then(function(cr){ return cr.ok ? cr.json() : null; }).catch(function(){ return null; })
+      .then(function(j){
+        if(j && j.active === false){
+          accessState.active = false; accessState.checked = true;
+          btn.disabled = false; btn.textContent = 'Open the library';
+          closeGate(); apply(); showExpiredGate();
+          return;
+        }
+        var logged = rec ? logEvent('open', rec, searchContext()) : Promise.resolve();
+        logged.then(function(){ unlock(person); }, function(){ unlock(person); });
+      });
   }).catch(function(){
     fails++;
     btn.disabled=false; btn.textContent='Open the library';
@@ -518,8 +580,8 @@ document.getElementById('gateForm').addEventListener('submit', function(ev){
 });
 document.getElementById('skip').addEventListener('click', function(){ pendingUrl = pending; unlock(null); });
 document.getElementById('gateCancel').addEventListener('click', closeGate);
-document.getElementById('scrim').addEventListener('click', closeGate);
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeGate(); });
+document.getElementById('scrim').addEventListener('click', function(){ closeGate(); closeExpired(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeGate(); closeExpired(); } });
 
 /* ---------- start ---------- */
 buildChips(document.getElementById('fClass'), uniq(function(r){ return r.c; }), 'cls');
@@ -542,6 +604,7 @@ clearAllEl.addEventListener('click', clearAll);
   document.querySelectorAll('#fTopic .chip').forEach(function(c){ if(state.topic.has(c.dataset.v)) c.classList.add('on'); });
 })();
 apply();
+checkAccess();
 </script>
 </body>
 </html>
