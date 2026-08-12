@@ -326,6 +326,26 @@ const hoursColors = {
   4: { bg:'rgba(248,113,113,.07)',border:'rgba(248,113,113,.25)', text:'#f87171' }
 };
 
+// ─── OUTPUT ESCAPING ───────────────────────────────────────────────────────
+// Class fields come from the database and are interpolated into innerHTML
+// below. One escaper, safe in both text and quoted-attribute positions, so
+// there is no "which one do I use here" footgun. Quotes render identically.
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+// status drives CSS class names, so it resolves through a fixed map instead of
+// reaching an attribute directly.
+const STATUS_CLASS = { 'open':'open', 'full':'full', 'coming-soon':'coming-soon', 'rescheduling':'rescheduling' };
+// Registration links stay same-origin paths or explicit https URLs.
+function safeHref(u) {
+  const s = String(u == null ? '' : u).trim();
+  if (/^\/[^\/\\]/.test(s)) return s;
+  if (/^https:\/\//i.test(s)) return s;
+  return '#';
+}
+
 // ─── RENDER UPCOMING ───────────────────────────────────────────────────────
 function renderUpcoming() {
   const grid = document.getElementById('upcomingGrid');
@@ -341,29 +361,41 @@ function renderUpcoming() {
   }
 
   grid.innerHTML = UPCOMING.map(c => {
-    const isOpen = c.status === 'open';
-    const isFull = c.status === 'full';
-    const isSoon = c.status === 'coming-soon';
-    const isResched = c.status === 'rescheduling';
+    const statusClass = STATUS_CLASS[c.status] || 'coming-soon';
+    const isOpen = statusClass === 'open';
+    const isFull = statusClass === 'full';
+    const isSoon = statusClass === 'coming-soon';
+    const isResched = statusClass === 'rescheduling';
     const statusLabel = isOpen ? 'Registration Open' : isFull ? 'Class Full' : isResched ? 'Rescheduling' : 'Coming Soon';
     const ctaLabel = isOpen ? 'Register Now' : isFull ? 'Join Waitlist' : isResched ? 'New Date TBA' : 'Notify Me';
     const ctaClass = (isSoon || isResched) ? 'class-cta coming-soon-btn' : 'class-cta';
     const cardTag = isOpen ? 'a' : 'div';
-    const hrefAttr = isOpen ? `href="${c.registerUrl}"` : '';
-    const banner = isResched ? '<div class="reschedule-banner">Rescheduling — New Date To Be Announced</div>' : (c.private ? `<div class="private-banner">Private &middot; ${c.privateLabel || 'Invite Only'}</div>` : '');
-    return `<${cardTag} class="class-card ${c.status}" ${hrefAttr}>
+    const hrefAttr = isOpen ? `href="${esc(safeHref(c.registerUrl))}"` : '';
+    // The CE row renders only when the class actually carries CE hours. Non-CE
+    // events (sponsor lunch and learns) must never imply TREC credit.
+    const ceHours = Number(c.hours) || 0;
+    const courseNums = c.courseNumbers && c.courseNumbers.length ? ' · #' + c.courseNumbers.join(' / #') : '';
+    const ceRow = ceHours > 0
+      ? `<div class="class-meta-row">${ICONS.grad}<span class="class-meta-val">${esc(ceHours)} CE Hours${esc(courseNums)}</span></div>`
+      : '';
+    // Free events read "Free", never "$0".
+    const priceNum = Number(c.price) || 0;
+    const priceText = c.priceLabel ? esc(c.priceLabel) : (priceNum > 0 ? '$' + esc(priceNum) : 'Free');
+    const priceSubText = c.priceSub ? esc(c.priceSub) : (priceNum > 0 ? 'per person' : 'to attend');
+    const banner = isResched ? '<div class="reschedule-banner">Rescheduling: New Date To Be Announced</div>' : (c.private ? `<div class="private-banner">Private &middot; ${esc(c.privateLabel || 'Invite Only')}</div>` : '');
+    return `<${cardTag} class="class-card ${statusClass}" ${hrefAttr}>
       ${banner}
-      <div class="class-status ${c.status}">${statusLabel}</div>
-      <div class="class-card-title">${c.title}</div>
-      <div class="class-card-sub">${c.tagline}</div>
+      <div class="class-status ${statusClass}">${statusLabel}</div>
+      <div class="class-card-title">${esc(c.title)}</div>
+      <div class="class-card-sub">${esc(c.tagline)}</div>
       <div class="class-meta">
-        <div class="class-meta-row">${ICONS.cal}<span class="class-meta-val">${c.date}</span></div>
-        <div class="class-meta-row">${ICONS.clock}<span class="class-meta-val">${c.time}</span></div>
-        <div class="class-meta-row">${ICONS.pin}<span class="class-meta-val">${c.location}</span></div>
-        <div class="class-meta-row">${ICONS.grad}<span class="class-meta-val">${c.hours} CE Hours${c.courseNumbers && c.courseNumbers.length ? ' \u00b7 #' + c.courseNumbers.join(' / #') : ''}</span></div>
+        <div class="class-meta-row">${ICONS.cal}<span class="class-meta-val">${esc(c.date)}</span></div>
+        <div class="class-meta-row">${ICONS.clock}<span class="class-meta-val">${esc(c.time)}</span></div>
+        <div class="class-meta-row">${ICONS.pin}<span class="class-meta-val">${esc(c.location)}</span></div>
+        ${ceRow}
       </div>
       <div class="class-footer">
-        <div><div class="class-price">${c.priceLabel || ('$' + c.price)}</div><div class="class-price-sub">${c.priceSub || 'per person'}</div></div>
+        <div><div class="class-price">${priceText}</div><div class="class-price-sub">${priceSubText}</div></div>
         <span class="${ctaClass}">${ctaLabel} &rarr;</span>
       </div>
     </${cardTag}>`;

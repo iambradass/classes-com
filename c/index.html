@@ -6,19 +6,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-    <title>Register | CNAT Education</title>
-    <meta name="description" content="Register for a CNAT Title continuing education class. In person in Fort Worth or live on Zoom.">
+    <title>Register | CNAT Classes &amp; Events</title>
+    <meta name="description" content="Register for a CNAT Title class or event. Details, location, and seat reservation.">
     <meta name="robots" content="noindex">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="CNAT Education">
-    <meta property="og:title" content="Register for a CNAT CE Class | Texas Real Estate Continuing Education">
-    <meta property="og:description" content="TREC-approved CE with CNAT Title. In person in Fort Worth or live on Zoom. Save your seat.">
+    <meta property="og:site_name" content="CNAT Classes &amp; Events">
+    <meta property="og:title" content="Register | CNAT Classes &amp; Events">
+    <meta property="og:description" content="Reserve your seat at an upcoming CNAT Title class or event.">
     <meta property="og:image" content="https://classes.cnattitle.com/og/og-home.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Register for a CNAT CE Class">
-    <meta name="twitter:description" content="TREC-approved CE with CNAT Title. In person in Fort Worth or live on Zoom.">
+    <meta name="twitter:title" content="Register | CNAT Classes &amp; Events">
+    <meta name="twitter:description" content="Reserve your seat at an upcoming CNAT Title class or event.">
     <meta name="twitter:image" content="https://classes.cnattitle.com/og/og-home.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -46,7 +46,7 @@
 
         <div id="content" style="display:none">
             <div class="class-hero">
-                <p class="ch-eyebrow">Texas Real Estate Continuing Education</p>
+                <p class="ch-eyebrow" id="chEyebrow">CNAT Classes &amp; Events</p>
                 <h1 id="clsTitle"></h1>
                 <p class="ch-sub" id="clsSub"></p>
             </div>
@@ -100,7 +100,7 @@
             </div>
         </div>
 
-        <div class="page-footer"><p class="tagline">#AlwaysBeClosing &middot; <span>Texas Style</span></p><p class="provider">TREC Provider #10034 &middot; Approved for Texas CE</p></div>
+        <div class="page-footer"><p class="tagline">#AlwaysBeClosing &middot; <span>Texas Style</span></p><p class="provider" id="pageProvider" style="display:none">TREC Provider #10034 &middot; Approved for Texas CE</p></div>
     </div>
 
     <script>
@@ -267,7 +267,15 @@
         }
 
         function render(c){
-            document.title = (c.title || 'Register') + ' | CNAT Education';
+            // CE chrome (eyebrow, provider footer, title suffix) only appears on
+            // classes that actually carry TREC credit. Non-CE events must not
+            // imply CE approval anywhere on the page.
+            var isCE = !!(c.credit_available || Number(c.ce_hours) > 0);
+            document.title = (c.title || 'Register') + (isCE ? ' | CNAT Education' : ' | CNAT Classes & Events');
+            var ebEl = document.getElementById('chEyebrow');
+            if (ebEl) ebEl.textContent = isCE ? 'Texas Real Estate Continuing Education' : 'CNAT Classes & Events';
+            var pvEl = document.getElementById('pageProvider');
+            if (pvEl) pvEl.style.display = isCE ? '' : 'none';
             document.getElementById('clsTitle').textContent = c.title || '';
             document.getElementById('clsSub').textContent = c.description || c.tagline || '';
             document.getElementById('clsDate').textContent = c.date_display || 'TBA';
