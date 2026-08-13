@@ -338,12 +338,13 @@ function esc(s) {
 // status drives CSS class names, so it resolves through a fixed map instead of
 // reaching an attribute directly.
 const STATUS_CLASS = { 'open':'open', 'full':'full', 'coming-soon':'coming-soon', 'rescheduling':'rescheduling' };
-// Registration links stay same-origin paths or explicit https URLs.
+// Registration links must be same-origin paths. Cards live on the public
+// classes site, so an absolute external URL here would turn the Register
+// button into an off-site destination. Covers /c/<slug> and /go/ alike, and
+// rejects javascript:, protocol-relative, and backslash variants.
 function safeHref(u) {
   const s = String(u == null ? '' : u).trim();
-  if (/^\/[^\/\\]/.test(s)) return s;
-  if (/^https:\/\//i.test(s)) return s;
-  return '#';
+  return /^\/[^\/\\]/.test(s) ? s : '#';
 }
 
 // ─── RENDER UPCOMING ───────────────────────────────────────────────────────
