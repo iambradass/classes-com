@@ -248,7 +248,10 @@ function loadUpcoming() {
   const ANON = 'sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
   const grid = document.getElementById('upcomingGrid');
   grid.innerHTML = '<div class="no-classes"><p>Loading classes...</p></div>';
-  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+  // A class leaves the grid the moment it starts. Rows with no start_at
+  // (undated / "Ongoing") must stay visible, hence the or-filter.
+  var nowIso = new Date().toISOString();
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
     .then(function (r) { return r.json(); })
     .then(function (rows) {
       rows = rows || [];
