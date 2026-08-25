@@ -135,6 +135,7 @@
         var partner = null; // bundle partner class (e.g. Legal Update II when viewing I)
         var FULL = {};      // slug -> true when in-person seats are at capacity
         var TITLES = {};    // slug -> title, for capacity messages
+        var AUTO_ATTENDANCE = null; // set when the class has only one way to attend
 
         function showNotFound(){ document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; }
 
@@ -310,17 +311,38 @@
         }
 
         function renderAttendance(c){
+            var group = document.getElementById('attGroup');
             var t = document.getElementById('attToggle');
             // In Person greys out only when every registrable class is at
             // capacity; if the bundle partner still has seats, it stays live
             // and the per-option checks catch invalid combinations.
             var allFull = !!FULL[c.slug] && (!partner || !!FULL[partner.slug]);
-            var inpDetail = allFull ? 'In-person seats full' : esc(c.location ? c.location.split(',')[0] : 'In person');
-            var inp = '<div class="attendance-option"><input type="radio" id="attInPerson" name="attendance" value="In Person"' + (allFull ? ' disabled' : ' required') + '><label for="attInPerson"' + (allFull ? ' style="opacity:.45;cursor:not-allowed"' : '') + '><span class="att-icon">&#127970;</span><span class="att-text">In Person</span><span class="att-detail">' + inpDetail + '</span></label></div>';
-            var zm = '<div class="attendance-option"><input type="radio" id="attZoom" name="attendance" value="Zoom"' + (allFull ? ' checked' : '') + '><label for="attZoom"><span class="att-icon">&#128187;</span><span class="att-text">Zoom</span><span class="att-detail">Link emailed</span></label></div>';
-            if (c.format === 'zoom') { t.classList.add('single'); t.innerHTML = zm; }
-            else if (c.format === 'hybrid') { t.innerHTML = inp + zm; }
-            else { t.classList.add('single'); t.innerHTML = inp; if (allFull) { t.insertAdjacentHTML('afterend', '<p style="margin-top:10px;font-size:12px;color:#f87171;letter-spacing:.5px">This class is full. Contact info@cnattitle.com to be added to the waitlist.</p>'); } }
+            if (c.format === 'hybrid') {
+                var inpDetail = allFull ? 'In-person seats full' : esc(c.location ? c.location.split(',')[0] : 'In person');
+                var inp = '<div class="attendance-option"><input type="radio" id="attInPerson" name="attendance" value="In Person"' + (allFull ? ' disabled' : ' required') + '><label for="attInPerson"' + (allFull ? ' style="opacity:.45;cursor:not-allowed"' : '') + '><span class="att-icon">&#127970;</span><span class="att-text">In Person</span><span class="att-detail">' + inpDetail + '</span></label></div>';
+                var zm = '<div class="attendance-option"><input type="radio" id="attZoom" name="attendance" value="Zoom"' + (allFull ? ' checked' : '') + '><label for="attZoom"><span class="att-icon">&#128187;</span><span class="att-text">Zoom</span><span class="att-detail">Link emailed</span></label></div>';
+                t.innerHTML = inp + zm;
+                return;
+            }
+            // Only one way to attend: nothing to choose, so the step is skipped
+            // and the format is submitted automatically. The location card above
+            // the form already tells the registrant how the class meets.
+            AUTO_ATTENDANCE = (c.format === 'zoom') ? 'Zoom' : 'In Person';
+            group.style.display = 'none';
+            if (c.format !== 'zoom' && allFull) {
+                group.insertAdjacentHTML('afterend', '<p style="margin-bottom:22px;font-size:12px;color:#f87171;letter-spacing:.5px">This class is full. Contact info@cnattitle.com to be added to the waitlist.</p>');
+            }
+        }
+
+        function renumberSteps(){
+            // Step numbers are fixed in the markup, so hidden steps would leave
+            // gaps like "3" being the first visible step. Renumber what shows.
+            var n = 1;
+            document.querySelectorAll('#regForm .form-group .step-num').forEach(function(s){
+                var g = s.closest('.form-group');
+                if (g && g.style.display === 'none') return;
+                s.textContent = n++;
+            });
         }
 
         function render(c){
@@ -346,6 +368,7 @@
             renderCustomFields(c);
             renderAttendance(c);
             renderCredit(c);
+            renumberSteps();
             var params = new URLSearchParams(window.location.search);
             var rawRef = (params.get('ref') || params.get('rep') || '').toLowerCase().trim();
             if (rawRef) {
@@ -367,9 +390,9 @@
             var attEl = document.querySelector('input[name="attendance"]:checked');
             var creditEl = document.querySelector('input[name="credit"]:checked');
             var creditShown = document.getElementById('creditGroup').style.display !== 'none';
-            if (!attEl) { alert('Please choose how you will attend.'); return; }
+            var attendance = attEl ? attEl.value : AUTO_ATTENDANCE;
+            if (!attendance) { alert('Please choose how you will attend.'); return; }
             if (creditShown && !creditEl) { alert('Please choose whether you need CE credit.'); return; }
-            var attendance = attEl.value;
             var wantsCredit = creditEl ? creditEl.getAttribute('data-credit') === 'yes' : false;
             var price = creditEl ? creditEl.getAttribute('data-price') : '0';
             var stripe = (creditEl && wantsCredit) ? creditEl.getAttribute('data-stripe') : '';
