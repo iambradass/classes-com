@@ -249,9 +249,10 @@ function loadUpcoming() {
   const grid = document.getElementById('upcomingGrid');
   grid.innerHTML = '<div class="no-classes"><p>Loading classes...</p></div>';
   // A class leaves the grid the moment it starts. Rows with no start_at
-  // (undated / "Ongoing") must stay visible, hence the or-filter.
+  // (undated / "Ongoing") must stay visible, hence the or-filter. Unlisted
+  // classes never appear here at all; their /c/ page still works by link.
   var nowIso = new Date().toISOString();
-  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&unlisted=eq.false&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
     .then(function (r) { return r.json(); })
     .then(function (rows) {
       rows = rows || [];

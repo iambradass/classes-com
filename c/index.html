@@ -60,6 +60,11 @@
 
             <div class="location-strip" id="locStrip"></div>
 
+            <!-- Host-sold materials (rep-hosted classes): paid straight to the
+                 host on Venmo, never through CNAT. Hidden unless the class
+                 carries a payment link. -->
+            <div class="location-strip" id="materialsCard" style="display:none"></div>
+
             <div class="reg-card" id="regCard">
                 <h2>Reserve Your <span>Seat</span></h2>
                 <p class="reg-sub" id="regSub">Save your spot below.</p>
@@ -76,6 +81,7 @@
                     <div class="form-group"><label class="form-label" for="regEmail">Email Address</label><input class="form-input" type="email" id="regEmail" name="email" placeholder="you@example.com" required></div>
                     <div class="form-group license-group" id="licenseGroup"><label class="form-label" for="regLicense">TREC License # <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(required for CE credit)</span></label><input class="form-input" type="text" id="regLicense" name="license" placeholder="e.g. 0654321"></div>
                     <div class="form-group"><label class="form-label" for="regPhone">Phone Number</label><input class="form-input" type="tel" id="regPhone" name="phone" placeholder="(817) 555-0100"></div>
+                    <div id="customFields"></div>
                     <div class="form-group" id="refGroup">
                         <label class="form-label" for="regRef">Referred by <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(optional)</span></label>
                         <select class="form-input" id="regRef" name="sales_rep">
@@ -141,6 +147,57 @@
             if (c.format === 'zoom') { strip.innerHTML = zoom; }
             else if (c.format === 'hybrid') { strip.style.gridTemplateColumns='1fr 1fr'; strip.innerHTML = inPerson + zoom; }
             else { strip.innerHTML = inPerson; }
+        }
+
+        // The payment link is host-supplied data. Render it as a link only when
+        // it is provably a Venmo URL; anything else is ignored.
+        function venmoOk(u){ return /^https:\/\/(www\.|account\.)?venmo\.com\/\S+$/i.test(u || ''); }
+
+        function renderMaterials(c){
+            if (!venmoOk(c.host_payment_url)) return;
+            var card = document.getElementById('materialsCard');
+            card.innerHTML = '<div class="loc-card"><div class="loc-icon building">&#128218;</div>' +
+              '<div class="loc-type">Class Materials</div>' +
+              '<div class="loc-name">' + esc(c.host_payment_label || 'Materials available from your host') + '</div>' +
+              '<div class="loc-address">Paid directly to your host &middot; <a href="' + esc(c.host_payment_url) + '" target="_blank" rel="noopener noreferrer" style="color:var(--accent-blue-light);text-decoration:none">Pay on Venmo &rarr;</a></div></div>';
+            card.style.display = '';
+        }
+
+        // Host-defined questions off classes.registration_fields. The server
+        // re-validates every answer against the same definitions.
+        function customFieldDefs(c){
+            return Array.isArray(c.registration_fields) ? c.registration_fields.filter(function(f){
+                return f && typeof f.key === 'string' && typeof f.label === 'string';
+            }) : [];
+        }
+        function renderCustomFields(c){
+            var defs = customFieldDefs(c);
+            if (!defs.length) return;
+            var wrap = document.getElementById('customFields');
+            wrap.innerHTML = defs.map(function(f, i){
+                var req = f.required ? ' required' : '';
+                var reqNote = f.required ? '' : ' <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(optional)</span>';
+                var id = 'cf_' + i;
+                if (f.type === 'yes_no') {
+                    return '<div class="form-group"><label class="form-label" for="' + id + '">' + esc(f.label) + reqNote + '</label>' +
+                      '<select class="form-input" id="' + id + '" data-cf-key="' + esc(f.key) + '"' + req + '>' +
+                      '<option value="">&mdash; Select &mdash;</option><option value="yes">Yes</option><option value="no">No</option></select></div>';
+                }
+                var type = f.type === 'number' ? ' type="number" inputmode="decimal" step="any"' : ' type="text" maxlength="500"';
+                return '<div class="form-group"><label class="form-label" for="' + id + '">' + esc(f.label) + reqNote + '</label>' +
+                  '<input class="form-input"' + type + ' id="' + id + '" data-cf-key="' + esc(f.key) + '"' + req + '></div>';
+            }).join('');
+        }
+        function collectCustomAnswers(){
+            var out = {};
+            var any = false;
+            document.querySelectorAll('#customFields [data-cf-key]').forEach(function(el){
+                var v = (el.value || '').trim();
+                if (!v) return;
+                out[el.getAttribute('data-cf-key')] = v;
+                any = true;
+            });
+            return any ? out : null;
         }
 
         // Swap the hero + info tiles between bundle, this-class, and partner-class views.
@@ -283,8 +340,10 @@
             if (c.ce_hours) { document.getElementById('clsHours').textContent = c.ce_hours + ' Hours'; document.getElementById('clsCourse').innerHTML = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #')) : ''; }
             else { document.getElementById('ceTile').style.display='none'; }
             document.getElementById('clsCost').textContent = c.price_label || (c.is_paid ? ('$' + ((c.price_cents||0)/100)) : 'Free');
-            document.getElementById('clsCostSub').textContent = c.price_sub || '';
+            document.getElementById('clsCostSub').textContent = c.price_sub || (venmoOk(c.host_payment_url) ? (c.host_payment_label || 'materials sold at class') : '');
             renderLocation(c);
+            renderMaterials(c);
+            renderCustomFields(c);
             renderAttendance(c);
             renderCredit(c);
             var params = new URLSearchParams(window.location.search);
@@ -345,7 +404,8 @@
                     slug: selSlug, name:name, email:email, phone:phone, license:license,
                     attendance: attendance, wants_credit: wantsCredit, ce_credit: wantsCredit?'Yes':'No',
                     bundle: isBundle,
-                    class_price: price, sales_rep: salesRep, ref_source: refSource
+                    class_price: price, sales_rep: salesRep, ref_source: refSource,
+                    custom_answers: collectCustomAnswers()
                 })
             }).then(function(res){
                 return res.json().then(function(j){ return { ok: res.ok && j.ok !== false, error: j && j.error }; })
@@ -362,6 +422,12 @@
                 var conf = document.getElementById('regConfirmation'); conf.classList.add('visible');
                 document.getElementById('confName').textContent = name;
                 document.getElementById('confFormat').textContent = (isBundle && cls.bundle_label ? cls.bundle_label : (selPartnerOnly ? partner.title : cls.title)) + ' · ' + (attendance==='Zoom'?'via Zoom':'In Person');
+                if (venmoOk(cls.host_payment_url)) {
+                    document.getElementById('confNote').innerHTML =
+                      'You\'re on the list. <strong>We\'ll email your details</strong> ahead of the class.<br><br>' +
+                      esc(cls.host_payment_label || 'Materials') + ' &middot; paid directly to your host: ' +
+                      '<a href="' + esc(cls.host_payment_url) + '" target="_blank" rel="noopener noreferrer" style="color:var(--accent-blue-light)">Pay on Venmo &rarr;</a>';
+                }
                 if (wantsCredit && stripe) {
                     document.getElementById('confNote').style.display='none';
                     document.getElementById('confRedirect').style.display='block';
@@ -385,7 +451,7 @@
                 document.getElementById('regForm').addEventListener('submit', submitReg);
             });
         }
-        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label', {
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label,registration_fields,host_payment_url,host_payment_label', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
             if (!rows || !rows.length) { showNotFound(); return; }
