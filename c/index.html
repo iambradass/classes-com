@@ -65,6 +65,10 @@
                  carries a payment link. -->
             <div class="location-strip" id="materialsCard" style="display:none"></div>
 
+            <!-- Event co-sponsors, straight off classes.sponsors. Hidden when
+                 the host left the field blank. -->
+            <div class="location-strip" id="sponsorsCard" style="display:none"></div>
+
             <div class="reg-card" id="regCard">
                 <h2>Reserve Your <span>Seat</span></h2>
                 <p class="reg-sub" id="regSub">Save your spot below.</p>
@@ -161,6 +165,36 @@
               '<div class="loc-type">Class Materials</div>' +
               '<div class="loc-name">' + esc(c.host_payment_label || 'Materials available from your host') + '</div>' +
               '<div class="loc-address">Paid directly to your host &middot; <a href="' + esc(c.host_payment_url) + '" target="_blank" rel="noopener noreferrer" style="color:var(--accent-blue-light);text-decoration:none">Pay on Venmo &rarr;</a></div></div>';
+            card.style.display = '';
+        }
+
+        // Sponsors come in as free text like
+        // "Jane Doe, Loan Officer | Some Lender, John Roe, Inspector | Some Co".
+        // Entries close at the first comma-separated chunk that carries a "|",
+        // so names and roles keep their internal commas. No pipes at all means
+        // we can't split safely, so the whole string renders as one entry.
+        function sponsorEntries(s){
+            if (!s) return [];
+            if (s.indexOf('|') === -1) return [s.trim()];
+            var out = [], cur = [];
+            s.split(',').forEach(function(tok){
+                cur.push(tok.trim());
+                if (tok.indexOf('|') !== -1) { out.push(cur.join(', ')); cur = []; }
+            });
+            if (cur.length) out.push(cur.join(', '));
+            return out;
+        }
+        function renderSponsors(c){
+            var entries = sponsorEntries(c.sponsors);
+            if (!entries.length) return;
+            var rows = entries.map(function(e){
+                var cut = e.indexOf('|');
+                var who = (cut === -1 ? e : e.slice(0, cut)).replace(/,\s*$/, '').trim();
+                var org = cut === -1 ? '' : e.slice(cut + 1).trim();
+                return '<div><div class="loc-name">' + esc(who) + '</div>' + (org ? '<div class="loc-address">' + esc(org) + '</div>' : '') + '</div>';
+            }).join('');
+            var card = document.getElementById('sponsorsCard');
+            card.innerHTML = '<div class="loc-card"><div class="loc-icon building">&#129309;</div><div class="loc-type">Sponsored By</div>' + rows + '</div>';
             card.style.display = '';
         }
 
@@ -365,6 +399,7 @@
             document.getElementById('clsCostSub').textContent = c.price_sub || (venmoOk(c.host_payment_url) ? (c.host_payment_label || 'materials sold at class') : '');
             renderLocation(c);
             renderMaterials(c);
+            renderSponsors(c);
             renderCustomFields(c);
             renderAttendance(c);
             renderCredit(c);
@@ -474,7 +509,7 @@
                 document.getElementById('regForm').addEventListener('submit', submitReg);
             });
         }
-        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label,registration_fields,host_payment_url,host_payment_label', {
+        fetch(SUPABASE_URL + '/rest/v1/classes?slug=eq.' + encodeURIComponent(slug) + '&published=eq.true&select=id,slug,title,tagline,description,start_at,date_display,time_display,location,format,ce_hours,course_numbers,credit_available,is_paid,price_cents,price_label,price_sub,stripe_payment_link,ghl_session,allow_free_attendance,bundle_with,bundle_price_cents,bundle_stripe_payment_link,bundle_label,registration_fields,host_payment_url,host_payment_label,sponsors', {
             headers: {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}
         }).then(function(r){ return r.json(); }).then(function(rows){
             if (!rows || !rows.length) { showNotFound(); return; }
