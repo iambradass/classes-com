@@ -175,7 +175,14 @@ function openTool(remember){
 }
 var signed=false;
 try{ signed = localStorage.getItem(KEY)==='1' || localStorage.getItem('cnat-go-signedin')==='1'; }catch(e){}
-if(signed){ openTool(false); } else { gate.style.display='block'; }
+var qs=new URLSearchParams(location.search);
+if(qs.get('reset')!==null){ try{ localStorage.removeItem(KEY); }catch(e){} signed=false; }
+if(signed || qs.get('w')==='1'){ openTool(false); } else { gate.style.display='block'; }
+var preAddr=qs.get('address');
+if(preAddr && (signed || qs.get('w')==='1')){
+  document.getElementById('addr').value=preAddr;
+  setTimeout(function(){ document.getElementById('lookupForm').dispatchEvent(new Event('submit',{cancelable:true})); }, 50);
+}
 
 var gfails=0, t0=Date.now();
 document.getElementById('gateForm').addEventListener('submit', function(ev){
