@@ -1,0 +1,507 @@
+{
+ "Bandera County RA & GWD": {
+  "fullName": "Bandera County River Authority And Ground Water District",
+  "phone": "830-796-7260",
+  "website": "https://www.bcragd.org"
+ },
+ "Barton Springs/Edwards Aquifer CD": {
+  "fullName": "Barton Springs/Edwards Aquifer Conservation District",
+  "phone": "512-282-8441",
+  "website": "https://www.bseacd.org"
+ },
+ "Bee GCD": {
+  "fullName": "Bee Groundwater Conservation District",
+  "phone": "361-449-7017",
+  "website": "https://www.beegcd.com"
+ },
+ "Blanco-Pedernales GCD": {
+  "fullName": "Blanco-Pedernales Groundwater Conservation District",
+  "phone": "830-868-9196",
+  "website": "https://www.blancogroundwatertx.gov"
+ },
+ "Bluebonnet GCD": {
+  "fullName": "Bluebonnet Groundwater Conservation District",
+  "phone": "936-825-7303",
+  "website": "http://www.bluebonnetgroundwater.org"
+ },
+ "Brazoria County GCD": {
+  "fullName": "Brazoria County Groundwater Conservation District",
+  "phone": "979-864-1078",
+  "website": "https://www.bcgroundwater.org"
+ },
+ "Brazos Valley GCD": {
+  "fullName": "Brazos Valley Groundwater Conservation District",
+  "phone": "979-279-9350",
+  "website": "https://www.brazosvalleygcd.org"
+ },
+ "Brewster County GCD": {
+  "fullName": "Brewster County Groundwater Conservation District",
+  "phone": "432-244-6030",
+  "website": "https://www.BrewsterCountyGCD.com"
+ },
+ "Brush Country GCD": {
+  "fullName": "Brush Country Groundwater Conservation District",
+  "phone": "361-325-5093",
+  "website": "https://www.brushcountrygcd.com"
+ },
+ "Calhoun County GCD": {
+  "fullName": "Calhoun County Groundwater Conservation District",
+  "phone": "361-579-6863",
+  "website": "http://calhouncountygcd.org"
+ },
+ "Central Texas GCD": {
+  "fullName": "Central Texas Groundwater Conservation District",
+  "phone": "512-756-4900",
+  "website": "http://www.centraltexasgcd.org"
+ },
+ "Clear Fork GCD": {
+  "fullName": "Clear Fork Groundwater Conservation District",
+  "phone": "325-776-2730",
+  "website": null
+ },
+ "Clearwater UWCD": {
+  "fullName": "Clearwater Underground Water Conservation District",
+  "phone": "254-933-0120",
+  "website": "https://www.cuwcd.org"
+ },
+ "Coastal Bend GCD": {
+  "fullName": "Coastal Bend Groundwater Conservation District",
+  "phone": "979-531-1412",
+  "website": "https://www.cbgcd.com"
+ },
+ "Coastal Plains GCD": {
+  "fullName": "Coastal Plains Groundwater Conservation District",
+  "phone": "979-323-9170",
+  "website": "https://www.coastalplainsgcd.com"
+ },
+ "Coke County UWCD": {
+  "fullName": "Coke County Underground Water Conservation District",
+  "phone": "325-453-2232",
+  "website": "https://www.co.coke.tx.us/page/coke.UndergroundWaterConservationDistrict"
+ },
+ "Colorado County GCD": {
+  "fullName": "Colorado County Groundwater Conservation District",
+  "phone": "979-732-9300",
+  "website": "https://www.ccgcd.net"
+ },
+ "Comal Trinity GCD": {
+  "fullName": "Comal Trinity Groundwater Conservation District",
+  "phone": "830-885-2130",
+  "website": "https://www.comaltrinitygcd.com"
+ },
+ "Corpus Christi ASRCD": {
+  "fullName": "Corpus Christi Aquifer Storage and Recovery Conservation District",
+  "phone": "361-826-1600",
+  "website": "https://www.cctexas.com/departments/water-department/cc-aquifer-storage-recovery"
+ },
+ "Cow Creek GCD": {
+  "fullName": "Cow Creek Groundwater Conservation District",
+  "phone": "830-816-2504",
+  "website": "https://www.ccgcd.org"
+ },
+ "Crockett County GCD": {
+  "fullName": "Crockett County Groundwater Conservation District",
+  "phone": "325-392-5156",
+  "website": "http://www.crockettcountygcd.com"
+ },
+ "Culberson County GCD": {
+  "fullName": "Culberson County Groundwater Conservation District",
+  "phone": "432-283-1548",
+  "website": "https://www.ccgwcd.org"
+ },
+ "Duval County GCD": {
+  "fullName": "Duval County Groundwater Conservation District",
+  "phone": "361-256-3589",
+  "website": "http://www.duvalgcd.com"
+ },
+ "Edwards Aquifer Authority": {
+  "fullName": "Edwards Aquifer Authority",
+  "phone": "210-222-2204",
+  "website": "http://www.edwardsaquifer.org"
+ },
+ "Evergreen UWCD": {
+  "fullName": "Evergreen Underground Water Conservation District",
+  "phone": "830-569-4186",
+  "website": "https://www.evergreenuwcd.org"
+ },
+ "Fayette County GCD": {
+  "fullName": "Fayette County Groundwater Conservation District",
+  "phone": "979-968-3135",
+  "website": "https://www.fayettecountygroundwater.com"
+ },
+ "Fort Bend Subsidence District": {
+  "fullName": "Fort Bend Subsidence District",
+  "phone": "281-342-3273",
+  "website": "https://www.fbsubsidence.org"
+ },
+ "Garza County UWCD": {
+  "fullName": "Garza County Underground Water Conservation District",
+  "phone": "806-495-4425",
+  "website": "https://www.garzacounty.net/page/uwcd.county.programs"
+ },
+ "Gateway GCD": {
+  "fullName": "Gateway Groundwater Conservation District",
+  "phone": "940-663-5722",
+  "website": "http://gatewaygroundwater.com"
+ },
+ "Glasscock GCD": {
+  "fullName": "Glasscock Groundwater Conservation District",
+  "phone": "432-354-2430",
+  "website": "http://www.glasscock-groundwater.org"
+ },
+ "Goliad County GCD": {
+  "fullName": "Goliad County Groundwater Conservation District",
+  "phone": "361-645-1716",
+  "website": "http://www.goliadcogcd.org"
+ },
+ "Gonzales County UWCD": {
+  "fullName": "Gonzales County Underground Water Conservation District",
+  "phone": "830-672-1047",
+  "website": "https://www.gcuwcd.org"
+ },
+ "Guadalupe County GCD": {
+  "fullName": "Guadalupe County Groundwater Conservation District",
+  "phone": "830-379-5969",
+  "website": "https://www.gcgcd.org"
+ },
+ "Harris-Galveston Subsidence District": {
+  "fullName": "Harris-Galveston Coastal Subsidence District",
+  "phone": "281-486-1105",
+  "website": "https://www.subsidence.org"
+ },
+ "Hays Trinity GCD": {
+  "fullName": "Hays Trinity Groundwater Conservation District",
+  "phone": "512-858-9253",
+  "website": "https://www.haysgroundwater.com"
+ },
+ "Headwaters GCD": {
+  "fullName": "Headwaters Groundwater Conservation District",
+  "phone": "830-896-4110",
+  "website": "https://www.hgcd.org"
+ },
+ "Hemphill County UWCD": {
+  "fullName": "Hemphill County Underground Water Conservation District",
+  "phone": "806-323-8350",
+  "website": "https://www.hemphilluwcd.org"
+ },
+ "Hickory UWCD #1": {
+  "fullName": "Hickory Underground Water Conservation District No. 1",
+  "phone": "325-597-2785",
+  "website": "https://www.hickoryuwcd.org"
+ },
+ "High Plains UWCD #1": {
+  "fullName": "High Plains Underground Water Conservation District No. 1",
+  "phone": "806-762-0181",
+  "website": "http://www.hpwd.com"
+ },
+ "Hill Country UWCD": {
+  "fullName": "Hill Country Underground Water Conservation District",
+  "phone": "830-997-4472",
+  "website": "https://www.hcuwcd.org"
+ },
+ "Hudspeth County UWCD #1": {
+  "fullName": "Hudspeth County Underground Water Conservation District No. 1",
+  "phone": "915-964-2932",
+  "website": "https://www.hcuwcd1.org"
+ },
+ "Irion County WCD": {
+  "fullName": "Irion County Water Conservation District",
+  "phone": "325-835-2015",
+  "website": "https://www.irionwcd.org"
+ },
+ "Jeff Davis County UWCD": {
+  "fullName": "Jeff Davis County Underground Water Conservation District",
+  "phone": "432-426-3441",
+  "website": null
+ },
+ "Kenedy County GCD": {
+  "fullName": "Kenedy County Groundwater Conservation District",
+  "phone": "361-294-5336",
+  "website": "http://www.kenedygcd.com"
+ },
+ "Kimble County GCD": {
+  "fullName": "Kimble County Groundwater Conservation District",
+  "phone": "325-446-4826",
+  "website": "https://www.kimblecountygcd.org"
+ },
+ "Kinney County GCD": {
+  "fullName": "Kinney County Groundwater Conservation District",
+  "phone": "830-563-9699",
+  "website": "https://www.kinneycountygcd.org"
+ },
+ "Lipan-Kickapoo WCD": {
+  "fullName": "Lipan-Kickapoo Water Conservation District",
+  "phone": "325-651-0919",
+  "website": "http://www.lipan-kickapoo.org"
+ },
+ "Live Oak UWCD": {
+  "fullName": "Live Oak Underground Water Conservation District",
+  "phone": "361-449-1151",
+  "website": "http://www.louwcd.org"
+ },
+ "Llano Estacado UWCD": {
+  "fullName": "Llano Estacado Underground Water Conservation District",
+  "phone": "432-758-1127",
+  "website": "http://www.llanoestacadouwcd.org"
+ },
+ "Lone Star GCD": {
+  "fullName": "Lone Star Groundwater Conservation District",
+  "phone": "936-494-3436",
+  "website": "https://www.lonestargcd.org"
+ },
+ "Lone Wolf GCD": {
+  "fullName": "Lone Wolf Groundwater Conservation District",
+  "phone": "325-728-2027",
+  "website": "http://www.lonewolfgwcd.org"
+ },
+ "Lost Pines GCD": {
+  "fullName": "Lost Pines Groundwater Conservation District",
+  "phone": "512-360-5088",
+  "website": "http://www.lostpineswater.org"
+ },
+ "Lower Trinity GCD": {
+  "fullName": "Lower Trinity Groundwater Conservation District",
+  "phone": "936-327-9531",
+  "website": "https://www.waterwells.info"
+ },
+ "McMullen GCD": {
+  "fullName": "McMullen Groundwater Conservation District",
+  "phone": "361-449-7017",
+  "website": "http://www.mcmullengcd.org"
+ },
+ "Medina County GCD": {
+  "fullName": "Medina County Underground Water Conservation District",
+  "phone": "830-741-3162",
+  "website": "https://www.medinagwcd.org"
+ },
+ "Menard County UWD": {
+  "fullName": "Menard County Underground Water District",
+  "phone": "325-396-3670",
+  "website": null
+ },
+ "Mesa UWCD": {
+  "fullName": "Mesa Underground Water Conservation District",
+  "phone": "806-872-9205",
+  "website": "http://www.mesauwcd.org"
+ },
+ "Mesquite GCD": {
+  "fullName": "Mesquite Groundwater Conservation District",
+  "phone": "844-445-2800",
+  "website": "https://www.mesquitegcd.gov"
+ },
+ "Mid-East Texas GCD": {
+  "fullName": "Mid-East Texas Groundwater Conservation District",
+  "phone": "936-348-3212",
+  "website": "http://www.mideasttexasgcd.com"
+ },
+ "Middle Pecos GCD": {
+  "fullName": "Middle Pecos Groundwater Conservation District",
+  "phone": "432-336-0698",
+  "website": "http://www.middlepecosgcd.org"
+ },
+ "Middle Trinity GCD": {
+  "fullName": "Middle Trinity Groundwater Conservation District",
+  "phone": "254-965-6705",
+  "website": "https://www.middletrinitygcd.org"
+ },
+ "Neches & Trinity Valleys GCD": {
+  "fullName": "Neches & Trinity Valleys Groundwater Conservation District",
+  "phone": "903-541-4845",
+  "website": "https://www.ntvgcd.org"
+ },
+ "North Plains GCD": {
+  "fullName": "North Plains Groundwater Conservation District",
+  "phone": "806-935-6401",
+  "website": "http://www.northplainsgcd.org"
+ },
+ "North Texas GCD": {
+  "fullName": "North Texas Groundwater Conservation District",
+  "phone": "855-426-4433",
+  "website": "http://www.northtexasgcd.org"
+ },
+ "Northern Trinity GCD": {
+  "fullName": "Northern Trinity Groundwater Conservation District",
+  "phone": "817-249-2062",
+  "website": "http://www.ntgcd.com"
+ },
+ "Panhandle GCD": {
+  "fullName": "Panhandle Groundwater Conservation District",
+  "phone": "806-883-2501",
+  "website": "https://www.pgcd.us"
+ },
+ "Panola County GCD": {
+  "fullName": "Panola County Groundwater Conservation District",
+  "phone": "903-690-0143",
+  "website": "http://www.pcgcd.org"
+ },
+ "Pecan Valley GCD": {
+  "fullName": "Pecan Valley Groundwater Conservation District",
+  "phone": "361-275-8188",
+  "website": "https://www.pvgcd.org"
+ },
+ "Permian Basin UWCD": {
+  "fullName": "Permian Basin Underground Water Conservation District",
+  "phone": "432-756-2136",
+  "website": "https://www.pbuwcd.com"
+ },
+ "Pineywoods GCD": {
+  "fullName": "Pineywoods Groundwater Conservation District",
+  "phone": "936-568-9292",
+  "website": "http://www.pgcd.org"
+ },
+ "Plateau UWC & SD": {
+  "fullName": "Plateau Underground Water Conservation and Supply District",
+  "phone": "325-853-2121",
+  "website": "http://www.plateauuwcsd.com"
+ },
+ "Plum Creek CD": {
+  "fullName": "Plum Creek Conservation District",
+  "phone": "512-398-2383",
+  "website": "http://www.pccd.org"
+ },
+ "Post Oak Savannah GCD": {
+  "fullName": "Post Oak Savannah Groundwater Conservation District",
+  "phone": "512-455-9900",
+  "website": "https://www.posgcd.org"
+ },
+ "Prairielands GCD": {
+  "fullName": "Prairielands Groundwater Conservation District",
+  "phone": "817-556-2299",
+  "website": "https://www.prairielandsgcd.org"
+ },
+ "Presidio County UWCD": {
+  "fullName": "Presidio County Underground Water Conservation District",
+  "phone": "432-295-2568",
+  "website": "https://www.pcuwcd.org"
+ },
+ "Real-Edwards C & RD": {
+  "fullName": "Real-Edwards Conservation And Reclamation District",
+  "phone": "830-232-5733",
+  "website": "https://www.recrd.org"
+ },
+ "Red River GCD": {
+  "fullName": "Red River Groundwater Conservation District",
+  "phone": "800-256-0935",
+  "website": "http://www.redrivergcd.org"
+ },
+ "Red Sands GCD": {
+  "fullName": "Red Sands Groundwater Conservation District",
+  "phone": "956-270-2309",
+  "website": "https://www.rsgcd.org"
+ },
+ "Reeves County GCD": {
+  "fullName": "Reeves County Groundwater Conservation District",
+  "phone": "432-445-9961",
+  "website": "https://www.reevescountygcd.org"
+ },
+ "Refugio GCD": {
+  "fullName": "Refugio Groundwater Conservation District",
+  "phone": "361-579-6863",
+  "website": "http://www.rgcd.org"
+ },
+ "Rolling Plains GCD": {
+  "fullName": "Rolling Plains Groundwater Conservation District",
+  "phone": "940-422-1095",
+  "website": "https://rollingplainsgcd.gov"
+ },
+ "Rusk County GCD": {
+  "fullName": "Rusk County Groundwater Conservation District",
+  "phone": "903-657-1900",
+  "website": "http://www.rcgcd.org"
+ },
+ "San Patricio County GCD": {
+  "fullName": "San Patricio County Groundwater Conservation District",
+  "phone": "361-449-7017",
+  "website": "http://www.spcgcd.org"
+ },
+ "Sandy Land UWCD": {
+  "fullName": "Sandy Land Underground Water Conservation District",
+  "phone": "806-456-2155",
+  "website": "https://www.sandylandwater.com"
+ },
+ "Santa Rita UWCD": {
+  "fullName": "Santa Rita Underground Water Conservation District",
+  "phone": "325-884-2893",
+  "website": "https://www.santaritauwcd.org"
+ },
+ "Saratoga UWCD": {
+  "fullName": "Saratoga Underground Water Conservation District",
+  "phone": "512-734-4073",
+  "website": "http://www.saratogauwcd.org"
+ },
+ "South Plains UWCD": {
+  "fullName": "South Plains Underground Water Conservation District",
+  "phone": "806-637-7467",
+  "website": "https://www.spuwcd.org"
+ },
+ "Southeast Texas GCD": {
+  "fullName": "Southeast Texas Groundwater Conservation District",
+  "phone": "409-383-1577",
+  "website": "https://setgcd.org"
+ },
+ "Southern Trinity GCD": {
+  "fullName": "Southern Trinity Groundwater Conservation District",
+  "phone": "254-759-5610",
+  "website": "http://southerntrinitygcd.org"
+ },
+ "Southwestern Travis County GCD": {
+  "fullName": "Southwestern Travis County Groundwater Conservation District",
+  "phone": "512-276-2875",
+  "website": "https://swtcgcd.com"
+ },
+ "Starr County GCD": {
+  "fullName": "Starr County Drainage and Groundwater Conservation District",
+  "phone": "956-716-8045",
+  "website": "https://www.scgcd.org"
+ },
+ "Sterling County UWCD": {
+  "fullName": "Sterling County Underground Water Conservation District",
+  "phone": "325-378-2704",
+  "website": "https://www.sterlinguwcd.org"
+ },
+ "Sutton County UWCD": {
+  "fullName": "Sutton County Underground Water Conservation District",
+  "phone": "325-387-2369",
+  "website": "https://www.suttoncountyuwcd.org"
+ },
+ "Terrell County GCD": {
+  "fullName": "Terrell County Groundwater Conservation District",
+  "phone": "512-322-5829",
+  "website": null
+ },
+ "Texana GCD": {
+  "fullName": "Texana Groundwater Conservation District",
+  "phone": "361-579-6863",
+  "website": "http://www.texanagcd.org"
+ },
+ "Trinity Glen Rose GCD": {
+  "fullName": "Trinity Glen Rose Groundwater Conservation District",
+  "phone": "210-698-1155",
+  "website": "https://www.trinityglenrose.com"
+ },
+ "Upper Trinity GCD": {
+  "fullName": "Upper Trinity Groundwater Conservation District",
+  "phone": "817-523-5200",
+  "website": "https://www.uppertrinitygcd.com"
+ },
+ "Uvalde County UWCD": {
+  "fullName": "Uvalde County Underground Water Conservation District",
+  "phone": "830-278-8242",
+  "website": "http://www.uvaldecountyuwcd.org"
+ },
+ "Victoria County GCD": {
+  "fullName": "Victoria County Groundwater Conservation District",
+  "phone": "361-579-6863",
+  "website": "http://www.vcgcd.org"
+ },
+ "Wes-Tex GCD": {
+  "fullName": "Wes-Tex Groundwater Conservation District",
+  "phone": "325-236-6033",
+  "website": "http://www.westexgcd.org"
+ },
+ "Wintergarden GCD": {
+  "fullName": "Wintergarden Groundwater Conservation District",
+  "phone": "830-876-3801",
+  "website": "http://www.wgcd.net"
+ }
+}
