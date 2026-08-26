@@ -112,5 +112,9 @@ window.CNAT_RESOURCES = [
 
   {t:"Killing Your Reach: 15 Social Media Myths", u:"/bk-social/myths", k:"Handout", c:"Social That Closes",
    d:"Fifteen things agents believe about the algorithm that are quietly costing them reach.",
-   g:["social media","marketing"], s:"algorithm reach myths handout engagement"}
+   g:["social media","marketing"], s:"algorithm reach myths handout engagement"},
+
+  {t:"Water Rights & the New Groundwater Disclosure: Field Guide", u:"/water/Water-Rights-Field-Guide.pdf", k:"Handout", c:"Water Rights",
+   d:"The 6-page class handout: the Paragraph 7.I five-part test, six listing-appointment questions, the Form 61-0 question map, district lookup links, a practice worksheet, and five AI prompts.",
+   g:["compliance","listings","sellers","transactions"], s:"water rights groundwater disclosure 61-0 7.I well gcd district trec back-up backup 11-9 62-0 spyglass"}
 ];
