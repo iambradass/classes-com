@@ -81,17 +81,39 @@ if ($match === null) {
   list($geo2, $e2) = fetch_json($geoUrl2, 12);
   $match = $geo2['result']['addressMatches'][0] ?? null;
 }
-if ($match === null) {
+$lon = $lat = $matchedAddress = $county = null;
+if ($match !== null) {
+  $lon = $match['coordinates']['x'];
+  $lat = $match['coordinates']['y'];
+  $matchedAddress = $match['matchedAddress'] ?? $address;
+  $county = $match['geographies']['Counties'][0]['NAME'] ?? null;
+} else {
+  // fallback geocoder: OpenStreetMap Nominatim (newer streets the Census
+  // TIGER benchmark misses). May match at street level; the display name
+  // shows the user exactly what was matched.
+  $nomUrl = 'https://nominatim.openstreetmap.org/search?' . http_build_query([
+    'q' => $address, 'format' => 'json', 'limit' => 1,
+    'countrycodes' => 'us', 'addressdetails' => 1,
+  ]);
+  list($nom, $nomErr) = fetch_json($nomUrl, 10);
+  if (is_array($nom) && isset($nom[0]['lat'], $nom[0]['lon'])) {
+    $hit = $nom[0];
+    $stateOk = stripos($hit['display_name'] ?? '', 'Texas') !== false;
+    if ($stateOk) {
+      $lat = (float)$hit['lat'];
+      $lon = (float)$hit['lon'];
+      $matchedAddress = $hit['display_name'] ?? $address;
+      $county = $hit['address']['county'] ?? null;
+      $warnings[] = 'matched via the OpenStreetMap geocoder; if no house number appears in the matched address, the pin is at street level, so verify the parcel on the district map';
+    }
+  }
+}
+if ($lat === null) {
   http_response_code(404);
   echo json_encode(['error' => 'no_match',
     'message' => 'Could not locate that address. Try adding the city and ZIP, or check the spelling.']);
   exit;
 }
-
-$lon = $match['coordinates']['x'];
-$lat = $match['coordinates']['y'];
-$matchedAddress = $match['matchedAddress'] ?? $address;
-$county = $match['geographies']['Counties'][0]['NAME'] ?? null;
 
 $pt = [
   'geometry' => $lon . ',' . $lat,
