@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/img/favicon-32.png">
+<title>Water Lookup | CNAT Title</title>
+<style>
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url('/brand/fonts/fraunces-var.woff2') format('woff2')}
+@font-face{font-family:'Libre Franklin';font-style:normal;font-weight:100 900;font-display:swap;src:url('/brand/fonts/libre-franklin-var.woff2') format('woff2')}
+:root{
+  --paper:#F4F1E9; --card:#FFFFFF; --navy:#0B1522; --navy2:#152238;
+  --brass:#B9974E; --muted:#5C6470; --hair:#DDD6C6; --err:#A03B2E; --ok:#2E6B4F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper); color:var(--navy);
+  font-family:'Libre Franklin',system-ui,sans-serif; font-size:16px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:640px; margin:0 auto; padding:34px 20px 60px}
+.logo{display:block; height:34px; width:auto; margin:0 auto 26px}
+h1{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:38px; line-height:1.05;
+  text-align:center; margin:0 0 10px; letter-spacing:-.01em;}
+.sub{text-align:center; color:var(--muted); font-size:16px; margin:0 0 24px}
+.rule{width:44px; height:3px; background:var(--brass); margin:0 auto 26px}
+.kicker{font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--muted); text-align:center; margin:0 0 12px}
+
+.card{background:var(--card); border:1px solid var(--hair); border-top:3px solid var(--brass);
+  padding:22px 20px; box-shadow:0 10px 30px rgba(11,21,34,.07); margin-bottom:18px;}
+label{display:block; font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:16px 0 6px}
+label:first-child{margin-top:0}
+label .opt{font-weight:600; letter-spacing:.06em; text-transform:none}
+input{width:100%; min-height:50px; padding:12px 14px; font:inherit; font-size:16px;
+  border:1.5px solid var(--hair); border-radius:0; background:#fff; color:var(--navy);}
+input:focus{outline:2px solid var(--brass); outline-offset:0; border-color:var(--brass)}
+.btn{width:100%; margin-top:16px; min-height:54px; border:0; cursor:pointer;
+  background:var(--navy); color:#fff; font-family:inherit; font-size:14px; font-weight:800;
+  letter-spacing:.12em; text-transform:uppercase;}
+.btn:hover{background:var(--navy2)}
+.btn:disabled{opacity:.6; cursor:wait}
+.msg{margin:12px 0 0; font-size:14px; display:none}
+.msg.err{display:block; color:var(--err)}
+.bypass{display:none; margin-top:8px; font-size:13px; color:var(--muted); text-align:center}
+.bypass a{color:var(--navy); cursor:pointer; text-decoration:underline}
+.consent{font-size:12px; color:var(--muted); margin:14px 0 0; line-height:1.5}
+
+.frame{border-left:3px solid var(--brass); background:#fff; padding:12px 16px; margin:0 0 20px;
+  font-size:13.5px; line-height:1.55; color:var(--navy);}
+.frame strong{font-weight:800}
+
+/* results */
+.res h2{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:22px; margin:0 0 4px}
+.res .where{font-size:13px; color:var(--muted); margin:0 0 14px}
+.big{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:26px; line-height:1.2; margin:6px 0 2px}
+.dnote{font-size:13.5px; color:var(--muted); line-height:1.5; margin:6px 0 0}
+.dwarn{border-left:3px solid var(--err); padding:8px 12px; margin-top:12px; font-size:13.5px; background:#fff}
+.crow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.cbtn{display:inline-flex; align-items:center; min-height:44px; padding:9px 16px;
+  border:1.5px solid var(--navy); color:var(--navy); text-decoration:none;
+  font-weight:800; font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
+.cbtn:hover{background:var(--navy); color:#fff}
+.hairline{border:0; border-top:1px solid var(--hair); margin:16px 0}
+
+.stat{display:flex; gap:18px; border-top:2px solid var(--navy); border-bottom:1px solid var(--hair);
+  padding:10px 0; margin:10px 0 14px}
+.stat div{flex:1}
+.stat .v{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:24px}
+.stat .k{font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+
+table.wells{border-collapse:collapse; width:100%; font-size:13px; margin-top:6px}
+table.wells th{text-align:left; font-size:9.5px; font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); padding:6px 8px 5px 0; border-bottom:1px solid var(--hair)}
+table.wells td{padding:6px 8px 6px 0; border-bottom:1px solid var(--hair); vertical-align:top}
+.smallnote{font-size:12px; color:var(--muted); line-height:1.5; margin-top:10px}
+
+.tiles{margin-top:6px}
+.tile{display:flex; align-items:center; gap:14px; width:100%; text-align:left;
+  background:var(--navy); color:#fff; text-decoration:none;
+  padding:16px 16px; margin-bottom:10px; border:1px solid var(--brass);}
+.tile:hover{background:var(--navy2); box-shadow:inset 0 0 0 1px var(--brass)}
+.tile .tt{font-size:15px; font-weight:800; letter-spacing:-.01em; margin:0 0 2px}
+.tile .td{font-size:12.5px; color:#C8CBD4; line-height:1.4}
+.tile .arrow{font-family:'Fraunces',serif; font-size:20px; color:var(--brass); margin-left:auto; flex-shrink:0}
+
+.warnings{font-size:12px; color:var(--err); margin-top:10px}
+.loading{display:none; text-align:center; color:var(--muted); font-size:14px; margin:16px 0}
+.loading.on{display:block}
+.printbtn{background:none; border:1.5px solid var(--brass); color:var(--navy); min-height:44px;
+  padding:9px 16px; font-family:inherit; font-weight:800; font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; cursor:pointer; margin-top:4px}
+.printbtn:hover{background:var(--brass); color:#fff}
+.foot{margin-top:44px; text-align:center; border-top:1px solid var(--hair); padding-top:20px}
+.foot p{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:8px 0 0}
+.backrow{text-align:center; margin-top:18px; font-size:13px}
+.backrow a{color:var(--navy)}
+#gate,#tool{display:none}
+@media print{
+  body{background:#fff}
+  .logo,.rule,.sub,#lookupForm,.printbtn,.tiles,.tlinks-h,.foot,.backrow,.kicker{display:none !important}
+  .card{box-shadow:none; border:1px solid #ccc}
+  .wrap{padding:0; max-width:none}
+}
+@media (max-width:480px){ h1{font-size:30px} .stat .v{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="/img/cnat-logo-navy.png" alt="CNAT Title">
+  <h1>Water Lookup</h1>
+  <p class="sub">Type a Texas property address. Get the water research an agent needs before the listing appointment: the groundwater district, wells on record nearby, and every official source to verify with.</p>
+  <div class="rule"></div>
+
+  <!-- sign-in gate (same capture as /water) -->
+  <div id="gate">
+    <form class="card" id="gateForm" autocomplete="on" novalidate>
+      <p class="kicker" style="margin-bottom:14px">Sign in once to use the lookup</p>
+      <label for="g-name">Full name</label>
+      <input id="g-name" name="name" autocomplete="name" required>
+      <label for="g-email">Email</label>
+      <input id="g-email" name="email" type="email" autocomplete="email" required>
+      <label for="g-phone">Cell phone</label>
+      <input id="g-phone" name="phone" type="tel" autocomplete="tel" required>
+      <label for="g-license">TREC license number <span class="opt">(optional)</span></label>
+      <input id="g-license" name="license" autocomplete="off">
+      <button class="btn" id="gateBtn" type="submit">Open the lookup</button>
+      <p class="msg" id="gateMsg"></p>
+      <p class="bypass" id="gateBypass">Trouble signing in? <a id="gateSkip">Continue without signing in</a></p>
+      <p class="consent">By signing in you agree that CNAT Title may contact you about classes, resources, and updates. Unsubscribe anytime.</p>
+    </form>
+  </div>
+
+  <!-- the tool -->
+  <div id="tool">
+    <div class="frame"><strong>Research starting points, not answers.</strong> This tool never decides which box in the contract applies, and nothing here is legal advice. The seller answers the disclosure; verify everything with the district before it goes on a form.</div>
+
+    <form class="card" id="lookupForm" novalidate>
+      <label for="addr">Property address</label>
+      <input id="addr" placeholder="1200 Ranch Rd 12, Wimberley, TX" autocomplete="street-address" required>
+      <button class="btn" id="goBtn" type="submit">Run the lookup</button>
+      <p class="msg" id="msg"></p>
+    </form>
+
+    <p class="loading" id="loading">Checking the district map and well records&hellip;</p>
+
+    <div id="results" style="display:none">
+      <div class="card res" id="districtCard"></div>
+      <div class="card res" id="wellsCard"></div>
+      <div class="res tlinks-h"><p class="kicker" style="text-align:left">Verify and go deeper</p></div>
+      <div class="tiles" id="linkTiles"></div>
+      <div class="card res" id="caveatCard"></div>
+      <button class="printbtn" onclick="window.print()">Print this prep sheet</button>
+    </div>
+  </div>
+
+  <p class="backrow"><a href="/water/">&larr; Back to the class resources</a></p>
+  <div class="foot"><p>Community National Title</p></div>
+</div>
+
+<script>
+var SB='https://etopfohypgfmedxqigcg.supabase.co';
+var ANON='sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
+var CLASS_ID='d124abe7-5e12-4852-87a6-69cce12ddc09';
+var KEY='cnat-water-signedin';
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+/* ---------- gate ---------- */
+var gate=document.getElementById('gate'), tool=document.getElementById('tool');
+function openTool(remember){
+  gate.style.display='none'; tool.style.display='block';
+  try{ if(remember) localStorage.setItem(KEY,'1'); }catch(e){}
+  document.getElementById('addr').focus();
+}
+var signed=false;
+try{ signed = localStorage.getItem(KEY)==='1' || localStorage.getItem('cnat-go-signedin')==='1'; }catch(e){}
+if(signed){ openTool(false); } else { gate.style.display='block'; }
+
+var gfails=0, t0=Date.now();
+document.getElementById('gateForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var m=document.getElementById('gateMsg'); m.className='msg';
+  var name=document.getElementById('g-name').value.trim();
+  var email=document.getElementById('g-email').value.trim();
+  var phone=document.getElementById('g-phone').value.trim();
+  var license=document.getElementById('g-license').value.trim();
+  if(Date.now()-t0 < 1500){ openTool(true); return; }
+  if(name.length<2){ m.textContent='Please enter your name.'; m.className='msg err'; return; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ m.textContent='That email does not look right.'; m.className='msg err'; return; }
+  if(phone.replace(/\D/g,'').length<10){ m.textContent='Please enter a 10-digit cell number.'; m.className='msg err'; return; }
+  var b=document.getElementById('gateBtn'); b.disabled=true; b.textContent='One moment...';
+  fetch(SB+'/rest/v1/class_registrations',{
+    method:'POST',
+    headers:{apikey:ANON, Authorization:'Bearer '+ANON, 'Content-Type':'application/json', Prefer:'return=minimal'},
+    body:JSON.stringify({class_id:CLASS_ID, name:name, email:email, phone:phone,
+      license_number:license||null, attendance_type:'virtual', wants_credit:true, source:'qr-landing'})
+  }).then(function(r){ if(r.ok){ openTool(true); } else { throw new Error('HTTP '+r.status); } })
+  .catch(function(){
+    gfails++; b.disabled=false; b.textContent='Open the lookup';
+    m.textContent='Something hiccuped saving your info. Please try again.'; m.className='msg err';
+    if(gfails>=2) document.getElementById('gateBypass').style.display='block';
+  });
+});
+document.getElementById('gateSkip').addEventListener('click', function(){ openTool(false); });
+
+/* ---------- lookup ---------- */
+document.getElementById('lookupForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var addr=document.getElementById('addr').value.trim();
+  var m=document.getElementById('msg'); m.className='msg';
+  if(addr.length<6){ m.textContent='Enter a street address with city, e.g. "1200 Ranch Rd 12, Wimberley, TX".'; m.className='msg err'; return; }
+  var b=document.getElementById('goBtn'); b.disabled=true;
+  document.getElementById('loading').classList.add('on');
+  document.getElementById('results').style.display='none';
+  fetch('api.php?address='+encodeURIComponent(addr))
+    .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+    .then(function(x){
+      b.disabled=false; document.getElementById('loading').classList.remove('on');
+      if(!x.ok){ m.textContent=(x.j && x.j.message) || 'Lookup failed. Try again.'; m.className='msg err'; return; }
+      render(x.j);
+    })
+    .catch(function(){
+      b.disabled=false; document.getElementById('loading').classList.remove('on');
+      m.textContent='Could not reach the lookup service. Check your connection and try again.'; m.className='msg err';
+    });
+});
+
+function render(d){
+  /* district card */
+  var h='<h2>Groundwater district</h2><p class="where">'+esc(d.matchedAddress)+
+        (d.county? ' &middot; '+esc(d.county):'')+'</p>';
+  if(d.districts && d.districts.length){
+    d.districts.forEach(function(g){
+      h+='<p class="big">'+esc(g.fullName)+'</p>';
+      if(g.note) h+='<p class="dnote">'+esc(g.note)+'</p>';
+      h+='<div class="crow">';
+      if(g.website) h+='<a class="cbtn" href="'+esc(g.website)+'" target="_blank" rel="noopener">District website</a>';
+      if(g.phone) h+='<a class="cbtn" href="tel:'+esc(g.phone.replace(/[^0-9+]/g,''))+'">Call '+esc(g.phone)+'</a>';
+      h+='</div>';
+    });
+    h+='<p class="dnote" style="margin-top:12px">This is the name and website Question 2(A) asks for. Confirm the parcel with the district; the check above uses the geocoded point.</p>';
+  } else {
+    h+='<p class="big">No district found at this point</p>'+
+       '<p class="dnote">The geocoded point sits outside every district boundary on the TWDB map, including the EAA and the subsidence districts. About a third of Texas is in no district. Confirm the full parcel on the map before anyone answers 2(A): on acreage, part of the property can sit in a district the point misses.</p>';
+  }
+  if(d.nearBoundary && d.nearBoundary.length){
+    h+='<div class="dwarn"><strong>Boundary nearby:</strong> '+esc(d.nearBoundary.join(', '))+
+       ' comes within about 800 feet of this point. District lines do not follow streets or parcels; verify the parcel on the district map before answering.</div>';
+  }
+  document.getElementById('districtCard').innerHTML=h;
+
+  /* wells card */
+  var w=d.wells||{};
+  h='<h2>Wells on record nearby</h2>'+
+    '<div class="stat"><div><div class="v">'+(w.quarterMileCount==null?'?':w.quarterMileCount)+'</div><div class="k">Within &frac14; mile</div></div>'+
+    '<div><div class="v">'+(w.halfMileCount==null?'?':w.halfMileCount)+'</div><div class="k">Within &frac12; mile</div></div>'+
+    '<div><div class="v">'+(d.pluggingHalfMileCount==null?'?':d.pluggingHalfMileCount)+'</div><div class="k">Plugging reports &frac12; mi</div></div></div>';
+  if(w.nearest && w.nearest.length){
+    h+='<table class="wells"><tr><th>Year</th><th>Owner</th><th>Street</th><th>Use</th><th>Depth</th></tr>';
+    w.nearest.forEach(function(x){
+      h+='<tr><td>'+esc(x.year||'?')+'</td><td>'+esc(x.owner||'?')+'</td><td>'+esc(x.street||'')+'</td><td>'+esc(x.use||x.type||'')+'</td><td>'+(x.depthFt?esc(x.depthFt)+' ft':'')+'</td></tr>';
+    });
+    h+='</table>';
+    if(w.halfMileCount>w.shown) h+='<p class="smallnote">Showing '+w.shown+' of '+w.halfMileCount+' reports within a half mile. Search the full database below.</p>';
+  } else if(w.halfMileCount===0){
+    h+='<p class="dnote">No drillers reports on file within a half mile. That is not proof there is no well: records run roughly 2003-forward, and older wells often have no report at all. Ask the seller anyway.</p>';
+  }
+  h+='<p class="smallnote">Locations are driller-reported, not state-verified. A report near the address is a conversation starter with the seller, not a conclusion.</p>';
+  document.getElementById('wellsCard').innerHTML=h;
+
+  /* link tiles */
+  var L=d.links||{};
+  var tiles=[
+    [L.wellSearch,'Search well records','TWDB drillers reports: search by owner name or address, 2003-forward.'],
+    [L.tceqMap,'TCEQ district map','The statewide GCD map. The map is the authority, never the ZIP code.'],
+    [L.tagdMembers,'District directory','Texas Alliance of Groundwater Districts: every district, contact, and website.'],
+    [L.cadDirectory,'County appraisal district','Comptroller directory. Check taxes and the parcel record.'],
+    [L.landId,'Land ID','The full map view: aquifers, floodplain, soils, parcels, water features. Worth the subscription for land work.'],
+    [L.trec610,'TREC Form 61-0','The disclosure itself, straight from TREC.']
+  ];
+  h='';
+  tiles.forEach(function(t){
+    if(!t[0]) return;
+    h+='<a class="tile" href="'+esc(t[0])+'" target="_blank" rel="noopener"><span><span class="tt">'+esc(t[1])+'</span><br><span class="td">'+esc(t[2])+'</span></span><span class="arrow">&rarr;</span></a>';
+  });
+  document.getElementById('linkTiles').innerHTML=h;
+
+  /* caveats */
+  h='<h2>Before it goes on a form</h2>';
+  (d.caveats||[]).forEach(function(c){ h+='<p class="dnote" style="margin-bottom:8px">'+esc(c)+'</p>'; });
+  if(d.warnings && d.warnings.length){ h+='<p class="warnings">Heads up: '+esc(d.warnings.join('; '))+'.</p>'; }
+  h+='<p class="smallnote">Generated '+esc((d.generatedAt||'').slice(0,10))+' from: '+esc(d.sources||'')+'.</p>';
+  document.getElementById('caveatCard').innerHTML=h;
+
+  document.getElementById('results').style.display='block';
+}
+</script>
+</body>
+</html>
