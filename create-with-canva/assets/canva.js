@@ -72,7 +72,9 @@
     }
     point(prev, views[idx - 1])
     point(next, views[idx + 1])
-    if (lab) lab.textContent = idx === 0 ? 'Start' : idx + ' of ' + (views.length - 1)
+    if (lab) lab.textContent = bar.dataset.labels === 'pages'
+      ? 'Page ' + (idx + 1) + ' of ' + views.length
+      : (idx === 0 ? 'Start' : idx + ' of ' + (views.length - 1))
   }
 
   if (views.length) {

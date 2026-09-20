@@ -128,5 +128,25 @@ window.CNAT_RESOURCES = [
 
   {t:"The Create with Canva Prompt Pack", u:"/create-with-canva/prompt-pack/", k:"Handout", c:"Create with Canva",
    d:"Eight copy and paste prompts from class: the postcard, the web page behind its QR code, and a quarter of social posts.",
-   g:["ai","marketing","farming","social media"], s:"prompts prompt list spreadsheet canva ai postcard got equity landing page qr code quotes csv bulk create template voice microphone chatgpt claude gemini neighborhood guide"}
+   g:["ai","marketing","farming","social media"], s:"prompts prompt list spreadsheet canva ai postcard got equity landing page qr code quotes csv bulk create template voice microphone chatgpt claude gemini neighborhood guide"},
+
+  {t:"Set Up Your Brand Kit, and Always Make a Copy", u:"/create-with-canva/guides/brand-kit/", k:"Guide", c:"Create with Canva",
+   d:"Load your logo, colors and headshot once, apply them in one click, and never wreck a shared template again.",
+   g:["getting started","marketing","compliance"], s:"brand kit logo colors fonts headshot shuffle color theme apply brand template make a copy exp compliant"},
+
+  {t:"The Postcard to Landing Page Funnel", u:"/create-with-canva/guides/postcard-funnel/", k:"Guide", c:"Create with Canva",
+   d:"The Got equity mailer from class: one postcard, one web page behind its QR code, printed and mailed.",
+   g:["farming","prospecting","sellers","marketing","ai"], s:"postcard mailer got equity qr code landing page canva ai code publish site address empty nester equity travel farm titlepro247"},
+
+  {t:"Fix Any Image Fast: Magic Layers and the Background Remover", u:"/create-with-canva/guides/magic-layers/", k:"Guide", c:"Create with Canva",
+   d:"Turn one flat picture into pieces you can move, and clean up headshots and logos in a click.",
+   g:["marketing","listings"], s:"magic layers background remover bg remover flat image edit headshot logo transparent erase restore"},
+
+  {t:"A Quarter of Posts in One Hour: Bulk Create", u:"/create-with-canva/guides/bulk-create/", k:"Guide", c:"Create with Canva",
+   d:"One list plus one design. Canva builds twelve weeks of posts at once.",
+   g:["social media","marketing","automation","ai"], s:"bulk create csv excel spreadsheet quotes instagram posts connect data upload data template weekly"},
+
+  {t:"Schedule Your Posts from Canva", u:"/create-with-canva/guides/schedule-posts/", k:"Guide", c:"Create with Canva",
+   d:"Pick the days once. One page per post, same time each week, with a reminder so nothing lands on a bad news day.",
+   g:["social media","automation"], s:"schedule instagram business account facebook page content planner post later caption hashtags reminder"}
 ];
