@@ -148,5 +148,21 @@ window.CNAT_RESOURCES = [
 
   {t:"Schedule Your Posts from Canva", u:"/create-with-canva/guides/schedule-posts/", k:"Guide", c:"Create with Canva",
    d:"Pick the days once. One page per post, same time each week, with a reminder so nothing lands on a bad news day.",
-   g:["social media","automation"], s:"schedule instagram business account facebook page content planner post later caption hashtags reminder"}
+   g:["social media","automation"], s:"schedule instagram business account facebook page content planner post later caption hashtags reminder"},
+
+  {t:"Neighborhood Guides That Earn a Phone Number", u:"/create-with-canva/guides/neighborhood-guides/", k:"Guide", c:"Create with Canva",
+   d:"One buyer or seller guide, one version per neighborhood, offered by text so you get a working number.",
+   g:["prospecting","farming","buyers","sellers","marketing"], s:"neighborhood guide buyer guide seller guide text link lead capture phone number make a copy canva ai template farm"},
+
+  {t:"Swipe-Through Posts People Actually Swipe", u:"/create-with-canva/guides/carousels/", k:"Guide", c:"Create with Canva",
+   d:"Three to five slides with a hook, a payoff and a next step. Listing highlights and the weekly headlines-versus-truth series.",
+   g:["social media","marketing","listings"], s:"carousel swipe through instagram slides pages multi page listing highlights headlines truth series download png"},
+
+  {t:"Your First Reel in Canva: 20 Minutes, Timer On", u:"/create-with-canva/guides/first-reel/", k:"Guide", c:"Create with Canva",
+   d:"Start from a template, swap in your clips, trim, add music with no words, and post it before the timer rings.",
+   g:["social media","listings","marketing"], s:"reel video timeline template replace clip trim split music audio mp4 short video ten second feature on camera"},
+
+  {t:"AI Presenters and Walkthrough Videos: Try Free First", u:"/create-with-canva/guides/ai-presenters/", k:"Guide", c:"Create with Canva",
+   d:"Test a talking presenter and a photo walkthrough for free on one small job, then decide whether it earned its keep.",
+   g:["ai","listings","marketing"], s:"avatar ai presenter d-id heygen descript talking head walkthrough video listing photos free before fee trust watermark"}
 ];
