@@ -6,8 +6,8 @@
   # Short share links. 302 on purpose: repoint to a future cycle's classes
   # without browsers caching the redirect forever. Query strings (?ref=...)
   # carry through automatically.
-  RewriteRule ^legal-update/?$ /c/legal-update-i [R=302,L,NE]
-  RewriteRule ^legal-updates/?$ /c/legal-update-i [R=302,L,NE]
+  RewriteRule ^legal-update/?$ /c/legal-update-i-ii [R=302,L,NE]
+  RewriteRule ^legal-updates/?$ /c/legal-update-i-ii [R=302,L,NE]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
