@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://classes.cnattitle.com/og/og-home.png?v=20261029">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0d1623;--dark:#080c14;--panel:#111827;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--white:#fff;--grey:#8892a4;--border:rgba(255,255,255,.07);--success:#34d399}
+:root{--navy:#0d1623;--dark:#080c14;--panel:#111827;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--white:#fff;--grey:#c3cbd8;--tile:#F7F5EF;--tile-ink:#0d1623;--tile-muted:#4a5466;--tile-line:#E2DCCD;--tile-blue:#1f5fa6;--brass:#B9974E;--good:#2E6B4F;--warn:#b42318;--border:rgba(255,255,255,.07);--success:#34d399}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:132px}
 body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -36,7 +36,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .nav-logo{height:32px;width:auto;flex-shrink:0;display:block}
 .nav-text{display:flex;flex-direction:column}
 .nav-title{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--white)}
-.nav-sub{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
+.nav-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;color:var(--grey);text-decoration:none;padding:0 12px;border-radius:6px;transition:color .2s,background .2s}
 .nav-link:hover{color:var(--white);background:rgba(255,255,255,.06)}
@@ -55,7 +55,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 
 /* HERO */
 .hero{max-width:1200px;margin:0 auto;padding:64px 24px 48px}
-.hero-eyebrow{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:16px}
+.hero-eyebrow{font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:16px}
 .hero-title{font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;margin-bottom:16px}
 .hero-title span{color:var(--yellow)}
 .hero-desc{font-size:15px;color:var(--grey);line-height:1.7;max-width:560px;margin-bottom:40px;font-weight:400}
@@ -65,85 +65,82 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .stat{display:flex;flex-direction:column;align-items:center;gap:3px;padding:18px 28px;border-right:1px solid var(--border)}
 .stat:last-child{border-right:none}
 .stat-num{font-size:22px;font-weight:800;color:var(--white)}
-.stat-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
+.stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
 .hero-divider{width:100%;height:1px;background:var(--border);margin:48px 0 0}
 
 /* SECTION COMMON */
 .section{max-width:1200px;margin:0 auto;padding:56px 24px}
 .section-header{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
-.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:600}
-.section-count{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}
+.section-label{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-light);font-weight:600}
+.section-count{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}
 .section-title{font-size:24px;font-weight:700;margin-bottom:32px;letter-spacing:-.3px}
 .section-title span{color:var(--yellow)}
 
-/* UPCOMING CLASSES */
-.upcoming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.class-card{background:linear-gradient(145deg,#0d1825,#0a1220);border:1px solid rgba(45,125,210,.2);border-radius:14px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;text-decoration:none;display:block}
-.class-card:hover{transform:translateY(-3px);border-color:rgba(45,125,210,.5)}
-.class-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--yellow))}
-.class-status{display:inline-flex;align-items:center;gap:6px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:16px}
-.class-status.open{color:var(--success)}
-.class-status.open::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success);display:block}
-.class-status.full{color:#f87171}
-.class-status.full::before{content:'';width:6px;height:6px;border-radius:50%;background:#f87171;display:block}
-.class-status.coming-soon{color:var(--grey)}
-.class-card-title{font-size:20px;font-weight:700;margin-bottom:4px;color:var(--white)}
-.class-card-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);margin-bottom:20px;font-weight:500}
-.class-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.class-meta-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--grey)}
-.class-meta-icon{width:14px;height:14px;flex-shrink:0;opacity:.55}
-.class-meta-val{color:var(--white);font-weight:500}
-.class-footer{display:flex;align-items:center;justify-content:space-between}
-.class-price{font-size:22px;font-weight:800;color:var(--yellow)}
-.class-price-sub{font-size:9px;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:1px}
-.class-cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 20px;border-radius:8px;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
-.class-cta:hover{background:var(--blue-light);transform:translateY(-1px)}
-.class-cta.coming-soon-btn{background:transparent;border:1px solid var(--border);color:var(--grey);cursor:default}
-.class-cta.coming-soon-btn:hover{transform:none;background:transparent}
+/* UPCOMING CLASSES: light tiles on the navy page (CNAT Design System bright
+   surface: warm paper, navy ink, brass top rule, square corners) so dates,
+   places and prices read at a glance. Facts are label/value rows. */
+.upcoming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;align-items:stretch}
+.class-card{background:var(--tile);color:var(--tile-ink);border-top:3px solid var(--brass);padding:22px;position:relative;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+.class-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.36)}
+.class-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
+.class-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.class-status::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor;display:block}
+.class-status.open{color:var(--good)}
+.class-status.full,.class-status.rescheduling{color:var(--warn)}
+.class-status.coming-soon{color:var(--tile-muted)}
+.class-series{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--tile-blue);margin-bottom:6px}
+.class-card-title{font-size:22px;font-weight:800;line-height:1.2;color:var(--tile-ink);margin-bottom:6px;text-wrap:balance}
+.class-card-sub{font-size:15px;font-weight:500;line-height:1.45;color:var(--tile-muted);margin-bottom:16px}
+.class-facts{margin:0 0 20px;border-top:1px solid var(--tile-line)}
+.class-fact{display:grid;grid-template-columns:4.4rem minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--tile-line);align-items:baseline}
+.class-fact dt{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;color:var(--tile-muted)}
+.class-fact dd{margin:0;font-size:16px;font-weight:600;line-height:1.4;color:var(--tile-ink);min-width:0}
+.class-fact dd small{display:block;font-size:15px;font-weight:500;color:var(--tile-muted)}
+.class-cta{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 20px;background:var(--tile-ink);color:#fff;border:1.5px solid var(--tile-ink);border-radius:6px;font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.2px;transition:background .15s,color .15s}
+.class-card:hover .class-cta{background:var(--tile);color:var(--tile-ink)}
+.class-cta.coming-soon-btn,.class-card:hover .class-cta.coming-soon-btn{background:transparent;color:var(--tile-muted);border-color:var(--tile-line)}
 .no-classes{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:48px;text-align:center}
-.no-classes p{color:var(--grey);font-size:13px}
-.class-status.rescheduling{color:#f87171}
-.class-card.rescheduling{cursor:default;border-color:rgba(248,113,113,.3)}
-.class-card.rescheduling:hover{transform:none;border-color:rgba(248,113,113,.3)}
-.class-card.rescheduling .class-status,
-.class-card.rescheduling .class-card-title,
-.class-card.rescheduling .class-card-sub,
-.class-card.rescheduling .class-meta,
-.class-card.rescheduling .class-footer{opacity:.4}
-.reschedule-banner{background:#dc2626;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:9px 12px;margin:-28px -28px 20px;position:relative}
-.private-banner{background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:9px 12px;margin:-28px -28px 20px;position:relative}
+.no-classes p{color:var(--grey);font-size:15px}
+.class-card.rescheduling{cursor:default}
+.class-card.rescheduling:hover{transform:none}
+.class-card.rescheduling .class-card-title,.class-card.rescheduling .class-card-sub,.class-card.rescheduling .class-facts{opacity:.5}
+.reschedule-banner,.private-banner{color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:10px 12px;margin:-22px -22px 18px;position:relative}
+.reschedule-banner{background:var(--warn)}
+.private-banner{background:var(--tile-blue)}
 
 /* CATALOG FILTERS */
 .catalog-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.filter-btn{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:12px 18px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--grey);cursor:pointer;transition:all .2s;min-height:44px}
+.filter-btn{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:12px 18px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--grey);cursor:pointer;transition:all .2s;min-height:44px}
 .filter-btn:hover{border-color:rgba(255,255,255,.15);color:var(--white)}
 .filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
-/* COURSE CATALOG */
+/* COURSE CATALOG: the same light tile, flatter (no button; the whole tile
+   opens the course page). */
 .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.course-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;transition:border-color .2s,transform .2s;text-decoration:none;display:block;color:inherit}
-.course-card:hover{border-color:rgba(45,125,210,.3);transform:translateY(-2px)}
+.course-card{background:var(--tile);color:var(--tile-ink);border-top:3px solid var(--tile-line);padding:20px 22px;display:flex;flex-direction:column;text-decoration:none;transition:transform .2s,border-color .2s}
+.course-card:hover{transform:translateY(-2px);border-top-color:var(--brass)}
+.course-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
 .course-card.hidden{display:none}
-.course-hours-badge{position:absolute;top:20px;right:20px;font-size:9px;font-weight:700;letter-spacing:.5px;padding:4px 10px;border-radius:20px;border:1px solid}
-.course-name{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px;line-height:1.3;padding-right:60px}
-.course-tagline{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:600;margin-bottom:12px}
-.course-desc{font-size:13px;color:#d9dee6;line-height:1.6;margin-bottom:16px}
-.course-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.course-num{font-size:9px;color:var(--grey);letter-spacing:1px}
-.course-cta-text{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);opacity:0;transition:opacity .2s}
-.course-card:hover .course-cta-text{opacity:1}
+.course-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.course-name{font-size:18px;font-weight:800;line-height:1.25;color:var(--tile-ink);text-wrap:balance;min-width:0}
+.course-hours{flex-shrink:0;font-size:13px;font-weight:700;color:var(--tile-ink);white-space:nowrap}
+.course-tagline{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--tile-blue);font-weight:700;margin-bottom:10px}
+.course-desc{font-size:15px;color:var(--tile-muted);line-height:1.55;margin-bottom:16px}
+.course-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid var(--tile-line)}
+.course-num{font-size:13px;color:var(--tile-muted)}
+.course-cta-text{font-size:14px;font-weight:700;color:var(--tile-blue)}
 
 /* FOOTER */
 .site-footer{background:var(--dark);border-top:1px solid var(--border);padding:40px 24px;margin-top:24px}
 .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start}
-.footer-block-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:10px}
+.footer-block-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-light);font-weight:600;margin-bottom:10px}
 .footer-block-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
-.footer-block-detail{font-size:11px;color:var(--grey);line-height:1.8}
+.footer-block-detail{font-size:14px;color:var(--grey);line-height:1.8}
 .footer-block-detail a{color:var(--blue);text-decoration:none}
 .footer-block-detail a:hover{color:var(--blue-light)}
 .footer-bottom{max-width:1200px;margin:24px auto 0;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.footer-legal{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}
-.footer-tagline{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
+.footer-legal{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}
+.footer-tagline{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
 .footer-tagline span{color:var(--yellow)}
 
 @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
@@ -219,10 +216,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
   <h2 class="section-title">All <span>CNAT Courses</span></h2>
   <div class="catalog-filters">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="1">1 Hr</button>
-    <button class="filter-btn" data-filter="2">2 Hrs</button>
-    <button class="filter-btn" data-filter="3">3 Hrs</button>
-    <button class="filter-btn" data-filter="4">4 Hrs</button>
+    <button class="filter-btn" data-filter="1">1 hour</button>
+    <button class="filter-btn" data-filter="2">2 hours</button>
+    <button class="filter-btn" data-filter="3">3 hours</button>
+    <button class="filter-btn" data-filter="4">4 hours</button>
   </div>
   <div class="catalog-grid" id="catalogGrid"></div>
 </div>
@@ -265,7 +262,7 @@ function loadUpcoming() {
   // (undated / "Ongoing") must stay visible, hence the or-filter. Unlisted
   // classes never appear here at all; their /c/ page still works by link.
   var nowIso = new Date().toISOString();
-  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&unlisted=eq.false&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&unlisted=eq.false&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label,series_name,series_part', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
     .then(function (r) { return r.json(); })
     .then(function (rows) {
       rows = rows || [];
@@ -290,7 +287,7 @@ function loadUpcoming() {
             price: c.bundle_price_cents ? (c.bundle_price_cents / 100) : 0,
             priceLabel: c.bundle_price_cents ? ('$' + (c.bundle_price_cents / 100)) : '',
             priceSub: 'both classes' + (c.price_label ? ' · or ' + c.price_label + ' each' : ''),
-            private: false, privateLabel: ''
+            private: false, privateLabel: '', bundle: true
           });
           return;
         }
@@ -300,7 +297,8 @@ function loadUpcoming() {
           location: c.location || '', hours: c.ce_hours || '', status: c.status || 'open',
           courseNumbers: c.course_numbers || [], registerUrl: c.register_url || ('/c/' + c.slug),
           price: c.price_cents ? (c.price_cents / 100) : 0, priceLabel: c.price_label || '', priceSub: c.price_sub || '',
-          private: c.is_private || false, privateLabel: c.private_label || ''
+          private: c.is_private || false, privateLabel: c.private_label || '',
+          seriesName: c.series_name || '', seriesPart: c.series_part || null
         });
       });
       UPCOMING = cards;
@@ -326,22 +324,6 @@ const CATALOG = [
   { name:"Video Marketing", tagline:"Cinematic Strategies", desc:"Step out of your comfort zone and into video marketing. This medium isn't going away, and neither should you.", hours:1, num:"", slug:"video-marketing" },
   { name:"Water Your Rights", tagline:"Rules and Regulations", desc:"A concise guide to Texas water rights for real estate agents and the impact on property transactions.", hours:1, num:"", slug:"water-your-rights" }
 ];
-
-// ─── INLINE SVG ICONS ──────────────────────────────────────────────────────
-const ICONS = {
-  cal:   '<svg class="class-meta-icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><line x1="1" y1="5.5" x2="13" y2="5.5" stroke="currentColor" stroke-width="1.2"/><line x1="4" y1="1" x2="4" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10" y1="1" x2="10" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
-  clock: '<svg class="class-meta-icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><polyline points="7,4 7,7 9.5,7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  pin:   '<svg class="class-meta-icon" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5" r="1.2" fill="currentColor"/></svg>',
-  grad:  '<svg class="class-meta-icon" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,5 7,9 1,5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M3.5 6.5v3C3.5 11 5 12.5 7 12.5s3.5-1.5 3.5-2.5v-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
-};
-
-// ─── HOURS COLORS ──────────────────────────────────────────────────────────
-const hoursColors = {
-  1: { bg:'rgba(45,125,210,.1)',  border:'rgba(45,125,210,.25)',  text:'#4a9ae8' },
-  2: { bg:'rgba(250,237,54,.07)', border:'rgba(250,237,54,.25)',  text:'#faed36' },
-  3: { bg:'rgba(52,211,153,.07)', border:'rgba(52,211,153,.25)',  text:'#34d399' },
-  4: { bg:'rgba(248,113,113,.07)',border:'rgba(248,113,113,.25)', text:'#f87171' }
-};
 
 // ─── OUTPUT ESCAPING ───────────────────────────────────────────────────────
 // Class fields come from the database and are interpolated into innerHTML
@@ -384,38 +366,45 @@ function renderUpcoming() {
     const isFull = statusClass === 'full';
     const isSoon = statusClass === 'coming-soon';
     const isResched = statusClass === 'rescheduling';
-    const statusLabel = isOpen ? 'Registration Open' : isFull ? 'Class Full' : isResched ? 'Rescheduling' : 'Coming Soon';
-    const ctaLabel = isOpen ? 'Register Now' : isFull ? 'Join Waitlist' : isResched ? 'New Date TBA' : 'Notify Me';
+    const statusLabel = isOpen ? 'Registration open' : isFull ? 'Class full' : isResched ? 'Rescheduling' : 'Coming soon';
+    const ctaLabel = isOpen ? 'Register' : isFull ? 'Join waitlist' : isResched ? 'New date TBA' : 'Notify me';
     const ctaClass = (isSoon || isResched) ? 'class-cta coming-soon-btn' : 'class-cta';
     const cardTag = isOpen ? 'a' : 'div';
     const hrefAttr = isOpen ? `href="${esc(safeHref(c.registerUrl))}"` : '';
     // The CE row renders only when the class actually carries CE hours. Non-CE
     // events (sponsor lunch and learns) must never imply TREC credit.
     const ceHours = Number(c.hours) || 0;
-    const courseNums = c.courseNumbers && c.courseNumbers.length ? ' · #' + c.courseNumbers.join(' / #') : '';
+    const courseNums = c.courseNumbers && c.courseNumbers.length ? '#' + c.courseNumbers.join(' / #') : '';
     const ceRow = ceHours > 0
-      ? `<div class="class-meta-row">${ICONS.grad}<span class="class-meta-val">${esc(ceHours)} CE Hours${esc(courseNums)}</span></div>`
+      ? `<div class="class-fact"><dt>CE</dt><dd>${esc(ceHours)} ${ceHours === 1 ? 'hour' : 'hours'}${courseNums ? `<small>${esc(courseNums)}</small>` : ''}</dd></div>`
       : '';
-    // Free events read "Free", never "$0".
+    // Free events read "Free", never "$0". "Free/$10 for CE Credit" reads as
+    // "Free · $10 for CE Credit". A bundle keeps its "or $25 each" line.
     const priceNum = Number(c.price) || 0;
-    const priceText = c.priceLabel ? esc(c.priceLabel) : (priceNum > 0 ? '$' + esc(priceNum) : 'Free');
-    const priceSubText = c.priceSub ? esc(c.priceSub) : (priceNum > 0 ? 'per person' : 'to attend');
+    const priceText = c.priceLabel ? esc(c.priceLabel).replace(/\s*\/\s*/g, ' &middot; ') : (priceNum > 0 ? '$' + esc(priceNum) : 'Free');
+    // The note under the price shows only when it adds a different amount
+    // ("or $25 each"), not when it restates the price in other words.
+    const money = s => (String(s || '').match(/\$\d+(?:\.\d{2})?/g) || []).join(',');
+    const priceSmall = c.priceSub && !(money(c.priceLabel) && money(c.priceLabel) === money(c.priceSub)) && (c.bundle || money(c.priceSub)) ? `<small>${esc(c.priceSub)}</small>` : '';
+    // A series part shows "Foreclosure Series · Part 2" above its own name.
+    const sfx = c.seriesName ? ' | ' + c.seriesName + ' Part ' + c.seriesPart : '';
+    const isPart = sfx && c.title.slice(-sfx.length) === sfx;
+    const title = isPart ? c.title.slice(0, -sfx.length) : c.title;
+    const seriesLine = isPart ? `<div class="class-series">${esc(c.seriesName)} &middot; Part ${esc(c.seriesPart)}</div>` : '';
     const banner = isResched ? '<div class="reschedule-banner">Rescheduling: New Date To Be Announced</div>' : (c.private ? `<div class="private-banner">Private &middot; ${esc(c.privateLabel || 'Invite Only')}</div>` : '');
     return `<${cardTag} class="class-card ${statusClass}" ${hrefAttr}>
       ${banner}
       <div class="class-status ${statusClass}">${statusLabel}</div>
-      <div class="class-card-title">${esc(c.title)}</div>
-      <div class="class-card-sub">${esc(c.tagline)}</div>
-      <div class="class-meta">
-        <div class="class-meta-row">${ICONS.cal}<span class="class-meta-val">${esc(c.date)}</span></div>
-        <div class="class-meta-row">${ICONS.clock}<span class="class-meta-val">${esc(c.time)}</span></div>
-        <div class="class-meta-row">${ICONS.pin}<span class="class-meta-val">${esc(c.location)}</span></div>
+      ${seriesLine}
+      <div class="class-card-title">${esc(title)}</div>
+      ${c.tagline ? `<div class="class-card-sub">${esc(c.tagline)}</div>` : ''}
+      <dl class="class-facts">
+        <div class="class-fact"><dt>When</dt><dd>${esc(c.date)}${c.time ? `<small>${esc(c.time)}</small>` : ''}</dd></div>
+        ${c.location ? `<div class="class-fact"><dt>Where</dt><dd>${esc(c.location)}</dd></div>` : ''}
         ${ceRow}
-      </div>
-      <div class="class-footer">
-        <div><div class="class-price">${priceText}</div><div class="class-price-sub">${priceSubText}</div></div>
-        <span class="${ctaClass}">${ctaLabel} &rarr;</span>
-      </div>
+        <div class="class-fact"><dt>Cost</dt><dd>${priceText}${priceSmall}</dd></div>
+      </dl>
+      <span class="${ctaClass}">${isOpen ? 'Register' : ctaLabel} &rarr;</span>
     </${cardTag}>`;
   }).join('');
 }
@@ -424,14 +413,12 @@ function renderUpcoming() {
 function renderCatalog(filter) {
   const grid = document.getElementById('catalogGrid');
   grid.innerHTML = CATALOG.map(c => {
-    const hc = hoursColors[c.hours] || hoursColors[1];
     const hidden = filter && filter !== 'all' && String(c.hours) !== filter ? ' hidden' : '';
     return `<a class="course-card${hidden}" data-hours="${c.hours}" href="/courses/${c.slug}/">
-      <div class="course-hours-badge" style="background:${hc.bg};border-color:${hc.border};color:${hc.text}">${c.hours} ${c.hours === 1 ? 'Hr' : 'Hrs'}</div>
-      <div class="course-name">${c.name}</div>
+      <div class="course-head"><div class="course-name">${c.name}</div><div class="course-hours">${c.hours} CE ${c.hours === 1 ? 'hour' : 'hours'}</div></div>
       <div class="course-tagline">${c.tagline}</div>
       <div class="course-desc">${c.desc}</div>
-      <div class="course-footer">${c.num ? `<span class="course-num">#${c.num}</span>` : '<span></span>'}<span class="course-cta-text">View &rarr;</span></div>
+      <div class="course-footer"><span class="course-num">${c.num ? 'TREC #' + c.num : ''}</span><span class="course-cta-text">Course details &rarr;</span></div>
     </a>`;
   }).join('');
 }
