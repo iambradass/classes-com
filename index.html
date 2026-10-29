@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://classes.cnattitle.com/og/og-home.png?v=20261029">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0d1623;--dark:#080c14;--panel:#111827;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--white:#fff;--grey:#c3cbd8;--tile:#F7F5EF;--tile-ink:#0d1623;--tile-muted:#4a5466;--tile-line:#E2DCCD;--tile-blue:#1f5fa6;--brass:#B9974E;--good:#2E6B4F;--warn:#b42318;--border:rgba(255,255,255,.07);--success:#34d399}
+:root{--navy:#0d1623;--dark:#080c14;--panel:#111827;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--white:#fff;--grey:#c3cbd8;--ink:#0d1623;--ink-soft:#2f3a4b;--ink-muted:#4a5466;--ink-faint:#8f99aa;--ink-blue:#1f5fa6;--warn:#b42318;--border:rgba(255,255,255,.07);--success:#34d399}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:132px}
 body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -73,40 +73,45 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .section-header{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
 .section-label{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-light);font-weight:600}
 .section-count{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}
-.section-title{font-size:24px;font-weight:700;margin-bottom:32px;letter-spacing:-.3px}
+.section-title{font-size:24px;font-weight:700;margin-bottom:32px;letter-spacing:-.3px;text-wrap:balance}
 .section-title span{color:var(--yellow)}
 
-/* UPCOMING CLASSES: light tiles on the navy page (CNAT Design System bright
-   surface: warm paper, navy ink, brass top rule, square corners) so dates,
-   places and prices read at a glance. Facts are label/value rows. */
-.upcoming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;align-items:stretch}
-.class-card{background:var(--tile);color:var(--tile-ink);border-top:3px solid var(--brass);padding:22px;position:relative;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
-.class-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.36)}
+/* UPCOMING CLASSES: an agenda. Sessions are grouped by day: the date sits in
+   a gutter on the navy page (yellow day numeral) and each session is one white
+   card. Time, place and price are plain lines, no label column. */
+.agenda{display:flex;flex-direction:column;gap:28px}
+.day{display:grid;grid-template-columns:88px minmax(0,1fr);gap:20px;align-items:start}
+.day-date{position:sticky;top:84px;display:flex;flex-direction:column;align-items:flex-start;padding-top:16px;line-height:1}
+.day-mon,.day-wd{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.day-wd{font-weight:600;color:var(--grey)}
+.day-num{font-size:46px;font-weight:800;letter-spacing:-1px;color:var(--yellow);margin:6px 0 7px}
+.day-num.tba{font-size:22px;letter-spacing:1px}
+.day-list{display:flex;flex-direction:column;gap:12px;min-width:0}
+.class-card{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:14px 36px;align-items:center;background:#fff;color:var(--ink);padding:22px 26px;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.25),0 10px 28px rgba(0,0,0,.22);transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s cubic-bezier(.16,1,.3,1)}
+a.class-card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.34)}
 .class-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
-.class-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
-.class-status::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor;display:block}
-.class-status.open{color:var(--good)}
-.class-status.full,.class-status.rescheduling{color:var(--warn)}
-.class-status.coming-soon{color:var(--tile-muted)}
-.class-series{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--tile-blue);margin-bottom:6px}
-.class-card-title{font-size:22px;font-weight:800;line-height:1.2;color:var(--tile-ink);margin-bottom:6px;text-wrap:balance}
-.class-card-sub{font-size:15px;font-weight:500;line-height:1.45;color:var(--tile-muted);margin-bottom:16px}
-.class-facts{margin:0 0 20px;border-top:1px solid var(--tile-line)}
-.class-fact{display:grid;grid-template-columns:4.4rem minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--tile-line);align-items:baseline}
-.class-fact dt{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;color:var(--tile-muted)}
-.class-fact dd{margin:0;font-size:16px;font-weight:600;line-height:1.4;color:var(--tile-ink);min-width:0}
-.class-fact dd small{display:block;font-size:15px;font-weight:500;color:var(--tile-muted)}
-.class-cta{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 20px;background:var(--tile-ink);color:#fff;border:1.5px solid var(--tile-ink);border-radius:6px;font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:.2px;transition:background .15s,color .15s}
-.class-card:hover .class-cta{background:var(--tile);color:var(--tile-ink)}
-.class-cta.coming-soon-btn,.class-card:hover .class-cta.coming-soon-btn{background:transparent;color:var(--tile-muted);border-color:var(--tile-line)}
+.cc-main{min-width:0}
+.cc-flag{font-size:14px;font-weight:700;color:var(--warn);margin-bottom:6px}
+.cc-flag.soon{color:var(--ink-muted)}
+.cc-flag.private{color:var(--ink-blue)}
+.cc-series{font-size:14px;font-weight:700;color:var(--ink-blue);margin-bottom:4px}
+.cc-title{font-size:22px;font-weight:800;line-height:1.2;letter-spacing:-.2px;color:var(--ink);text-wrap:balance}
+.cc-tag{font-size:15px;font-weight:500;line-height:1.45;color:var(--ink-muted);margin-top:4px;text-wrap:pretty}
+.cc-when{margin-top:12px;font-size:16px;line-height:1.45;color:var(--ink-soft);text-wrap:pretty}
+.cc-time{font-weight:700;color:var(--ink)}
+.cc-time + .cc-place::before{content:"\00B7";margin:0 10px;color:var(--ink-faint)}
+.cc-also{display:block}
+.cc-aside{display:flex;flex-direction:column;gap:12px;text-align:right}
+.cc-price{font-size:15px;line-height:1.4;color:var(--ink-soft)}
+.cc-price b{display:block;font-size:20px;font-weight:800;color:var(--ink)}
+.cc-price span{display:block}
+.cc-cta{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;background:var(--ink);color:#fff;border:1.5px solid var(--ink);border-radius:6px;font-size:16px;font-weight:700;transition:background .15s,color .15s}
+a.class-card:hover .cc-cta{background:#fff;color:var(--ink)}
+.cc-cta.off{background:transparent;color:var(--ink-muted);border-color:#cfd5de}
+.class-card.rescheduling :is(.cc-title,.cc-tag,.cc-when){opacity:.6}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .no-classes{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:48px;text-align:center}
 .no-classes p{color:var(--grey);font-size:15px}
-.class-card.rescheduling{cursor:default}
-.class-card.rescheduling:hover{transform:none}
-.class-card.rescheduling .class-card-title,.class-card.rescheduling .class-card-sub,.class-card.rescheduling .class-facts{opacity:.5}
-.reschedule-banner,.private-banner{color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:10px 12px;margin:-22px -22px 18px;position:relative}
-.reschedule-banner{background:var(--warn)}
-.private-banner{background:var(--tile-blue)}
 
 /* CATALOG FILTERS */
 .catalog-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
@@ -114,21 +119,20 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .filter-btn:hover{border-color:rgba(255,255,255,.15);color:var(--white)}
 .filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
-/* COURSE CATALOG: the same light tile, flatter (no button; the whole tile
-   opens the course page). */
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.course-card{background:var(--tile);color:var(--tile-ink);border-top:3px solid var(--tile-line);padding:20px 22px;display:flex;flex-direction:column;text-decoration:none;transition:transform .2s,border-color .2s}
-.course-card:hover{transform:translateY(-2px);border-top-color:var(--brass)}
+/* COURSE CATALOG: white cards in the same family as the sessions; the whole
+   card opens the course page. */
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.course-card{background:#fff;color:var(--ink);padding:20px 22px;display:flex;flex-direction:column;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s cubic-bezier(.16,1,.3,1)}
+.course-card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.25),0 14px 32px rgba(0,0,0,.3)}
 .course-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
 .course-card.hidden{display:none}
-.course-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
-.course-name{font-size:18px;font-weight:800;line-height:1.25;color:var(--tile-ink);text-wrap:balance;min-width:0}
-.course-hours{flex-shrink:0;font-size:13px;font-weight:700;color:var(--tile-ink);white-space:nowrap}
-.course-tagline{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--tile-blue);font-weight:700;margin-bottom:10px}
-.course-desc{font-size:15px;color:var(--tile-muted);line-height:1.55;margin-bottom:16px}
-.course-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid var(--tile-line)}
-.course-num{font-size:13px;color:var(--tile-muted)}
-.course-cta-text{font-size:14px;font-weight:700;color:var(--tile-blue)}
+.course-name{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.2px;color:var(--ink);text-wrap:balance}
+.course-tagline{font-size:15px;font-weight:600;color:var(--ink-blue);margin-top:4px}
+.course-desc{font-size:15px;line-height:1.55;color:var(--ink-muted);margin:10px 0 18px;text-wrap:pretty}
+.course-foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.course-hours{font-size:15px;font-weight:700;color:var(--ink)}
+.course-num{display:block;font-size:13px;font-weight:500;color:var(--ink-muted);margin-top:3px}
+.course-go{font-size:15px;font-weight:700;color:var(--ink-blue);white-space:nowrap}
 
 /* FOOTER */
 .site-footer{background:var(--dark);border-top:1px solid var(--border);padding:40px 24px;margin-top:24px}
@@ -158,7 +162,17 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .section{padding:36px 16px}
 #upcoming.section{padding-top:24px}
 #upcoming .section-title{font-size:21px;margin-bottom:18px}
-.upcoming-grid,.catalog-grid{grid-template-columns:1fr}
+.catalog-grid{grid-template-columns:1fr}
+.day{grid-template-columns:50px minmax(0,1fr);gap:12px}
+.day-date{top:var(--stick-phone,108px);padding-top:18px}
+.day-mon,.day-wd{font-size:12px;letter-spacing:1.5px}
+.day-num{font-size:32px;margin:5px 0 6px}
+.class-card{grid-template-columns:minmax(0,1fr);padding:18px}
+.cc-title{font-size:20px}
+.cc-time,.cc-place{display:block}
+.cc-time + .cc-place::before{content:none}
+.cc-aside{text-align:left;gap:16px}
+.cc-price b{font-size:18px}
 .footer-inner{grid-template-columns:1fr}
 .footer-bottom{flex-direction:column;align-items:flex-start}
 }
@@ -205,7 +219,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
     <span class="section-count" id="upcomingCount"></span>
   </div>
   <h2 class="section-title">Register for an <span>Upcoming Session</span></h2>
-  <div class="upcoming-grid" id="upcomingGrid"></div>
+  <div class="agenda" id="upcomingGrid"></div>
 </div>
 
 <div class="section" id="catalog">
@@ -262,7 +276,7 @@ function loadUpcoming() {
   // (undated / "Ongoing") must stay visible, hence the or-filter. Unlisted
   // classes never appear here at all; their /c/ page still works by link.
   var nowIso = new Date().toISOString();
-  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&unlisted=eq.false&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label,series_name,series_part', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
+  fetch(SUPABASE_URL + '/rest/v1/classes?published=eq.true&unlisted=eq.false&or=(start_at.gte.' + nowIso + ',start_at.is.null)&order=start_at.asc&select=id,slug,start_at,title,tagline,date_display,time_display,location,ce_hours,course_numbers,status,register_url,price_cents,price_label,price_sub,is_private,private_label,bundle_with,bundle_price_cents,bundle_label,series_name,series_part', { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } })
     .then(function (r) { return r.json(); })
     .then(function (rows) {
       rows = rows || [];
@@ -286,8 +300,9 @@ function loadUpcoming() {
             registerUrl: c.register_url || ('/c/' + c.slug),
             price: c.bundle_price_cents ? (c.bundle_price_cents / 100) : 0,
             priceLabel: c.bundle_price_cents ? ('$' + (c.bundle_price_cents / 100)) : '',
-            priceSub: 'both classes' + (c.price_label ? ' · or ' + c.price_label + ' each' : ''),
-            private: false, privateLabel: '', bundle: true
+            priceSub: 'for both classes' + (c.price_label ? ', or ' + c.price_label + ' each' : ''),
+            private: false, privateLabel: '', bundle: true,
+            startAt: c.start_at, alsoDate: p.date_display || ''
           });
           return;
         }
@@ -298,7 +313,8 @@ function loadUpcoming() {
           courseNumbers: c.course_numbers || [], registerUrl: c.register_url || ('/c/' + c.slug),
           price: c.price_cents ? (c.price_cents / 100) : 0, priceLabel: c.price_label || '', priceSub: c.price_sub || '',
           private: c.is_private || false, privateLabel: c.private_label || '',
-          seriesName: c.series_name || '', seriesPart: c.series_part || null
+          seriesName: c.series_name || '', seriesPart: c.series_part || null,
+          startAt: c.start_at
         });
       });
       UPCOMING = cards;
@@ -347,6 +363,97 @@ function safeHref(u) {
 }
 
 // ─── RENDER UPCOMING ───────────────────────────────────────────────────────
+// Day parts in Texas time for the date gutter; null when a class is undated.
+const TZ = 'America/Chicago';
+function dayOf(iso) {
+  const d = iso ? new Date(iso) : null;
+  if (!d || isNaN(d)) return null;
+  const f = o => new Intl.DateTimeFormat('en-US', Object.assign({ timeZone: TZ }, o)).format(d);
+  return { key: f({ year: 'numeric', month: '2-digit', day: '2-digit' }), mon: f({ month: 'short' }), num: f({ day: 'numeric' }),
+    wd: f({ weekday: 'short' }), full: f({ weekday: 'long', month: 'long', day: 'numeric' }) };
+}
+// "9:30 AM - 11:00 AM" reads "9:30 to 11 AM"; "11:00 AM - 12:00 PM" reads "11 AM to 12 PM".
+function timeText(t) {
+  const s = String(t || '').trim();
+  const m = s.match(/^(\d{1,2})(?::(\d{2}))?\s*([AP]M)\s*(?:-|–|to)\s*(\d{1,2})(?::(\d{2}))?\s*([AP]M)$/i);
+  if (!m) return s.replace(/\s+(?:-|–)\s+/g, ' to ');
+  const hm = (h, mm) => h + (mm && mm !== '00' ? ':' + mm : '');
+  const a1 = m[3].toUpperCase(), a2 = m[6].toUpperCase();
+  return a1 === a2 ? hm(m[1], m[2]) + ' to ' + hm(m[4], m[5]) + ' ' + a2 : hm(m[1], m[2]) + ' ' + a1 + ' to ' + hm(m[4], m[5]) + ' ' + a2;
+}
+// "Venue, street, suite, City, TX 76109" shows as "Venue, City" (or just the
+// venue when it already names the city). The full address is on the class page.
+function placeText(loc) {
+  const parts = String(loc || '').split(',').map(x => x.trim()).filter(Boolean);
+  if (parts.length < 3) return parts.join(', ');
+  let i = parts.length - 1;
+  if (/^(TX|Texas)\b/i.test(parts[i])) i--;
+  const city = parts[i], venue = parts[0];
+  if (venue.toLowerCase().indexOf(city.toLowerCase()) !== -1) return venue;
+  return venue + ', ' + city;
+}
+// Price first, then what it covers. "Free/$10 for CE Credit" on a 1-hour class
+// reads "Free" + "$10 for 1 CE hour". Free events read "Free", never "$0".
+function priceHtml(c, ceHours) {
+  const hrs = ceHours > 0 ? ceHours + ' CE ' + (ceHours === 1 ? 'hour' : 'hours') : '';
+  const priceNum = Number(c.price) || 0;
+  const parts = String(c.priceLabel || (priceNum > 0 ? '$' + priceNum : 'Free')).split(/\s*\/\s*/);
+  const main = parts.shift();
+  const notes = [];
+  let hrsUsed = false;
+  parts.forEach(x => {
+    if (hrs && /for\s+CE\s+credit/i.test(x)) { notes.push(x.replace(/for\s+CE\s+credit/i, 'for ' + hrs)); hrsUsed = true; }
+    else notes.push(x);
+  });
+  // The note under the price shows only when it adds a different amount
+  // ("or $25 each"), not when it restates the price in other words.
+  const money = s => (String(s || '').match(/\$\d+(?:\.\d{2})?/g) || []).join(',');
+  if (c.bundle && c.priceSub) notes.unshift(c.priceSub);
+  else if (c.priceSub && money(c.priceSub) && money(c.priceSub) !== money(c.priceLabel)) notes.push(c.priceSub);
+  if (hrs && !hrsUsed) notes.push(hrs);
+  return '<b>' + esc(main) + '</b>' + notes.map(n => '<span>' + esc(n) + '</span>').join('');
+}
+
+function cardHtml(c, d) {
+  const statusClass = STATUS_CLASS[c.status] || 'coming-soon';
+  const isOpen = statusClass === 'open';
+  const isFull = statusClass === 'full';
+  const isResched = statusClass === 'rescheduling';
+  const isSoon = statusClass === 'coming-soon';
+  const ctaLabel = isOpen ? 'Register' : isFull ? 'Join waitlist' : isResched ? 'New date TBA' : 'Notify me';
+  const tag = isOpen ? 'a' : 'div';
+  const hrefAttr = isOpen ? ` href="${esc(safeHref(c.registerUrl))}"` : '';
+  // CE shows only when the class carries CE hours. Non-CE events (sponsor
+  // lunch and learns) must never imply TREC credit.
+  const ceHours = Number(c.hours) || 0;
+  const flag = isResched ? '<p class="cc-flag">Rescheduling: new date to be announced</p>'
+    : isFull ? '<p class="cc-flag">Class full</p>'
+    : isSoon ? '<p class="cc-flag soon">Coming soon</p>' : '';
+  const priv = c.private ? `<p class="cc-flag private">Private &middot; ${esc(c.privateLabel || 'Invite only')}</p>` : '';
+  // A series part shows "Foreclosure Series · Part 2" above its own name.
+  const sfx = c.seriesName ? ' | ' + c.seriesName + ' Part ' + c.seriesPart : '';
+  const isPart = sfx && c.title.slice(-sfx.length) === sfx;
+  const title = isPart ? c.title.slice(0, -sfx.length) : c.title;
+  const seriesLine = isPart ? `<p class="cc-series">${esc(c.seriesName)} &middot; Part ${esc(c.seriesPart)}</p>` : '';
+  // Undated classes keep their wording ("Ongoing") on the time line.
+  const dateWords = !d && c.date && c.date !== 'TBA' ? c.date + (c.time ? ', ' : '') : '';
+  const time = dateWords + (c.time ? timeText(c.time) : '');
+  const place = placeText(c.location);
+  const also = c.alsoDate ? `<span class="cc-also">Also meets ${esc(c.alsoDate.replace(/,?\s*\d{4}\s*$/, ''))}</span>` : '';
+  return `<${tag} class="class-card ${statusClass}"${hrefAttr}>
+      <div class="cc-main">
+        ${priv}${flag}${seriesLine}
+        <h3 class="cc-title"><span class="sr-only">${esc(d ? d.full : 'Date to be announced')}: </span>${esc(title)}</h3>
+        ${c.tagline ? `<p class="cc-tag">${esc(c.tagline)}</p>` : ''}
+        <p class="cc-when">${time ? `<span class="cc-time">${esc(time)}</span>` : ''}${place ? `<span class="cc-place">${esc(place)}</span>` : ''}${also}</p>
+      </div>
+      <div class="cc-aside">
+        <p class="cc-price">${priceHtml(c, ceHours)}</p>
+        <span class="cc-cta${isOpen ? '' : ' off'}">${ctaLabel}${isOpen ? ' &rarr;' : ''}</span>
+      </div>
+    </${tag}>`;
+}
+
 function renderUpcoming() {
   const grid = document.getElementById('upcomingGrid');
   const count = document.getElementById('upcomingCount');
@@ -360,52 +467,20 @@ function renderUpcoming() {
     return;
   }
 
-  grid.innerHTML = UPCOMING.map(c => {
-    const statusClass = STATUS_CLASS[c.status] || 'coming-soon';
-    const isOpen = statusClass === 'open';
-    const isFull = statusClass === 'full';
-    const isSoon = statusClass === 'coming-soon';
-    const isResched = statusClass === 'rescheduling';
-    const statusLabel = isOpen ? 'Registration open' : isFull ? 'Class full' : isResched ? 'Rescheduling' : 'Coming soon';
-    const ctaLabel = isOpen ? 'Register' : isFull ? 'Join waitlist' : isResched ? 'New date TBA' : 'Notify me';
-    const ctaClass = (isSoon || isResched) ? 'class-cta coming-soon-btn' : 'class-cta';
-    const cardTag = isOpen ? 'a' : 'div';
-    const hrefAttr = isOpen ? `href="${esc(safeHref(c.registerUrl))}"` : '';
-    // The CE row renders only when the class actually carries CE hours. Non-CE
-    // events (sponsor lunch and learns) must never imply TREC credit.
-    const ceHours = Number(c.hours) || 0;
-    const courseNums = c.courseNumbers && c.courseNumbers.length ? '#' + c.courseNumbers.join(' / #') : '';
-    const ceRow = ceHours > 0
-      ? `<div class="class-fact"><dt>CE</dt><dd>${esc(ceHours)} ${ceHours === 1 ? 'hour' : 'hours'}${courseNums ? `<small>${esc(courseNums)}</small>` : ''}</dd></div>`
-      : '';
-    // Free events read "Free", never "$0". "Free/$10 for CE Credit" reads as
-    // "Free · $10 for CE Credit". A bundle keeps its "or $25 each" line.
-    const priceNum = Number(c.price) || 0;
-    const priceText = c.priceLabel ? esc(c.priceLabel).replace(/\s*\/\s*/g, ' &middot; ') : (priceNum > 0 ? '$' + esc(priceNum) : 'Free');
-    // The note under the price shows only when it adds a different amount
-    // ("or $25 each"), not when it restates the price in other words.
-    const money = s => (String(s || '').match(/\$\d+(?:\.\d{2})?/g) || []).join(',');
-    const priceSmall = c.priceSub && !(money(c.priceLabel) && money(c.priceLabel) === money(c.priceSub)) && (c.bundle || money(c.priceSub)) ? `<small>${esc(c.priceSub)}</small>` : '';
-    // A series part shows "Foreclosure Series · Part 2" above its own name.
-    const sfx = c.seriesName ? ' | ' + c.seriesName + ' Part ' + c.seriesPart : '';
-    const isPart = sfx && c.title.slice(-sfx.length) === sfx;
-    const title = isPart ? c.title.slice(0, -sfx.length) : c.title;
-    const seriesLine = isPart ? `<div class="class-series">${esc(c.seriesName)} &middot; Part ${esc(c.seriesPart)}</div>` : '';
-    const banner = isResched ? '<div class="reschedule-banner">Rescheduling: New Date To Be Announced</div>' : (c.private ? `<div class="private-banner">Private &middot; ${esc(c.privateLabel || 'Invite Only')}</div>` : '');
-    return `<${cardTag} class="class-card ${statusClass}" ${hrefAttr}>
-      ${banner}
-      <div class="class-status ${statusClass}">${statusLabel}</div>
-      ${seriesLine}
-      <div class="class-card-title">${esc(title)}</div>
-      ${c.tagline ? `<div class="class-card-sub">${esc(c.tagline)}</div>` : ''}
-      <dl class="class-facts">
-        <div class="class-fact"><dt>When</dt><dd>${esc(c.date)}${c.time ? `<small>${esc(c.time)}</small>` : ''}</dd></div>
-        ${c.location ? `<div class="class-fact"><dt>Where</dt><dd>${esc(c.location)}</dd></div>` : ''}
-        ${ceRow}
-        <div class="class-fact"><dt>Cost</dt><dd>${priceText}${priceSmall}</dd></div>
-      </dl>
-      <span class="${ctaClass}">${isOpen ? 'Register' : ctaLabel} &rarr;</span>
-    </${cardTag}>`;
+  // Rows arrive in start order, so sessions on the same day sit together.
+  const days = [];
+  UPCOMING.forEach(c => {
+    const d = dayOf(c.startAt);
+    const key = d ? d.key : 'tba';
+    const last = days[days.length - 1];
+    if (last && last.key === key) last.cards.push(c); else days.push({ key, d, cards: [c] });
+  });
+  grid.innerHTML = days.map(g => {
+    const first = g.cards[0];
+    const gutter = g.d
+      ? `<span class="day-mon">${esc(g.d.mon)}</span><span class="day-num">${esc(g.d.num)}</span><span class="day-wd">${esc(g.d.wd)}</span>`
+      : (!first.date || first.date === 'TBA' ? '<span class="day-mon">Date</span><span class="day-num tba">TBA</span>' : '');
+    return `<div class="day"><div class="day-date" aria-hidden="true">${gutter}</div><div class="day-list">${g.cards.map(c => cardHtml(c, g.d)).join('')}</div></div>`;
   }).join('');
 }
 
@@ -415,10 +490,10 @@ function renderCatalog(filter) {
   grid.innerHTML = CATALOG.map(c => {
     const hidden = filter && filter !== 'all' && String(c.hours) !== filter ? ' hidden' : '';
     return `<a class="course-card${hidden}" data-hours="${c.hours}" href="/courses/${c.slug}/">
-      <div class="course-head"><div class="course-name">${c.name}</div><div class="course-hours">${c.hours} CE ${c.hours === 1 ? 'hour' : 'hours'}</div></div>
-      <div class="course-tagline">${c.tagline}</div>
-      <div class="course-desc">${c.desc}</div>
-      <div class="course-footer"><span class="course-num">${c.num ? 'TREC #' + c.num : ''}</span><span class="course-cta-text">Course details &rarr;</span></div>
+      <h3 class="course-name">${c.name}</h3>
+      <p class="course-tagline">${c.tagline}</p>
+      <p class="course-desc">${c.desc}</p>
+      <div class="course-foot"><span><span class="course-hours">${c.hours} CE ${c.hours === 1 ? 'hour' : 'hours'}</span>${c.num ? `<span class="course-num">TREC #${c.num}</span>` : ''}</span><span class="course-go">Details &rarr;</span></div>
     </a>`;
   }).join('');
 }
