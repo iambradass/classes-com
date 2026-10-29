@@ -35,6 +35,30 @@
         .reg-confirmation{display:none;text-align:center;padding:20px 0 10px}.reg-confirmation.visible{display:block}.conf-check{width:50px;height:50px;border-radius:50%;background:rgba(52,211,153,.12);border:2px solid var(--success-green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;color:var(--success-green);animation:popIn .4s ease-out}@keyframes popIn{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}.conf-name{font-size:15px;font-weight:600;margin-bottom:4px}.conf-format{font-size:11px;color:var(--text-grey);letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}.conf-note{font-size:13px;color:#d9dee6;line-height:1.6;max-width:420px;margin:0 auto;background:rgba(45,125,210,.06);border:1px solid rgba(45,125,210,.2);border-radius:10px;padding:16px 18px}.conf-note strong{color:var(--accent-yellow);font-weight:600}.conf-redirect{font-size:12px;color:var(--text-grey);margin-top:14px}
         .state-msg{text-align:center;padding:60px 20px;color:var(--text-grey);font-size:14px}.state-msg a{color:var(--accent-blue-light);text-decoration:none}
         .page-footer{text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid rgba(26,35,50,.6)}.page-footer .tagline{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-grey);font-weight:400}.page-footer .tagline span{color:var(--accent-yellow)}.page-footer .provider{margin-top:8px;font-size:9px;color:#4a5568;letter-spacing:1px}
+        /* 2026-10-29: the class facts read as one list (Date, Time, Where, CE, Cost)
+           right under the title, left-aligned, so the form is reachable sooner. */
+        .class-hero{text-align:left;margin-bottom:18px}.class-hero .ch-eyebrow{font-size:12px;letter-spacing:1.6px}.class-hero h1{margin-bottom:0}
+        .info-strip{display:block;background:var(--bg-panel);border:1px solid #243047;border-radius:12px;padding:2px 18px;margin-bottom:20px}
+        .info-strip .info-tile,.info-strip .info-tile.lone-tile{display:grid;grid-template-columns:6.2rem minmax(0,1fr);column-gap:12px;align-items:baseline;background:none;border:0;border-top:1px solid #1f2b40;border-radius:0;padding:13px 0;text-align:left;width:auto;justify-self:auto}
+        .info-strip .info-tile:first-child{border-top:0}
+        .info-tile .tile-label{grid-column:1;grid-row:1 / span 2;font-size:12px;letter-spacing:1.2px;margin-bottom:0}
+        .info-tile .tile-value{grid-column:2;font-size:16px}
+        .info-tile .tile-meta{grid-column:2;font-size:13px;letter-spacing:.3px;text-transform:none;margin-top:2px;color:#b9c2d0;opacity:1}
+        .class-desc{margin-bottom:26px}.class-desc .ch-sub{font-size:16px;line-height:1.65;color:#c3cad6;text-align:left;max-width:none;margin:0;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+        .class-desc.open .ch-sub{display:block}
+        .desc-more{background:none;border:0;padding:10px 0;min-height:44px;color:var(--accent-blue-light);font:600 15px 'Montserrat',sans-serif;cursor:pointer}
+        #materialsCard .loc-card,#sponsorsCard .loc-card{align-items:flex-start;text-align:left;padding:18px}
+        #materialsCard .loc-icon,#sponsorsCard .loc-icon{display:none}
+        .loc-card .loc-type{font-size:12px;letter-spacing:1.2px}.loc-card .loc-name{font-size:16px}.loc-card .loc-address{font-size:14px;color:#b9c2d0}
+        .form-label{font-size:12px;letter-spacing:1.2px}.form-input{font-size:16px}.reg-card .reg-sub{font-size:15px}
+        .credit-option label .cr-name{font-size:15px}.credit-option label .cr-detail{font-size:12px;letter-spacing:.3px}
+        .submit-btn{font-size:17px;text-transform:none;letter-spacing:.3px}
+        .page-footer .provider{font-size:11px}
+        .reserve-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,21,32,.97);border-top:1px solid #243047}
+        .reserve-bar a{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:10px;background:var(--accent-blue);color:#fff;font:700 17px 'Montserrat',sans-serif;text-decoration:none}
+        #regCard{scroll-margin-top:16px}
+        @media(min-width:641px){.reserve-bar{display:none}}
+        @media(max-width:640px){.page-wrapper.has-bar{padding-bottom:110px}}
         @media(max-width:480px){.info-strip .info-tile.lone-tile{grid-column:auto;width:auto}.page-wrapper{padding:20px 16px 50px}.reg-card{padding:32px 22px}.reg-card h2{font-size:19px}.info-strip{grid-template-columns:1fr}.attendance-option label{padding:14px 10px}}
     </style>
 </head>
@@ -48,17 +72,20 @@
             <div class="class-hero">
                 <p class="ch-eyebrow" id="chEyebrow">CNAT Classes &amp; Events</p>
                 <h1 id="clsTitle"></h1>
-                <p class="ch-sub" id="clsSub"></p>
             </div>
 
             <div class="info-strip">
                 <div class="info-tile"><div class="tile-label">Date</div><div class="tile-value" id="clsDate"></div></div>
-                <div class="info-tile"><div class="tile-label">Time</div><div class="tile-value" id="clsTime"></div><div class="tile-meta">Central</div></div>
+                <div class="info-tile"><div class="tile-label">Time</div><div class="tile-value" id="clsTime"></div><div class="tile-meta">Central time</div></div>
+                <div class="info-tile"><div class="tile-label">Where</div><div class="tile-value" id="locStrip"></div><div class="tile-meta" id="locMeta"></div></div>
                 <div class="info-tile" id="ceTile"><div class="tile-label">CE Credit</div><div class="tile-value" id="clsHours"></div><div class="tile-meta" id="clsCourse"></div></div>
                 <div class="info-tile"><div class="tile-label">Cost</div><div class="tile-value yellow" id="clsCost"></div><div class="tile-meta" id="clsCostSub"></div></div>
             </div>
 
-            <div class="location-strip" id="locStrip"></div>
+            <div class="class-desc" id="descWrap">
+                <p class="ch-sub" id="clsSub"></p>
+                <button type="button" class="desc-more" id="descMore" hidden>Read more</button>
+            </div>
 
             <!-- The other upcoming parts of a class series (classes.series_id).
                  Hidden unless another published part is still ahead. -->
@@ -93,7 +120,7 @@
                     <div class="form-group" id="refGroup">
                         <label class="form-label" for="regRef">Referred by <span style="text-transform:none;letter-spacing:0;color:#4a5568;font-weight:400">(optional)</span></label>
                         <select class="form-input" id="regRef" name="sales_rep">
-                            <option value="">&mdash; Select your CNAT contact &mdash;</option>
+                            <option value="">Choose your CNAT contact</option>
                             <option value="jami_cortez">Jami Cortez</option>
                             <option value="shera_moffitt">Shera Moffitt</option>
                             <option value="kandi_patterson">Kandi Patterson</option>
@@ -102,7 +129,7 @@
                         </select>
                     </div>
                     <input type="hidden" id="regRefSource" name="ref_source" value="">
-                    <button type="submit" class="submit-btn" id="submitBtn">Reserve My Seat</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Reserve my seat</button>
                 </form>
                 <div class="reg-confirmation" id="regConfirmation">
                     <div class="conf-check">&#10003;</div>
@@ -113,6 +140,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="reserve-bar" id="reserveBar" hidden><a href="#regCard">Reserve my seat</a></div>
 
         <div class="page-footer"><p class="tagline">#AlwaysBeClosing &middot; <span>Texas Style</span></p><p class="provider" id="pageProvider" style="display:none">TREC Provider #10034 &middot; Approved for Texas CE</p></div>
     </div>
@@ -149,13 +178,16 @@
 
         function zoomIcon(){ return '<div class="loc-icon zoom"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5" width="15" height="14" rx="2" fill="#2D8CFF"/><path d="M16 10l5-3v10l-5-3V10z" fill="#2D8CFF"/></svg></div>'; }
 
+        // "1 hour", "4 hours"
+        function hoursText(n){ n = Number(n) || 0; return n + (n === 1 ? ' hour' : ' hours'); }
+
+        // The Where row of the class facts list.
         function renderLocation(c){
-            var strip = document.getElementById('locStrip');
-            var inPerson = '<div class="loc-card"><div class="loc-icon building">&#127970;</div><div class="loc-type">In Person</div><div class="loc-name">' + esc(c.location || 'CNAT Title') + '</div></div>';
-            var zoom = '<div class="loc-card">' + zoomIcon() + '<div class="loc-type">Online</div><div class="loc-name">Live on Zoom</div><div class="loc-address">Link sent to your email</div></div>';
-            if (c.format === 'zoom') { strip.innerHTML = zoom; }
-            else if (c.format === 'hybrid') { strip.style.gridTemplateColumns='1fr 1fr'; strip.innerHTML = inPerson + zoom; }
-            else { strip.innerHTML = inPerson; }
+            var where = document.getElementById('locStrip');
+            var meta = document.getElementById('locMeta');
+            if (c.format === 'zoom') { where.textContent = 'Live on Zoom'; meta.textContent = 'Link sent to your email'; }
+            else if (c.format === 'hybrid') { where.textContent = c.location || 'CNAT Title'; meta.textContent = 'or live on Zoom, link sent to your email'; }
+            else { where.textContent = c.location || 'CNAT Title'; meta.textContent = 'In person'; }
         }
 
         // The payment link is host-supplied data. Render it as a link only when
@@ -259,12 +291,12 @@
                 if (f.type === 'yes_no') {
                     return '<div class="form-group"><label class="form-label" for="' + id + '">' + esc(f.label) + reqNote + '</label>' +
                       '<select class="form-input" id="' + id + '" data-cf-key="' + esc(f.key) + '"' + req + '>' +
-                      '<option value="">&mdash; Select &mdash;</option><option value="yes">Yes</option><option value="no">No</option></select></div>';
+                      '<option value="">Select one</option><option value="yes">Yes</option><option value="no">No</option></select></div>';
                 }
                 if (f.type === 'choice' && Array.isArray(f.options) && f.options.length) {
                     return '<div class="form-group"><label class="form-label" for="' + id + '">' + esc(f.label) + reqNote + '</label>' +
                       '<select class="form-input" id="' + id + '" data-cf-key="' + esc(f.key) + '"' + req + '>' +
-                      '<option value="">&mdash; Select &mdash;</option>' +
+                      '<option value="">Select one</option>' +
                       f.options.map(function(o){ return '<option value="' + esc(o) + '">' + esc(o) + '</option>'; }).join('') +
                       '</select></div>';
                 }
@@ -294,7 +326,7 @@
                 document.getElementById('clsDate').textContent = partner.date_display || 'TBA';
                 if (partner.time_display) document.getElementById('clsTime').textContent = partner.time_display;
                 if (partner.ce_hours) {
-                    document.getElementById('clsHours').textContent = partner.ce_hours + ' Hours';
+                    document.getElementById('clsHours').textContent = hoursText(partner.ce_hours);
                     document.getElementById('clsCourse').innerHTML = (partner.course_numbers && partner.course_numbers.length) ? ('#' + partner.course_numbers.join(' / #')) : '';
                 }
                 document.getElementById('clsCost').textContent = partner.price_label || ('$' + ((partner.price_cents || 0) / 100));
@@ -310,7 +342,7 @@
                 document.getElementById('clsDate').textContent = (pair[0].date_display || 'TBA').replace(/,?\s*\d{4}\s*$/, '') + ' + ' + (pair[1].date_display || 'TBA');
                 var hoursSum = (Number(cls.ce_hours) || 0) + (Number(partner.ce_hours) || 0);
                 if (hoursSum) {
-                    document.getElementById('clsHours').textContent = hoursSum + ' Hours';
+                    document.getElementById('clsHours').textContent = hoursText(hoursSum);
                     var nums = (pair[0].course_numbers || []).concat(pair[1].course_numbers || []);
                     document.getElementById('clsCourse').innerHTML = nums.length ? ('#' + nums.join(' / #')) : '';
                 }
@@ -321,7 +353,7 @@
                 document.getElementById('clsTitle').textContent = cls.title || '';
                 document.getElementById('clsDate').textContent = cls.date_display || 'TBA';
                 if (cls.ce_hours) {
-                    document.getElementById('clsHours').textContent = cls.ce_hours + ' Hours';
+                    document.getElementById('clsHours').textContent = hoursText(cls.ce_hours);
                     document.getElementById('clsCourse').innerHTML = (cls.course_numbers && cls.course_numbers.length) ? ('#' + cls.course_numbers.join(' / #')) : '';
                 }
                 document.getElementById('clsCost').textContent = cls.price_label || (cls.is_paid ? ('$' + ((cls.price_cents || 0) / 100)) : 'Free');
@@ -339,6 +371,11 @@
             var priceTxt = paid ? ('$' + (price % 1 === 0 ? price.toFixed(0) : price.toFixed(2))) : 'Free';
             var stripe = c.stripe_payment_link || '';
             var courseTxt = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #') + ' &middot; Reported to TREC') : 'Reported to TREC';
+            // A CE price with no online payment (e.g. Free/$5 for CE Credit) is
+            // collected at the class. Say so instead of showing "Free".
+            var payAtClass = !paid && price > 0 && c.allow_free_attendance !== false;
+            var yesPriceTxt = payAtClass ? ('$' + (price % 1 === 0 ? price.toFixed(0) : price.toFixed(2))) : priceTxt;
+            var yesDetail = payAtClass ? (courseTxt + ' &middot; Paid at the class') : courseTxt;
             var licenseGroup = document.getElementById('licenseGroup');
             var submitBtn = document.getElementById('submitBtn');
             // Credit-only classes (allow_free_attendance = false): no free "Just Attending"
@@ -375,21 +412,21 @@
                 } else {
                     toggle.innerHTML =
                       '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-bundle="0" data-price="' + price + '" data-stripe="' + esc(stripe) + '" data-refid="' + esc(refid) + '" checked required>' +
-                      '<label for="creditYes"><div class="cr-left"><span class="cr-name">' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
+                      '<label for="creditYes"><div class="cr-left"><span class="cr-name">' + esc(c.ce_hours || '') + ' CE ' + (Number(c.ce_hours) === 1 ? 'hour' : 'hours') + '</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>';
                 }
                 licenseGroup.classList.add('show');
-                submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat';
+                submitBtn.textContent = paid ? 'Continue to payment' : 'Reserve my seat';
                 return;
             }
             toggle.innerHTML =
               '<div class="credit-option"><input type="radio" id="creditYes" name="credit" value="Yes" data-credit="yes" data-price="' + price + '" data-stripe="' + esc(stripe) + '" required>' +
-              '<label for="creditYes"><div class="cr-left"><span class="cr-name">Yes &mdash; ' + esc(c.ce_hours || '') + ' CE Hours</span><span class="cr-detail">' + courseTxt + '</span></div><span class="cr-price">' + priceTxt + '</span></label></div>' +
+              '<label for="creditYes"><div class="cr-left"><span class="cr-name">Yes, I need ' + esc(c.ce_hours || '') + ' CE ' + (Number(c.ce_hours) === 1 ? 'hour' : 'hours') + '</span><span class="cr-detail">' + yesDetail + '</span></div><span class="cr-price">' + yesPriceTxt + '</span></label></div>' +
               '<div class="credit-option"><input type="radio" id="creditNo" name="credit" value="No" data-credit="no" data-price="0">' +
-              '<label for="creditNo"><div class="cr-left"><span class="cr-name">No &mdash; Just Attending</span><span class="cr-detail">No CE credit needed</span></div><span class="cr-price">Free</span></label></div>';
+              '<label for="creditNo"><div class="cr-left"><span class="cr-name">No, just attending</span><span class="cr-detail">No CE credit needed</span></div><span class="cr-price">Free</span></label></div>';
             toggle.querySelectorAll('input[name="credit"]').forEach(function(r){
                 r.addEventListener('change', function(){
-                    if (r.getAttribute('data-credit') === 'yes') { licenseGroup.classList.add('show'); submitBtn.textContent = paid ? 'Continue to Payment' : 'Reserve My Seat'; }
-                    else { licenseGroup.classList.remove('show'); submitBtn.textContent = 'Reserve My Seat'; }
+                    if (r.getAttribute('data-credit') === 'yes') { licenseGroup.classList.add('show'); submitBtn.textContent = paid ? 'Continue to payment' : 'Reserve my seat'; }
+                    else { licenseGroup.classList.remove('show'); submitBtn.textContent = 'Reserve my seat'; }
                 });
             });
         }
@@ -440,10 +477,16 @@
             var pvEl = document.getElementById('pageProvider');
             if (pvEl) pvEl.style.display = isCE ? '' : 'none';
             document.getElementById('clsTitle').textContent = c.title || '';
+            // A series part reads "Foreclosure Series · Part 2" above its own name.
+            var sfx = (c.series_name && c.series_part) ? (' | ' + c.series_name + ' Part ' + c.series_part) : '';
+            if (sfx && (c.title || '').slice(-sfx.length) === sfx) {
+                document.getElementById('clsTitle').textContent = c.title.slice(0, -sfx.length);
+                if (ebEl) ebEl.textContent = c.series_name + ' \u00b7 Part ' + c.series_part;
+            }
             document.getElementById('clsSub').textContent = c.description || c.tagline || '';
             document.getElementById('clsDate').textContent = c.date_display || 'TBA';
             document.getElementById('clsTime').textContent = c.time_display || '';
-            if (c.ce_hours) { document.getElementById('clsHours').textContent = c.ce_hours + ' Hours'; document.getElementById('clsCourse').innerHTML = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #')) : ''; }
+            if (c.ce_hours) { document.getElementById('clsHours').textContent = hoursText(c.ce_hours); document.getElementById('clsCourse').innerHTML = (c.course_numbers && c.course_numbers.length) ? ('#' + c.course_numbers.join(' / #')) : ''; }
             else { document.getElementById('ceTile').style.display='none'; }
             document.getElementById('clsCost').textContent = c.price_label || (c.is_paid ? ('$' + ((c.price_cents||0)/100)) : 'Free');
             document.getElementById('clsCostSub').textContent = c.price_sub || (venmoOk(c.host_payment_url) ? (c.host_payment_label || 'materials sold at class') : '');
@@ -472,6 +515,31 @@
             } else { document.getElementById('regRefSource').value='manual'; }
             document.getElementById('loading').style.display='none';
             document.getElementById('content').style.display='block';
+            setupDescription();
+            setupReserveBar();
+        }
+
+        // Long descriptions show five lines and a Read more button.
+        function setupDescription(){
+            var wrap = document.getElementById('descWrap'), p = document.getElementById('clsSub'), btn = document.getElementById('descMore');
+            if (!p.textContent.trim()) { wrap.style.display = 'none'; return; }
+            btn.hidden = !(p.scrollHeight > p.clientHeight + 2);
+            btn.onclick = function(){
+                var open = wrap.classList.toggle('open');
+                btn.textContent = open ? 'Show less' : 'Read more';
+            };
+        }
+
+        // Phones: a Reserve my seat button stays on screen until the form is in
+        // view, and never comes back once the registration went through.
+        function setupReserveBar(){
+            var bar = document.getElementById('reserveBar'), card = document.getElementById('regCard');
+            if (!bar || !card || !('IntersectionObserver' in window)) return;
+            var done = function(){ return document.getElementById('regConfirmation').classList.contains('visible'); };
+            document.querySelector('.page-wrapper').classList.add('has-bar');
+            new IntersectionObserver(function(entries){
+                bar.hidden = done() || entries[0].isIntersecting;
+            }, { threshold: 0.15 }).observe(card);
         }
 
         function submitReg(e){

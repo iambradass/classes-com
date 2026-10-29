@@ -44,10 +44,13 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 @media(max-width:640px){
   .nav-links{display:flex;order:3;width:100%;flex-wrap:wrap;gap:2px 0;justify-content:space-between}
   .nav-link{padding:0 6px;font-size:12px;letter-spacing:.5px}
+  /* Contact lives in the footer; three links keep the phone menu on one row. */
+  .nav-link[href="#contact"]{display:none}
+  .nav-links{justify-content:space-around}
   .nav-badge,.nav-sub{display:none}
   .nav-logo{height:26px}
   .nav-inner{padding:6px 0}
-  html{scroll-padding-top:118px}
+  html{scroll-padding-top:80px}
 }
 
 /* HERO */
@@ -144,11 +147,20 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .footer-tagline span{color:var(--yellow)}
 
 @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
+/* Phones show the four stat boxes as one line of text instead. */
+.hero-facts{display:none;font-size:14px;color:#b9c2d0;line-height:1.6;margin:0}
+.hero-facts b{color:var(--white);font-weight:600}
 @media(max-width:640px){
-.hero{padding:40px 16px 32px}
+/* Phones: the first class shows on the first screen (it started at 814px). */
+.hero{padding:24px 16px 4px}
+.hero-eyebrow{font-size:11px;letter-spacing:2.5px;margin-bottom:10px}
+.hero-title{margin-bottom:10px}
+.hero-desc{font-size:15px;line-height:1.6;margin-bottom:12px}
+.hero-stats,.hero-divider{display:none}
+.hero-facts{display:block}
 .section{padding:36px 16px}
-.hero-stats{display:flex;flex-wrap:wrap;border:none;background:transparent;gap:8px}
-.stat{flex:1 1 calc(50% - 4px);border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:14px 16px}
+#upcoming.section{padding-top:24px}
+#upcoming .section-title{font-size:21px;margin-bottom:18px}
 .upcoming-grid,.catalog-grid{grid-template-columns:1fr}
 .footer-inner{grid-template-columns:1fr}
 .footer-bottom{flex-direction:column;align-items:flex-start}
@@ -186,6 +198,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
     <div class="stat"><span class="stat-num">2</span><span class="stat-label">Formats</span></div>
     <div class="stat"><span class="stat-num">10034</span><span class="stat-label">TREC Provider</span></div>
   </div>
+  <p class="hero-facts"><b>14</b> TREC-approved courses &middot; <b>1 to 4</b> CE hours each &middot; In person and on Zoom &middot; Provider <b>#10034</b></p>
   <div class="hero-divider"></div>
 </div>
 
@@ -299,18 +312,18 @@ function loadUpcoming() {
 // ─── COURSE CATALOG ────────────────────────────────────────────────────────
 const CATALOG = [
   { name:"CNAT Agent ONE", tagline:"There's an App for That", desc:"Real estate's top choice for Net Sheets and Closing Cost estimates. Control the numbers from any device.", hours:1, num:"30671-RECE", slug:"cnat-agent-one" },
-  { name:"CRM to ROI", tagline:"Update and Automate", desc:"Mastering CRM tools for business growth \u2014 best practices to optimize client relationships and maximize return on investment.", hours:1, num:"", slug:"crm-to-roi" },
+  { name:"CRM to ROI", tagline:"Update and Automate", desc:"Mastering CRM tools for business growth, with best practices to optimize client relationships and maximize return on investment.", hours:1, num:"", slug:"crm-to-roi" },
   { name:"Contracts & Contractual Competence", tagline:"What's New for You?", desc:"Delve into the 1\u20134 Family Resale contract, addendums, and recent updates. Fulfills 3 hours of licensing renewal requirements.", hours:3, num:"39207-RECE", slug:"contracts-competence" },
   { name:"Create with Canva", tagline:"Custom by Design", desc:"Unlock your creativity and elevate real estate marketing with a comprehensive Canva course tailored for agents.", hours:1, num:"", slug:"create-with-canva" },
-  { name:"Ensuring Insurance Coverage", tagline:"It's a Rating System", desc:"Navigate homeowners insurance complexities \u2014 types, carriers, and rates \u2014 with actionable insights for every transaction.", hours:1, num:"30669-RECE", slug:"ensuring-insurance" },
+  { name:"Ensuring Insurance Coverage", tagline:"It's a Rating System", desc:"Navigate homeowners insurance types, carriers, and rates, with actionable insights for every transaction.", hours:1, num:"30669-RECE", slug:"ensuring-insurance" },
   { name:"Farm to (Closing) Table", tagline:"Harvest Your Leads", desc:"Locally sourced leads from the top platforms in the industry. Use exclusive farming tools to identify buyers, sellers, and investors.", hours:1, num:"30672-RECE", slug:"farm-to-table" },
   { name:"Keeping AI on Things", tagline:"Smarter, Not Harder", desc:"Harness the power of AI and language models like ChatGPT to transform your real estate business.", hours:1, num:"", slug:"keeping-ai-on-things" },
   { name:"Legal Update I & II", tagline:"Necessary Knowledge", desc:"Review of recent legislative and TREC rule changes, including updates to TREC promulgated contract forms.", hours:4, num:"10279-RENE / 10280-RENE", slug:"legal-update" },
-  { name:"RE: Technology", tagline:"How-to & Can-do", desc:"A dynamic exploration of the latest tools and updates in real estate technology \u2014 equipping agents with a cutting edge.", hours:1, num:"", slug:"re-technology" },
-  { name:"Scripty Business", tagline:"Rehearsing Success", desc:"It's not just what you say \u2014 it's how you say it. Create scripts that take the guesswork out of client conversations.", hours:2, num:"", slug:"scripty-business" },
+  { name:"RE: Technology", tagline:"How-to & Can-do", desc:"A dynamic exploration of the latest tools and updates in real estate technology, equipping agents with a cutting edge.", hours:1, num:"", slug:"re-technology" },
+  { name:"Scripty Business", tagline:"Rehearsing Success", desc:"It's not just what you say, it's how you say it. Create scripts that take the guesswork out of client conversations.", hours:2, num:"", slug:"scripty-business" },
   { name:"Social Media Bootcamp", tagline:"Like and Follow...", desc:"Social media connects agents to clients. Expand your reach and improve your online presence to find new prospects.", hours:2, num:"30674-RECE", slug:"social-media-bootcamp" },
   { name:"TREC Advertising & Compliance", tagline:"Mind Your Marketing", desc:"Stay current on the rules and regulations of real estate advertising according to the Texas Real Estate Commission.", hours:1, num:"30673-RECE", slug:"trec-advertising" },
-  { name:"Video Marketing", tagline:"Cinematic Strategies", desc:"Step out of your comfort zone and into video marketing. This medium isn't going away \u2014 neither should you.", hours:1, num:"", slug:"video-marketing" },
+  { name:"Video Marketing", tagline:"Cinematic Strategies", desc:"Step out of your comfort zone and into video marketing. This medium isn't going away, and neither should you.", hours:1, num:"", slug:"video-marketing" },
   { name:"Water Your Rights", tagline:"Rules and Regulations", desc:"A concise guide to Texas water rights for real estate agents and the impact on property transactions.", hours:1, num:"", slug:"water-your-rights" }
 ];
 
