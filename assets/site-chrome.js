@@ -31,7 +31,7 @@
   /* ---------- styles ---------- */
   var css = document.createElement('link')
   css.rel = 'stylesheet'
-  css.href = '/assets/site-chrome.css'
+  css.href = '/assets/site-chrome.css?v=20261030'
   document.head.appendChild(css)
 
   var NAV = [
@@ -127,9 +127,10 @@
       html += '<p class="cn-ch-lab">More from ' + esc(cfg.class) + '</p><div class="cn-ch-more">'
       html += more.map(function (r) {
         return '<a class="cn-ch-card" href="' + esc(r.u) + '">' +
-          '<span class="cn-ch-kind">' + esc(r.k) + '</span>' +
-          '<span class="cn-ch-t">' + esc(r.t) + '</span>' +
-          '<span class="cn-ch-d">' + esc(r.d) + '</span></a>'
+          '<span class="cn-ch-face"><span class="cn-ch-t">' + esc(r.t) + '</span>' +
+          '<span class="cn-ch-d">' + esc(r.d) + '</span></span>' +
+          '<span class="cn-ch-band"><span class="cn-ch-kind">' + esc(r.k === 'Hub' ? 'Class hub' : r.k) + '</span>' +
+          '<span class="cn-ch-go">Open &rarr;</span></span></a>'
       }).join('')
       html += '</div>'
     }
