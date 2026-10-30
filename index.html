@@ -119,20 +119,27 @@ a.class-card:hover .cc-cta{background:#fff;color:var(--ink)}
 .filter-btn:hover{border-color:rgba(255,255,255,.15);color:var(--white)}
 .filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
-/* COURSE CATALOG: white cards in the same family as the sessions; the whole
-   card opens the course page. */
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.course-card{background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);border-radius:16px;box-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 14px 32px rgba(0,0,0,.26);color:var(--ink);padding:20px 22px;display:flex;flex-direction:column;text-decoration:none;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s cubic-bezier(.16,1,.3,1)}
-.course-card:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(0,0,0,.1),0 6px 14px rgba(0,0,0,.18),0 24px 48px rgba(0,0,0,.36)}
-.course-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
+/* COURSE CATALOG: app tiles. A thick rounded tile (Brad's app-icon tiles):
+   white face for the name, tagline and description, a navy banner along the
+   bottom for CE hours, TREC number and the details link, and a darker slab
+   edge under it for depth. The tile presses down when tapped. */
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px 20px;padding-bottom:8px}
+.course-card{--edge:7px;position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:28px;background:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);color:var(--ink);text-decoration:none;
+  box-shadow:inset 0 1px 0 #fff,0 var(--edge) 0 #132643,0 calc(var(--edge) + 12px) 26px rgba(0,0,0,.5);
+  transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1)}
+.course-card:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 #fff,0 calc(var(--edge) + 3px) 0 #132643,0 calc(var(--edge) + 20px) 34px rgba(0,0,0,.55)}
+.course-card:active{transform:translateY(5px);box-shadow:inset 0 1px 0 #fff,0 2px 0 #132643,0 8px 14px rgba(0,0,0,.45)}
+.course-card:focus-visible{outline:3px solid var(--blue-light);outline-offset:4px}
 .course-card.hidden{display:none}
+.course-face{padding:22px 22px 20px;flex:1;box-shadow:inset 0 -14px 18px -14px rgba(13,22,35,.14)}
 .course-name{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.2px;color:var(--ink);text-wrap:balance}
-.course-tagline{font-size:15px;font-weight:600;color:var(--ink-blue);margin-top:4px}
-.course-desc{font-size:15px;line-height:1.55;color:var(--ink-muted);margin:10px 0 18px;text-wrap:pretty}
-.course-foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
-.course-hours{font-size:15px;font-weight:700;color:var(--ink)}
-.course-num{display:block;font-size:13px;font-weight:500;color:var(--ink-muted);margin-top:3px}
-.course-go{font-size:15px;font-weight:700;color:var(--ink-blue);white-space:nowrap}
+.course-tagline{font-size:14px;font-weight:700;color:var(--ink-blue);margin-top:5px}
+.course-desc{font-size:15px;line-height:1.55;color:var(--ink-muted);margin-top:10px;text-wrap:pretty}
+.course-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:12px 22px 13px;background:linear-gradient(180deg,#284a80 0%,#1f3a66 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);color:#fff}
+.course-hours{font-size:16px;font-weight:800;color:#fff}
+.course-num{display:block;font-size:13px;font-weight:500;color:var(--grey);margin-top:2px}
+.course-go{font-size:15px;font-weight:700;color:#fff;white-space:nowrap}
+.course-card:hover .course-go{color:var(--yellow)}
 
 /* FOOTER */
 .site-footer{background:var(--dark);border-top:1px solid var(--border);padding:40px 24px;margin-top:24px}
@@ -162,7 +169,7 @@ a.class-card:hover .cc-cta{background:#fff;color:var(--ink)}
 .section{padding:36px 16px}
 #upcoming.section{padding-top:24px}
 #upcoming .section-title{font-size:21px;margin-bottom:18px}
-.catalog-grid{grid-template-columns:1fr}
+.catalog-grid{grid-template-columns:1fr;gap:24px}
 .day{grid-template-columns:50px minmax(0,1fr);gap:12px}
 .day-date{top:var(--stick-phone,108px);padding-top:18px}
 .day-mon,.day-wd{font-size:12px;letter-spacing:1.5px}
@@ -490,9 +497,11 @@ function renderCatalog(filter) {
   grid.innerHTML = CATALOG.map(c => {
     const hidden = filter && filter !== 'all' && String(c.hours) !== filter ? ' hidden' : '';
     return `<a class="course-card${hidden}" data-hours="${c.hours}" href="/courses/${c.slug}/">
-      <h3 class="course-name">${c.name}</h3>
-      <p class="course-tagline">${c.tagline}</p>
-      <p class="course-desc">${c.desc}</p>
+      <div class="course-face">
+        <h3 class="course-name">${c.name}</h3>
+        <p class="course-tagline">${c.tagline}</p>
+        <p class="course-desc">${c.desc}</p>
+      </div>
       <div class="course-foot"><span><span class="course-hours">${c.hours} CE ${c.hours === 1 ? 'hour' : 'hours'}</span>${c.num ? `<span class="course-num">TREC #${c.num}</span>` : ''}</span><span class="course-go">Details &rarr;</span></div>
     </a>`;
   }).join('');
