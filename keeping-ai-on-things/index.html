@@ -17,349 +17,216 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keeping AI on Things Resource Hub | CNAT Title">
 <meta name="twitter:description" content="Prompts, playbooks, and setup guides from the Keeping AI on Things class with CNAT Title.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* classes.cnattitle.com app style kit (2026-10-30): navy ground, light rounded
+   sheets, two-tone app tiles, clear stat tiles, dark terminal prompts. */
 :root{
-  --bg:#0A1322; --bg2:#0F1A2E;
-  --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.07);
-  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
-  --cyan:#6FA8D4; --cyan-dim:rgba(111,168,212,.12); --cyan-line:rgba(111,168,212,.35);
-  --gold:#C9A45C; --gold-soft:#D9BC85; --gold-dim:rgba(201,164,92,.12); --gold-line:rgba(201,164,92,.35);
-  --white:#F2F6FA; --dim:#A6B5CC; --faint:#64789B;
-  --green:#67B98D; --coral:#C97F7F;
+  --navy:#0d1623;--dark:#080c14;--white:#fff;--grey:#c3cbd8;--grey-2:#dbe3ee;
+  --blue:#2d7dd2;--blue-hover:#2569b3;--blue-light:#4a9ae8;--blue-soft:#8fc1f2;--yellow:#faed36;
+  --ink:#0d1623;--ink-soft:#2f3a4b;--ink-muted:#4a5466;--ink-blue:#1f5fa6;--label:#5b6576;
+  --hair:#e6e9ee;--field:#eef1f5;--field-2:#e3e9f1;--hover:#f1f4f8;
+  --warn:#b42318;--warn-bg:#fde8e6;--ok:#1f8a57;
+  --term:#0b1322;--term-bar:#16233a;--term-text:#dbe6f2;
+  --sheet:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);
+  --sheet-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 20px 44px rgba(0,0,0,.32);
+  --face:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);
+  --banner:linear-gradient(180deg,#284a80 0%,#1f3a66 100%);
+  --rim:#132643;
   --ease:cubic-bezier(.16,1,.3,1);
-  --font-display:'Bebas Neue',sans-serif;
-  --font-head:'Oswald',sans-serif;
-  --font-body:'Source Sans 3',sans-serif;
-  --font-mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --font:'Montserrat',system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{overflow-x:clip;}
-body{background:var(--bg);color:var(--white);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px;}
-.bg-fx{position:fixed;inset:0;z-index:-1;background:
-  radial-gradient(ellipse 60% 45% at 12% -5%, rgba(111,168,212,.07), transparent 60%),
-  radial-gradient(ellipse 55% 40% at 95% 12%, rgba(201,164,92,.05), transparent 60%),
-  radial-gradient(ellipse 70% 50% at 50% 110%, rgba(111,168,212,.05), transparent 60%),
-  linear-gradient(180deg,var(--bg2) 0%,var(--bg) 40%);}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;}
+body{background:var(--navy);color:var(--white);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;overflow-wrap:break-word;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
 @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
-
-/* Site header */
-header.site{border-bottom:1px solid var(--line);}
-.site-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:16px;padding-bottom:16px;}
-a.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;}
-a.brand img{height:26px;width:auto;display:block;}
-a.brand span{font-family:var(--font-head);font-weight:500;font-size:.8rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);padding-left:12px;border-left:1px solid var(--line-2);transition:color .2s var(--ease);}
-a.brand:hover span{color:var(--white);}
-.foot-logo{height:22px;width:auto;opacity:.65;margin-bottom:10px;}
-.brand-right{font-family:var(--font-head);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
-@media(max-width:520px){.brand-right{display:none;}}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px;border-radius:10px;}
+.check-item:focus-within .check-box{outline:3px solid rgba(45,125,210,.45);outline-offset:2px;}
 
 /* Hero */
-.hero{text-align:center;padding:clamp(36px,7vw,64px) 0 clamp(22px,4vw,36px);}
-.hero h1{font-family:var(--font-display);font-size:clamp(3rem,11vw,5.4rem);letter-spacing:3px;line-height:.95;}
-.hero h1 .cy{color:var(--cyan);}
-.hero .sub{font-size:clamp(1rem,3.6vw,1.2rem);color:var(--dim);font-weight:300;margin:12px auto 0;max-width:54ch;}
-.hero-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;margin-top:20px;font-family:var(--font-head);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
-.hero-facts b{color:var(--cyan);font-weight:600;}
+.hero{padding:44px 0 34px;}
+.hero-kicker{font-size:15px;font-weight:700;color:var(--blue-soft);margin-bottom:10px;}
+.hero h1{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1.04;letter-spacing:-.02em;text-wrap:balance;}
+.hero h1 .cy{color:var(--yellow);}
+.hero .sub{font-size:clamp(17px,2.4vw,19px);line-height:1.6;color:var(--grey);max-width:56ch;margin-top:14px;text-wrap:pretty;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.btn-white,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:12px;font-size:16px;text-decoration:none;transition:background .15s,color .15s;}
+.btn-white{background:#fff;color:var(--ink);font-weight:800;box-shadow:0 2px 0 rgba(0,0,0,.25);}
+.btn-white:hover{background:var(--yellow);}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;font-weight:700;}
+.btn-ghost:hover{background:rgba(255,255,255,.14);}
+/* Small stats: clear tiles that sit back into the page (same as the homepage hero).
+   Thin border approved for these only; no tint, no blur, no shadow. */
+.hero-stats{display:inline-grid;grid-template-columns:repeat(4,auto);gap:12px;margin-top:30px;}
+.stat{display:flex;flex-direction:column;align-items:stretch;min-width:118px;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:14px;text-align:center;background:rgba(255,255,255,.025);}
+.stat-num{font-size:21px;font-weight:800;letter-spacing:-.3px;color:#fff;padding:12px 14px 9px;}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--grey);padding:7px 14px 8px;border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);}
+.hero-facts{display:none;font-size:15px;line-height:1.6;color:var(--grey);margin-top:14px;}
+.hero-facts b{color:#fff;font-weight:700;}
+.hero-facts span{white-space:nowrap;}
 
-/* Tab bar */
-nav.tabsbar{position:sticky;top:0;z-index:50;background:rgba(10,19,34,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
-nav.tabsbar .wrap{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-nav.tabsbar .wrap::-webkit-scrollbar{display:none;}
-nav.tabsbar a{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:54px;padding:0 16px;color:var(--dim);text-decoration:none;font-family:var(--font-head);font-size:.82rem;letter-spacing:1.3px;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease);}
-nav.tabsbar a svg{width:15px;height:15px;opacity:.8;}
-nav.tabsbar a:hover{color:var(--white);}
-nav.tabsbar a.active{color:var(--cyan);border-bottom-color:var(--cyan);}
-@media(min-width:800px){nav.tabsbar .wrap{justify-content:center;}}
-a:focus-visible,button:focus-visible,summary:focus-visible,.check-item:focus-within .check-box{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px;}
+/* Section switcher: segmented control, wraps to rows on phones */
+nav.tabsbar{position:sticky;top:0;z-index:50;padding:10px 0;background:rgba(13,22,35,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.07);}
+.seg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;max-width:900px;padding:4px;border-radius:16px;background:rgba(255,255,255,.07);}
+.seg a{display:flex;align-items:center;justify-content:center;min-height:46px;padding:0 8px;border-radius:12px;color:var(--grey);font-size:15px;font-weight:700;text-align:center;text-decoration:none;transition:background .15s,color .15s;}
+.seg a:hover{color:#fff;background:rgba(255,255,255,.07);}
+.seg a.active{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.2),0 4px 10px rgba(0,0,0,.18);}
 
 /* Views */
 main{min-height:60vh;}
-.view{display:none;padding:clamp(28px,5vw,44px) 0 46px;}
-.view.on{display:block;animation:viewIn .35s var(--ease);}
-@keyframes viewIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.view-head{margin-bottom:20px;}
-h2{font-family:var(--font-head);font-weight:500;font-size:clamp(1.6rem,6vw,2.1rem);letter-spacing:.5px;margin-bottom:6px;}
-h2 .em{color:var(--gold);}
-.lead{color:var(--dim);max-width:64ch;}
-h3{font-family:var(--font-head);font-weight:500;font-size:1.14rem;}
-a.inline{color:var(--cyan);text-decoration-color:rgba(111,168,212,.4);text-underline-offset:3px;}
+.view{display:none;padding:38px 0 26px;}
+.view.on{display:block;animation:viewIn .3s var(--ease);}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.view-head{max-width:760px;margin-bottom:24px;}
+h2{font-size:clamp(26px,4vw,34px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:8px;text-wrap:balance;}
+h2 .em{color:inherit;}
+.lead{font-size:17px;line-height:1.6;color:var(--grey);max-width:64ch;text-wrap:pretty;}
+.lead strong{color:#fff;}
+a.inline{color:var(--blue-soft);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+a.inline:hover{color:#fff;}
 
-/* Playbook board */
-.start-tile{position:relative;display:block;text-decoration:none;color:var(--white);border-radius:22px;border:1px solid var(--gold-line);background:linear-gradient(135deg,rgba(201,164,92,.10),rgba(201,164,92,.03) 55%),var(--panel);overflow:hidden;padding:clamp(22px,4vw,32px);margin-bottom:26px;transition:transform .25s var(--ease),box-shadow .25s var(--ease);}
-.start-tile::before{content:'';position:absolute;top:-70px;right:-70px;width:280px;height:280px;background:radial-gradient(circle,rgba(201,164,92,.13),transparent 65%);pointer-events:none;}
-.start-tile:hover{transform:translateY(-4px);box-shadow:0 22px 54px rgba(0,0,0,.45);}
-.start-flex{display:flex;gap:22px;align-items:center;position:relative;}
-.start-icon{width:70px;height:70px;flex:0 0 auto;border-radius:20px;background:var(--gold-dim);border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;color:var(--gold);}
-.start-icon svg{width:34px;height:34px;}
-.start-meta{font-family:var(--font-head);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:5px;}
-.start-tile h3{font-size:clamp(1.25rem,4.5vw,1.55rem);margin-bottom:4px;}
-.start-tile p{color:var(--dim);font-size:.97rem;max-width:56ch;}
-.start-cta{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--font-head);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
-.start-cta svg{width:15px;height:15px;transition:transform .25s var(--ease);}
-.start-tile:hover .start-cta svg{transform:translateX(5px);}
-.start-right{display:none;}
-@media(min-width:760px){
-  .start-right{display:flex;flex-direction:column;gap:14px;margin-left:auto;padding-left:28px;border-left:1px solid var(--gold-line);flex:0 0 auto;}
-  .start-stat b{display:block;font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--gold-soft);}
-  .start-stat small{font-family:var(--font-head);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);}
-}
-@media(max-width:560px){.start-flex{flex-direction:column;align-items:flex-start;}}
+/* Two-tone app tiles (resources-page values, dense-grid shadow) */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 18px;padding-bottom:6px;}
+.tiles.t4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.tiles.t2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.tile{--edge:5px;--foot:var(--banner);--rim:#132643;position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:20px;background:var(--face);color:var(--ink);text-decoration:none;box-shadow:inset 0 1px 0 #fff,0 var(--edge) 0 var(--rim),0 10px 16px rgba(0,0,0,.2);}
+a.tile{transition:transform .18s var(--ease),box-shadow .18s var(--ease);}
+a.tile:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #fff,0 calc(var(--edge) + 2px) 0 var(--rim),0 14px 22px rgba(0,0,0,.26);}
+a.tile:active{transform:translateY(4px);box-shadow:inset 0 1px 0 #fff,0 1px 0 var(--rim),0 5px 10px rgba(0,0,0,.2);}
+a.tile:focus-visible{outline:3px solid var(--blue-light);outline-offset:4px;border-radius:20px;}
+.t-face{display:flex;flex-direction:column;gap:6px;flex:1;padding:18px 18px 16px;box-shadow:inset 0 -14px 18px -14px rgba(13,22,35,.12);}
+.t-start{font-size:14px;font-weight:700;color:var(--ink-blue);}
+.t-title{font-size:18px;font-weight:800;line-height:1.3;letter-spacing:-.01em;color:var(--ink);text-wrap:balance;}
+.t-desc{font-size:15px;line-height:1.5;color:var(--ink-muted);text-wrap:pretty;}
+.t-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px;padding:9px 18px 10px;background:var(--foot);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);color:#fff;}
+.t-time{font-size:15px;font-weight:800;color:#fff;}
+.t-meta{display:flex;flex-direction:column;min-width:0;}
+.t-meta b{font-size:14px;font-weight:800;color:#fff;}
+.t-meta span{font-size:13.5px;font-weight:500;line-height:1.35;color:var(--grey-2);}
+.t-go{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;font-size:14px;font-weight:700;color:#fff;white-space:nowrap;}
+.t-go svg,.t-btn svg{width:16px;height:16px;}
+a.tile:hover .t-go{color:var(--yellow);}
+.t-btn{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;min-height:44px;padding:0 16px;border-radius:12px;background:#fff;color:var(--ink);font-size:15px;font-weight:800;white-space:nowrap;text-decoration:none;transition:background .15s;}
+a.tile:hover .t-btn,a.t-btn:hover{background:var(--yellow);}
+/* Start-here tile: the highlight (blue) variant, horizontal like the class hub tile */
+.hubtile{--foot:linear-gradient(180deg,#3b8de0 0%,#2a73c2 100%);--rim:#1b4f8a;display:grid;grid-template-columns:minmax(0,1fr) 260px;}
+.hubtile .t-face{padding:22px 24px 20px;}
+.hubtile .t-title{font-size:23px;}
+.hubtile .t-desc{font-size:16px;max-width:60ch;}
+.hubtile .t-foot{flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;padding:18px 20px;box-shadow:inset 1px 0 0 rgba(255,255,255,.14);}
+.hubtile .t-meta b{font-size:17px;}
+.hubtile .t-meta span{color:#eaf2fc;}
 
-.level-head{display:flex;align-items:center;gap:12px;margin:30px 0 14px;}
-.level-head .lv{display:inline-flex;gap:4px;}
-.level-head .lv i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.13);}
-.level-head .lv i.on{background:var(--gold);}
-.level-head b{font-family:var(--font-head);font-weight:500;font-size:.95rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);}
-.level-head span{font-size:.85rem;color:var(--faint);}
-.level-head::after{content:'';flex:1;height:1px;background:var(--line);}
+/* Board levels */
+.level-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin:44px 0 16px;}
+.level-head h3{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.01em;}
+.level-head>span{font-size:15px;color:var(--grey);}
+.lv{display:inline-flex;gap:4px;}
+.lv i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22);}
+.lv i.on{background:var(--blue-light);}
 
-.play-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:640px){.play-grid{grid-template-columns:1fr 1fr;}}
-a.play{display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;color:var(--white);position:relative;overflow:hidden;backdrop-filter:blur(10px);transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);}
-a.play::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 75% 65% at 100% 0%,rgba(111,168,212,.09),transparent 60%);opacity:0;transition:opacity .25s var(--ease);}
-a.play:hover{transform:translateY(-4px);border-color:var(--cyan-line);box-shadow:0 18px 44px rgba(0,0,0,.42);}
-a.play:hover::after{opacity:1;}
-.play-top{display:flex;align-items:center;gap:12px;}
-.play-ic{width:44px;height:44px;flex:0 0 auto;border-radius:13px;background:var(--cyan-dim);border:1px solid var(--cyan-line);display:flex;align-items:center;justify-content:center;color:var(--cyan);}
-.play-ic svg{width:21px;height:21px;}
-.play-name{font-family:var(--font-head);font-weight:500;font-size:1.1rem;line-height:1.25;}
-.play-desc{font-size:.9rem;color:var(--dim);flex:1;}
-.play-meta{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:.72rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);}
-.play-meta svg{width:13px;height:13px;color:var(--cyan);}
-.play-meta .arrow{margin-left:auto;color:var(--cyan);transition:transform .25s var(--ease);}
-a.play:hover .play-meta .arrow{transform:translateX(5px);}
-
-/* Prompt accordions */
-details.prompt{border:1px solid var(--line);border-radius:18px;background:#0A1120;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.3);}
-details.prompt[open]{border-color:var(--cyan-line);}
-details.prompt summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 18px;min-height:64px;transition:background .2s var(--ease);}
+/* Prompts: white face over a dark terminal */
+.prompts{max-width:900px;}
+details.prompt{border-radius:18px;overflow:hidden;background:var(--face);color:var(--ink);box-shadow:inset 0 1px 0 #fff,0 5px 0 var(--rim),0 10px 16px rgba(0,0,0,.2);}
+details.prompt+details.prompt{margin-top:20px;}
+details.prompt summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px;min-height:76px;}
 details.prompt summary::-webkit-details-marker{display:none;}
-details.prompt summary:hover{background:rgba(255,255,255,.03);}
-.pr-num{width:40px;height:40px;flex:0 0 auto;border-radius:12px;background:linear-gradient(135deg,var(--cyan),#4E7FA6);color:#0E1B29;font-family:var(--font-display);font-size:1.25rem;display:flex;align-items:center;justify-content:center;}
+details.prompt summary:hover .pr-chev{color:var(--ink);}
+.pr-num{width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:var(--banner);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 .pr-text{flex:1;min-width:0;}
-.pr-text b{display:block;font-family:var(--font-head);font-weight:500;font-size:1.04rem;}
-.pr-text span{display:block;font-size:.85rem;color:var(--faint);margin-top:1px;}
-.pr-chev{flex:0 0 auto;color:var(--faint);transition:transform .3s var(--ease);}
-.pr-chev svg{width:18px;height:18px;}
-details.prompt[open] .pr-chev{transform:rotate(180deg);color:var(--cyan);}
-.pr-body{border-top:1px solid var(--line);}
-.prompt-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,.035);border-bottom:1px solid var(--line);}
+.pr-text b{display:block;font-size:17px;font-weight:800;line-height:1.3;color:var(--ink);}
+.pr-text span{display:block;font-size:14.5px;line-height:1.45;color:var(--ink-muted);margin-top:2px;}
+.pr-chev{flex:0 0 auto;color:var(--label);transition:transform .3s var(--ease),color .2s;}
+.pr-chev svg{width:20px;height:20px;display:block;}
+details.prompt[open] .pr-chev{transform:rotate(180deg);color:var(--ink-blue);}
+.pr-body{background:var(--term);color:var(--term-text);}
+.prompt-bar{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;background:var(--term-bar);}
 .pdot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
-.pdot.r{background:var(--coral);}.pdot.y{background:var(--gold);}.pdot.g{background:var(--green);}
-.prompt-name{font-family:var(--font-mono);font-size:.72rem;color:var(--dim);margin-left:6px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.copy-btn{appearance:none;display:inline-flex;align-items:center;gap:7px;background:var(--cyan);color:#0E1B29;border:none;border-radius:9px;padding:9px 14px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;min-height:36px;transition:transform .2s var(--ease),background .2s var(--ease);}
-.copy-btn:hover{transform:scale(1.03);}
-.copy-btn:active{transform:scale(.97);}
-.copy-btn.done{background:var(--green);}
-details.prompt pre{padding:16px;overflow-x:auto;font-family:var(--font-mono);font-size:.85rem;line-height:1.55;color:#CFE3F2;white-space:pre-wrap;word-break:break-word;}
+.pdot.r{background:#e2706b;}.pdot.y{background:#e9be4e;}.pdot.g{background:#5cc488;}
+.prompt-name{flex:1;min-width:0;margin-left:6px;font-family:var(--mono);font-size:13px;color:var(--grey);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.copy-btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:44px;min-width:88px;padding:0 18px;border:0;border-radius:10px;background:var(--blue);color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;}
+.copy-btn:hover{background:#3b8de0;}
+.copy-btn.done{background:var(--ok);}
+details.prompt pre{padding:18px;overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:1.6;color:var(--term-text);white-space:pre-wrap;word-break:break-word;}
 
-/* Recipes */
-.recipe-grid{display:grid;grid-template-columns:1fr;gap:16px;}
-@media(min-width:760px){.recipe-grid{grid-template-columns:1fr 1fr;}}
-.recipe-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(10px);}
-.recipe-card h3{margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.recipe-card h3 svg{width:19px;height:19px;color:var(--green);}
-ol.mini-rail{list-style:none;position:relative;}
-ol.mini-rail::before{content:'';position:absolute;left:13px;top:6px;bottom:14px;width:2px;background:linear-gradient(180deg,var(--green),rgba(103,185,141,.12));}
-ol.mini-rail li{position:relative;padding:0 0 14px 42px;font-size:.92rem;color:var(--dim);}
-ol.mini-rail li:last-child{padding-bottom:0;}
-ol.mini-rail li strong{color:var(--white);}
-.mini-num{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:9px;background:rgba(103,185,141,.14);border:1px solid rgba(103,185,141,.4);color:var(--green);font-family:var(--font-display);font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+/* Recipes: app tiles with the steps on the face */
+ol.steps{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:8px;}
+ol.steps li{position:relative;padding-left:40px;font-size:15.5px;line-height:1.55;color:var(--ink-soft);}
+ol.steps li strong{color:var(--ink);}
+.mini-num{position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.recipe .t-face{padding:20px 20px 22px;gap:4px;}
 
-/* Tools */
-.tool-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr;}}
-.tool{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;backdrop-filter:blur(10px);transition:transform .25s var(--ease),border-color .25s var(--ease);}
-.tool:hover{transform:translateY(-2px);border-color:var(--cyan-line);}
-.tool .ic{width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:var(--cyan-dim);border:1px solid var(--cyan-line);display:flex;align-items:center;justify-content:center;color:var(--cyan);}
-.tool .ic svg{width:20px;height:20px;}
-.tool b{display:block;font-family:var(--font-head);font-weight:500;font-size:1.02rem;color:var(--gold-soft);}
-.tool p{font-size:.9rem;color:var(--dim);}
-.note{margin-top:16px;padding:14px 18px;border-radius:14px;background:var(--gold-dim);border:1px solid var(--gold-line);font-size:.9rem;color:var(--dim);}
+/* Tools note */
+.note{margin-top:26px;max-width:72ch;font-size:15px;line-height:1.6;color:var(--grey);}
 
-/* Guardrails */
-.guard-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:640px){.guard-grid{grid-template-columns:1fr 1fr;}}
-.guard{display:flex;gap:14px;align-items:flex-start;background:rgba(201,127,127,.05);border:1px solid rgba(201,127,127,.26);border-radius:16px;padding:18px;}
-.guard .ic{width:40px;height:40px;flex:0 0 auto;border-radius:12px;background:rgba(201,127,127,.12);display:flex;align-items:center;justify-content:center;color:var(--coral);}
-.guard .ic svg{width:19px;height:19px;}
-.guard b{display:block;font-family:var(--font-head);font-weight:500;font-size:1rem;}
-.guard p{font-size:.9rem;color:var(--dim);}
-
-/* Checklist */
-.check-card{background:var(--panel);border:1px solid var(--gold-line);border-radius:18px;padding:10px 8px;backdrop-filter:blur(10px);}
-.check-item{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;cursor:pointer;transition:background .2s var(--ease);}
-.check-item:hover{background:rgba(255,255,255,.035);}
+/* Guardrails + This Week: one light sheet each */
+.sheet{max-width:900px;background:var(--sheet);color:var(--ink);border-radius:16px;box-shadow:var(--sheet-shadow);}
+.rules{padding:4px 24px;}
+.rule{display:flex;gap:16px;align-items:flex-start;padding:20px 0;}
+.rule+.rule{border-top:1px solid var(--hair);}
+.r-num{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:var(--warn-bg);color:var(--warn);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.rule b{display:block;font-size:17px;font-weight:800;line-height:1.35;color:var(--ink);padding-top:5px;}
+.rule p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin-top:4px;}
+.checklist{padding:8px 10px;}
+.check-item{position:relative;display:flex;gap:14px;align-items:flex-start;padding:16px 12px;min-height:56px;border-radius:12px;cursor:pointer;transition:background .15s;}
+.check-item+.check-item{border-top:1px solid var(--hair);border-top-left-radius:0;border-top-right-radius:0;}
+.check-item:hover{background:var(--hover);}
 .check-item input{position:absolute;opacity:0;pointer-events:none;}
-.check-box{width:26px;height:26px;flex:0 0 auto;border-radius:8px;border:2px solid var(--gold-line);background:transparent;display:flex;align-items:center;justify-content:center;color:transparent;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease);margin-top:2px;}
-.check-box svg{width:15px;height:15px;}
-.check-item input:checked ~ .check-box{background:var(--gold);border-color:var(--gold);color:#1a1206;}
-.check-item input:checked ~ .check-text{opacity:.55;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.4);}
-.check-text{font-size:.96rem;color:var(--dim);transition:opacity .2s var(--ease);}
-.check-text strong{color:var(--white);}
-.check-text a{color:var(--cyan);}
+.check-box{width:28px;height:28px;flex:0 0 auto;border-radius:8px;background:var(--field);box-shadow:inset 0 0 0 1.5px #b3bfce;color:transparent;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,box-shadow .2s;}
+.check-box svg{width:16px;height:16px;}
+.check-item input:checked ~ .check-box{background:var(--blue);box-shadow:none;color:#fff;}
+.check-text{font-size:16px;line-height:1.6;color:var(--ink-soft);padding-top:1px;transition:opacity .2s;}
+.check-text strong{color:var(--ink);}
+.check-text a{color:var(--ink-blue);font-weight:600;}
+.check-item input:checked ~ .check-text{opacity:.6;text-decoration:line-through;}
 
-footer{text-align:center;padding:36px 20px 48px;border-top:1px solid var(--line);color:var(--faint);font-size:.86rem;}
-footer b{color:var(--dim);font-weight:600;}
+/* Footer line above the shared site foot */
+body>footer{padding:40px 24px 0;text-align:center;font-size:14px;line-height:1.6;color:var(--grey);}
+body>footer b{color:#fff;font-weight:700;}
+.foot-logo{display:block;height:22px;width:auto;margin:0 auto 10px;}
+.foot-q{margin-top:6px;}
 
-/* ── v7 light-first: board, recipes, guardrails on paper ── */
-.view.paper .start-tile{background:#fff;border-color:rgba(169,133,74,.5);box-shadow:0 14px 40px rgba(33,43,58,.09);}
-.view.paper .start-tile::before{background:radial-gradient(circle,rgba(201,164,92,.18),transparent 65%);}
-.view.paper .start-tile h3{color:#212B3A;}
-.view.paper .start-tile p{color:#5C6678;}
-.view.paper .start-meta{color:#A9854A;}
-.view.paper .start-icon{background:rgba(169,133,74,.12);border-color:rgba(169,133,74,.45);color:#A9854A;}
-.start-cta{background:#212B3A;color:#F3EDE2;padding:12px 22px;border-radius:100px;margin-top:16px;}
-.start-cta svg{color:#D9BC85;}
-.view.paper .start-right{border-left-color:rgba(169,133,74,.4);}
-.view.paper .start-stat b{color:#A9854A;}
-.view.paper .start-stat small{color:#8A93A5;}
-.view.paper .level-head b{color:#3E6C93;}
-.view.paper .level-head span{color:#8A93A5;}
-.view.paper .level-head::after{background:rgba(33,43,58,.12);}
-.view.paper .level-head .lv i{background:rgba(33,43,58,.15);}
-.view.paper .level-head.l1 b{color:#A9854A;}
-.view.paper .level-head.l1 .lv i.on{background:#A9854A;}
-.view.paper .level-head.l2 b{color:#3E6C93;}
-.view.paper .level-head.l2 .lv i.on{background:#3E6C93;}
-.view.paper .level-head.l3 b{color:#A85B3D;}
-.view.paper .level-head.l3 .lv i.on{background:#A85B3D;}
-.view.paper a.play{background:#fff;border-color:rgba(33,43,58,.1);color:#212B3A;box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
-.view.paper a.play::after{display:none;}
-.view.paper a.play:hover{border-color:rgba(62,108,147,.45);box-shadow:0 16px 38px rgba(33,43,58,.13);}
-.view.paper .play-desc{color:#5C6678;}
-.view.paper .play-meta{color:#8A93A5;}
-.view.paper .play-ic{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.35);color:#3E6C93;}
-.view.paper .play-meta svg,.view.paper .play-meta .arrow{color:#3E6C93;}
-.view.paper .level-head.l1 + .play-grid .play-ic{background:rgba(169,133,74,.12);border-color:rgba(169,133,74,.45);color:#A9854A;}
-.view.paper .level-head.l1 + .play-grid .play-meta svg,.view.paper .level-head.l1 + .play-grid .play-meta .arrow{color:#A9854A;}
-.view.paper .level-head.l1 + .play-grid a.play:hover{border-color:rgba(169,133,74,.55);}
-.view.paper .level-head.l3 + .play-grid .play-ic{background:rgba(168,91,61,.12);border-color:rgba(168,91,61,.45);color:#A85B3D;}
-.view.paper .level-head.l3 + .play-grid .play-meta svg,.view.paper .level-head.l3 + .play-grid .play-meta .arrow{color:#A85B3D;}
-.view.paper .level-head.l3 + .play-grid a.play:hover{border-color:rgba(168,91,61,.55);}
-.view.paper .recipe-card{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
-.view.paper .recipe-card h3{color:#212B3A;}
-.view.paper .recipe-card h3 svg{color:#3F8862;}
-.view.paper ol.mini-rail::before{background:linear-gradient(180deg,#3F8862,rgba(63,136,98,.15));}
-.view.paper ol.mini-rail li{color:#4A5568;}
-.view.paper ol.mini-rail li strong{color:#212B3A;}
-.view.paper .mini-num{background:#3F8862;border-color:#3F8862;color:#fff;}
-.view.paper .guard{background:#fff;border-color:rgba(169,80,80,.35);box-shadow:0 2px 12px rgba(33,43,58,.05);}
-.view.paper .guard .ic{background:rgba(201,127,127,.16);color:#A85050;}
-.view.paper .guard b{color:#212B3A;}
-.view.paper .guard p{color:#5C6678;}
-
-/* ── v6 energy: per-level accents + paper/tint views ── */
-:root{--ter:#CE7A56;--ter-soft:#E09B7C;--ter-dim:rgba(206,122,86,.12);--ter-line:rgba(206,122,86,.4);}
-h2{font-size:clamp(1.75rem,6vw,2.55rem);}
-.level-head.l1 b{color:var(--gold-soft);}
-.level-head.l1 .lv i.on{background:var(--gold);}
-.level-head.l2 b{color:#9CC3E2;}
-.level-head.l2 .lv i.on{background:var(--cyan);}
-.level-head.l3 b{color:var(--ter-soft);}
-.level-head.l3 .lv i.on{background:var(--ter);}
-.level-head.l1 + .play-grid .play-ic{background:var(--gold-dim);border-color:var(--gold-line);color:var(--gold-soft);}
-.level-head.l1 + .play-grid .play-meta svg,.level-head.l1 + .play-grid .play-meta .arrow{color:var(--gold-soft);}
-.level-head.l1 + .play-grid a.play:hover{border-color:var(--gold-line);}
-.level-head.l3 + .play-grid .play-ic{background:var(--ter-dim);border-color:var(--ter-line);color:var(--ter-soft);}
-.level-head.l3 + .play-grid .play-meta svg,.level-head.l3 + .play-grid .play-meta .arrow{color:var(--ter-soft);}
-.level-head.l3 + .play-grid a.play:hover{border-color:var(--ter-line);}
-.level-head.l3 + .play-grid a.play::after{background:radial-gradient(ellipse 75% 65% at 100% 0%,rgba(206,122,86,.1),transparent 60%);}
-
-.view.paper{background:#F3EDE2;color:#212B3A;}
-.view.paper .view-head h2{color:#212B3A;}
-.view.paper h2 .em{color:#A9854A;}
-.view.paper .lead{color:#5C6678;}
-.view.paper .lead strong{color:#212B3A;}
-.view.paper a.inline{color:#3E6C93;text-decoration-color:rgba(62,108,147,.4);}
-.view.paper .tool{background:#fff;border-color:rgba(33,43,58,.1);box-shadow:0 2px 12px rgba(33,43,58,.05);backdrop-filter:none;}
-.view.paper .tool:hover{border-color:rgba(62,108,147,.4);}
-.view.paper .tool b{color:#212B3A;}
-.view.paper .tool p{color:#5C6678;}
-.view.paper .tool .ic{background:rgba(62,108,147,.1);border-color:rgba(62,108,147,.35);color:#3E6C93;}
-.view.paper .note{background:rgba(201,164,92,.14);border-color:rgba(169,133,74,.4);color:#5C6678;}
-.view.paper .check-card{background:#fff;border-color:rgba(169,133,74,.45);box-shadow:0 14px 40px rgba(33,43,58,.09);backdrop-filter:none;}
-.view.paper .check-item:hover{background:rgba(33,43,58,.03);}
-.view.paper .check-text{color:#4A5568;}
-.view.paper .check-text strong{color:#212B3A;}
-.view.paper .check-text a{color:#3E6C93;}
-.view.paper .check-box{border-color:rgba(169,133,74,.6);}
-.view.tint{background:linear-gradient(180deg,rgba(201,127,127,.08),rgba(201,127,127,.015));}
-details.prompt{color:var(--white);}
-details.prompt .pr-text span{color:var(--faint);}
-
-/* ── v9 variety: distinct element grammar per section ── */
-.hero .cy{position:relative;display:inline-block;}
-.hero .cy::after{content:'';position:absolute;left:-6%;right:-6%;bottom:2px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9 Q 30 3 55 6 T 97 5' fill='none' stroke='%23C9A45C' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;}
-.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0;background:rgba(255,255,255,.02);}
-.ticker-track{display:inline-flex;white-space:nowrap;animation:tickmove 40s linear infinite;}
-.ticker-track span{font-family:var(--font-head);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);padding:0 18px;position:relative;}
-.ticker-track span::after{content:'\2022';position:absolute;right:-4px;color:rgba(201,164,92,.55);}
-@keyframes tickmove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;}}
-
-/* Level 1: editorial numbered list */
-.play-list{display:flex;flex-direction:column;}
-a.playrow{display:flex;align-items:center;gap:22px;padding:20px 8px;text-decoration:none;color:#212B3A;border-top:1px solid rgba(33,43,58,.16);transition:background .2s var(--ease);}
-.play-list a.playrow:last-child{border-bottom:1px solid rgba(33,43,58,.16);}
-a.playrow:hover{background:rgba(169,133,74,.07);}
-.prow-num{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3rem);line-height:1;color:rgba(169,133,74,.55);flex:0 0 auto;min-width:64px;}
-.prow-main{flex:1;min-width:0;}
-.prow-main b{display:block;font-family:var(--font-head);font-weight:500;font-size:clamp(1.1rem,3vw,1.35rem);}
-.prow-main span{display:block;font-size:.92rem;color:#5C6678;margin-top:2px;max-width:62ch;}
-.prow-meta{flex:0 0 auto;display:flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1.2px;text-transform:uppercase;color:#8A93A5;}
-.prow-meta svg{color:#A9854A;transition:transform .25s var(--ease);}
-a.playrow:hover .prow-meta svg{transform:translateX(5px);}
-@media(max-width:640px){.prow-meta{display:none;}.prow-num{min-width:44px;}}
-
-/* Level 3: mission rows */
-.mission-list{display:flex;flex-direction:column;gap:14px;}
-a.mission{display:flex;align-items:center;gap:18px;padding:18px 20px;text-decoration:none;color:#212B3A;background:rgba(206,122,86,.07);border-left:4px solid #A85B3D;transition:background .2s var(--ease),transform .2s var(--ease);}
-a.mission:hover{background:rgba(206,122,86,.13);transform:translateX(4px);}
-.mission-main{flex:1;min-width:0;}
-.mission-main b{display:block;font-family:var(--font-head);font-weight:500;font-size:clamp(1.05rem,3vw,1.25rem);}
-.mission-main span{display:block;font-size:.9rem;color:#5C6678;margin-top:2px;max-width:66ch;}
-.mission-meta{flex:0 0 auto;display:flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:.74rem;letter-spacing:1.2px;text-transform:uppercase;color:#A85B3D;}
-.mission-meta svg{transition:transform .25s var(--ease);}
-a.mission:hover .mission-meta svg{transform:translateX(5px);}
-@media(max-width:640px){.mission-meta svg{display:none;}}
-
-/* Recipes: index cards with tape + ruled lines */
-.view.paper .recipe-card{background:repeating-linear-gradient(180deg,#fff 0 32px,rgba(62,108,147,.08) 32px 33px);position:relative;overflow:visible;padding-top:30px;border-radius:4px;}
-.view.paper .recipe-card::before{content:'';position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(-2.5deg);width:118px;height:26px;background:rgba(201,164,92,.4);border:1px solid rgba(169,133,74,.3);}
-/* Tools: ruled catalog rows */
-.view.paper .tool-grid{display:block;}
-.view.paper .tool{background:transparent;border:0;border-top:1px solid rgba(33,43,58,.16);border-radius:0;box-shadow:none;padding:20px 6px;transform:none;}
-.view.paper .tool:last-of-type{border-bottom:1px solid rgba(33,43,58,.16);}
-.view.paper .tool:hover{background:rgba(62,108,147,.05);transform:none;}
-.view.paper .tool b{font-size:1.3rem;font-weight:500;}
-/* Guardrails: numbered placards */
-.view.paper .guard-grid{display:block;}
-.view.paper .guard{background:transparent;border:0;border-left:4px solid #A85050;border-radius:0;box-shadow:none;padding:6px 0 6px 22px;margin-bottom:26px;align-items:flex-start;}
-.view.paper .guard .ic{display:none;}
-.view.paper .guard-grid{counter-reset:gr;}
-.view.paper .guard::before{counter-increment:gr;content:counter(gr,decimal-leading-zero);font-family:var(--font-display);font-size:2.6rem;line-height:.9;color:rgba(168,80,80,.5);flex:0 0 auto;min-width:56px;}
-.view.paper .guard b{font-size:1.15rem;}
-/* This Week: notepad */
-.view.paper .check-card{background:repeating-linear-gradient(180deg,#fff 0 40px,rgba(62,108,147,.08) 40px 41px);border-radius:4px;}
-
-
+@media(max-width:1180px){.tiles.t4{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:640px){
+  .wrap{padding:0 16px;}
+  .hero{padding:24px 0 22px;}
+  .hero .sub{margin-top:10px;}
+  .hero-stats{display:none;}
+  .hero-facts{display:block;}
+  .hero-actions{margin-top:18px;}
+  .hero-actions a{flex:1 1 auto;padding:0 16px;white-space:nowrap;}
+  nav.tabsbar{padding:6px 0;}
+  .seg{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:3px;border-radius:14px;}
+  .seg a{min-height:44px;padding:0 4px;font-size:14.5px;}
+  .view{padding-top:28px;}
+  .tiles,.tiles.t4,.tiles.t2{grid-template-columns:1fr;gap:22px;}
+  .hubtile{display:flex;}
+  .hubtile .t-face{padding:20px 18px 18px;}
+  .hubtile .t-title{font-size:21px;}
+  .hubtile .t-foot{flex-direction:row;align-items:center;justify-content:space-between;padding:12px 14px 12px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);}
+  .hubtile .t-meta b{font-size:15px;}
+  .level-head{margin-top:36px;}
+  details.prompt summary{padding:14px;gap:12px;}
+  .prompt-bar{padding-left:12px;}
+  details.prompt pre{padding:16px 14px;}
+  .rules{padding:2px 18px;}
+  .checklist{padding:6px;}
+}
 @media print{
-  .bg-fx,nav.tabsbar,.copy-btn{display:none !important;}
+  nav.tabsbar,.copy-btn,.hero-actions{display:none !important;}
   body{background:#fff;color:#111;}
   .view{display:block !important;}
-  h1,h2,h3{color:#0F1A2E;}h2 .em{color:#0F1A2E;}
-  a.play,.start-tile,.recipe-card,.tool,.guard,.check-card,details.prompt{background:#fff;border-color:#ccc;box-shadow:none;}
-  .lead,.sub,.play-desc,.tool p,.guard p,.check-text{color:#333;}
-  details.prompt pre{color:#111;background:#f5f5f5;}
+  h1,h2,h3{color:#0d1623;}
+  .lead,.sub,.note{color:#333;}
+  .tile,.sheet,details.prompt{box-shadow:none;border:1px solid #ccc;}
+  .pr-body,details.prompt pre{background:#f5f5f5;color:#111;}
 }
 </style>
-<style>.cal-btn{display:inline-flex;align-items:center;border:1px solid #B9974E;color:#B9974E;padding:7px 13px;text-decoration:none;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;font-family:inherit}.cal-btn:hover{background:#B9974E;color:#0B1522}@media(max-width:560px){.brt{display:none}}</style>
 </head>
 <body>
-<div class="bg-fx" aria-hidden="true"></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -390,130 +257,86 @@ a.mission:hover .mission-meta svg{transform:translateX(5px);}
   </defs>
 </svg>
 
-<header class="site">
-  <div class="wrap site-row">
-    <a class="brand" href="/keeping-ai-on-things/"><img src="/img/cnat-logo-white.png" alt="CNAT Title" height="26"><span>Education</span></a>
-    <div class="brand-right" style="display:inline-flex;align-items:center;gap:14px"><span class="brt">Class Resource Hub</span><a class="cal-btn" href="/resources/?class=Keeping%20AI%20on%20Things">All Class Resources</a><a class="cal-btn" href="https://calendly.com/cnattitle" target="_blank" rel="noopener">Book Time</a></div>
-  </div>
-</header>
-
 <div class="hero">
   <div class="wrap">
+    <p class="hero-kicker">Class resource hub</p>
     <h1>Keeping <span class="cy">AI</span> on Things</h1>
     <p class="sub">Practical AI for real estate agents. Pick a tab: the playbooks show what to build, the guides show exactly how.</p>
-    <div class="hero-facts"><span><b>11</b> playbooks</span><span><b>3</b> levels</span><span><b>5</b> class prompts</span><span><b>1 hour</b> to your first win</span></div>
+    <p class="hero-facts"><span><b>11</b> playbooks</span> &middot; <span><b>3</b> levels</span> &middot; <span><b>5</b> class prompts</span> &middot; <span><b>1 hour</b> to your first win</span></p>
+    <div class="hero-actions"><a class="btn-white" href="https://calendly.com/cnattitle" target="_blank" rel="noopener">Book time</a><a class="btn-ghost" href="/resources/?class=Keeping%20AI%20on%20Things">All class resources</a></div>
+    <div class="hero-stats" aria-label="At a glance">
+      <div class="stat"><span class="stat-num">11</span><span class="stat-label">Playbooks</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Levels</span></div>
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">Class prompts</span></div>
+      <div class="stat"><span class="stat-num">1 hour</span><span class="stat-label">To your first win</span></div>
+    </div>
   </div>
 </div>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track">
-<span>Your AI Second Brain</span><span>CSV to Campaign</span><span>Reverse Prospecting Engine</span><span>The CMA Assistant</span><span>AI Transaction Coordination</span><span>Connect Your CRM</span><span>Connect Your Calendar</span><span>Neighborhood Landing Pages</span><span>Market Research Routines</span><span>The Farm Watchlist</span><span>The Campaign Autopilot</span>
-<span>Your AI Second Brain</span><span>CSV to Campaign</span><span>Reverse Prospecting Engine</span><span>The CMA Assistant</span><span>AI Transaction Coordination</span><span>Connect Your CRM</span><span>Connect Your Calendar</span><span>Neighborhood Landing Pages</span><span>Market Research Routines</span><span>The Farm Watchlist</span><span>The Campaign Autopilot</span>
-</div></div>
-
 <nav class="tabsbar" aria-label="Hub sections">
-  <div class="wrap">
-    <a href="#playbooks" data-view="playbooks" class="active"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Playbooks</a>
-    <a href="#prompts" data-view="prompts"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chat"/></svg>Prompts</a>
-    <a href="#recipes" data-view="recipes"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-book"/></svg>Recipes</a>
-    <a href="#tools" data-view="tools"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-wrench"/></svg>Tools</a>
-    <a href="#guardrails" data-view="guardrails"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-shield"/></svg>Guardrails</a>
-    <a href="#action" data-view="action"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg>This Week</a>
-  </div>
+  <div class="wrap"><div class="seg">
+    <a href="#playbooks" data-view="playbooks" class="active">Playbooks</a>
+    <a href="#prompts" data-view="prompts">Prompts</a>
+    <a href="#recipes" data-view="recipes">Recipes</a>
+    <a href="#tools" data-view="tools">Tools</a>
+    <a href="#guardrails" data-view="guardrails">Guardrails</a>
+    <a href="#action" data-view="action">This Week</a>
+  </div></div>
 </nav>
 
 <main>
 
   <!-- PLAYBOOKS VIEW -->
-  <section class="view on paper" id="view-playbooks"><div class="wrap">
+  <section class="view on" id="view-playbooks"><div class="wrap">
     <div class="view-head">
       <h2>The Playbook <span class="em">Board</span></h2>
       <p class="lead">What "using AI to run your business" actually looks like. Every play opens a step-by-step guide with the whole process and the result up front. Start at Level 1 tonight.</p>
     </div>
 
-    <a class="start-tile" href="guides/ai-second-brain/">
-      <div class="start-flex">
-        <div class="start-icon"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brain"/></svg></div>
-        <div>
-          <div class="start-meta">Start here &middot; The foundation &middot; 30 min, once</div>
-          <h3>Your AI Second Brain</h3>
-          <p>Teach your assistant your market, voice, and rules one time. Every other play on this board assumes it exists.</p>
-          <span class="start-cta">Open the guide <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-        </div>
-        <div class="start-right" aria-hidden="true">
-          <div class="start-stat"><b>30<span style="font-size:1rem;">min</span></b><small>One-time setup</small></div>
-          <div class="start-stat"><b>10</b><small>Plays it powers</small></div>
-        </div>
-      </div>
+    <a class="tile hubtile" href="guides/ai-second-brain/">
+      <span class="t-face">
+        <span class="t-start">Start here &middot; The foundation</span>
+        <b class="t-title">Your AI Second Brain</b>
+        <span class="t-desc">Teach your assistant your market, voice, and rules one time. Every other play on this board assumes it exists.</span>
+      </span>
+      <span class="t-foot">
+        <span class="t-meta"><b>30 min, once</b><span>Powers the other 10 plays</span></span>
+        <span class="t-btn">Open the guide <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </span>
     </a>
 
-    <div class="level-head l1"><span class="lv"><i class="on"></i><i></i><i></i></span><b>Level 1 &middot; Copy-Paste</b><span>no setup, works today</span></div>
-    <div class="play-list">
-      <a class="playrow" href="guides/csv-to-campaign/">
-        <span class="prow-num">01</span>
-        <span class="prow-main"><b>CSV to Campaign</b><span>Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</span></span>
-        <span class="prow-meta">15 min <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="playrow" href="guides/reverse-prospecting-engine/">
-        <span class="prow-num">02</span>
-        <span class="prow-main"><b>Reverse Prospecting Engine</b><span>Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</span></span>
-        <span class="prow-meta">20 min / listing <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="playrow" href="guides/cma-assistant/">
-        <span class="prow-num">03</span>
-        <span class="prow-main"><b>The CMA Assistant</b><span>Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</span></span>
-        <span class="prow-meta">20 min / CMA <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="playrow" href="guides/ai-transaction-coordinator/">
-        <span class="prow-num">04</span>
-        <span class="prow-main"><b>AI Transaction Coordination</b><span>Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</span></span>
-        <span class="prow-meta">20 min / contract <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
+    <div class="level-head"><h3><span class="lv" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Level 1 &middot; Copy-Paste</h3><span>No setup, works today</span></div>
+    <div class="tiles t4">
+      <a class="tile" href="guides/csv-to-campaign/"><span class="t-face"><b class="t-title">CSV to Campaign</b><span class="t-desc">Export your database, get segments and a ready-to-load campaign back. Works with every CRM ever made.</span></span><span class="t-foot"><span class="t-time">15 min</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/reverse-prospecting-engine/"><span class="t-face"><b class="t-title">Reverse Prospecting Engine</b><span class="t-desc">Your MLS shows which agents have matching buyers. One paste becomes agent outreach, a seller update, and a demand campaign.</span></span><span class="t-foot"><span class="t-time">20 min / listing</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/cma-assistant/"><span class="t-face"><b class="t-title">The CMA Assistant</b><span class="t-desc">Your comps in, a client-ready pricing story and objection prep out. You still pick the price.</span></span><span class="t-foot"><span class="t-time">20 min / CMA</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/ai-transaction-coordinator/"><span class="t-face"><b class="t-title">AI Transaction Coordination</b><span class="t-desc">Contract dates in; a full timeline, weekly client updates, and an at-risk radar out.</span></span><span class="t-foot"><span class="t-time">20 min / contract</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
     </div>
 
-    <div class="level-head l2"><span class="lv"><i class="on"></i><i class="on"></i><i></i></span><b>Level 2 &middot; Connected</b><span>one-time setup</span></div>
-    <div class="play-grid">
-      <a class="play" href="guides/connect-your-crm/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="play-name">Connect Your CRM</div></div>
-        <p class="play-desc">Ask questions of your own database, and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>30-60 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
-      </a>
-      <a class="play" href="guides/calendar-connection/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-cal"/></svg></div><div class="play-name">Connect Your Calendar</div></div>
-        <p class="play-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>20-30 min, once<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
-      </a>
-      <a class="play" href="guides/farming-landing-pages/">
-        <div class="play-top"><div class="play-ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-layout"/></svg></div><div class="play-name">Neighborhood Landing Pages</div></div>
-        <p class="play-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</p>
-        <div class="play-meta"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-clock"/></svg>45-60 min<span class="arrow"><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></div>
-      </a>
+    <div class="level-head"><h3><span class="lv" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Level 2 &middot; Connected</h3><span>One-time setup</span></div>
+    <div class="tiles">
+      <a class="tile" href="guides/connect-your-crm/"><span class="t-face"><b class="t-title">Connect Your CRM</b><span class="t-desc">Ask questions of your own database, and let dossiers and tasks land where you work. Three paths, from built-in AI to the universal export loop.</span></span><span class="t-foot"><span class="t-time">30-60 min, once</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/calendar-connection/"><span class="t-face"><b class="t-title">Connect Your Calendar</b><span class="t-desc">Morning briefs, showing-day plans, and follow-up scaffolding from the calendar you already keep.</span></span><span class="t-foot"><span class="t-time">20-30 min, once</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/farming-landing-pages/"><span class="t-face"><b class="t-title">Neighborhood Landing Pages</b><span class="t-desc">Your assistant builds a polished page for your farm, wired to your CRM, worth every QR code you print.</span></span><span class="t-foot"><span class="t-time">45-60 min</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
     </div>
 
-    <div class="level-head l3"><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Level 3 &middot; Autopilot</b><span>routines that run without you</span></div>
-    <div class="mission-list">
-      <a class="mission" href="guides/market-research-routines/">
-        <span class="mission-main"><b>Market Research Routines</b><span>Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</span></span>
-        <span class="mission-meta">30 min setup <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="mission" href="guides/farm-watchlist/">
-        <span class="mission-main"><b>The Farm Watchlist</b><span>Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</span></span>
-        <span class="mission-meta">15 min / month <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="mission" href="guides/campaign-autopilot/">
-        <span class="mission-main"><b>The Campaign Autopilot</b><span>One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</span></span>
-        <span class="mission-meta">Build in a week <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
-      </a>
-    </div></section>
+    <div class="level-head"><h3><span class="lv" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Level 3 &middot; Autopilot</h3><span>Routines that run without you</span></div>
+    <div class="tiles">
+      <a class="tile" href="guides/market-research-routines/"><span class="t-face"><b class="t-title">Market Research Routines</b><span class="t-desc">Scheduled tasks that watch your areas: listings, opportunities, local signals, and competitor activity, digested weekly.</span></span><span class="t-foot"><span class="t-time">30 min setup</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/farm-watchlist/"><span class="t-face"><b class="t-title">The Farm Watchlist</b><span class="t-desc">Cross-reference your farm list with each month's activity and get a ranked who-to-contact-and-why list.</span></span><span class="t-foot"><span class="t-time">15 min / month</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+      <a class="tile" href="guides/campaign-autopilot/"><span class="t-face"><b class="t-title">The Campaign Autopilot</b><span class="t-desc">One trigger in, a complete campaign out through your established channels, with you approving at two checkpoints.</span></span><span class="t-foot"><span class="t-time">Build in a week</span><span class="t-go">Open <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></span></a>
+    </div>
+  </div></section>
 
   <!-- PROMPTS VIEW -->
-  <section class="view paper" id="view-prompts"><div class="wrap">
+  <section class="view" id="view-prompts"><div class="wrap">
     <div class="view-head">
       <h2>The 5 <span class="em">Prompts</span></h2>
       <p class="lead">Tap a prompt to open it, copy it into whatever AI assistant you use, and replace the <strong>[bracketed]</strong> parts with your details. That's it.</p>
     </div>
-
-    <details class="prompt">
-      <summary><span class="pr-num">1</span><span class="pr-text"><b>One Listing to a Full Campaign</b><span>Sphere email, three captions, and an open-house angle in one pass</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+    <div class="prompts">
+    <details class="prompt" id="pr1">
+      <summary><span class="pr-num">1</span><span class="pr-text"><b>One Listing to a Full Campaign</b><span>Sphere email, three captions, and an open-house angle in one pass</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">listing-launch.prompt</span><button class="copy-btn" data-target="p1">Copy</button></div>
         <pre id="p1">You are my real estate marketing assistant. Create a complete launch package for this new listing.
@@ -534,9 +357,8 @@ Produce, clearly labeled:
 Keep fair-housing safe: describe the home and lifestyle, never the ideal buyer or neighborhood demographics.</pre>
       </div>
     </details>
-
-    <details class="prompt">
-      <summary><span class="pr-num">2</span><span class="pr-text"><b>Conversation to Client Dossier + Tasks</b><span>Messy notes in, a clean one-page record and task list out</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+    <details class="prompt" id="pr2">
+      <summary><span class="pr-num">2</span><span class="pr-text"><b>Conversation to Client Dossier + Tasks</b><span>Messy notes in, a clean one-page record and task list out</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">client-dossier.prompt</span><button class="copy-btn" data-target="p2">Copy</button></div>
         <pre id="p2">You are my executive assistant. Below are my raw notes / transcript from a client conversation. Turn them into a clean, one-page dossier I can attach to their record.
@@ -559,9 +381,8 @@ Then give me a NEXT-ACTION TASK LIST: each task with an owner (me / lender / cli
 Only use what's in the notes. If something wasn't mentioned, mark it "not discussed" - do not guess.</pre>
       </div>
     </details>
-
-    <details class="prompt">
-      <summary><span class="pr-num">3</span><span class="pr-text"><b>Next-Best-Action Queue</b><span>Who to reach out to, when, and how</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+    <details class="prompt" id="pr3">
+      <summary><span class="pr-num">3</span><span class="pr-text"><b>Next-Best-Action Queue</b><span>Who to reach out to, when, and how</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">next-best-action.prompt</span><button class="copy-btn" data-target="p3">Copy</button></div>
         <pre id="p3">You are my business-development assistant. Below is a list of contacts from my CRM (client database). For each one I've included the last time we talked, their role, and one recent note.
@@ -578,9 +399,8 @@ Then rank the top 5 I should do FIRST and explain the ranking in one line each.
 Do not write the messages - just the action plan. I'll decide what to say.</pre>
       </div>
     </details>
-
-    <details class="prompt">
-      <summary><span class="pr-num">4</span><span class="pr-text"><b>Neighborhood Market-Update Post</b><span>Local numbers into a value post + sphere email</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+    <details class="prompt" id="pr4">
+      <summary><span class="pr-num">4</span><span class="pr-text"><b>Neighborhood Market-Update Post</b><span>Local numbers into a value post + sphere email</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">market-update.prompt</span><button class="copy-btn" data-target="p4">Copy</button></div>
         <pre id="p4">You are my content assistant. Turn these local market numbers into a value-first update for my audience - not a sales pitch.
@@ -599,9 +419,8 @@ Produce:
 Neutral, factual, fair-housing safe. Cite the numbers as "recent local data," and remind me to double-check figures before posting.</pre>
       </div>
     </details>
-
-    <details class="prompt">
-      <summary><span class="pr-num">5</span><span class="pr-text"><b>Weekly Transaction Status Brief</b><span>A calm client update and an internal checklist, so nothing slips</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
+    <details class="prompt" id="pr5">
+      <summary><span class="pr-num">5</span><span class="pr-text"><b>Weekly Transaction Status Brief</b><span>A calm client update and an internal checklist, so nothing slips</span></span><span class="pr-chev"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></span></summary>
       <div class="pr-body">
         <div class="prompt-bar"><span class="pdot r"></span><span class="pdot y"></span><span class="pdot g"></span><span class="prompt-name">weekly-brief.prompt</span><button class="copy-btn" data-target="p5">Copy</button></div>
         <pre id="p5">You are my transaction coordinator. Based on the deal details below, write two things.
@@ -620,78 +439,85 @@ Produce:
 Keep the client version free of jargon. Keep the internal version blunt.</pre>
       </div>
     </details>
+    </div>
   </div></section>
 
   <!-- RECIPES VIEW -->
-  <section class="view paper" id="view-recipes"><div class="wrap">
+  <section class="view" id="view-recipes"><div class="wrap">
     <div class="view-head">
       <h2>The Two <span class="em">Demo Recipes</span></h2>
       <p class="lead">Repeat today's live demos cold, on your own listing and your own client. Both use prompts from the <a class="inline" href="#prompts">Prompts tab</a>.</p>
     </div>
-    <div class="recipe-grid">
-      <div class="recipe-card">
-        <h3><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-send"/></svg>Recipe A: Listing to Campaign</h3>
-        <ol class="mini-rail">
-          <li><span class="mini-num">1</span>Open your AI assistant. Copy <strong>Prompt 1</strong> from the Prompts tab.</li>
-          <li><span class="mini-num">2</span>Fill the brackets with one real listing (yours or a colleague's).</li>
-          <li><span class="mini-num">3</span>Run it. Read the email, the three captions, and the open-house angle.</li>
-          <li><span class="mini-num">4</span>Edit to sound like <strong>you</strong>. AI gets you 80% there; your voice does the rest.</li>
-          <li><span class="mini-num">5</span>Send the email to your sphere and post one caption <strong>today</strong>. Done beats perfect.</li>
-        </ol>
+    <div class="tiles t2">
+      <div class="tile recipe">
+        <div class="t-face">
+          <h3 class="t-title">Recipe A: Listing to Campaign</h3>
+          <ol class="steps">
+            <li><span class="mini-num">1</span>Open your AI assistant. Copy <strong>Prompt 1</strong> from the Prompts tab.</li>
+            <li><span class="mini-num">2</span>Fill the brackets with one real listing (yours or a colleague's).</li>
+            <li><span class="mini-num">3</span>Run it. Read the email, the three captions, and the open-house angle.</li>
+            <li><span class="mini-num">4</span>Edit to sound like <strong>you</strong>. AI gets you 80% there; your voice does the rest.</li>
+            <li><span class="mini-num">5</span>Send the email to your sphere and post one caption <strong>today</strong>. Done beats perfect.</li>
+          </ol>
+        </div>
+        <div class="t-foot"><span class="t-meta"><b>Uses Prompt 1</b><span>One Listing to a Full Campaign</span></span><a class="t-btn" href="#prompts" data-open="pr1">Open Prompt 1</a></div>
       </div>
-      <div class="recipe-card">
-        <h3><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-mic"/></svg>Recipe B: Conversation to Dossier</h3>
-        <ol class="mini-rail">
-          <li><span class="mini-num">1</span>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
-          <li><span class="mini-num">2</span>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
-          <li><span class="mini-num">3</span>Run it. You'll get a one-page dossier plus a task list.</li>
-          <li><span class="mini-num">4</span>Scan it for accuracy and fix anything the AI misread.</li>
-          <li><span class="mini-num">5</span>Attach the dossier to the client's record and drop the tasks into your CRM. Never lose a detail again.</li>
-        </ol>
+      <div class="tile recipe">
+        <div class="t-face">
+          <h3 class="t-title">Recipe B: Conversation to Dossier</h3>
+          <ol class="steps">
+            <li><span class="mini-num">1</span>Right after a call or showing, dump your rough notes (or record a 60-second voice memo and transcribe it).</li>
+            <li><span class="mini-num">2</span>Copy <strong>Prompt 2</strong> and paste your notes into the brackets.</li>
+            <li><span class="mini-num">3</span>Run it. You'll get a one-page dossier plus a task list.</li>
+            <li><span class="mini-num">4</span>Scan it for accuracy and fix anything the AI misread.</li>
+            <li><span class="mini-num">5</span>Attach the dossier to the client's record and drop the tasks into your CRM. Never lose a detail again.</li>
+          </ol>
+        </div>
+        <div class="t-foot"><span class="t-meta"><b>Uses Prompt 2</b><span>Conversation to Client Dossier + Tasks</span></span><a class="t-btn" href="#prompts" data-open="pr2">Open Prompt 2</a></div>
       </div>
     </div>
   </div></section>
 
   <!-- TOOLS VIEW -->
-  <section class="view paper" id="view-tools"><div class="wrap">
+  <section class="view" id="view-tools"><div class="wrap">
     <div class="view-head">
       <h2>A <span class="em">Starter</span> Tool List</h2>
       <p class="lead">Organized by the job, not the brand. Pick one per row and learn it well before adding more.</p>
     </div>
-    <div class="tool-grid">
-      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-brain"/></svg></div><div><b>General AI assistant</b><p>Your everyday chat tool for the prompts. Popular options: ChatGPT, Claude, Gemini, Copilot.</p></div></div>
-      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-mic"/></svg></div><div><b>Meeting / call notes</b><p>Records and transcribes calls and showings so you can feed them to Prompt 2. Options: Otter, Fathom, Fireflies, or your phone's voice memos.</p></div></div>
-      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-send"/></svg></div><div><b>Social scheduling</b><p>Queues the captions you generate so posting is one weekly task. Options: Later, Buffer, Metricool, or your CRM's built-in scheduler.</p></div></div>
-      <div class="tool"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div><b>Your CRM (client database)</b><p>The home base for dossiers, tasks, and follow-up. Use the one you already have. The point is to actually use it.</p></div></div>
+    <div class="tiles t2">
+      <div class="tile"><div class="t-face"><h3 class="t-title">General AI assistant</h3><p class="t-desc">Your everyday chat tool for the prompts.</p></div><div class="t-foot"><span class="t-meta"><b>Popular options</b><span>ChatGPT, Claude, Gemini, Copilot</span></span></div></div>
+      <div class="tile"><div class="t-face"><h3 class="t-title">Meeting / call notes</h3><p class="t-desc">Records and transcribes calls and showings so you can feed them to Prompt 2.</p></div><div class="t-foot"><span class="t-meta"><b>Options</b><span>Otter, Fathom, Fireflies, or your phone's voice memos</span></span></div></div>
+      <div class="tile"><div class="t-face"><h3 class="t-title">Social scheduling</h3><p class="t-desc">Queues the captions you generate so posting is one weekly task.</p></div><div class="t-foot"><span class="t-meta"><b>Options</b><span>Later, Buffer, Metricool, or your CRM's built-in scheduler</span></span></div></div>
+      <div class="tile"><div class="t-face"><h3 class="t-title">Your CRM (client database)</h3><p class="t-desc">The home base for dossiers, tasks, and follow-up. The point is to actually use it.</p></div><div class="t-foot"><span class="t-meta"><b>Options</b><span>Use the one you already have</span></span></div></div>
     </div>
-    <div class="note">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</div>
+    <p class="note">These are examples to get you started, not endorsements. Any tool in each category works. Use what fits your business and budget.</p>
   </div></section>
 
   <!-- GUARDRAILS VIEW -->
-  <section class="view paper" id="view-guardrails"><div class="wrap">
+  <section class="view" id="view-guardrails"><div class="wrap">
     <div class="view-head">
       <h2>Four <span class="em">Guardrails</span></h2>
       <p class="lead">The rules that keep AI helping you instead of exposing you.</p>
     </div>
-    <div class="guard-grid">
-      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div><b>Fair Housing applies to AI</b><p>HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</p></div></div>
-      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-alert"/></svg></div><div><b>Never feed it private data</b><p>No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</p></div></div>
-      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></div><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
-      <div class="guard"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
+    <div class="sheet rules">
+      <div class="rule"><span class="r-num">1</span><div><b>Fair Housing applies to AI</b><p>HUD has confirmed the Fair Housing Act covers AI-driven ad targeting. Describe the home, never the "ideal buyer." Keep targeting broad and documented.</p></div></div>
+      <div class="rule"><span class="r-num">2</span><div><b>Never feed it private data</b><p>No Social Security numbers, full contracts, bank statements, or NDA-covered details in consumer AI. Sanitize before you paste.</p></div></div>
+      <div class="rule"><span class="r-num">3</span><div><b>Human review, every time</b><p>AI drafts and surfaces; you decide and send. Read every word before it reaches a client.</p></div></div>
+      <div class="rule"><span class="r-num">4</span><div><b>Keep your claims honest</b><p>Don't promise "AI-perfect pricing." Promise process, transparency, and accountability. You own the output, mistakes included.</p></div></div>
     </div>
   </div></section>
 
   <!-- ACTION VIEW -->
-  <section class="view paper" id="view-action"><div class="wrap">
+  <section class="view" id="view-action"><div class="wrap">
     <div class="view-head">
       <h2>Do This <span class="em">Week</span></h2>
       <p class="lead">Momentum beats knowledge. Four moves, in order.</p>
     </div>
-    <div class="check-card">
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
-      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
+    <div class="sheet checklist">
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-text"><strong>Tonight:</strong> run one real listing through Prompt 1. Send the email to your sphere; post one caption.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-text"><strong>Your next conversation:</strong> turn it into a dossier + tasks with Prompt 2. Attach it to the CRM record.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-text"><strong>Once, for good:</strong> decide your private-data line, what you'll never paste into AI, and hold it.</span></label>
+      <label class="check-item"><input type="checkbox"><span class="check-box"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-text"><strong>This month:</strong> set up your <a href="guides/ai-second-brain/">AI Second Brain</a>, then pick one play from the board and build it.</span></label>
     </div>
   </div></section>
 
@@ -700,17 +526,17 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
 <footer>
   <img class="foot-logo" src="/img/cnat-logo-white.png" alt="CNAT Title" height="22">
   <p><b>CNAT Title</b> &middot; Bradley Patterson, Technology Director</p>
-  <p style="margin-top:6px;">Questions about a class? Reach out to your CNAT Title contact.</p>
+  <p class="foot-q">Questions about a class? Reach out to your CNAT Title contact.</p>
 </footer>
 
 <script>
 (function(){
-  /* Copy buttons */
+  /* Copy buttons (textContent: the source can sit in a closed <details>) */
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-target'));
       if(!el)return;
-      var text=el.innerText;
+      var text=el.textContent;
       function ok(){var t=btn.innerHTML;btn.innerHTML='Copied!';btn.classList.add('done');setTimeout(function(){btn.innerHTML=t;btn.classList.remove('done');},1600);}
       function fallback(){var r=document.createRange();r.selectNode(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fallback);}else{fallback();}
@@ -721,31 +547,48 @@ Keep the client version free of jargon. Keep the internal version blunt.</pre>
   var VIEWS=['playbooks','prompts','recipes','tools','guardrails','action'];
   var tabs=document.querySelectorAll('nav.tabsbar a[data-view]');
   var bar=document.querySelector('nav.tabsbar');
+  var main=document.querySelector('main');
+  /* where the bar sits before it sticks: main starts right under it */
+  function barTop(){return main.getBoundingClientRect().top+window.pageYOffset-(bar?bar.offsetHeight:0);}
   function show(id,scroll){
     if(VIEWS.indexOf(id)===-1)id='playbooks';
     VIEWS.forEach(function(v){
       var sec=document.getElementById('view-'+v);
       if(sec)sec.classList.toggle('on',v===id);
     });
-    tabs.forEach(function(t){t.classList.toggle('active',t.getAttribute('data-view')===id);});
+    tabs.forEach(function(t){
+      var on=t.getAttribute('data-view')===id;
+      t.classList.toggle('active',on);
+      if(on)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current');
+    });
     if(history.replaceState)history.replaceState(null,'','#'+id);
     if(scroll){
-      var top=bar?bar.getBoundingClientRect().top+window.pageYOffset:0;
+      var top=barTop();
       if(window.pageYOffset>top)window.scrollTo({top:top,behavior:'smooth'});
     }
   }
   tabs.forEach(function(t){
     t.addEventListener('click',function(e){e.preventDefault();show(t.getAttribute('data-view'),true);});
   });
-  /* In-content links to views (e.g. href="#prompts") */
+  /* In-content links to views (e.g. href="#prompts"); data-open also opens one prompt */
   document.querySelectorAll('main a[href^="#"]').forEach(function(a){
     var id=a.getAttribute('href').slice(1);
-    if(VIEWS.indexOf(id)!==-1)a.addEventListener('click',function(e){e.preventDefault();show(id,true);});
+    if(VIEWS.indexOf(id)===-1)return;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var pr=a.getAttribute('data-open')&&document.getElementById(a.getAttribute('data-open'));
+      show(id,!pr);
+      if(pr){
+        pr.open=true;
+        var y=pr.getBoundingClientRect().top+window.pageYOffset-(bar?bar.offsetHeight:0)-16;
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
+    });
   });
   window.addEventListener('hashchange',function(){show(location.hash.slice(1),true);});
   show(location.hash.slice(1)||'playbooks',false);
 })();
 </script>
-<script src="/assets/site-chrome.js" defer data-title="Keeping AI on Things" data-class="Keeping AI on Things"></script>
+<script src="/assets/site-chrome.js?v=20261030" defer data-title="Keeping AI on Things" data-class="Keeping AI on Things"></script>
 </body>
 </html>

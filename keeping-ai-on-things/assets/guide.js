@@ -1,11 +1,11 @@
-/* Keeping AI on Things guide pages: copy buttons, tabs, reveals, scroll progress. */
+/* Keeping AI on Things guide pages: copy buttons, tabs, reveals, scroll progress, stepper, prompt modal. */
 (function(){
   /* Copy buttons */
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-target'));
       if(!el)return;
-      var text=el.innerText;
+      var text=el.textContent;
       function ok(){var t=btn.innerHTML;btn.innerHTML='Copied!';btn.classList.add('done');setTimeout(function(){btn.innerHTML=t;btn.classList.remove('done');},1600);}
       function fallback(){var r=document.createRange();r.selectNode(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fallback);}else{fallback();}
@@ -103,7 +103,7 @@
     function ok(){var t=btn.innerHTML;btn.innerHTML='Copied!';btn.classList.add('done');setTimeout(function(){btn.innerHTML=t;btn.classList.remove('done');},1600);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(function(){ok();});}else{ok();}
   }
-  function openModal(title,text){
+  function openModal(title,text,opener){
     var wrap=document.createElement('div');
     wrap.className='pmodal';
     wrap.innerHTML='<div class="pmodal-backdrop"></div>'+
@@ -114,8 +114,9 @@
       '<button class="pmodal-x" type="button" aria-label="Close">&#10005;</button></div>'+
       '<pre></pre></div>';
     wrap.querySelector('.prompt-name').textContent=title;
+    wrap.querySelector('.pmodal-panel').setAttribute('aria-label',title);
     wrap.querySelector('pre').textContent=text;
-    function close(){document.body.removeChild(wrap);document.removeEventListener('keydown',esc);document.body.style.overflow='';}
+    function close(){document.body.removeChild(wrap);document.removeEventListener('keydown',esc);document.body.style.overflow='';if(opener&&opener.focus)opener.focus();}
     function esc(e){if(e.key==='Escape')close();}
     wrap.querySelector('.pmodal-backdrop').addEventListener('click',close);
     wrap.querySelector('.pmodal-x').addEventListener('click',close);
@@ -123,12 +124,13 @@
     document.addEventListener('keydown',esc);
     document.body.style.overflow='hidden';
     document.body.appendChild(wrap);
+    wrap.querySelector('.pmodal-copy').focus();
   }
   document.querySelectorAll('.prompt-open').forEach(function(btn){
     btn.addEventListener('click',function(){
       var src=document.getElementById(btn.getAttribute('data-prompt'));
       if(!src)return;
-      openModal(btn.textContent.replace(/^View prompt:\s*/i,''),src.textContent);
+      openModal(btn.textContent.replace(/^View prompt:\s*/i,''),src.textContent,btn);
     });
   });
 })();
