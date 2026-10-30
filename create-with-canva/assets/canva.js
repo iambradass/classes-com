@@ -46,7 +46,9 @@
 
     if (byUser) {
       /* only pull the page up if its top has scrolled out of view */
-      var stick = window.matchMedia('(min-width: 960px)').matches ? 56 : 0
+      /* the page bar sticks from 960px; measure it rather than guess */
+      var bar = d.querySelector('.cv-top')
+      var stick = bar && window.matchMedia('(min-width: 960px)').matches ? bar.offsetHeight : 0
       var y = (work || views[idx]).getBoundingClientRect().top + window.pageYOffset - stick
       if (window.pageYOffset > y) window.scrollTo(0, y)
       var h = views[idx].querySelector('h1, h2')
