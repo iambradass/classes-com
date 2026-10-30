@@ -65,14 +65,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 .btn-secondary{background:rgba(255,255,255,.08);color:#fff}
 .btn-secondary:hover{background:rgba(255,255,255,.14)}
 
-/* DETAILS: quiet liquid-glass two-tone tiles (value on the glass, label on
-   the band), the same as the homepage stats */
+/* DETAILS: clear tiles with a thin border that sit back into the page
+   (value on top, label under a hairline), the same as the homepage stats */
 .details-strip{background:none;border:0}
 .details-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:12px}
-.detail-item{display:flex;flex-direction:column-reverse;min-width:132px;overflow:hidden;border:0;border-radius:16px;padding:0;text-align:center;background:radial-gradient(120% 90% at 18% 0%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.04) 100%);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(255,255,255,.06),0 8px 22px rgba(0,0,0,.22)}
+.detail-item{display:flex;flex-direction:column-reverse;min-width:132px;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:0;text-align:center;background:rgba(255,255,255,.025)}
 .detail-item:not(:first-child){padding-left:0}
-.detail-val{flex:1;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;line-height:1.25;color:var(--white);padding:11px 14px 9px}
-.detail-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#dce8f8;padding:7px 14px 8px;background:linear-gradient(180deg,rgba(74,154,232,.26) 0%,rgba(45,125,210,.18) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.detail-val{flex:1;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;line-height:1.25;color:var(--white);padding:12px 14px 10px}
+.detail-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--grey);padding:7px 14px 8px;border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
 
 /* CONTENT */
 .course-content{max-width:1200px;margin:0 auto;padding:52px 24px 60px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:48px;align-items:start}
@@ -219,7 +219,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
   <p class="course-tagline">Necessary Knowledge &middot; 2026&ndash;2027 Edition</p>
   <p class="course-desc">The two TREC-required Legal Update classes that every Texas license holder must complete each renewal cycle: rebuilt for the 2026&ndash;2027 curriculum. New legislative changes, updated contract forms, fair housing trends, AI in real estate, and the rules TREC is enforcing right now. Attend in person at our Fort Worth office or join via Zoom.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="#register">Register Now &rarr;</a>
+    <a class="btn-primary" href="#register">Join the Interest List &rarr;</a>
     <a class="btn-secondary" href="/#catalog">Browse All Courses</a>
   </div>
 </div>
@@ -294,19 +294,16 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
 
 <div class="register-section" id="register">
   <div class="reg-inner">
-    <div class="reg-badge open">Session Now Open</div>
-    <h2 class="reg-title">Ready to Attend?</h2>
-    <p class="reg-desc">April 2026 sessions are open for registration. $25 per class or $50 for both. In-person at our Fort Worth office, or join from anywhere via Zoom.</p>
-    <a href="/legal-update-april-2026/" class="btn-primary">Register for April Sessions &rarr;</a>
-    <p class="reg-notice">Looking for a future session? <a href="#notify" id="showNotify" class="reg-link">Join the interest list</a> and we'll email you when the next one's scheduled.</p>
-    <div id="notifyForm" style="display:none;margin-top:32px">
-      <h3 class="form-sub-title">Future Session Interest</h3>
-      <div id="formSuccess" class="form-success">
+    <div class="reg-badge interest">Interest List</div>
+    <h2 class="reg-title">Be First to Know</h2>
+    <p class="reg-desc">The next Legal Update I &amp; II sessions are not on the calendar yet. Drop your info and we'll email you the dates, the format, and the registration link as soon as they're set.</p>
+    <h3 class="form-sub-title">Join the Interest List</h3>
+    <div id="formSuccess" class="form-success">
           <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="success-title">You're on the list.</p>
           <p class="success-text">We'll send you an email as soon as a session is scheduled for <strong>Legal Update I &amp; II</strong>.</p>
         </div>
-      <form id="courseForm">
+    <form id="courseForm">
         <div class="form-group"><label class="form-label" for="fName">Full Name</label><input class="form-input" type="text" id="fName" name="name" placeholder="Jane Smith" required></div>
         <div class="form-group"><label class="form-label" for="fEmail">Email Address</label><input class="form-input" type="email" id="fEmail" name="email" placeholder="jane@brokerage.com" required></div>
         <div class="form-group"><label class="form-label" for="fPhone">Phone Number</label><input class="form-input" type="tel" id="fPhone" name="phone" placeholder="(817) 555-0100"></div>
@@ -314,11 +311,8 @@ body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--whit
         <input type="hidden" id="fSlug" name="course_slug" value="legal-update">
         <button type="submit" class="form-submit">You're In &rarr;</button>
       </form>
-    </div>
   </div>
 </div>
-<script>document.getElementById('showNotify').addEventListener('click',function(e){e.preventDefault();document.getElementById('notifyForm').style.display='block';this.closest('p').style.display='none';});</script>
-
 <footer class="site-footer" id="contact">
   <div class="footer-inner">
     <div>
