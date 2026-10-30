@@ -38,12 +38,28 @@
         /* 2026-10-29: the class facts read as one list (Date, Time, Where, CE, Cost)
            right under the title, left-aligned, so the form is reachable sooner. */
         .class-hero{text-align:left;margin-bottom:18px}.class-hero .ch-eyebrow{font-size:12px;letter-spacing:1.6px}.class-hero h1{margin-bottom:0}
-        .info-strip{display:block;background:var(--tile);border:0;border-top:3px solid var(--brass);border-radius:0;padding:2px 18px;margin-bottom:22px;box-shadow:0 12px 32px rgba(0,0,0,.28)}
-        .info-strip .info-tile,.info-strip .info-tile.lone-tile{display:grid;grid-template-columns:6.2rem minmax(0,1fr);column-gap:12px;align-items:baseline;background:none;border:0;border-top:1px solid var(--tile-line);border-radius:0;padding:13px 0;text-align:left;width:auto;justify-self:auto}
-        .info-strip .info-tile:first-child{border-top:0}
-        .info-tile .tile-label{grid-column:1;grid-row:1 / span 2;font-size:12px;letter-spacing:1.2px;margin-bottom:0;font-weight:700;color:var(--tile-muted)}
-        .info-tile .tile-value,.info-tile .tile-value.yellow{grid-column:2;font-size:16px;color:var(--tile-ink)}
-        .info-tile .tile-meta{grid-column:2;font-size:14px;letter-spacing:.2px;text-transform:none;margin-top:2px;color:var(--tile-muted);opacity:1;font-weight:500}
+        /* 2026-10-30: the class facts are one rounded white sheet with soft depth
+           (Apple app feel, matching the rounded panels below): the date leads
+           with a calendar glyph, then where, then CE and cost side by side.
+           No border strokes or colored edge; depth comes from the shadow. */
+        .info-strip{display:block;background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);border:0;border-radius:16px;padding:4px 20px;margin-bottom:22px;color:var(--tile-ink);box-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 20px 44px rgba(0,0,0,.32)}
+        .info-strip .info-tile,.info-strip .info-tile.lone-tile{display:block;background:none;border:0;border-radius:0;padding:16px 0;text-align:left;width:auto;justify-self:auto;grid-column:auto}
+        .info-strip > :is(.info-tile,.ft-pair) + :is(.info-tile,.ft-pair){border-top:1px solid #e6e9ee}
+        .info-tile .tile-label{font-size:13px;letter-spacing:.2px;text-transform:none;font-weight:600;color:#5b6576;margin-bottom:4px}
+        .info-tile .tile-value,.info-tile .tile-value.yellow{font-size:17px;font-weight:600;line-height:1.4;color:var(--tile-ink)}
+        .info-tile .tile-meta{font-size:15px;letter-spacing:0;text-transform:none;margin-top:2px;color:var(--tile-muted);opacity:1;font-weight:500;line-height:1.45}
+        .ft-when{display:flex !important;align-items:center;gap:14px}
+        .ft-when .tile-value{font-size:19px;font-weight:700}
+        .cal{flex:0 0 auto;width:58px;border-radius:13px;background:#fff;box-shadow:0 1px 2px rgba(13,22,35,.14),0 4px 12px rgba(13,22,35,.12);overflow:hidden;text-align:center}
+        .cal-mon{display:block;background:#2d7dd2;color:#fff;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:4px 0 3px}
+        .cal-day{display:block;font-size:26px;font-weight:800;line-height:1;color:var(--tile-ink);padding:6px 0 8px}
+        .cal:not(.on){display:none}
+        #clsTime:empty + .ft-tz{display:none}
+        .loc-venue{display:block}
+        .loc-rest{display:block;font-size:15px;font-weight:500;color:var(--tile-muted);text-wrap:pretty}
+        .cost-note{display:block;font-size:15px;font-weight:500;color:var(--tile-muted);margin-top:2px}
+        .ft-pair{display:flex;gap:20px}
+        .ft-pair .info-tile{flex:1 1 0;min-width:0}
         .class-desc{margin-bottom:26px}.class-desc .ch-sub{font-size:16px;line-height:1.65;color:#d5dbe5;text-align:left;max-width:none;margin:0;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
         .class-desc.open .ch-sub{display:block}
         .desc-more{background:none;border:0;padding:10px 0;min-height:44px;color:var(--accent-blue-light);font:600 15px 'Montserrat',sans-serif;cursor:pointer}
@@ -75,11 +91,15 @@
             </div>
 
             <div class="info-strip">
-                <div class="info-tile"><div class="tile-label">Date</div><div class="tile-value" id="clsDate"></div></div>
-                <div class="info-tile"><div class="tile-label">Time</div><div class="tile-value" id="clsTime"></div><div class="tile-meta">Central time</div></div>
+                <div class="info-tile ft-when">
+                    <div class="cal" id="calGlyph" aria-hidden="true"><span class="cal-mon" id="calMon"></span><span class="cal-day" id="calDay"></span></div>
+                    <div><div class="tile-value" id="clsDate"></div><div class="tile-meta"><span id="clsTime"></span><span class="ft-tz">, Central time</span></div></div>
+                </div>
                 <div class="info-tile"><div class="tile-label">Where</div><div class="tile-value" id="locStrip"></div><div class="tile-meta" id="locMeta"></div></div>
-                <div class="info-tile" id="ceTile"><div class="tile-label">CE Credit</div><div class="tile-value" id="clsHours"></div><div class="tile-meta" id="clsCourse"></div></div>
-                <div class="info-tile"><div class="tile-label">Cost</div><div class="tile-value yellow" id="clsCost"></div><div class="tile-meta" id="clsCostSub"></div></div>
+                <div class="ft-pair">
+                    <div class="info-tile" id="ceTile"><div class="tile-label">CE credit</div><div class="tile-value" id="clsHours"></div><div class="tile-meta" id="clsCourse"></div></div>
+                    <div class="info-tile"><div class="tile-label">Cost</div><div class="tile-value" id="clsCost"></div><div class="tile-meta" id="clsCostSub"></div></div>
+                </div>
             </div>
 
             <div class="class-desc" id="descWrap">
@@ -194,7 +214,50 @@
             if (c.format === 'zoom') { where.textContent = 'Live on Zoom'; meta.textContent = 'Link sent to your email'; }
             else if (c.format === 'hybrid') { where.textContent = c.location || 'CNAT Title'; meta.textContent = 'or live on Zoom, link sent to your email'; }
             else { where.textContent = c.location || 'CNAT Title'; meta.textContent = 'In person'; }
+            // "Venue, street, city" reads as the venue, then the address under it.
+            var loc = where.textContent, k = loc.indexOf(',');
+            if (c.format !== 'zoom' && k > 0 && !/^\d/.test(loc)) {
+                where.innerHTML = '<span class="loc-venue">' + esc(loc.slice(0, k)) + '</span><span class="loc-rest">' + esc(loc.slice(k + 1).trim()) + '</span>';
+            }
         }
+
+        // The date, time and cost are set in several places (this class, its
+        // bundle, its partner), so one observer keeps their wording plain:
+        // "Tuesday, November 3, 2026", "9:30 to 11 AM", "Free \u00b7 $10 for CE credit",
+        // and draws the calendar glyph from the first date shown.
+        var WD = { Mon:'Monday', Tue:'Tuesday', Wed:'Wednesday', Thu:'Thursday', Fri:'Friday', Sat:'Saturday', Sun:'Sunday' };
+        function timeText(t){
+            var s = String(t || '').trim();
+            var m = s.match(/^(\d{1,2})(?::(\d{2}))?\s*([AP]M)\s*(?:-|\u2013|to)\s*(\d{1,2})(?::(\d{2}))?\s*([AP]M)$/i);
+            if (!m) return s.replace(/\s+(?:-|\u2013)\s+/g, ' to ');
+            var hm = function(h, mm){ return h + (mm && mm !== '00' ? ':' + mm : ''); };
+            var a1 = m[3].toUpperCase(), a2 = m[6].toUpperCase();
+            return a1 === a2 ? hm(m[1], m[2]) + ' to ' + hm(m[4], m[5]) + ' ' + a2 : hm(m[1], m[2]) + ' ' + a1 + ' to ' + hm(m[4], m[5]) + ' ' + a2;
+        }
+        function plainFacts(){
+            var d = document.getElementById('clsDate'), t = document.getElementById('clsTime'), p = document.getElementById('clsCost');
+            // Full weekday; "November 3, 2026" never splits across lines.
+            var dt = d.textContent.replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun),/g, function(_, w){ return WD[w] + ','; })
+                .replace(/([A-Z][a-z]+) (\d{1,2}), (\d{4})/g, '$1\u00a0$2,\u00a0$3');
+            if (dt !== d.textContent) d.textContent = dt;
+            var tt = timeText(t.textContent);
+            if (tt !== t.textContent) t.textContent = tt;
+            // "Free/$10 for CE Credit": the price, then what the extra covers under it.
+            if (!p.querySelector('.cost-note')) {
+                var parts = p.textContent.split(/\s*(?:\/|\u00b7)\s*/);
+                if (parts.length > 1) p.innerHTML = esc(parts[0]) + '<span class="cost-note">' + esc(parts.slice(1).join(', ').replace(/CE Credit/g, 'CE credit')) + '</span>';
+            }
+            var m = dt.match(/([A-Z][a-z]+)\s+(\d{1,2})\b/);
+            var g = document.getElementById('calGlyph');
+            if (m && /^(January|February|March|April|May|June|July|August|September|October|November|December)$/.test(m[1])) {
+                document.getElementById('calMon').textContent = m[1].slice(0, 3);
+                document.getElementById('calDay').textContent = m[2];
+                g.classList.add('on');
+            } else g.classList.remove('on');
+        }
+        ['clsDate', 'clsTime', 'clsCost'].forEach(function(id){
+            new MutationObserver(plainFacts).observe(document.getElementById(id), { childList: true, characterData: true, subtree: true });
+        });
 
         // The payment link is host-supplied data. Render it as a link only when
         // it is provably a Venmo URL; anything else is ignored.
@@ -385,7 +448,7 @@
             var licenseGroup = document.getElementById('licenseGroup');
             var submitBtn = document.getElementById('submitBtn');
             // Credit-only classes (allow_free_attendance = false): no free "Just Attending"
-            // option — the single CE option is pre-selected and payment is required.
+            // option: the single CE option is pre-selected and payment is required.
             if (c.allow_free_attendance === false) {
                 group.querySelector('.form-label').innerHTML = '<span class="step-num">2</span>CE Credit';
                 var refid = c.ghl_session || c.slug;
