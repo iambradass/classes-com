@@ -76,6 +76,50 @@
         @media(min-width:641px){.reserve-bar{display:none}}
         @media(max-width:640px){.page-wrapper.has-bar{padding-bottom:110px}}
         @media(max-width:480px){.info-strip .info-tile.lone-tile{grid-column:auto;width:auto}.page-wrapper{padding:20px 16px 50px}.reg-card{padding:32px 22px}.reg-card h2{font-size:19px}.info-strip{grid-template-columns:1fr}.attendance-option label{padding:14px 10px}}
+        /* 2026-10-30: the panels under the facts (series, materials, sponsors,
+           and the registration form) use the same light rounded sheet. Fields are
+           soft grey fills with no outline; a blue ring marks focus and the chosen
+           option. */
+        .loc-card,.reg-card{background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);border:0;border-radius:16px;color:var(--tile-ink);box-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 20px 44px rgba(0,0,0,.32)}
+        #seriesCard .loc-card,#materialsCard .loc-card,#sponsorsCard .loc-card{align-items:stretch;text-align:left;padding:18px 20px;gap:8px}
+        .loc-card .loc-type{font-size:13px;letter-spacing:.2px;text-transform:none;font-weight:600;color:#5b6576}
+        .loc-card .loc-name{font-size:17px;color:var(--tile-ink)}
+        .loc-card .loc-address{font-size:15px;color:var(--tile-muted)}
+        .loc-card a,.reg-card a[style]{color:#1f5fa6 !important;font-weight:600}
+        .series-link{background:#eef1f5;border:0;border-radius:12px;color:var(--tile-ink);padding:12px 16px;transition:background .15s}
+        .series-link:hover{background:#e3e9f1}
+        .series-link .sl-part{font-size:12px;letter-spacing:.4px;color:#1f5fa6;font-weight:700}
+        .series-link .sl-name{font-size:16px}
+        .series-link .sl-when{font-size:14px;color:var(--tile-muted)}
+        .reg-card{padding:28px 24px}
+        .reg-card h2{font-size:22px;font-weight:700;text-align:left;letter-spacing:-.2px;color:var(--tile-ink);margin-bottom:4px}
+        .reg-card h2 span{color:inherit;font-weight:inherit}
+        .reg-card .reg-sub{text-align:left;color:var(--tile-muted);margin-bottom:24px}
+        .reg-card .form-label{font-size:15px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--tile-ink);margin-bottom:8px}
+        .reg-card .form-label span:not(.step-num){color:#6b7585 !important;font-weight:500 !important}
+        .reg-card .step-num{width:22px;height:22px;font-size:12px}
+        .reg-card .form-input{background:#eef1f5;border:1.5px solid transparent;color:var(--tile-ink);border-radius:12px;padding:14px 16px;font-size:16px}
+        .reg-card .form-input:focus{background:#fff;border-color:var(--accent-blue);box-shadow:0 0 0 4px rgba(45,125,210,.16)}
+        .reg-card .form-input::placeholder{color:#6b7585}
+        .reg-card select.form-input{-webkit-appearance:none;appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%234a5466' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+        .reg-card .attendance-option label,.reg-card .credit-option label{background:#eef1f5;border:1.5px solid transparent;border-radius:12px}
+        .reg-card .attendance-option label:hover,.reg-card .credit-option label:hover{background:#e6ebf2;border-color:transparent}
+        .reg-card .attendance-option input[type="radio"]:checked+label,.reg-card .credit-option input[type="radio"]:checked+label{background:#e8f1fc;border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(45,125,210,.12)}
+        .reg-card .attendance-option input:focus-visible+label,.reg-card .credit-option input:focus-visible+label{outline:3px solid rgba(45,125,210,.45);outline-offset:2px}
+        .reg-card .attendance-option label .att-text{font-size:14px;letter-spacing:.4px;text-transform:none;color:var(--tile-ink)}
+        .reg-card .attendance-option input[type="radio"]:checked+label .att-text{color:var(--tile-ink)}
+        .reg-card .attendance-option label .att-detail{font-size:13px;color:var(--tile-muted)}
+        .reg-card .credit-option label .cr-name{color:var(--tile-ink)}
+        .reg-card .credit-option label .cr-detail{font-size:13px;text-transform:none;letter-spacing:0;color:var(--tile-muted)}
+        .reg-card .credit-option label .cr-price{color:var(--tile-ink);font-weight:800}
+        .reg-card .full-note{margin-bottom:22px;font-size:15px;font-weight:600;color:#b42318}
+        .reg-card .submit-btn{border-radius:12px;min-height:54px}
+        .reg-card .conf-name{color:var(--tile-ink);font-size:18px}
+        .reg-card .conf-format{color:var(--tile-muted);font-size:13px}
+        .reg-card .conf-note{background:#eef3fa;border:0;border-radius:12px;color:var(--tile-ink);font-size:15px}
+        .reg-card .conf-note strong{color:#1f5fa6}
+        .reg-card .conf-redirect{color:var(--tile-muted)}
+        @media(max-width:480px){.reg-card{padding:24px 18px}.reg-card h2{font-size:21px}}
     </style>
 </head>
 <body>
@@ -267,7 +311,7 @@
             if (!venmoOk(c.host_payment_url)) return;
             var card = document.getElementById('materialsCard');
             card.innerHTML = '<div class="loc-card"><div class="loc-icon building">&#128218;</div>' +
-              '<div class="loc-type">Class Materials</div>' +
+              '<div class="loc-type">Class materials</div>' +
               '<div class="loc-name">' + esc(c.host_payment_label || 'Materials available from your host') + '</div>' +
               '<div class="loc-address">Paid directly to your host &middot; <a href="' + esc(c.host_payment_url) + '" target="_blank" rel="noopener noreferrer" style="color:var(--accent-blue-light);text-decoration:none">Pay on Venmo &rarr;</a></div></div>';
             card.style.display = '';
@@ -338,7 +382,7 @@
                 return '<div><div class="loc-name">' + esc(who) + '</div>' + (org ? '<div class="loc-address">' + esc(org) + '</div>' : '') + '</div>';
             }).join('');
             var card = document.getElementById('sponsorsCard');
-            card.innerHTML = '<div class="loc-card"><div class="loc-icon building">&#129309;</div><div class="loc-type">Sponsored By</div>' + rows + '</div>';
+            card.innerHTML = '<div class="loc-card"><div class="loc-icon building">&#129309;</div><div class="loc-type">Sponsored by</div>' + rows + '</div>';
             card.style.display = '';
         }
 
@@ -520,7 +564,7 @@
             AUTO_ATTENDANCE = (c.format === 'zoom') ? 'Zoom' : 'In Person';
             group.style.display = 'none';
             if (c.format !== 'zoom' && allFull) {
-                group.insertAdjacentHTML('afterend', '<p style="margin-bottom:22px;font-size:12px;color:#f87171;letter-spacing:.5px">This class is full. Contact info@cnattitle.com to be added to the waitlist.</p>');
+                group.insertAdjacentHTML('afterend', '<p class="full-note">This class is full. Contact info@cnattitle.com to be added to the waitlist.</p>');
             }
         }
 
