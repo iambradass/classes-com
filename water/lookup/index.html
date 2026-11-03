@@ -5,117 +5,157 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <title>Water Lookup | CNAT Title</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url('/brand/fonts/fraunces-var.woff2') format('woff2')}
-@font-face{font-family:'Libre Franklin';font-style:normal;font-weight:100 900;font-display:swap;src:url('/brand/fonts/libre-franklin-var.woff2') format('woff2')}
 :root{
-  --paper:#F4F1E9; --card:#FFFFFF; --navy:#0B1522; --navy2:#152238;
-  --brass:#B9974E; --muted:#5C6470; --hair:#DDD6C6; --err:#A03B2E; --ok:#2E6B4F;
+  --navy:#0d1623; --blue:#2d7dd2; --blue-light:#4a9ae8; --yellow:#faed36; --grey:#c3cbd8;
+  --ink:#0d1623; --ink-soft:#2f3a4b; --ink-muted:#4a5466; --ink-blue:#1f5fa6; --label:#5b6576; --hair:#e6e9ee; --field:#eef1f5;
+  --err:#b42318; --ok:#1e7a4a;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:var(--paper); color:var(--navy);
-  font-family:'Libre Franklin',system-ui,sans-serif; font-size:16px; line-height:1.5;
+html{-webkit-text-size-adjust:100%}
+body{background:var(--navy); color:#fff;
+  font-family:'Montserrat',system-ui,sans-serif; font-size:16px; line-height:1.55;
   -webkit-font-smoothing:antialiased;}
-.wrap{max-width:640px; margin:0 auto; padding:34px 20px 60px}
-.logo{display:block; height:34px; width:auto; margin:0 auto 26px}
-h1{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:38px; line-height:1.05;
-  text-align:center; margin:0 0 10px; letter-spacing:-.01em;}
-.sub{text-align:center; color:var(--muted); font-size:16px; margin:0 0 24px}
-.rule{width:44px; height:3px; background:var(--brass); margin:0 auto 26px}
-.kicker{font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
-  color:var(--muted); text-align:center; margin:0 0 12px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue-light); outline-offset:3px}
+.wrap{max-width:760px; margin:0 auto; padding:34px 20px 60px}
+.logo{display:block; height:34px; width:auto; margin:0 0 30px}
+h1{font-weight:800; font-size:clamp(32px,6vw,44px); line-height:1.08; margin:0 0 12px; letter-spacing:-.02em}
+.sub{color:var(--grey); font-size:17px; margin:0 0 28px; max-width:60ch; text-wrap:pretty}
 
-.card{background:var(--card); border:1px solid var(--hair); border-top:3px solid var(--brass);
-  padding:22px 20px; box-shadow:0 10px 30px rgba(11,21,34,.07); margin-bottom:18px;}
-label{display:block; font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:16px 0 6px}
-label:first-child{margin-top:0}
-label .opt{font-weight:600; letter-spacing:.06em; text-transform:none}
-input{width:100%; min-height:50px; padding:12px 14px; font:inherit; font-size:16px;
-  border:1.5px solid var(--hair); border-radius:0; background:#fff; color:var(--navy);}
-input:focus{outline:2px solid var(--brass); outline-offset:0; border-color:var(--brass)}
-.btn{width:100%; margin-top:16px; min-height:54px; border:0; cursor:pointer;
-  background:var(--navy); color:#fff; font-family:inherit; font-size:14px; font-weight:800;
-  letter-spacing:.12em; text-transform:uppercase;}
-.btn:hover{background:var(--navy2)}
+/* light sheet: forms and result panels */
+.card{
+  background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%); color:var(--ink); border-radius:16px;
+  padding:22px 22px; margin-bottom:20px;
+  box-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 20px 44px rgba(0,0,0,.32);
+}
+.gate-title{font-size:20px; font-weight:800; color:var(--ink); margin:0 0 4px}
+label{display:block; font-size:15px; font-weight:600; color:var(--ink); margin:16px 0 6px}
+.gate-title + label,form > label:first-child{margin-top:12px}
+form > label:first-child{margin-top:0}
+label .opt{font-weight:500; color:#6b7585}
+input{width:100%; min-height:52px; padding:13px 16px; font:inherit; font-size:16px;
+  border:1.5px solid transparent; border-radius:12px; background:var(--field); color:var(--ink); -webkit-appearance:none; appearance:none}
+input::placeholder{color:#6b7585}
+input:focus{outline:none; background:#fff; border-color:var(--blue); box-shadow:0 0 0 4px rgba(45,125,210,.16)}
+.btn{width:100%; margin-top:18px; min-height:54px; border:0; border-radius:12px; cursor:pointer;
+  background:var(--blue); color:#fff; font-family:inherit; font-size:17px; font-weight:700; transition:background .15s}
+.btn:hover{background:#2569b3}
 .btn:disabled{opacity:.6; cursor:wait}
-.msg{margin:12px 0 0; font-size:14px; display:none}
-.msg.err{display:block; color:var(--err)}
-.bypass{display:none; margin-top:8px; font-size:13px; color:var(--muted); text-align:center}
-.bypass a{color:var(--navy); cursor:pointer; text-decoration:underline}
-.consent{font-size:12px; color:var(--muted); margin:14px 0 0; line-height:1.5}
+.msg{margin:12px 0 0; font-size:15px; display:none}
+.msg.err{display:block; color:var(--err); font-weight:600}
+.bypass{display:none; margin-top:10px; font-size:15px; color:var(--ink-muted); text-align:center}
+.bypass a{color:var(--ink-blue); cursor:pointer; text-decoration:underline; font-weight:600; display:inline-block; padding:10px 4px}
+.consent{font-size:13px; color:var(--ink-muted); margin:14px 0 0; line-height:1.5}
 
-.frame{border-left:3px solid var(--brass); background:#fff; padding:12px 16px; margin:0 0 20px;
-  font-size:13.5px; line-height:1.55; color:var(--navy);}
-.frame strong{font-weight:800}
+/* the disclaimer reads as plain text on the navy ground */
+.frame{margin:0 0 22px; font-size:16px; line-height:1.6; color:var(--grey); max-width:66ch}
+.frame strong{font-weight:800; color:#fff}
 
 /* results */
-.res h2{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:22px; margin:0 0 4px}
-.res .where{font-size:13px; color:var(--muted); margin:0 0 14px}
-.big{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:26px; line-height:1.2; margin:6px 0 2px}
-.dnote{font-size:13.5px; color:var(--muted); line-height:1.5; margin:6px 0 0}
-.dwarn{border-left:3px solid var(--err); padding:8px 12px; margin-top:12px; font-size:13.5px; background:#fff}
+.res h2{font-weight:800; font-size:21px; letter-spacing:-.01em; margin:0 0 4px; color:var(--ink)}
+.res .where{font-size:15px; color:var(--ink-muted); margin:0 0 14px}
+.big{font-weight:800; font-size:24px; line-height:1.25; letter-spacing:-.01em; margin:6px 0 2px; color:var(--ink)}
+.dnote{font-size:15.5px; color:var(--ink-soft); line-height:1.55; margin:6px 0 0}
+.dwarn{background:#fdf0ee; border-radius:12px; padding:12px 14px; margin-top:14px; font-size:15px; color:var(--ink)}
+.dwarn strong{color:var(--err)}
 .crow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-.cbtn{display:inline-flex; align-items:center; min-height:44px; padding:9px 16px;
-  border:1.5px solid var(--navy); color:var(--navy); text-decoration:none;
-  font-weight:800; font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
-.cbtn:hover{background:var(--navy); color:#fff}
+.cbtn{display:inline-flex; align-items:center; min-height:46px; padding:10px 18px; border-radius:12px;
+  background:var(--ink); color:#fff; text-decoration:none; font-weight:700; font-size:15px; transition:background .15s}
+.cbtn:hover{background:var(--ink-blue)}
 .hairline{border:0; border-top:1px solid var(--hair); margin:16px 0}
 
-.stat{display:flex; gap:18px; border-top:2px solid var(--navy); border-bottom:1px solid var(--hair);
-  padding:10px 0; margin:10px 0 14px}
-.stat div{flex:1}
-.stat .v{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:24px}
-.stat .k{font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+.stat{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:12px 0 16px; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)}
+.stat > div{padding:12px 14px; border-left:1px solid var(--hair)}
+.stat > div:first-child{border-left:0; padding-left:0}
+.stat .v{font-weight:800; font-size:26px; line-height:1.1; color:var(--ink)}
+.stat .k{font-size:13px; font-weight:600; color:var(--label); margin-top:4px; line-height:1.3}
 
-table.wells{border-collapse:collapse; width:100%; font-size:13px; margin-top:6px}
-table.wells th{text-align:left; font-size:9.5px; font-weight:800; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--muted); padding:6px 8px 5px 0; border-bottom:1px solid var(--hair)}
-table.wells td{padding:6px 8px 6px 0; border-bottom:1px solid var(--hair); vertical-align:top}
-.smallnote{font-size:12px; color:var(--muted); line-height:1.5; margin-top:10px}
+table.wells{border-collapse:collapse; width:100%; font-size:14.5px; margin-top:6px; color:var(--ink)}
+table.wells th{text-align:left; font-size:13px; font-weight:600; color:var(--label); padding:8px 10px 8px 0; border-bottom:1px solid #d5dbe3}
+table.wells td{padding:9px 10px 9px 0; border-bottom:1px solid var(--hair); vertical-align:top; line-height:1.4}
+table.wells tr:last-child td{border-bottom:0}
+.smallnote{font-size:14px; color:var(--ink-muted); line-height:1.5; margin-top:12px}
 
-.tiles{margin-top:6px}
-.tile{display:flex; align-items:center; gap:14px; width:100%; text-align:left;
-  background:var(--navy); color:#fff; text-decoration:none;
-  padding:16px 16px; margin-bottom:10px; border:1px solid var(--brass);}
-.tile:hover{background:var(--navy2); box-shadow:inset 0 0 0 1px var(--brass)}
-.tile .tt{font-size:15px; font-weight:800; letter-spacing:-.01em; margin:0 0 2px}
-.tile .td{font-size:12.5px; color:#C8CBD4; line-height:1.4}
-.tile .arrow{font-family:'Fraunces',serif; font-size:20px; color:var(--brass); margin-left:auto; flex-shrink:0}
+/* verify links: two-tone app tiles; the banner names the site each one opens */
+.res .tlinks-title{font-size:19px; font-weight:800; color:#fff; margin:30px 0 14px}
+.tiles{display:grid; grid-template-columns:1fr; gap:22px 18px; margin:0 0 30px}
+@media (min-width:600px){ .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.tile{
+  --edge:5px; --rim:#132643;
+  display:flex; flex-direction:column; overflow:hidden; border-radius:20px; text-decoration:none; color:var(--ink);
+  background:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);
+  box-shadow:inset 0 1px 0 #fff,0 var(--edge) 0 var(--rim),0 10px 16px rgba(0,0,0,.2);
+  transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1);
+}
+.tile:hover{transform:translateY(-2px); box-shadow:inset 0 1px 0 #fff,0 calc(var(--edge) + 2px) 0 var(--rim),0 14px 22px rgba(0,0,0,.26)}
+.tile:active{transform:translateY(4px); box-shadow:inset 0 1px 0 #fff,0 1px 0 var(--rim),0 5px 10px rgba(0,0,0,.2)}
+.t-face{display:flex; flex-direction:column; gap:5px; flex:1; padding:16px 18px 14px; box-shadow:inset 0 -14px 18px -14px rgba(13,22,35,.12)}
+.tile .tt{font-size:17px; font-weight:800; line-height:1.3; letter-spacing:-.01em}
+.tile .td{font-size:14.5px; color:var(--ink-muted); line-height:1.5; text-wrap:pretty}
+.t-foot{display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:50px; padding:9px 18px 10px;
+  background:linear-gradient(180deg,#284a80 0%,#1f3a66 100%); box-shadow:inset 0 1px 0 rgba(255,255,255,.14); color:#fff}
+.t-meta{font-size:13.5px; font-weight:600; color:#dbe3ee; min-width:0; overflow-wrap:anywhere}
+.t-go{font-size:14.5px; font-weight:700; white-space:nowrap}
+.tile:hover .t-go{color:var(--yellow)}
 
-.warnings{font-size:12px; color:var(--err); margin-top:10px}
-.loading{display:none; text-align:center; color:var(--muted); font-size:14px; margin:16px 0}
+.warnings{font-size:14px; color:var(--err); margin-top:12px; font-weight:600}
+.loading{display:none; color:var(--grey); font-size:16px; margin:16px 0}
 .loading.on{display:block}
-.printbtn{background:none; border:1.5px solid var(--brass); color:var(--navy); min-height:44px;
-  padding:9px 16px; font-family:inherit; font-weight:800; font-size:12px; letter-spacing:.1em;
-  text-transform:uppercase; cursor:pointer; margin-top:4px}
-.printbtn:hover{background:var(--brass); color:#fff}
-.foot{margin-top:44px; text-align:center; border-top:1px solid var(--hair); padding-top:20px}
-.foot p{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:8px 0 0}
-.backrow{text-align:center; margin-top:18px; font-size:13px}
-.backrow a{color:var(--navy)}
+.printbtn{background:#fff; border:0; border-radius:12px; color:var(--ink); min-height:48px;
+  padding:0 22px; font-family:inherit; font-weight:700; font-size:16px; cursor:pointer; margin-top:4px;
+  box-shadow:0 2px 0 rgba(0,0,0,.25); transition:background .15s}
+.printbtn:hover{background:var(--yellow)}
+.foot{margin-top:44px; border-top:1px solid rgba(255,255,255,.1); padding-top:20px}
+.foot p{font-size:14px; font-weight:600; color:var(--grey); margin:0}
+.backrow{margin-top:22px; font-size:16px}
+.backrow a{display:inline-flex; align-items:center; min-height:44px; color:var(--blue-light); font-weight:700; text-underline-offset:3px}
+.backrow a:hover{color:#fff}
 #gate,#tool{display:none}
 @media print{
-  body{background:#fff}
-  .logo,.rule,.sub,#lookupForm,.printbtn,.tiles,.tlinks-h,.foot,.backrow,.kicker{display:none !important}
-  .card{box-shadow:none; border:1px solid #ccc}
+  body{background:#fff; color:var(--ink)}
+  h1{color:var(--ink)}
+  .frame{color:var(--ink-soft)}
+  .frame strong{color:var(--ink)}
+  .logo,.sub,#lookupForm,.printbtn,.tiles,.tlinks-h,.foot,.backrow,.gate-title{display:none !important}
+  .card{box-shadow:none; border:1px solid #cfd6df; background:#fff}
   .wrap{padding:0; max-width:none}
 }
-@media (max-width:480px){ h1{font-size:30px} .stat .v{font-size:20px} }
+@media (max-width:560px){
+  .wrap{padding:24px 16px 48px}
+  .card{padding:20px 18px}
+  .stat > div{padding:10px 10px}
+  .stat > div:first-child{padding-left:0}
+  .stat .v{font-size:22px}
+  /* wells: one small block per report instead of a five-column table */
+  table.wells,table.wells tbody{display:block}
+  table.wells tr:first-child{display:none}
+  table.wells tr{display:grid; grid-template-columns:56px minmax(0,1fr); column-gap:10px; padding:10px 0; border-bottom:1px solid var(--hair)}
+  table.wells tr:last-child{border-bottom:0}
+  table.wells td{border:0; padding:0}
+  table.wells td:nth-child(1){grid-row:1 / span 4; font-weight:800}
+  table.wells td:nth-child(2){font-weight:700}
+  table.wells td:nth-child(n+2){grid-column:2}
+  table.wells td:nth-child(4),table.wells td:nth-child(5){color:var(--ink-muted)}
+  table.wells td:empty{display:none}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <img class="logo" src="/img/cnat-logo-navy.png" alt="CNAT Title">
+  <img class="logo" src="/img/cnat-logo-white.png" alt="CNAT Title">
   <h1>Water Lookup</h1>
   <p class="sub">Type a Texas property address. Get the water research an agent needs before the listing appointment: the groundwater district, wells on record nearby, and every official source to verify with.</p>
-  <div class="rule"></div>
 
   <!-- sign-in gate (same capture as /water) -->
   <div id="gate">
     <form class="card" id="gateForm" autocomplete="on" novalidate>
-      <p class="kicker" style="margin-bottom:14px">Sign in once to use the lookup</p>
+      <p class="gate-title">Sign in once to use the lookup</p>
       <label for="g-name">Full name</label>
       <input id="g-name" name="name" autocomplete="name" required>
       <label for="g-email">Email</label>
@@ -147,7 +187,7 @@ table.wells td{padding:6px 8px 6px 0; border-bottom:1px solid var(--hair); verti
     <div id="results" style="display:none">
       <div class="card res" id="districtCard"></div>
       <div class="card res" id="wellsCard"></div>
-      <div class="res tlinks-h"><p class="kicker" style="text-align:left">Verify and go deeper</p></div>
+      <div class="res tlinks-h"><h2 class="tlinks-title">Verify and go deeper</h2></div>
       <div class="tiles" id="linkTiles"></div>
       <div class="card res" id="caveatCard"></div>
       <button class="printbtn" onclick="window.print()">Print this prep sheet</button>
@@ -164,6 +204,7 @@ var ANON='sb_publishable_kVjO_2KdU92WMKMOX-lqJw_u80F-UzP';
 var CLASS_ID='d124abe7-5e12-4852-87a6-69cce12ddc09';
 var KEY='cnat-water-signedin';
 
+function host(u){ try{ return new URL(u, location.href).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
 
 /* ---------- gate ---------- */
@@ -289,7 +330,8 @@ function render(d){
   h='';
   tiles.forEach(function(t){
     if(!t[0]) return;
-    h+='<a class="tile" href="'+esc(t[0])+'" target="_blank" rel="noopener"><span><span class="tt">'+esc(t[1])+'</span><br><span class="td">'+esc(t[2])+'</span></span><span class="arrow">&rarr;</span></a>';
+    h+='<a class="tile" href="'+esc(t[0])+'" target="_blank" rel="noopener"><span class="t-face"><span class="tt">'+esc(t[1])+'</span><span class="td">'+esc(t[2])+'</span></span>'+
+       '<span class="t-foot"><span class="t-meta">'+esc(host(t[0]))+'</span><span class="t-go">Open &rarr;</span></span></a>';
   });
   document.getElementById('linkTiles').innerHTML=h;
 

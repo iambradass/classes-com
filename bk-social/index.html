@@ -5,302 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://classes.cnattitle.com/bk-social/">
-<meta property="og:title" content="Social That Closes — BK Realty | CNAT Title">
+<meta property="og:title" content="Social That Closes: BK Realty | CNAT Title">
 <meta property="og:description" content="Workbook, myths-debunked deck, and bonus content from the Social That Closes class for BK Realty agents.">
 <meta property="og:image" content="https://classes.cnattitle.com/og/og-bk-social.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="CNAT Title">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Social That Closes — BK Realty">
+<meta name="twitter:title" content="Social That Closes: BK Realty">
 <meta name="twitter:description" content="Workbook, myths-debunked deck, and bonus content from the class.">
 <meta name="twitter:image" content="https://classes.cnattitle.com/og/og-bk-social.png">
-  <title>BK Realty · Social That Closes — CNAT Title</title>
-  <meta name="description" content="Workbook and bonus content from the Social That Closes class for BK Realty agents — CNAT Title.">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>BK Realty · Social That Closes | CNAT Title</title>
+  <meta name="description" content="Workbook and bonus content from the Social That Closes class for BK Realty agents, from CNAT Title.">
+  <link rel="icon" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --navy: #0F1A2E;
-      --navy-mid: #162240;
-      --cyan: #007B8F;
-      --cyan-bright: #00C8F0;
-      --gold: #B8841F;
-      --gold-bright: #FFB833;
-      --green: #2A9D5C;
-      --red: #C84642;
-      --bg: #FAF8F4;
-      --card: #FFFFFF;
-      --line: #E5DFD3;
-      --text: #1A2438;
-      --text-light: #4A5568;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Source Sans 3', sans-serif;
-      line-height: 1.55;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    :root{--navy:#0d1623;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--grey:#c3cbd8;--ink:#0d1623;--ink-muted:#4a5466;--ink-blue:#1f5fa6;--border:rgba(255,255,255,.1)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{background:var(--navy);color:#fff;font-family:'Montserrat',system-ui,sans-serif;font-size:16px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+    a:focus-visible{outline:3px solid var(--blue-light);outline-offset:4px}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-    /* CNAT watermark */
-    body::before {
-      content: 'CNAT';
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 25vw;
-      color: var(--navy);
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 0;
-      letter-spacing: 8px;
-    }
+    /* hero: straight on the navy ground, no band */
+    .hero{padding:52px 0 8px}
+    .brand-line{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-light)}
+    .hero h1{font-size:clamp(40px,8vw,64px);font-weight:800;line-height:1.02;letter-spacing:-.025em;margin-top:14px}
+    .hero h1 .accent{color:var(--yellow)}
+    .hero .tagline{font-size:clamp(17px,2.6vw,20px);font-weight:500;color:#e6ebf2;margin-top:14px;max-width:34ch;line-height:1.45;text-wrap:balance}
+    .for-tag{font-size:15px;font-weight:600;color:var(--grey);margin-top:10px}
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
+    .intro{padding:40px 0 20px}
+    .intro h2{font-size:24px;font-weight:800;letter-spacing:-.01em}
+    .intro p{margin-top:8px;color:var(--grey);font-size:16px;max-width:60ch;text-wrap:pretty}
 
-    /* ═══ HERO ═══ */
-    .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0a2540 100%);
-      color: #fff;
-      padding: 60px 40px 50px;
-      text-align: center;
-      border-radius: 0 0 18px 18px;
-      position: relative;
-      overflow: hidden;
+    /* resources: two-tone app tiles; the workbook gets the blue "start here" banner */
+    .resources{display:grid;grid-template-columns:1fr;gap:26px 20px;padding:8px 0 10px;max-width:940px}
+    @media(min-width:720px){.resources{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .resource-card{
+      --edge:7px;--foot:linear-gradient(180deg,#284a80 0%,#1f3a66 100%);--rim:#132643;
+      display:flex;flex-direction:column;overflow:hidden;border-radius:28px;text-decoration:none;color:var(--ink);
+      background:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);
+      box-shadow:inset 0 1px 0 #fff,0 var(--edge) 0 var(--rim),0 calc(var(--edge) + 12px) 26px rgba(0,0,0,.5);
+      transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1);
     }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -30%; right: -20%;
-      width: 70%; height: 160%;
-      background: radial-gradient(ellipse, rgba(0,200,240,0.18) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-inner { position: relative; z-index: 1; }
-    .brand-line {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      font-weight: 500;
-    }
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 9vw, 4.5rem);
-      line-height: 0.95;
-      letter-spacing: 1.5px;
-      margin-top: 14px;
-    }
-    .hero h1 .accent { color: var(--cyan-bright); }
-    .hero .tagline {
-      font-size: clamp(1rem, 3vw, 1.15rem);
-      margin-top: 14px;
-      opacity: 0.9;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-    }
-    .for-tag {
-      display: inline-block;
-      margin-top: 20px;
-      background: rgba(255,184,51,0.15);
-      border: 1px solid var(--gold-bright);
-      color: var(--gold-bright);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 20px;
-    }
+    .resource-card:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 #fff,0 calc(var(--edge) + 3px) 0 var(--rim),0 calc(var(--edge) + 20px) 34px rgba(0,0,0,.55)}
+    .resource-card:active{transform:translateY(5px);box-shadow:inset 0 1px 0 #fff,0 2px 0 var(--rim),0 8px 14px rgba(0,0,0,.45)}
+    .resource-card.primary{--foot:linear-gradient(180deg,#3b8de0 0%,#2a73c2 100%);--rim:#1b4f8a}
+    .rc-face{flex:1;padding:24px 24px 22px;box-shadow:inset 0 -14px 18px -14px rgba(13,22,35,.14)}
+    .resource-card .resource-tag{margin:0;font-size:14px;font-weight:700;line-height:1.4;color:var(--ink-blue)}
+    .resource-card h3{font-size:24px;font-weight:800;line-height:1.2;letter-spacing:-.015em;margin-top:4px;text-wrap:balance}
+    .resource-card p{margin-top:10px;font-size:15.5px;color:var(--ink-muted);line-height:1.55;text-wrap:pretty}
+    .rc-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:12px 24px 13px;background:var(--foot);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);color:#fff}
+    .rc-meta{font-size:14px;font-weight:600;color:#dbe3ee;line-height:1.35}
+    .rc-meta b{display:block;font-size:16px;font-weight:800;color:#fff}
+    .cta{font-size:15px;font-weight:700;white-space:nowrap}
+    .resource-card:hover .cta{color:var(--yellow)}
 
-    /* ═══ INTRO ═══ */
-    .intro {
-      padding: 36px 0 24px;
-      text-align: center;
-    }
-    .intro h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(1.3rem, 4vw, 1.5rem);
-      color: var(--navy);
-      letter-spacing: 0.5px;
-      font-weight: 500;
-    }
-    .intro p {
-      margin-top: 8px;
-      color: var(--text-light);
-      font-size: 1rem;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .liblink{margin:40px 0 0;font-size:16px;line-height:1.6}
+    .liblink a{display:inline-flex;align-items:center;min-height:44px;color:var(--blue-light);font-weight:700;text-underline-offset:3px}
+    .liblink a:hover{color:#fff}
 
-    /* ═══ RESOURCE CARDS ═══ */
-    .resources {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: 12px 0 50px;
-    }
-    .resource-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 28px 28px 26px;
-      box-shadow: 0 2px 8px rgba(15,26,46,0.04);
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .resource-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15,26,46,0.1);
-      border-color: var(--cyan);
-    }
-    .resource-card.primary {
-      border-top: 5px solid var(--cyan);
-    }
-    .resource-card.bonus {
-      border-top: 5px solid var(--gold-bright);
-    }
-    .resource-tag {
-      display: inline-block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 4px;
-    }
-    .resource-card.primary .resource-tag {
-      background: rgba(0,123,143,0.1);
-      color: var(--cyan);
-    }
-    .resource-card.bonus .resource-tag {
-      background: rgba(184,132,31,0.1);
-      color: var(--gold);
-    }
-    .resource-card h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.6rem, 5vw, 2rem);
-      color: var(--navy);
-      margin-top: 10px;
-      letter-spacing: 1px;
-      line-height: 1.05;
-    }
-    .resource-card p {
-      margin-top: 10px;
-      font-size: 0.98rem;
-      color: var(--text-light);
-      line-height: 1.5;
-    }
-    .resource-card .cta {
-      margin-top: 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--cyan);
-      font-weight: 600;
-    }
-    .resource-card.bonus .cta { color: var(--gold); }
-    .resource-card .cta::after {
-      content: '→';
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      transition: transform 0.15s;
-    }
-    .resource-card:hover .cta::after {
-      transform: translateX(4px);
-    }
+    .footer{padding:30px 0 50px;border-top:1px solid var(--border);margin-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px 24px}
+    .footer-brand{font-size:15px;color:var(--grey);line-height:1.5}
+    .footer-brand strong{color:#fff;font-weight:700}
+    .footer-quote{font-size:22px;font-weight:800;letter-spacing:-.01em;color:#fff}
+    .footer-quote .gold{color:var(--yellow)}
 
-    /* ═══ FOOTER ═══ */
-    .footer {
-      padding: 30px 0 50px;
-      border-top: 2px solid var(--navy);
-      margin-top: 20px;
-      text-align: center;
-    }
-    .footer-brand {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-    .footer-brand strong { color: var(--navy); }
-    .footer-quote {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      color: var(--cyan);
-      letter-spacing: 1.5px;
-      margin-top: 12px;
-    }
-    .footer-quote .gold { color: var(--gold); }
-
-    /* ═══ MOBILE ═══ */
-    @media (max-width: 600px) {
-      .hero { padding: 50px 24px 40px; border-radius: 0 0 14px 14px; }
-      .resource-card { padding: 24px 22px; }
+    @media(max-width:640px){
+      .container{padding:0 16px}
+      .hero{padding:30px 0 4px}
+      .intro{padding:30px 0 16px}
+      .intro h2{font-size:21px}
+      .rc-face{padding:20px 20px 18px}
+      .rc-foot{padding:12px 20px 13px}
+      .resource-card{border-radius:24px}
+      .resource-card h3{font-size:22px}
     }
   </style>
 </head>
 <body>
 
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="brand-line">CNAT Title presents · for BK Realty</div>
-      <h1>Social That<br><span class="accent">Closes</span></h1>
-      <p class="tagline">The 2026 Reels &amp; DM Playbook for Real Estate Agents</p>
-      <span class="for-tag">Class Resources · 2026</span>
-    </div>
-  </div>
-
   <div class="container">
+
+    <header class="hero">
+      <div class="brand-line">CNAT Title presents · for BK Realty</div>
+      <h1>Social That <span class="accent">Closes</span></h1>
+      <p class="tagline">The 2026 Reels &amp; DM Playbook for Real Estate Agents</p>
+      <p class="for-tag">Class Resources · 2026</p>
+    </header>
 
     <div class="intro">
       <h2>Your class resources</h2>
-      <p>Everything we covered — plus bonus content. Tap a card to open. All resources are mobile-friendly and printable.</p>
+      <p>Everything we covered, plus bonus content. Tap a card to open. All resources are mobile-friendly and printable.</p>
     </div>
 
     <div class="resources">
 
       <a href="workbook.html" class="resource-card primary">
-        <span class="resource-tag">Main Workbook</span>
-        <h3>Agent Workbook</h3>
-        <p>Hook formulas, DM scripts, lead magnet ideas, weekly content calendar, AI prompt templates, batch production system, and the 7-day challenge tracker. Plus step-by-step setup for Meta Business Suite, ManyChat, and GHL.</p>
-        <span class="cta">Open Workbook</span>
+        <div class="rc-face">
+          <p class="resource-tag">Main Workbook</p>
+          <h3>Agent Workbook</h3>
+          <p>Hook formulas, DM scripts, lead magnet ideas, weekly content calendar, AI prompt templates, batch production system, and the 7-day challenge tracker. Plus step-by-step setup for Meta Business Suite, ManyChat, and GHL.</p>
+        </div>
+        <div class="rc-foot">
+          <span class="rc-meta"><b>Workbook</b>Printable</span>
+          <span class="cta">Open Workbook &rarr;</span>
+        </div>
       </a>
 
       <a href="myths.html" class="resource-card bonus">
-        <span class="resource-tag">▸ Bonus Content</span>
-        <h3>Killing Your Reach</h3>
-        <p>15 social media myths costing real estate agents time, reach, and transactions — sourced from Adam Mosseri, Inman, and platform engineering disclosures. Stop doing the wasteful stuff.</p>
-        <span class="cta">Read the Bonus</span>
+        <div class="rc-face">
+          <p class="resource-tag">Bonus Content</p>
+          <h3>Killing Your Reach</h3>
+          <p>15 social media myths costing real estate agents time, reach, and transactions, sourced from Adam Mosseri, Inman, and platform engineering disclosures. Stop doing the wasteful stuff.</p>
+        </div>
+        <div class="rc-foot">
+          <span class="rc-meta"><b>Handout</b>15 myths</span>
+          <span class="cta">Read the Bonus &rarr;</span>
+        </div>
       </a>
 
     </div>
 
-    <p style="text-align:center;margin:34px 0 0;font-size:16px;line-height:1.6"><a href="/resources/?class=Social%20That%20Closes" style="color:#c8a349;font-weight:600">See every CNAT class resource in one searchable place &rarr;</a></p>
+    <p class="liblink"><a href="/resources/?class=Social%20That%20Closes">See every CNAT class resource in one searchable place &rarr;</a></p>
 
     <div class="footer">
       <div class="footer-brand">
@@ -314,6 +145,6 @@
 
   </div>
 
-<script src="/assets/site-chrome.js" defer data-title="Social That Closes" data-class="Social That Closes"></script>
+<script src="/assets/site-chrome.js?v=20261030" defer data-title="Social That Closes" data-class="Social That Closes"></script>
 </body>
 </html>
