@@ -32,6 +32,7 @@ button,.btn{font:700 16px Montserrat,-apple-system,Helvetica,Arial,sans-serif;mi
 .gf{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:15px;color:#dbe3ee}
 .gf b{color:#fff}
 .sheet{background:linear-gradient(180deg,#fff 0%,#f6f7f9 100%);color:#0d1623;border-radius:16px;padding:22px 20px;box-shadow:0 1px 1px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.14),0 20px 44px rgba(0,0,0,.32)}
+.sheet.gap{margin-bottom:18px}
 .row{display:flex;gap:14px;padding:12px 0}
 .row+.row{border-top:1px solid #e6e9ee}
 .row>i{flex:none;width:34px;height:34px;border-radius:50%;background:#2d7dd2;color:#fff;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center}
@@ -46,8 +47,23 @@ button,.btn{font:700 16px Montserrat,-apple-system,Helvetica,Arial,sans-serif;mi
 @media(min-width:760px){h1{font-size:52px}.links{grid-template-columns:1fr 1fr}}
 </style></head><body><main class="wrap">
 <h1>Your Long Cove <span>kit</span></h1>
-<p class="sub">Every prompt from the bus. Tap Copy, paste it into your AI, and replace anything in [BRACKETS]. Keep one chat open from Prompt 3 on.</p>
-<h2>On the way there</h2>
+<p class="sub">Every prompt from today. Tap Copy, paste it into your AI, and replace anything in [BRACKETS]. Keep one chat open from Prompt 3 on.</p>
+<h2>While you tour the house</h2>
+<div class="sheet gap"><div class="row"><i>1</i><div><b>Shoot</b><span>3 photos: best view, best detail, one thing you&#x27;d fix</span></div></div><div class="row"><i>2</i><div><b>Talk</b><span>60-second voice memo: what would sell it, what could kill the deal</span></div></div><div class="row"><i>3</i><div><b>Film</b><span>Run the Camera prompt, pick a script from the host, snap a photo of it, and film</span></div></div></div>
+<article class="pt"><div class="pf"><p class="pn">Camera prompt</p><h3>Get camera ready</h3><p class="pw">Run this before you film, so you are ready whichever script you pick.</p><div class="act"><button class="cp" data-t="prC">Copy prompt</button><button class="sh" data-s="pbC" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pbC"><pre id="prC">I will be on camera today at 12133 Lighthouse Lane W, a lakefront luxury home in Long Cove, a gated golf and lake community on Cedar Creek Lake. The host will have scripts ready and I pick one, but I have not seen them yet. Get me ready.
+
+HOW I INTRODUCE MYSELF: [YOUR NAME, BROKERAGE, AND WHAT YOU DO]
+WHAT I WANT TO BE KNOWN FOR: [LIKE LAKE HOMES, LUXURY, OR YOUR AREA]
+
+Give me:
+1. A 10-second opener that sounds like me and is easy to say out loud.
+2. Three questions to ask myself so I pick the script that helps my business, not just this listing.
+3. Three short lines I could use to make any script sound more like me.
+4. Five on-camera tips for someone who doesn&#x27;t love being on camera.
+5. What to avoid saying: Fair Housing issues, price or value claims, and anything I can&#x27;t back up.
+
+Keep it short enough to read on my phone at the house.</pre><p class="gf"><b>At the house:</b> Snap a photo of the script you picked, add it to this chat, and say: &quot;Make this sound like me. Same length, same facts, easy to say out loud.&quot; Check with the host before you change anything.</p></div></article>
+<h2>In the living room</h2>
 <article class="pt"><div class="pf"><p class="pn">Prompt 1</p><h3>Who would AI hire?</h3><p class="pw">See who AI recommends when a seller asks, and whether you made the list.</p><div class="act"><button class="cp" data-t="pr1">Copy prompt</button><button class="sh" data-s="pb1" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb1"><pre id="pr1">A seller has a $5 million lakefront home on Cedar Creek Lake, Texas and wants to hire a listing agent. Search the web. Who are the top 5 agents you would recommend, and what specifically made you pick each one?
 
 Then do the same for luxury homes in [YOUR MARKET].</pre><p class="gf"><b>Been to my class? Go further:</b> Run it in a second AI tool and compare the names. Different tools read different sources.</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 2</p><h3>What does it know about you?</h3><p class="pw">Find out what AI can see about you, and what would get you recommended.</p><div class="act"><button class="cp" data-t="pr2">Copy prompt</button><button class="sh" data-s="pb2" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb2"><pre id="pr2">Search the web for [MY NAME], a real estate agent with [MY BROKERAGE] in [MY CITY].
@@ -74,7 +90,7 @@ Give me, short and in plain English:
 4. OBJECTIONS: the five hardest things a buyer or seller will raise, each with a one-line answer.
 5. WHAT PHOTOS CAN&#x27;T SHOW: five things I should notice in person.
 
-Do not give an opinion of value. Use only the facts above, and mark anything you are assuming.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Also build a privacy plan for this kind of seller: what can be emailed, what stays phone-only, and what goes through their attorney.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 4</p><h3>Build your lake field sheet</h3><p class="pw">The questions to ask on a lake property, and who actually answers each one.</p><div class="act"><button class="cp" data-t="pr4">Copy prompt</button><button class="sh" data-s="pb4" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb4"><pre id="pr4">Stay on this same property. Build me a one-screen field sheet for walking it today. It is on Cedar Creek Lake, a Tarrant Regional Water District (TRWD) reservoir.
+Do not give an opinion of value. Use only the facts above, and mark anything you are assuming.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Also build a privacy plan for this kind of seller: what can be emailed, what stays phone-only, and what goes through their attorney.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 4</p><h3>Build your lake field sheet</h3><p class="pw">The questions to ask on a lake property, and who actually answers each one.</p><div class="act"><button class="cp" data-t="pr4">Copy prompt</button><button class="sh" data-s="pb4" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb4"><pre id="pr4">Stay on this same property. Build me a one-screen field sheet of what to check on a lake home like this. It is on Cedar Creek Lake, a Tarrant Regional Water District (TRWD) reservoir.
 
 Group the questions under:
 - Water and shoreline (dock and bulkhead permits, flood easement, water levels)
@@ -85,23 +101,7 @@ Group the questions under:
 
 For each question, say who answers it: listing agent, HOA, TRWD, inspector, insurance agent, surveyor, title company, or attorney.
 
-Then star the 5 that matter most today. Keep it tight enough to read on a phone. Do not state legal conclusions or quote rules you aren&#x27;t sure of. Tell me where to confirm instead.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Turn the top 5 into a client-ready risk register: the risk, what we do about it, and the decision deadline.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Camera prompt</p><h3>Get camera ready</h3><p class="pw">Be ready before you pick a script at the house.</p><div class="act"><button class="cp" data-t="prC">Copy prompt</button><button class="sh" data-s="pbC" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pbC"><pre id="prC">I will be on camera at this property today. The host will have scripts ready and I pick one, but I have not seen them yet. Get me ready, using what is already in this chat.
-
-HOW I INTRODUCE MYSELF: [YOUR NAME, BROKERAGE, AND WHAT YOU DO]
-WHAT I WANT TO BE KNOWN FOR: [LIKE LAKE HOMES, LUXURY, OR YOUR AREA]
-
-Give me:
-1. A 10-second opener that sounds like me and is easy to say out loud.
-2. Three questions to ask myself so I pick the script that helps my business, not just this listing.
-3. Three short lines I could use to make any script sound more like me.
-4. Five on-camera tips for someone who doesn&#x27;t love being on camera.
-5. What to avoid saying: Fair Housing issues, price or value claims, and anything I can&#x27;t back up.
-
-Keep it short enough to read on my phone at the house.</pre><p class="gf"><b>At the house:</b> Snap a photo of the script you picked, add it to this chat, and say: &quot;Make this sound like me. Same length, same facts, easy to say out loud.&quot; Check with the host before you change anything.</p></div></article>
-<h2>Your mission at the house</h2>
-<div class="sheet"><div class="row"><i>1</i><div><b>Ask</b><span>Your top 3 questions</span></div></div><div class="row"><i>2</i><div><b>Shoot</b><span>3 photos: best view, best detail, one thing you&#x27;d fix</span></div></div><div class="row"><i>3</i><div><b>Talk</b><span>60-second voice memo: what would sell it, what could kill the deal</span></div></div><div class="row"><i>4</i><div><b>Film</b><span>Pick a script from the host, snap a photo of it, and film</span></div></div></div>
-<h2>On the way back</h2>
-<article class="pt"><div class="pf"><p class="pn">Prompt 5</p><h3>Turn the visit into a launch plan</h3><p class="pw">Your playbook for the next listing like this one, built from what you saw.</p><div class="act"><button class="cp" data-t="pr5">Copy prompt</button><button class="sh" data-s="pb5" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb5"><pre id="pr5">I just walked the property. Here are my raw notes:
+Then star the 5 that matter most. Keep it tight enough to read on a phone. Do not state legal conclusions or quote rules you aren&#x27;t sure of. Tell me where to confirm instead.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Turn the top 5 into a client-ready risk register: the risk, what we do about it, and the decision deadline.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 5</p><h3>Turn the visit into a launch plan</h3><p class="pw">Your playbook for the next listing like this one, built from what you saw.</p><div class="act"><button class="cp" data-t="pr5">Copy prompt</button><button class="sh" data-s="pb5" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb5"><pre id="pr5">I just walked the property. Here are my raw notes:
 
 [TAP THE MIC AND TALK FOR 60 SECONDS, OR PASTE YOUR VOICE MEMO]
 
@@ -130,7 +130,7 @@ Write:
 3. One social caption for my video or a photo, plus 3 opening lines for the first 3 seconds of a video.
 4. Three more short video ideas I could film at my next listing.
 
-Warm, direct, not salesy. Put [CHECK THIS] anywhere a market number belongs. Do not invent stats. If my video shows this home, remind me to get the listing agent&#x27;s OK and follow my broker&#x27;s ad rules before posting.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Here are 3 real texts I&#x27;ve sent: [PASTE]. Rewrite everything so it sounds like these.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 8</p><h3>Who do you already know?</h3><p class="pw">Find the lake conversations already sitting in your phone, and send one before we park.</p><div class="act"><button class="cp" data-t="pr8">Copy prompt</button><button class="sh" data-s="pb8" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb8"><pre id="pr8">I&#x27;m going to name people I know and what they&#x27;ve mentioned. First names are fine.
+Warm, direct, not salesy. Put [CHECK THIS] anywhere a market number belongs. Do not invent stats. If my video shows this home, remind me to get the listing agent&#x27;s OK and follow my broker&#x27;s ad rules before posting.</pre><p class="gf"><b>Been to my class? Go further:</b> Add: &quot;Here are 3 real texts I&#x27;ve sent: [PASTE]. Rewrite everything so it sounds like these.&quot;</p></div></article><article class="pt"><div class="pf"><p class="pn">Prompt 8</p><h3>Who do you already know?</h3><p class="pw">Find the lake conversations already sitting in your phone, and send one before we leave.</p><div class="act"><button class="cp" data-t="pr8">Copy prompt</button><button class="sh" data-s="pb8" aria-expanded="false">See prompt</button></div></div><div class="pb" id="pb8"><pre id="pr8">I&#x27;m going to name people I know and what they&#x27;ve mentioned. First names are fine.
 
 [TAP THE MIC. NAME 5 PEOPLE WHO HAVE MENTIONED A LAKE, A BOAT, GOLF, A SECOND HOME, SELLING A BUSINESS, OR OUTGROWING THEIR HOME.]
 
