@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://classes.cnattitle.com/bk-seo/check">
+<meta property="og:title" content="Does AI name you? | CNAT Title">
+<meta property="og:description" content="Ask ChatGPT and Google the question a buyer would ask about agents in your city. Takes about a minute.">
+<meta property="og:image" content="https://classes.cnattitle.com/og/og-bk-seo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="CNAT Title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Does AI name you?">
+<meta name="twitter:description" content="Ask ChatGPT and Google the question a buyer would ask about agents in your city.">
+<meta name="twitter:image" content="https://classes.cnattitle.com/og/og-bk-seo.png">
+  <title>Does AI name you? · Found First | CNAT Title</title>
+  <meta name="description" content="A one-minute check from the Found First class: ask ChatGPT and Google AI Mode who they recommend in your city, and what they know about you.">
+  <link rel="icon" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0d1623;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--grey:#c3cbd8;--ink:#0d1623;--ink-muted:#4a5466;--ink-blue:#1f5fa6;--border:rgba(255,255,255,.1)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{background:var(--navy);color:#fff;font-family:'Montserrat',system-ui,sans-serif;font-size:16px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
+    .container{max-width:760px;margin:0 auto;padding:0 24px}
+
+    .hero{padding:44px 0 4px}
+    .hero h1{font-size:clamp(38px,9vw,60px);font-weight:800;line-height:1.02;letter-spacing:-.025em}
+    .hero h1 .accent{color:var(--yellow)}
+    .hero .tagline{font-size:clamp(17px,2.6vw,20px);font-weight:500;color:#e6ebf2;margin-top:14px;max-width:40ch;line-height:1.45;text-wrap:balance}
+
+    .tool{margin-top:34px;overflow:hidden;border-radius:24px;color:var(--ink);
+      background:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);
+      box-shadow:inset 0 1px 0 #fff,0 7px 0 #132643,0 19px 26px rgba(0,0,0,.5)}
+    .tool-in{padding:24px 24px 26px}
+    .tool h2{font-size:23px;font-weight:800;line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
+    .tool h2 span{color:var(--ink-blue)}
+    .field{margin-top:16px}
+    .field label{display:block;font-size:14px;font-weight:700;color:var(--ink-muted);margin-bottom:6px}
+    .field label i{font-style:normal;font-weight:500}
+    .field input{width:100%;min-height:52px;padding:0 14px;font:600 17px 'Montserrat',system-ui,sans-serif;color:var(--ink);background:#eef1f5;border:1.5px solid #cfd6e0;border-radius:12px}
+    .field input:focus{background:#fff;border-color:var(--blue);outline:none;box-shadow:0 0 0 4px rgba(45,125,210,.16)}
+    .q{margin-top:18px;padding-top:16px;border-top:1px solid #dfe4ec;font-size:17px;font-weight:600;line-height:1.45;color:var(--ink);text-wrap:pretty}
+    .q.wait{color:var(--ink-muted);font-weight:500}
+    .btns{display:grid;gap:12px;margin-top:16px}
+    @media(min-width:560px){.btns{grid-template-columns:1fr 1fr}}
+    .btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:10px 16px;border-radius:14px;font:700 16px 'Montserrat',system-ui,sans-serif;text-decoration:none;text-align:center;cursor:pointer;border:0;color:#fff;
+      background:linear-gradient(180deg,#3b8de0 0%,#2a73c2 100%);box-shadow:0 5px 0 #1b4f8a;transition:transform .12s,box-shadow .12s}
+    .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #1b4f8a}
+    .btn.two{background:linear-gradient(180deg,#284a80 0%,#1f3a66 100%);box-shadow:0 5px 0 #132643}
+    .btn.two:active{box-shadow:0 1px 0 #132643}
+    .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+    .copy{margin-top:14px;background:none;border:0;padding:8px 0;min-height:44px;font:700 15px 'Montserrat',system-ui,sans-serif;color:var(--ink-blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+    .copy[disabled]{opacity:.45;cursor:default}
+    .then{margin-top:10px;font-size:15.5px;color:var(--ink-muted);line-height:1.55;text-wrap:pretty}
+    .then b{color:var(--ink)}
+    .then a{color:var(--ink-blue);font-weight:700;text-underline-offset:3px}
+
+    .next{margin-top:44px;border-top:1px solid var(--border);padding-top:26px}
+    .next h2{font-size:21px;font-weight:800;letter-spacing:-.01em}
+    .next ol{margin:12px 0 0 1.2em;color:var(--grey)}
+    .next li{margin:6px 0;padding-left:4px}
+    .next li b{color:#fff}
+    .next a{color:var(--blue-light);font-weight:700;text-underline-offset:3px}
+    .fine{margin:26px 0 0;font-size:14px;color:var(--grey)}
+
+    .footer{padding:30px 0 50px;border-top:1px solid var(--border);margin-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px 24px}
+    .footer-brand{font-size:15px;color:var(--grey);line-height:1.5}
+    .footer-brand strong{color:#fff;font-weight:700}
+    .footer-quote{font-size:20px;font-weight:800;letter-spacing:-.01em;color:#fff}
+    .footer-quote .gold{color:var(--yellow)}
+
+    @media(max-width:640px){
+      .container{padding:0 16px}
+      .hero{padding:28px 0 0}
+      .tool-in{padding:20px 18px 22px}
+      .tool h2{font-size:21px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="hero">
+      <h1>Does AI <span class="accent">name you?</span></h1>
+      <p class="tagline">Ask the question a buyer would ask, and see who comes back. About a minute.</p>
+    </header>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>1.</span> Who does AI recommend in your city?</h2>
+        <div class="field"><label for="city">Your city</label><input id="city" type="text" inputmode="text" autocomplete="address-level2" placeholder="Southlake, TX"></div>
+        <div class="field"><label for="spec">Your specialty <i>(optional)</i></label><input id="spec" type="text" autocomplete="off" placeholder="first-time buyers"></div>
+        <p class="q wait" id="q1">Type your city and the question appears here.</p>
+        <div class="btns">
+          <a class="btn" id="gpt1" target="_blank" rel="noopener" aria-disabled="true">Ask ChatGPT &rarr;</a>
+          <a class="btn two" id="goo1" target="_blank" rel="noopener" aria-disabled="true">Ask Google AI Mode &rarr;</a>
+        </div>
+        <button class="copy" id="copy1" type="button" disabled>Copy the question instead</button>
+        <p class="then">Look for your name in the answer. In class, go back to the chat and type <b>1</b> if it named you, <b>0</b> if it didn't.</p>
+        <p class="then">No names at all? <a id="alt1" target="_blank" rel="noopener" href="#">Ask who has the best reviews instead &rarr;</a></p>
+      </div>
+    </section>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>2.</span> What does AI know about you?</h2>
+        <div class="field"><label for="name">Your full name</label><input id="name" type="text" autocomplete="name" placeholder="First and last name"></div>
+        <div class="field"><label for="brok">Your brokerage <i>(optional)</i></label><input id="brok" type="text" autocomplete="organization" placeholder="Your brokerage name"></div>
+        <p class="q wait" id="q2">Type your name (and your city above) and the question appears here.</p>
+        <div class="btns">
+          <a class="btn" id="gpt2" target="_blank" rel="noopener" aria-disabled="true">Ask ChatGPT &rarr;</a>
+          <a class="btn two" id="goo2" target="_blank" rel="noopener" aria-disabled="true">Ask Google AI Mode &rarr;</a>
+        </div>
+        <button class="copy" id="copy2" type="button" disabled>Copy the question instead</button>
+        <p class="then">Screenshot the answer. Note anything wrong or out of date: old brokerage, old phone number, wrong city. Those are the fixes we start with in the workshop.</p>
+      </div>
+    </section>
+
+    <section class="next">
+      <h2>Before the workshop</h2>
+      <ol>
+        <li>Run both checks above and <b>screenshot</b> every answer.</li>
+        <li>Fill in the scorecard on page 2 of the <a href="handout">class handout</a>.</li>
+        <li>Join the workshop from a <b>laptop</b> with your logins open: Google Business Profile, your website, Zillow, Realtor.com, HAR.com.</li>
+      </ol>
+      <p class="fine">What you type stays on your device. This page only builds the question and opens it for you.</p>
+    </section>
+
+    <div class="footer">
+      <div class="footer-brand">
+        <strong>CNAT Title</strong> · Bradley Patterson<br>
+        Technology Director
+      </div>
+      <div class="footer-quote">
+        Get on the shortlist. <span class="gold">Get the first call.</span>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={city:$('city'),spec:$('spec'),name:$('name'),brok:$('brok')};
+  var KEY='ff-check';
+  try{var saved=JSON.parse(localStorage.getItem(KEY)||'{}');for(var k in f){if(saved[k])f[k].value=saved[k];}}catch(e){}
+
+  function clean(s){return String(s||'').replace(/\s+/g,' ').trim()}
+  function gpt(q){return 'https://chatgpt.com/?hints=search&q='+encodeURIComponent(q)}
+  function goo(q){return 'https://www.google.com/search?udm=50&q='+encodeURIComponent(q)}
+  function setLink(a,url){ if(url){a.href=url;a.setAttribute('aria-disabled','false');} else {a.removeAttribute('href');a.setAttribute('aria-disabled','true');} }
+
+  var q1='',q2='';
+  function update(){
+    var city=clean(f.city.value), spec=clean(f.spec.value), name=clean(f.name.value), brok=clean(f.brok.value);
+    q1=city?('Who are the best real estate agents in '+city+(spec?' for '+spec:'')+'?'):'';
+    var alt=city?('Which real estate agents in '+city+' have the best reviews, and where are those reviews posted?'):'';
+    q2=(name&&city)?('What do you know about '+name+', real estate agent'+(brok?' with '+brok:'')+' in '+city+'?'):'';
+
+    $('q1').textContent=q1?('“'+q1+'”'):'Type your city and the question appears here.';
+    $('q1').classList.toggle('wait',!q1);
+    setLink($('gpt1'),q1&&gpt(q1)); setLink($('goo1'),q1&&goo(q1)); $('copy1').disabled=!q1;
+    var a=$('alt1'); if(alt){a.href=gpt(alt);a.style.opacity='';a.style.pointerEvents='';}else{a.href='#';a.style.opacity='.45';a.style.pointerEvents='none';}
+
+    $('q2').textContent=q2?('“'+q2+'”'):(name?'Add your city in step 1 and the question appears here.':'Type your name (and your city above) and the question appears here.');
+    $('q2').classList.toggle('wait',!q2);
+    setLink($('gpt2'),q2&&gpt(q2)); setLink($('goo2'),q2&&goo(q2)); $('copy2').disabled=!q2;
+
+    try{localStorage.setItem(KEY,JSON.stringify({city:city,spec:spec,name:name,brok:brok}));}catch(e){}
+  }
+  for(var k in f) f[k].addEventListener('input',update);
+
+  function copier(btn,get){
+    btn.addEventListener('click',function(){
+      var q=get(); if(!q) return;
+      var done=function(ok){var old='Copy the question instead';btn.textContent=ok?'Copied. Paste it into ChatGPT or Google.':'Press and hold the question above to copy it.';setTimeout(function(){btn.textContent=old},3200)};
+      try{navigator.clipboard.writeText(q).then(function(){done(true)},function(){done(false)});}catch(e){done(false)}
+    });
+  }
+  copier($('copy1'),function(){return q1}); copier($('copy2'),function(){return q2});
+  update();
+})();
+</script>
+<script src="/assets/site-chrome.js?v=20261030" defer data-crumb="Found First|/bk-seo/" data-title="Does AI name you?" data-class="Found First"></script>
+</body>
+</html>

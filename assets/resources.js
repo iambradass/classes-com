@@ -118,6 +118,10 @@ window.CNAT_RESOURCES = [
    d:"Everything handed out at the Found First session, plus what to do before the workshop.",
    g:["marketing","ai","getting started"], s:"bk realty found first seo aeo search engine answer engine optimization google ai chatgpt hub index"},
 
+  {t:"Does AI name you? A one-minute check", u:"/bk-seo/check", k:"Build", c:"Found First",
+   d:"Type your city and tap once: it asks ChatGPT or Google AI Mode who they recommend, then what they know about you.",
+   g:["marketing","ai","prospecting"], s:"seo aeo chatgpt google ai mode check yourself shortlist recommended agents self audit visibility found first bk realty"},
+
   {t:"Found First: class handout", u:"/bk-seo/handout", k:"Handout", c:"Found First",
    d:"How Google and AI pick which agent to recommend, where AI reads about you, and the Before Thursday scorecard with five AI prompts.",
    g:["marketing","ai","prospecting"], s:"seo aeo google business profile reviews chatgpt ai mode ai overviews visibility citations scorecard prompts handout pdf printable"},
