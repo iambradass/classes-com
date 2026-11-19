@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://classes.cnattitle.com/bk-seo/workshop">
+<meta property="og:title" content="The workshop kit: four fixes, paste-ready | CNAT Title">
+<meta property="og:description" content="Found First, Part 2: your one line, a bio AI can quote, three answers for your own page, and a review request. Copy, paste, done.">
+<meta property="og:image" content="https://classes.cnattitle.com/og/og-bk-seo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="CNAT Title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The workshop kit: four fixes, paste-ready">
+<meta name="twitter:description" content="Your one line, a bio AI can quote, three answers for your own page, and a review request.">
+<meta name="twitter:image" content="https://classes.cnattitle.com/og/og-bk-seo.png">
+  <title>The workshop kit · Found First | CNAT Title</title>
+  <meta name="description" content="The Found First workshop kit: one line to paste into every profile, a prompt to rewrite your bio, a prompt for three answers on your own page, and a review request that follows Google's rules.">
+  <link rel="icon" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0d1623;--blue:#2d7dd2;--blue-light:#4a9ae8;--yellow:#faed36;--grey:#c3cbd8;--ink:#0d1623;--ink-muted:#4a5466;--ink-blue:#1f5fa6;--border:rgba(255,255,255,.1)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{background:var(--navy);color:#fff;font-family:'Montserrat',system-ui,sans-serif;font-size:16px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue-light);outline-offset:3px}
+    .container{max-width:760px;margin:0 auto;padding:0 24px}
+
+    .hero{padding:44px 0 4px}
+    .hero h1{font-size:clamp(38px,9vw,60px);font-weight:800;line-height:1.02;letter-spacing:-.025em}
+    .hero h1 .accent{color:var(--yellow)}
+    .hero .tagline{font-size:clamp(17px,2.6vw,20px);font-weight:500;color:#e6ebf2;margin-top:14px;max-width:40ch;line-height:1.45;text-wrap:balance}
+
+    .tool{margin-top:34px;overflow:hidden;border-radius:24px;color:var(--ink);
+      background:linear-gradient(160deg,#fff 0%,#fbfcfd 45%,#eef1f5 100%);
+      box-shadow:inset 0 1px 0 #fff,0 7px 0 #132643,0 19px 26px rgba(0,0,0,.5)}
+    .tool-in{padding:24px 24px 26px}
+    .tool h2{font-size:23px;font-weight:800;line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
+    .tool h2 span{color:var(--ink-blue)}
+    .field{margin-top:16px}
+    .field label{display:block;font-size:14px;font-weight:700;color:var(--ink-muted);margin-bottom:6px}
+    .field label i{font-style:normal;font-weight:500}
+    .field input{width:100%;min-height:52px;padding:0 14px;font:600 17px 'Montserrat',system-ui,sans-serif;color:var(--ink);background:#eef1f5;border:1.5px solid #cfd6e0;border-radius:12px}
+    .field input:focus{background:#fff;border-color:var(--blue);outline:none;box-shadow:0 0 0 4px rgba(45,125,210,.16)}
+    .q{margin-top:18px;padding-top:16px;border-top:1px solid #dfe4ec;font-size:17px;font-weight:600;line-height:1.45;color:var(--ink);text-wrap:pretty}
+    .q.wait{color:var(--ink-muted);font-weight:500}
+    .btns{display:grid;gap:12px;margin-top:16px}
+    @media(min-width:560px){.btns{grid-template-columns:1fr 1fr}}
+    .btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:10px 16px;border-radius:14px;font:700 16px 'Montserrat',system-ui,sans-serif;text-decoration:none;text-align:center;cursor:pointer;border:0;color:#fff;
+      background:linear-gradient(180deg,#3b8de0 0%,#2a73c2 100%);box-shadow:0 5px 0 #1b4f8a;transition:transform .12s,box-shadow .12s}
+    .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #1b4f8a}
+    .btn.two{background:linear-gradient(180deg,#284a80 0%,#1f3a66 100%);box-shadow:0 5px 0 #132643}
+    .btn.two:active{box-shadow:0 1px 0 #132643}
+    .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+    .copy{margin-top:14px;background:none;border:0;padding:8px 0;min-height:44px;font:700 15px 'Montserrat',system-ui,sans-serif;color:var(--ink-blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+    .copy[disabled]{opacity:.45;cursor:default}
+    .then{margin-top:10px;font-size:15.5px;color:var(--ink-muted);line-height:1.55;text-wrap:pretty}
+    .then b{color:var(--ink)}
+    .then a{color:var(--ink-blue);font-weight:700;text-underline-offset:3px}
+
+    .next{margin-top:44px;border-top:1px solid var(--border);padding-top:26px}
+    .next h2{font-size:21px;font-weight:800;letter-spacing:-.01em}
+    .next ol{margin:12px 0 0 1.2em;color:var(--grey)}
+    .next li{margin:6px 0;padding-left:4px}
+    .next li b{color:#fff}
+    .next a{color:var(--blue-light);font-weight:700;text-underline-offset:3px}
+    .fine{margin:26px 0 0;font-size:14px;color:var(--grey)}
+
+    .footer{padding:30px 0 50px;border-top:1px solid var(--border);margin-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px 24px}
+    .footer-brand{font-size:15px;color:var(--grey);line-height:1.5}
+    .footer-brand strong{color:#fff;font-weight:700}
+    .footer-quote{font-size:20px;font-weight:800;letter-spacing:-.01em;color:#fff}
+    .footer-quote .gold{color:var(--yellow)}
+
+    @media(max-width:640px){
+      .container{padding:0 16px}
+      .hero{padding:28px 0 0}
+      .tool-in{padding:20px 18px 22px}
+      .tool h2{font-size:21px}
+    }
+  
+    .block{margin-top:14px;padding:14px 16px;background:#eef1f5;border:1.5px solid #cfd6e0;border-radius:12px;font-size:16px;font-weight:500;line-height:1.55;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
+    .tool ul{margin:10px 0 0 1.15em;color:var(--ink-muted);font-size:15.5px;line-height:1.55}
+    .tool ul li{margin:5px 0}
+    .tool ul b{color:var(--ink)}
+    .sub{margin-top:22px;padding-top:18px;border-top:1px solid #dfe4ec;font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+    .btns.one{grid-template-columns:1fr}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="hero">
+      <h1>Four fixes. <span class="accent">Paste-ready.</span></h1>
+      <p class="tagline">Everything from the workshop, in the order to do it. Give each one about an hour this week.</p>
+    </header>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>1.</span> One line, everywhere</h2>
+        <div class="field"><label for="name">Your full name</label><input id="name" type="text" autocomplete="name" placeholder="First and last name"></div>
+        <div class="field"><label for="brok">Brokerage <i>(add your team in front if you have one)</i></label><input id="brok" type="text" autocomplete="organization" placeholder="Your team at Your Brokerage"></div>
+        <div class="field"><label for="city">The city you serve</label><input id="city" type="text" autocomplete="address-level2" placeholder="Fort Worth, Texas"></div>
+        <div class="field"><label for="phone">One phone number</label><input id="phone" type="tel" autocomplete="tel" placeholder="(817) 555-0100"></div>
+        <p class="q wait" id="line">Fill in the four boxes and your line appears here.</p>
+        <button class="copy" id="copyline" type="button" data-label="Copy my line" disabled>Copy my line</button>
+        <p class="then"><b>Paste the same wording into:</b> Google Business Profile, HAR.com, Zillow, Realtor.com, Facebook, Instagram, LinkedIn, your own page and your email signature.</p>
+        <p class="then">Changed brokerage, team or phone since you made a profile? <b>Edit the old ones.</b> Don't delete them.</p>
+      </div>
+    </section>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>2.</span> A bio AI can quote</h2>
+        <p class="then">Paste this into your AI chatbot, with your current bio where the brackets are.</p>
+        <p class="block" id="p-bio">Here is my bio: [paste your bio]
+
+Rewrite only the first three sentences so they include my full name, my brokerage, my city, who I help and one proof point. Use only facts already in the bio. Keep my voice. Leave the rest alone.</p>
+        <button class="copy" type="button" data-copy="p-bio" data-label="Copy the prompt">Copy the prompt</button>
+        <p class="then"><b>Check the result:</b> who you are, where you work, who you help and one proof, all inside the first three sentences. Then read it out loud. If you wouldn't say it on the phone, change it.</p>
+      </div>
+    </section>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>3.</span> Three answers on your own page</h2>
+        <p class="then">Find the questions your clients ask before they call anyone, then answer three of them.</p>
+        <p class="block" id="p-q">I'm a real estate agent in [city] who works with [client type]. List ten questions these clients ask before they call an agent.
+
+Then draft a 60-word answer to the three I pick. Start each answer with the direct answer. Leave a blank for any number so I can verify it. End each one with my name, brokerage and city.</p>
+        <button class="copy" type="button" data-copy="p-q" data-label="Copy the prompt">Copy the prompt</button>
+        <ul>
+          <li>The <b>question is the heading</b>, in the client's words.</li>
+          <li>The <b>answer comes first</b>.</li>
+          <li>One <b>local fact with a number</b>. Check it at the source before you publish.</li>
+          <li><b>Your name, brokerage and city</b>, inside the answer.</li>
+        </ul>
+        <p class="then">Put them on a page you control: your website or a landing page in your CRM. Typed text, not a picture of text and not a PDF.</p>
+
+        <p class="sub">Then test the page</p>
+        <div class="field"><label for="url">The link to your page</label><input id="url" type="url" inputmode="url" autocomplete="url" placeholder="https://"></div>
+        <div class="btns one"><a class="btn" id="test" target="_blank" rel="noopener" aria-disabled="true">Ask ChatGPT to read my page &rarr;</a></div>
+        <p class="then">If it can't tell you who wrote the page, fix that first. Passing is a good sign, not proof: other AI readers can still miss content that loads late. Plain typed text on the page is what works everywhere.</p>
+
+        <p class="sub">Optional: label the answers for machines</p>
+        <p class="block" id="p-faq">Turn these three questions and answers into FAQ schema in JSON-LD format, ready to paste into my page's custom code box: [paste your three questions and answers]</p>
+        <button class="copy" type="button" data-copy="p-faq" data-label="Copy the prompt">Copy the prompt</button>
+        <p class="then">Five minutes, and optional. Google stopped showing FAQ results in Search in May 2026. The code still labels your content for machines.</p>
+      </div>
+    </section>
+
+    <section class="tool">
+      <div class="tool-in">
+        <h2><span>4.</span> Reviews, asked the right way</h2>
+        <p class="block" id="p-rev">Hi [first name], it's [your name]. Handing you those keys made my month. If you have two minutes, would you share your experience in a Google review? Say whatever you'd like, in your own words. [your review link]</p>
+        <button class="copy" type="button" data-copy="p-rev" data-label="Copy the message">Copy the message</button>
+        <ul>
+          <li><b>Ask every client</b>, the same way. Text it the day they get the keys.</li>
+          <li><b>Don't tell them what to write.</b> No names, no keywords, no star count. Google's review policy has barred that since April 2026.</li>
+          <li><b>Nothing in return</b> for a review. Ever.</li>
+          <li>A <b>steady few each month</b> beats twenty in a week.</li>
+          <li>Reply to each one in a sentence.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="next">
+      <h2>ChatGPT Business Hub, the short version</h2>
+      <ol>
+        <li>Search your name at <a href="https://chatgpt.com/business-hub" target="_blank" rel="noopener">chatgpt.com/business-hub</a>. For now, a local or service business can only <b>claim a listing that already exists</b>.</li>
+        <li>Expect a verification code, then an <b>identity check</b>. Decide if you're comfortable with that before you start.</li>
+        <li>A claim lets you correct your facts and see how often you're mentioned. OpenAI says it <b>doesn't guarantee more visibility</b>. The four fixes above come first.</li>
+      </ol>
+      <h2 style="margin-top:28px">In 30 days</h2>
+      <ol>
+        <li>Run the <a href="check">one-minute check</a> again and compare it with your first screenshot.</li>
+      </ol>
+      <p class="fine">What you type stays on your device. This page only builds the wording and opens it for you. Business Hub is in beta and its rules are changing.</p>
+    </section>
+
+    <div class="footer">
+      <div class="footer-brand">
+        <strong>CNAT Title</strong> · Bradley Patterson<br>
+        Technology Director
+      </div>
+      <div class="footer-quote">
+        Get on the shortlist. <span class="gold">Get the first call.</span>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var f={name:$('name'),brok:$('brok'),city:$('city'),phone:$('phone')};
+  var KEY='ff-kit';
+  try{var a=JSON.parse(localStorage.getItem('ff-check')||'{}'), b=JSON.parse(localStorage.getItem(KEY)||'{}');
+    for(var k in f){var v=b[k]||a[k]; if(v) f[k].value=v;}}catch(e){}
+  function clean(s){return String(s||'').replace(/\s+/g,' ').trim()}
+  var line='';
+  function update(){
+    var n=clean(f.name.value), br=clean(f.brok.value), c=clean(f.city.value), ph=clean(f.phone.value);
+    line=(n&&br&&c&&ph)?(n+', REALTOR\u00AE \u00B7 '+br+' \u00B7 '+c+' \u00B7 '+ph):'';
+    $('line').textContent=line||'Fill in the four boxes and your line appears here.';
+    $('line').classList.toggle('wait',!line);
+    $('copyline').disabled=!line;
+    try{localStorage.setItem(KEY,JSON.stringify({name:n,brok:br,city:c,phone:ph}));}catch(e){}
+  }
+  for(var k in f) f[k].addEventListener('input',update);
+  function copyText(btn,text){
+    var label=btn.getAttribute('data-label');
+    var done=function(ok){btn.textContent=ok?'Copied.':'Press and hold the text above to copy it.';setTimeout(function(){btn.textContent=label},2800)};
+    try{navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});}catch(e){done(false)}
+  }
+  $('copyline').addEventListener('click',function(){ if(line) copyText(this,line); });
+  [].forEach.call(document.querySelectorAll('[data-copy]'),function(btn){
+    btn.addEventListener('click',function(){copyText(btn,$(btn.getAttribute('data-copy')).textContent)});
+  });
+  var url=$('url'), test=$('test');
+  function upTest(){
+    var u=clean(url.value);
+    if(u&&!/^https?:\/\//i.test(u)&&u.indexOf('.')>0) u='https://'+u;
+    var ok=/^https?:\/\/[^\s.]+\.[^\s]+$/i.test(u);
+    if(ok){test.href='https://chatgpt.com/?hints=search&q='+encodeURIComponent('Open this page: '+u+' Using only what is on that page, tell me who wrote it, what city they serve, and which questions it answers. If you cannot read the page, say so.');test.setAttribute('aria-disabled','false');}
+    else{test.removeAttribute('href');test.setAttribute('aria-disabled','true');}
+  }
+  url.addEventListener('input',upTest);
+  update(); upTest();
+})();
+</script>
+<script src="/assets/site-chrome.js?v=20261030" defer data-crumb="Found First|/bk-seo/" data-title="The workshop kit" data-class="Found First"></script>
+</body>
+</html>

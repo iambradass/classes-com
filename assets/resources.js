@@ -122,6 +122,10 @@ window.CNAT_RESOURCES = [
    d:"Type your city and tap once: it asks ChatGPT or Google AI Mode who they recommend, then what they know about you.",
    g:["marketing","ai","prospecting"], s:"seo aeo chatgpt google ai mode check yourself shortlist recommended agents self audit visibility found first bk realty"},
 
+  {t:"Found First: the workshop kit", u:"/bk-seo/workshop", k:"Build", c:"Found First",
+   d:"The four fixes from Part 2, paste-ready: one line for every profile, a bio prompt, a prompt for three answers on your own page, a page test, and a review request that follows Google's rules.",
+   g:["marketing","ai","prospecting"], s:"seo aeo workshop kit bio prompt faq answers review request google review policy name consistency nap chatgpt business hub found first bk realty"},
+
   {t:"Found First: class handout", u:"/bk-seo/handout", k:"Handout", c:"Found First",
    d:"How Google and AI pick which agent to recommend, where AI reads about you, and the Before Thursday scorecard with five AI prompts.",
    g:["marketing","ai","prospecting"], s:"seo aeo google business profile reviews chatgpt ai mode ai overviews visibility citations scorecard prompts handout pdf printable"},
